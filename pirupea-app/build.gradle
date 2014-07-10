@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
-    buildToolsVersion "19.1.0"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.hello.pirupea"
@@ -11,6 +11,12 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    dexOptions {
+        preDexLibraries = false
+    }
+
+
     buildTypes {
         release {
             runProguard false
@@ -21,6 +27,5 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'joda-time:joda-time:2.3'
-    compile 'com.google.guava:guava:+'
+    compile project(':pirupea-pill')
 }
