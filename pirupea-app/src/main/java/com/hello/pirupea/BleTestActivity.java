@@ -2,6 +2,7 @@ package com.hello.pirupea;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,11 +15,11 @@ import android.widget.Toast;
 import com.hello.ble.PillData;
 import com.hello.ble.PillOperationCallback;
 import com.hello.ble.devices.Pill;
+import com.hello.pirupea.settings.LocalSettings;
 
 import org.joda.time.DateTime;
 
 import java.util.List;
-import java.util.Objects;
 
 
 public class BleTestActivity extends ListActivity implements
@@ -33,7 +34,7 @@ public class BleTestActivity extends ListActivity implements
         this.deviceArrayAdapter = new ArrayAdapter<Pill>(this, android.R.layout.simple_list_item_1);
         this.setListAdapter(this.deviceArrayAdapter);
 
-
+        //this.startService(new Intent(this, BleService.class));
 
     }
 
@@ -41,7 +42,7 @@ public class BleTestActivity extends ListActivity implements
     protected void onResume(){
         super.onResume();
 
-        Pill.discover(this, this, 3000);
+        Pill.discover(this, 3000);
     }
 
     @Override
@@ -50,9 +51,8 @@ public class BleTestActivity extends ListActivity implements
 
         for(int i = 0; i < this.deviceArrayAdapter.getCount(); i++){
             final Pill pill = this.deviceArrayAdapter.getItem(i);
-            if(pill.isConnected() || pill.isConnecting()){
-                pill.disconnect();
-            }
+            pill.disconnect();
+
         }
     }
 
@@ -103,9 +103,12 @@ public class BleTestActivity extends ListActivity implements
             builder.setItems(new CharSequence[]{ "Connect to Pill" }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    selectedPill.connect(BleTestActivity.this, new PillOperationCallback<Void>() {
+                    selectedPill.connect(new PillOperationCallback<Void>() {
                         @Override
                         public void onCompleted(final Pill connectedPill, final Void data) {
+
+                            LocalSettings.setServiceRunning(BleTestActivity.this, connectedPill.getAddress());
+
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -130,11 +133,14 @@ public class BleTestActivity extends ListActivity implements
                     switch (which){
                         case 0: // set time
                             final DateTime targetDateTime = DateTime.now();
-                            if(selectedPill.setTime(targetDateTime)){
-                                Toast.makeText(BleTestActivity.this,
-                                        "Time set to " + targetDateTime.toString("MM/dd HH:mm:ss") + " in " + selectedPill.getName(),
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                            selectedPill.setTime(targetDateTime, new PillOperationCallback<BluetoothGattCharacteristic>() {
+                                @Override
+                                public void onCompleted(Pill connectedPill, BluetoothGattCharacteristic data) {
+                                    Toast.makeText(BleTestActivity.this,
+                                            "Time set to " + targetDateTime.toString("MM/dd HH:mm:ss") + " in " + selectedPill.getName(),
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            });
                             break;
                         case 1: // get time
                             selectedPill.getTime(new PillOperationCallback<DateTime>() {

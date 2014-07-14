@@ -2,15 +2,14 @@ package com.hello.ble;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.LittleEndianDataInputStream;
-import com.hello.ble.devices.Pill;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.IllegalFieldValueException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,9 +17,7 @@ import java.util.List;
  */
 public class PillData {
 
-    public final static int LEAD_BLE_PACKAGE_HEADER_LENGTH = 2;
-    public final static int FOLLOWING_BLE_PACKAGE_HEADER_LENGTH = 1;
-    public final static int STRUCT_HEADER_SIZE = 2 + 2 + 5 + 1 + 2 + 2;
+    public final static int STRUCT_HEADER_SIZE = 1 + 1 + 2 + 5 + 1 + 2 + 2;
 
     public final DateTime timestamp;
     public final Integer maxAmplitude;
@@ -77,9 +74,11 @@ public class PillData {
                 currentDataTime = currentDataTime.minusMinutes(1);
             }
 
-
+            pillInputStream.close();
         }catch (IOException ioe){
             ioe.printStackTrace();
+        }catch (IllegalFieldValueException ifvEx){
+            ifvEx.printStackTrace();
         }
 
         return ImmutableList.<PillData>copyOf(list);

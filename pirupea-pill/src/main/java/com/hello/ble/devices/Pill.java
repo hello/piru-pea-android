@@ -2,33 +2,31 @@ package com.hello.ble.devices;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothGatt;
-import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
-import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 
-import com.google.common.io.LittleEndianDataInputStream;
+import com.google.common.base.Objects;
+import com.hello.ble.LibApplication;
 import com.hello.ble.PillCommand;
 import com.hello.ble.PillData;
 import com.hello.ble.PillOperationCallback;
+import com.hello.ble.stack.BleTimePacketHandler;
+import com.hello.ble.stack.MotionPacketHandler;
+import com.hello.ble.stack.PillGattLayer;
 import com.hello.ble.util.BleDateTimeConverter;
+import com.hello.ble.util.PillUUID;
 
 import org.joda.time.DateTime;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -53,232 +51,34 @@ public class Pill {
         DISCONNECTING
     }
 
-    private static final UUID PILL_SERVICE_UUID = UUID.fromString("0000E110-1212-EFDE-1523-785FEABCD123");
-    private static final UUID CHAR_COMMAND_UUID = UUID.fromString("0000deed-0000-1000-8000-00805f9b34fb");
-    private static final UUID CHAR_COMMAND_RESPONSE_UUID = UUID.fromString("0000d00d-0000-1000-8000-00805f9b34fb");
-    private static final UUID CHAR_DAY_DATETIME_UUID = UUID.fromString("00002A0A-0000-1000-8000-00805F9B34FB");
-    private static final UUID CHAR_DATA_UUID = UUID.fromString("0000FEED-0000-1000-8000-00805F9B34FB");;
 
-    private static final UUID DESCRIPTOR_CHAR_COMMAND_RESPONSE_CONFIG = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
+    private static final Handler scanHandler = new Handler();
 
-    private static Handler scanHandler = new Handler();
+    protected Context context;
     private BluetoothDevice bluetoothDevice;
-    private BluetoothGattService pillService;
-    private BluetoothGatt bluetoothGatt;
+    private PillGattLayer gattLayer;
 
-    private ConnectionStatus connectionStatus = ConnectionStatus.DISCONNECTED;
-
-    private PillOperationCallback<Void> connectedCallback;
-    private PillOperationCallback<Void> commandWriteCallback;
-    private PillOperationCallback<DateTime> getTimeCallback;
-    private PillOperationCallback<List<PillData>> getDataCallback;
-
-    private Map<UUID, PillOperationCallback<BluetoothGattDescriptor>> subscribeFinishedCallbacks = new HashMap<>();
-    private Map<UUID, PillOperationCallback<BluetoothGattDescriptor>> unsubscribeFinishedCallbacks = new HashMap<>();
-
-    private final BluetoothGattCallback gattCallback = new BluetoothGattCallback() {
-
-        private static final int MINUTES_PER_DAY = 2;
-        private byte[] pillDataInBytes;
-        private int fillCount = 0;
-
-        @Override
-        public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
-            if(newState == BluetoothProfile.STATE_CONNECTED){
-                Pill.this.bluetoothGatt = gatt;
-                Pill.this.connectionStatus = ConnectionStatus.CONNECTING;
-                gatt.discoverServices();
-            }
+    private BleTimePacketHandler bleTimePacketHandler;
+    private MotionPacketHandler motionPacketHandler;
 
 
-            if(newState == BluetoothProfile.STATE_DISCONNECTED){
-                Pill.this.bluetoothGatt = null;
-                Pill.this.pillService = null;
-                Pill.this.connectionStatus = ConnectionStatus.DISCONNECTED;
-                Pill.this.subscribeFinishedCallbacks.clear();
-                Pill.this.unsubscribeFinishedCallbacks.clear();
-            }
-        }
+    private Pill(){
 
-        @Override
-        public void onServicesDiscovered(BluetoothGatt gatt, int status) {
-            final BluetoothGattService pillService = gatt.getService(PILL_SERVICE_UUID);
-            Pill.this.pillService = pillService;
-            Pill.this.connectionStatus = ConnectionStatus.CONNECTED;
-            Pill.this.subscribeFinishedCallbacks.clear();
-            Pill.this.unsubscribeFinishedCallbacks.clear();
-
-            if(connectedCallback != null){
-                connectedCallback.onCompleted(Pill.this, (Void)null);
-            }
-
-        }
-
-        @Override
-        public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
-            super.onCharacteristicRead(gatt, characteristic, status);
-        }
-
-        @Override
-        public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
-            if(status == BluetoothGatt.GATT_SUCCESS){
-                if(CHAR_COMMAND_UUID.equals(characteristic.getUuid()) && Pill.this.commandWriteCallback != null){
-                    Pill.this.commandWriteCallback.onCompleted(Pill.this, (Void)null);
-                }
-            }
-        }
-
-        @Override
-        public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
-            final byte[] values = characteristic.getValue();
-
-
-            if(CHAR_DAY_DATETIME_UUID.equals(characteristic.getUuid())){
-                if(Pill.this.getTimeCallback != null){
-                    Pill.this.unsubscribeNotification(characteristic.getUuid(),
-                            new PillOperationCallback<BluetoothGattDescriptor>() {
-                        @Override
-                        public void onCompleted(Pill connectedPill, BluetoothGattDescriptor data) {
-                            final DateTime dateTime = BleDateTimeConverter.bleTimeToDateTime(values);
-                            Pill.this.getTimeCallback.onCompleted(Pill.this, dateTime);
-                        }
-                    });
-                }
-
-            }
-
-            if(CHAR_DATA_UUID.equals(characteristic.getUuid())){
-
-                final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(values);
-                final LittleEndianDataInputStream inputStream = new LittleEndianDataInputStream(byteArrayInputStream);
-
-                try {
-                    byte sequenceNum = inputStream.readByte();
-                    if (sequenceNum == 0) {
-                        byte totalPackage = inputStream.readByte();
-                        int version = inputStream.readUnsignedShort();
-
-                        int structLength = inputStream.readUnsignedShort();
-
-                        this.pillDataInBytes = new byte[structLength];
-                        this.fillCount = 0;
-
-                        for (int i = PillData.LEAD_BLE_PACKAGE_HEADER_LENGTH; i < values.length; i++) {
-                            this.pillDataInBytes[fillCount++] = values[i];
-                        }
-                    } else {
-                        for (int i = PillData.FOLLOWING_BLE_PACKAGE_HEADER_LENGTH; i < values.length; i++) {
-                            this.pillDataInBytes[fillCount++] = values[i];
-                        }
-                    }
-                }catch (IOException ioe){
-                    ioe.printStackTrace();
-                }
-
-                if(fillCount == this.pillDataInBytes.length) {
-                    final byte[] pillDataCopy = Arrays.copyOf(this.pillDataInBytes, this.pillDataInBytes.length);
-
-                    Pill.this.unsubscribeNotification(characteristic.getUuid(), new PillOperationCallback<BluetoothGattDescriptor>() {
-                        @Override
-                        public void onCompleted(Pill connectedPill, BluetoothGattDescriptor data) {
-                            final List<PillData> pillData = PillData.fromBytes(pillDataCopy);
-                            if(Pill.this.getDataCallback != null){
-                                Pill.this.getDataCallback.onCompleted(Pill.this, pillData);
-                            }
-                        }
-                    });
-
-
-
-                }
-            }
-        }
-
-        @Override
-        public void onDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
-            super.onDescriptorRead(gatt, descriptor, status);
-        }
-
-        @Override
-        public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
-            if(status == BluetoothGatt.GATT_SUCCESS) {
-                PillOperationCallback<BluetoothGattDescriptor> callback = null;
-
-                if(Arrays.equals(descriptor.getValue(), BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)) {
-                    callback = Pill.this.subscribeFinishedCallbacks.get(descriptor.getCharacteristic().getUuid());
-                }else if(Arrays.equals(descriptor.getValue(), BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE)) {
-                    callback = Pill.this.unsubscribeFinishedCallbacks.get(descriptor.getCharacteristic().getUuid());
-                }
-
-                if(callback == null){
-                    return;
-                }
-                callback.onCompleted(Pill.this, descriptor);
-            }
-        }
-
-        @Override
-        public void onReliableWriteCompleted(BluetoothGatt gatt, int status) {
-            super.onReliableWriteCompleted(gatt, status);
-        }
-
-        @Override
-        public void onReadRemoteRssi(BluetoothGatt gatt, int rssi, int status) {
-            super.onReadRemoteRssi(gatt, rssi, status);
-        }
-    };
-
-    private boolean subscribeNotification(final UUID charUUID,
-                                          final PillOperationCallback<BluetoothGattDescriptor> subscribeFinishedCallback){
-        final BluetoothGattCharacteristic characteristic = pillService.getCharacteristic(charUUID);
-        if(!this.bluetoothGatt.setCharacteristicNotification(characteristic, true)){
-            Log.w(Pill.class.getName(), "Set notification for Characteristic: " + characteristic.getUuid() + " failed.");
-            return false;
-        }else {
-
-            final BluetoothGattDescriptor descriptor = characteristic.getDescriptor(DESCRIPTOR_CHAR_COMMAND_RESPONSE_CONFIG);
-            descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);  // This is the {0x01, 0x00} that shows up in the firmware
-            if (!this.bluetoothGatt.writeDescriptor(descriptor)) {
-                Log.w(Pill.class.getName(), "Set notification for descriptor: " + descriptor.getUuid() + " failed.");
-                return false;
-            }
-        }
-
-        if(subscribeFinishedCallback != null) {
-            this.subscribeFinishedCallbacks.put(charUUID, subscribeFinishedCallback);
-        }
-
-        return true;
     }
 
-    private boolean unsubscribeNotification(final UUID charUUID,
-                                            final PillOperationCallback<BluetoothGattDescriptor> unsubscribeFinishedCallback){
 
-        this.subscribeFinishedCallbacks.remove(charUUID);
+    protected Pill(final Context context, final BluetoothDevice pillDevice){
+        checkNotNull(context);
 
-        final BluetoothGattCharacteristic characteristic = pillService.getCharacteristic(charUUID);
-        final BluetoothGattDescriptor descriptor = characteristic.getDescriptor(DESCRIPTOR_CHAR_COMMAND_RESPONSE_CONFIG);
-        descriptor.setValue(BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE);  // This is the {0x01, 0x00} that shows up in the firmware
-        if (!this.bluetoothGatt.writeDescriptor(descriptor)) {
-            Log.w(Pill.class.getName(), "Set notification for descriptor: " + descriptor.getUuid() + " failed.");
-            return false;
-        }else{
-            if(!this.bluetoothGatt.setCharacteristicNotification(characteristic, false)){
-                Log.w(Pill.class.getName(), "Reset notification for Characteristic: " + characteristic.getUuid() + " failed.");
-                return false;
-            }
-
-        }
-
-        if(unsubscribeFinishedCallback != null) {
-            this.unsubscribeFinishedCallbacks.put(charUUID, unsubscribeFinishedCallback);
-        }
-
-        return true;
-    }
-
-    protected Pill(final BluetoothDevice pillDevice){
         this.bluetoothDevice = pillDevice;
+        this.context = context;
+        this.gattLayer = new PillGattLayer(this);
+        this.bleTimePacketHandler = new BleTimePacketHandler(this);
+        this.motionPacketHandler = new MotionPacketHandler(this);
+
+
+        this.gattLayer.registerDataHandler(this.bleTimePacketHandler);
+        this.gattLayer.registerDataHandler(this.motionPacketHandler);
     }
 
     public String getAddress(){
@@ -296,110 +96,104 @@ public class Pill {
         return getName() + "@" + getAddress();
     }
 
-    public boolean setTime(final DateTime target){
-        return setTime(target, null);
+    public void setTime(final DateTime target){
+        setTime(target, null);
     }
 
 
-    public boolean setTime(final DateTime target, final PillOperationCallback<Void> setTimeCallback){
+    public void setTime(final DateTime target, final PillOperationCallback<BluetoothGattCharacteristic> setTimeFinishedCallback){
         if(!isConnected()){
             throw new IllegalStateException("Pill not connected");
         }
 
 
-        this.commandWriteCallback = setTimeCallback;
+        this.gattLayer.setCommandWriteCallback(setTimeFinishedCallback);
 
         final byte[] optionalBLETime = BleDateTimeConverter.dateTimeToBLETime(target);
         if(optionalBLETime == null){
-            return false;
+            return;
         }
-
-        final BluetoothGattCharacteristic commandCharacteristic = this.pillService.getCharacteristic(CHAR_COMMAND_UUID);
-
 
         final byte[] commandData = new byte[1 + optionalBLETime.length];
         commandData[0] = PillCommand.SET_TIME.getValue();
         for(int i = 0; i < optionalBLETime.length; i++){
             commandData[i+1] = optionalBLETime[i];
         }
-        commandCharacteristic.setValue(commandData);
-        return this.bluetoothGatt.writeCharacteristic(commandCharacteristic);
+
+        this.gattLayer.writeCommand(commandData);
     }
 
 
-    public boolean getTime(final PillOperationCallback<DateTime> getTimeCallback){
+    public void getTime(final PillOperationCallback<DateTime> getTimeCallback){
         if(!isConnected()){
             throw new IllegalStateException("Pill not connected.");
         }
 
-        if(getTimeCallback != null){
-            this.getTimeCallback = getTimeCallback;
-        }
+        this.bleTimePacketHandler.setDataCallback(new PillOperationCallback<DateTime>() {
+            @Override
+            public void onCompleted(final Pill connectedPill, final DateTime data) {
+                Pill.this.gattLayer.unsubscribeNotification(PillUUID.CHAR_DAY_DATETIME_UUID, null);
+                if(getTimeCallback != null){
+                    getTimeCallback.onCompleted(Pill.this, data);
+                }
+            }
+        });
 
-        return this.subscribeNotification(CHAR_DAY_DATETIME_UUID, new PillOperationCallback<BluetoothGattDescriptor>() {
+
+        this.gattLayer.subscribeNotification(PillUUID.CHAR_DAY_DATETIME_UUID, new PillOperationCallback<BluetoothGattDescriptor>() {
             @Override
             public void onCompleted(Pill connectedPill, BluetoothGattDescriptor data) {
                 final byte[] pillCommandData = new byte[]{PillCommand.GET_TIME.getValue()};
-                final BluetoothGattCharacteristic bluetoothGattCharacteristic = Pill.this.pillService.getCharacteristic(CHAR_COMMAND_UUID);
-                bluetoothGattCharacteristic.setValue(pillCommandData);
-                Pill.this.bluetoothGatt.writeCharacteristic(bluetoothGattCharacteristic);
+                Pill.this.gattLayer.writeCommand(pillCommandData);
             }
         });
 
     }
 
 
-    public boolean getData(final PillOperationCallback<List<PillData>> getDataCallback){
+    public void getData(final PillOperationCallback<List<PillData>> getDataCallback){
         if(!isConnected()){
             throw new IllegalStateException("Pill not connected.");
         }
 
-        if(getDataCallback != null){
-            this.getDataCallback = getDataCallback;
-        }
+        this.motionPacketHandler.setDataCallback(new PillOperationCallback<List<PillData>>() {
+            @Override
+            public void onCompleted(final Pill connectedPill, final List<PillData> data) {
+                Pill.this.gattLayer.unsubscribeNotification(PillUUID.CHAR_DATA_UUID, null);
+                if(getDataCallback != null){
+                    getDataCallback.onCompleted(Pill.this, data);
+                }
+            }
+        });
 
 
-        return this.subscribeNotification(CHAR_DATA_UUID, new PillOperationCallback<BluetoothGattDescriptor>() {
+        this.gattLayer.subscribeNotification(PillUUID.CHAR_DATA_UUID, new PillOperationCallback<BluetoothGattDescriptor>() {
             @Override
             public void onCompleted(final Pill connectedPill, final BluetoothGattDescriptor data) {
                 final byte[] pillCommandData = new byte[]{PillCommand.SEND_DATA.getValue()};
-                final BluetoothGattCharacteristic bluetoothGattCharacteristic = Pill.this.pillService.getCharacteristic(CHAR_COMMAND_UUID);
-                bluetoothGattCharacteristic.setValue(pillCommandData);
-                Pill.this.bluetoothGatt.writeCharacteristic(bluetoothGattCharacteristic);
+                Pill.this.gattLayer.writeCommand(pillCommandData);
             }
         });
 
     }
 
-    public void connect(final Context context, final PillOperationCallback<Void> connectedCallback){
+    public void connect(final PillOperationCallback<Void> connectedCallback){
         //TODO: Remove the context param in the future, it's very bad taste
         checkNotNull(this.bluetoothDevice);
-        if(isConnected() || isConnecting()){
+        if(isConnected()){
             return;
         }
 
-        this.connectedCallback = connectedCallback;
-        this.bluetoothDevice.connectGatt(context, false, this.gattCallback);
-        this.connectionStatus = ConnectionStatus.CONNECTING;
+        this.gattLayer.setGattConnectedCallback(connectedCallback);
+        this.bluetoothDevice.connectGatt(context, false, this.gattLayer);
     }
 
     public void disconnect(){
-        Pill.this.subscribeFinishedCallbacks.clear();
-        Pill.this.unsubscribeFinishedCallbacks.clear();
-
-
-        this.bluetoothGatt.disconnect();
-        this.bluetoothGatt.close();
-
-        this.connectionStatus = ConnectionStatus.DISCONNECTED;
+        this.gattLayer.disconnect();
     }
 
     public boolean isConnected(){
-        return this.connectionStatus == ConnectionStatus.CONNECTED;
-    }
-
-    public boolean isConnecting(){
-        return this.connectionStatus == ConnectionStatus.CONNECTING;
+        return this.gattLayer.getConnectionStatus() == BluetoothProfile.STATE_CONNECTED;
     }
 
 
@@ -414,14 +208,16 @@ public class Pill {
         }
 
         final Pill convertedObject = (Pill) other;
-        return  com.google.common.base.Objects.equal(this.getAddress(), convertedObject.getAddress());
+        return  Objects.equal(this.getAddress(), convertedObject.getAddress());
     }
 
 
-    public static boolean discover(final Context context, final PillOperationCallback<List<Pill>> onDiscoverCompleted, int maxScanTime){
-        checkNotNull(context);
+    public static boolean discover(final String address, final PillOperationCallback<Pill> onDiscoverCompleted, int maxScanTime){
+        //checkNotNull(context);
+        checkNotNull(LibApplication.getAppContext());
         checkNotNull(onDiscoverCompleted);
 
+        final Context context = LibApplication.getAppContext();
         final BluetoothManager bluetoothManager =
                 (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
         final BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
@@ -429,10 +225,36 @@ public class Pill {
             return false;
         }
 
-        scanLeDevice(bluetoothAdapter, onDiscoverCompleted, maxScanTime <= 0 ? 10000 : maxScanTime);
+        scanLeDevice(bluetoothAdapter, new PillOperationCallback<List<Pill>>() {
+            @Override
+            public void onCompleted(Pill connectedPill, List<Pill> data) {
+                final Pill targetPill = data.size() > 0 ? data.get(0) : null;
+                onDiscoverCompleted.onCompleted(connectedPill, targetPill);
+            }
+
+        }, maxScanTime <= 0 ? 10000 : maxScanTime, new String[]{ address });
         return true;
 
     }
+
+    public static boolean discover(final PillOperationCallback<List<Pill>> onDiscoverCompleted, int maxScanTime){
+        //checkNotNull(context);
+        checkNotNull(LibApplication.getAppContext());
+        checkNotNull(onDiscoverCompleted);
+
+        final Context context = LibApplication.getAppContext();
+        final BluetoothManager bluetoothManager =
+                (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
+        final BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
+        if(bluetoothAdapter == null || !bluetoothAdapter.isEnabled()){
+            return false;
+        }
+
+        scanLeDevice(bluetoothAdapter, onDiscoverCompleted, maxScanTime <= 0 ? 10000 : maxScanTime, null);
+        return true;
+
+    }
+
 
     private static boolean isPill(final byte[] scanResponse){
         if(scanResponse.length < PILL_SERVICE_UUID_BYTES.length) {
@@ -458,7 +280,8 @@ public class Pill {
 
     private static void scanLeDevice(final BluetoothAdapter bluetoothAdapter,
                                      final PillOperationCallback<List<Pill>> discoveryCallback,
-                                     int maxScanTimeInMS) {
+                                     int maxScanTimeInMS,
+                                     final String[] addresses) {
 
 
         final List<Pill> discoveredPills = new ArrayList<Pill>();
@@ -469,7 +292,15 @@ public class Pill {
             public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
                 if(isPill(scanRecord)) {
                     if (!pills.containsKey(device.getAddress())) {
-                        pills.put(device.getAddress(), device);
+                        if(addresses == null) {
+                            pills.put(device.getAddress(), device);
+                        } else {
+                            for(final String address:addresses){
+                                if(address.equals(device.getAddress())){
+                                    pills.put(device.getAddress(), device);
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -483,7 +314,7 @@ public class Pill {
                 bluetoothAdapter.stopLeScan(leScanCallback);
 
                 for(final String address:pills.keySet()){
-                    discoveredPills.add(new Pill(pills.get(address)));
+                    discoveredPills.add(new Pill(LibApplication.getAppContext(), pills.get(address)));
                 }
                 discoveryCallback.onCompleted(null, discoveredPills);
             }
