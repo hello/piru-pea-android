@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 
+import com.hello.ble.LibApplication;
 import com.hello.ble.PillBlePacket;
 import com.hello.ble.PillOperationCallback;
 import com.hello.ble.devices.Pill;
@@ -296,14 +297,29 @@ public class PillGattLayer extends BluetoothGattCallback {
     }
 
     public void disconnect(){
-        this.subscribeFinishedCallbacks.clear();
-        this.unsubscribeFinishedCallbacks.clear();
-        this.dataHanlders.clear();
 
-        if(this.bluetoothGatt != null) {
-            this.bluetoothGatt.disconnect();
-        }
+        this.messageHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                PillGattLayer.this.subscribeFinishedCallbacks.clear();
+                PillGattLayer.this.unsubscribeFinishedCallbacks.clear();
+                PillGattLayer.this.dataHanlders.clear();
 
-        this.connectionStatus = BluetoothProfile.STATE_DISCONNECTED;
+                final Handler mainHandler = new Handler(LibApplication.getAppContext().getMainLooper());
+
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(PillGattLayer.this.bluetoothGatt != null) {
+                            PillGattLayer.this.bluetoothGatt.disconnect();
+                        }
+                    }
+                });
+
+
+                PillGattLayer.this.connectionStatus = BluetoothProfile.STATE_DISCONNECTED;
+            }
+        });
+
     }
 }

@@ -185,7 +185,15 @@ public class Pill {
         }
 
         this.gattLayer.setGattConnectedCallback(connectedCallback);
-        this.bluetoothDevice.connectGatt(context, false, this.gattLayer);
+
+        final Handler handler = new Handler(LibApplication.getAppContext().getMainLooper()); // Fuck you Android!
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Pill.this.bluetoothDevice.connectGatt(context, false, Pill.this.gattLayer);
+            }
+        });
+
     }
 
     public void disconnect(){

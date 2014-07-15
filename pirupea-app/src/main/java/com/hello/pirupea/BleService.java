@@ -79,6 +79,8 @@ public class BleService extends Service {
         if (this.currentPill == null) {
             final String address = LocalSettings.getPillAddress(this);
             if (address == null) {
+                BleService.this.cpuWakeLock.release();
+
                 return;
             }
 
@@ -86,9 +88,11 @@ public class BleService extends Service {
                 @Override
                 public void onCompleted(final Pill connectedPill, final Pill pill) {
                     synchronized (syncObject){
+                        BleService.this.currentPill = pill;
                         if(pill != null) {
-                            BleService.this.currentPill = pill;
                             pill.connect(BleService.this.connectionCallback);
+                        }else{
+                            BleService.this.cpuWakeLock.release();
                         }
                     }
                 }
