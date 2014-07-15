@@ -108,18 +108,19 @@ public class BleTestActivity extends ListActivity implements
                         @Override
                         public void onCompleted(final Pill connectedPill, final Void data) {
 
-                            LocalSettings.setServiceRunning(BleTestActivity.this, connectedPill.getAddress());
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(BleTestActivity.this, "Pill: " + connectedPill.getName() + " connected.", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            LocalSettings.setPillAddress(BleTestActivity.this, connectedPill.getAddress());
+                            Toast.makeText(BleTestActivity.this, "Pill: " + connectedPill.getName() + " connected.", Toast.LENGTH_SHORT).show();
 
                         }
 
-                    });
+                    },
+                    new PillOperationCallback<Void>() {
+                        @Override
+                        public void onCompleted(Pill connectedPill, Void data) {
+                            Toast.makeText(BleTestActivity.this, "Connect to pill: " + connectedPill.getName() + " failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    );
                 }
             });
         }else{
@@ -147,11 +148,17 @@ public class BleTestActivity extends ListActivity implements
                             selectedPill.getTime(new PillOperationCallback<DateTime>() {
                                 @Override
                                 public void onCompleted(Pill connectedPill, final DateTime data) {
+
+
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            final DateTime localTime = new DateTime(data.getMillis());
-                                            Toast.makeText(BleTestActivity.this, "Pill time: " + localTime.toString("MM/dd HH:mm:ss"), Toast.LENGTH_SHORT).show();
+                                            if(data != null) {
+                                                final DateTime localTime = new DateTime(data.getMillis());
+                                                Toast.makeText(BleTestActivity.this, "Pill time: " + localTime.toString("MM/dd HH:mm:ss"), Toast.LENGTH_SHORT).show();
+                                            }else{
+                                                Toast.makeText(BleTestActivity.this, "Get time error, timer may not init.", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
                                     });
                                 }
@@ -160,14 +167,19 @@ public class BleTestActivity extends ListActivity implements
                         case 2:
                             selectedPill.getData(new PillOperationCallback<List<PillData>>() {
                                 @Override
-                                public void onCompleted(Pill connectedPill, List<PillData> data) {
+                                public void onCompleted(final Pill connectedPill, final List<PillData> data) {
 
                                 }
                             });
                             break;
                         case 3:
-                            selectedPill.disconnect();
-                            Toast.makeText(BleTestActivity.this, selectedPill.getName() + " disconnected.", Toast.LENGTH_SHORT).show();
+                            selectedPill.disconnect(new PillOperationCallback<Void>() {
+                                @Override
+                                public void onCompleted(Pill connectedPill, Void data) {
+                                    Toast.makeText(BleTestActivity.this, selectedPill.getName() + " disconnected.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
                             break;
                         default:
                             break;
@@ -177,6 +189,6 @@ public class BleTestActivity extends ListActivity implements
         }
 
         builder.show();
-
+        super.onListItemClick(l, v, position, id);
     }
 }

@@ -15,7 +15,7 @@ public class LocalSettings {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(PILL_ADDRESS, null);
     }
 
-    public static void setServiceRunning(final Context context, final String value){
+    public static void setPillAddress(final Context context, final String value){
         final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putString(PILL_ADDRESS, value);
 

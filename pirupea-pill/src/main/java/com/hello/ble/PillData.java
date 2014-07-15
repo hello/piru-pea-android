@@ -65,16 +65,23 @@ public class PillData {
                 valueList[i] = pillInputStream.readUnsignedShort();
             }
 
-            for(int i = validIndex; i >= 0; i--){
-                int value = valueList[i] - 1;
+            pillInputStream.close();
 
-                // Shall we insert missing values?
+            int index = validIndex;
+            while(list.size() < valueList.length - 1){
+                int value = valueList[index] - 1;
                 final PillData pillData = new PillData(currentDataTime, value);
                 list.add(0, pillData);
                 currentDataTime = currentDataTime.minusMinutes(1);
+
+                index--;
+                if(index == -1){
+                    index = valueList.length - 1;
+                }
             }
 
-            pillInputStream.close();
+
+
         }catch (IOException ioe){
             ioe.printStackTrace();
         }catch (IllegalFieldValueException ifvEx){

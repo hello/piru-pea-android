@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 
-import com.hello.ble.LibApplication;
 import com.hello.ble.PillBlePacket;
 import com.hello.ble.PillOperationCallback;
 import com.hello.ble.devices.Pill;
@@ -28,6 +27,9 @@ import java.util.UUID;
  */
 public class PillGattLayer extends BluetoothGattCallback {
 
+
+    public static final int GATT_OPERATION_TIMEOUT_MS = 5000;
+
     private Pill sender;
 
     private BluetoothGatt bluetoothGatt;
@@ -35,6 +37,8 @@ public class PillGattLayer extends BluetoothGattCallback {
     private int connectionStatus = BluetoothProfile.STATE_DISCONNECTED;
 
     private PillOperationCallback<Void> connectedCallback;
+    private PillOperationCallback<Void> disconnectedCallback;
+
     private PillOperationCallback<BluetoothGattCharacteristic> commandWriteCallback;
 
     private Map<UUID, PillOperationCallback<BluetoothGattDescriptor>> subscribeFinishedCallbacks = new HashMap<>();
@@ -44,6 +48,8 @@ public class PillGattLayer extends BluetoothGattCallback {
 
     private Handler messageHandler;
     private HandlerThread lopperThread = new HandlerThread("PillHandler");
+
+    private GattOperationTimeoutRunnable disconnectTimeoutRunnable;
 
     public synchronized void waitUntilReady() {
         messageHandler = new Handler(lopperThread.getLooper());
@@ -92,6 +98,15 @@ public class PillGattLayer extends BluetoothGattCallback {
 
     }
 
+    public void setDisconnectedCallback(final PillOperationCallback<Void> pillOperationCallback){
+        this.messageHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                PillGattLayer.this.disconnectedCallback = pillOperationCallback;
+            }
+        });
+    }
+
     public PillGattLayer(final Pill pill){
         this.sender = pill;
         this.lopperThread.start();
@@ -121,17 +136,24 @@ public class PillGattLayer extends BluetoothGattCallback {
         this.messageHandler.post(new Runnable() {
             @Override
             public void run() {
-                if(newState == BluetoothProfile.STATE_CONNECTED){
+                if (newState == BluetoothProfile.STATE_CONNECTED) {
                     PillGattLayer.this.connectionStatus = BluetoothProfile.STATE_CONNECTING;
                     PillGattLayer.this.bluetoothGatt = gatt;
                     gatt.discoverServices();
                 }
 
 
-                if(newState == BluetoothProfile.STATE_DISCONNECTED){
+                if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                    PillGattLayer.this.messageHandler.removeCallbacks(PillGattLayer.this.disconnectTimeoutRunnable);
+                    gatt.close();  // Fuck this line cost me two days!!
                     PillGattLayer.this.connectionStatus = BluetoothProfile.STATE_DISCONNECTED;
                     PillGattLayer.this.subscribeFinishedCallbacks.clear();
                     PillGattLayer.this.unsubscribeFinishedCallbacks.clear();
+
+
+                    if(PillGattLayer.this.disconnectedCallback != null){
+                        PillGattLayer.this.disconnectedCallback.onCompleted(PillGattLayer.this.sender, null);
+                    }
                 }
             }
         });
@@ -152,6 +174,7 @@ public class PillGattLayer extends BluetoothGattCallback {
                 if(connectedCallback != null){
                     connectedCallback.onCompleted(PillGattLayer.this.sender, (Void)null);
                 }
+                //IO.log("Pill connected: " + PillGattLayer.this.sender.getAddress());
             }
         });
 
@@ -296,7 +319,8 @@ public class PillGattLayer extends BluetoothGattCallback {
 
     }
 
-    public void disconnect(){
+    public void disconnect(final PillOperationCallback<Void> disconnectedCallback){
+        setDisconnectedCallback(disconnectedCallback);
 
         this.messageHandler.post(new Runnable() {
             @Override
@@ -304,18 +328,15 @@ public class PillGattLayer extends BluetoothGattCallback {
                 PillGattLayer.this.subscribeFinishedCallbacks.clear();
                 PillGattLayer.this.unsubscribeFinishedCallbacks.clear();
                 PillGattLayer.this.dataHanlders.clear();
-
-                final Handler mainHandler = new Handler(LibApplication.getAppContext().getMainLooper());
-
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(PillGattLayer.this.bluetoothGatt != null) {
-                            PillGattLayer.this.bluetoothGatt.disconnect();
-                        }
-                    }
-                });
-
+                if(PillGattLayer.this.bluetoothGatt != null) {
+                    PillGattLayer.this.disconnectTimeoutRunnable =
+                            new GattOperationTimeoutRunnable(
+                                    PillGattLayer.this.sender,
+                                    PillGattLayer.this.bluetoothGatt,
+                                    disconnectedCallback);
+                    PillGattLayer.this.messageHandler.postDelayed(PillGattLayer.this.disconnectTimeoutRunnable, GATT_OPERATION_TIMEOUT_MS);
+                    PillGattLayer.this.bluetoothGatt.disconnect();
+                }
 
                 PillGattLayer.this.connectionStatus = BluetoothProfile.STATE_DISCONNECTED;
             }

@@ -1,15 +1,14 @@
 package com.hello.ble.util;
 
-import com.google.common.base.Optional;
 import com.google.common.io.LittleEndianDataInputStream;
 import com.google.common.io.LittleEndianDataOutputStream;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.IllegalFieldValueException;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOError;
 import java.io.IOException;
 
 /**
@@ -64,6 +63,8 @@ public class BleDateTimeConverter {
 
         }catch (IOException ioe){
             ioe.printStackTrace();
+        }catch (IllegalFieldValueException ifvex){
+            ifvex.printStackTrace();
         }
 
         return null;
