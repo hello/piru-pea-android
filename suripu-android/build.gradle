@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 'android-L'
+    buildToolsVersion "19.1.0"
+
+    defaultConfig {
+        applicationId "com.hello.suripu.android"
+        minSdkVersion 8
+        targetSdkVersion 8
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:19.+'
+
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.2.+'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.2.+'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.2.+'
+
+    compile 'joda-time:joda-time:2.3'
+    compile 'com.squareup.retrofit:retrofit:1.5.+'
+    compile 'com.squareup.retrofit:converter-protobuf:1.5.+'
+
+    compile 'com.google.guava:guava:+'
+}

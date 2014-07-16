@@ -51,7 +51,7 @@ public class PillGattLayer extends BluetoothGattCallback {
 
     private GattOperationTimeoutRunnable disconnectTimeoutRunnable;
 
-    public synchronized void waitUntilReady() {
+    private synchronized void waitUntilReady() {
         messageHandler = new Handler(lopperThread.getLooper());
     }
 

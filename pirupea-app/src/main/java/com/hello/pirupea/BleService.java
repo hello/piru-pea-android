@@ -44,6 +44,9 @@ public class BleService extends Service {
         @Override
         public void onCompleted(final Pill connectedPill, final Void data) {
             Log.w(BleService.class.getName(), "Connect to pill: " + connectedPill.getName() + " failed.");
+            setNextAlarm(BleService.this.alarmManager);
+            BleService.this.currentPill = null;
+            BleService.this.cpuWakeLock.release();
         }
     };
 
@@ -82,37 +85,39 @@ public class BleService extends Service {
         this.cpuWakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "BleServiceWakeLock");
         this.cpuWakeLock.acquire();
 
+        final String address = LocalSettings.getPillAddress(this);
+        if (address == null) {
+            BleService.this.cpuWakeLock.release();
 
-        if (this.currentPill == null) {
-            final String address = LocalSettings.getPillAddress(this);
-            if (address == null) {
-                BleService.this.cpuWakeLock.release();
-
-                return;
-            }
-
-            Pill.discover(address, new PillOperationCallback<Pill>() {
-                @Override
-                public void onCompleted(final Pill connectedPill, final Pill pill) {
-                    BleService.this.currentPill = pill;
-
-                    mainHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(pill != null) {
-                                pill.connect(BleService.this.connectionCallback, BleService.this.connectionTimeOutCallback);
-                            }else{
-                                setNextAlarm(BleService.this.alarmManager);
-                                BleService.this.cpuWakeLock.release();
-                            }
-                        }
-                    });
-
-
-                }
-            }, 20000);
-
+            return;
         }
+
+        if(currentPill != null){
+            currentPill.disconnect();
+        }
+
+        Pill.discover(address, new PillOperationCallback<Pill>() {
+            @Override
+            public void onCompleted(final Pill connectedPill, final Pill pill) {
+                BleService.this.currentPill = pill;
+
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(pill != null) {
+                            pill.connect(BleService.this.connectionCallback, BleService.this.connectionTimeOutCallback);
+                        }else{
+                            setNextAlarm(BleService.this.alarmManager);
+                            BleService.this.cpuWakeLock.release();
+                        }
+                    }
+                });
+
+
+            }
+        }, 20000);
+
+
 
     }
 

@@ -1,1 +1,1 @@
-include ':pirupea-app', ':pirupea-pill'
+include ':pirupea-app', ':pirupea-pill', ':suripu-android'
