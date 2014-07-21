@@ -17,6 +17,7 @@ import com.hello.ble.PillCommand;
 import com.hello.ble.PillData;
 import com.hello.ble.PillOperationCallback;
 import com.hello.ble.stack.BleTimePacketHandler;
+import com.hello.ble.stack.CommandResponsePacketHandler;
 import com.hello.ble.stack.MotionPacketHandler;
 import com.hello.ble.stack.PillGattLayer;
 import com.hello.ble.util.BleDateTimeConverter;
@@ -55,6 +56,7 @@ public class Pill {
 
     private BleTimePacketHandler bleTimePacketHandler;
     private MotionPacketHandler motionPacketHandler;
+    private CommandResponsePacketHandler commandResponsePacketHandler;
 
 
     private Pill(){
@@ -70,6 +72,7 @@ public class Pill {
 
         this.bleTimePacketHandler = new BleTimePacketHandler(this);
         this.motionPacketHandler = new MotionPacketHandler(this);
+        this.commandResponsePacketHandler = new CommandResponsePacketHandler(this);
 
 
     }
@@ -122,6 +125,8 @@ public class Pill {
             throw new IllegalStateException("Pill not connected.");
         }
 
+        this.gattLayer.setCommandWriteCallback(null);
+
         this.bleTimePacketHandler.setDataCallback(new PillOperationCallback<DateTime>() {
             @Override
             public void onCompleted(final Pill connectedPill, final DateTime data) {
@@ -143,11 +148,41 @@ public class Pill {
 
     }
 
+    public void calibrate(final PillOperationCallback<Void> calibrateCallback){
+        if(!isConnected()){
+            throw new IllegalStateException("Pill not connected.");
+        }
+
+        this.gattLayer.setCommandWriteCallback(null);
+
+        this.commandResponsePacketHandler.setDataCallback(new PillOperationCallback<PillCommand>() {
+            @Override
+            public void onCompleted(final Pill connectedPill, final PillCommand data) {
+                Pill.this.gattLayer.unsubscribeNotification(PillUUID.CHAR_COMMAND_RESPONSE_UUID, null);
+                if(calibrateCallback != null){
+                    calibrateCallback.onCompleted(Pill.this, null);
+                }
+            }
+        });
+
+
+        this.gattLayer.subscribeNotification(PillUUID.CHAR_COMMAND_RESPONSE_UUID, new PillOperationCallback<BluetoothGattDescriptor>() {
+            @Override
+            public void onCompleted(Pill connectedPill, BluetoothGattDescriptor data) {
+                final byte[] pillCommandData = new byte[]{PillCommand.CALIBRATE.getValue()};
+                Pill.this.gattLayer.writeCommand(pillCommandData);
+            }
+        });
+
+    }
+
 
     public void getData(final PillOperationCallback<List<PillData>> getDataCallback){
         if(!isConnected()){
             throw new IllegalStateException("Pill not connected.");
         }
+
+        this.gattLayer.setCommandWriteCallback(null);
 
         this.motionPacketHandler.setDataCallback(new PillOperationCallback<List<PillData>>() {
             @Override
@@ -181,6 +216,7 @@ public class Pill {
         this.gattLayer = new PillGattLayer(this);
         this.gattLayer.registerDataHandler(this.bleTimePacketHandler);
         this.gattLayer.registerDataHandler(this.motionPacketHandler);
+        this.gattLayer.registerDataHandler(this.commandResponsePacketHandler);
 
 
         final Handler connectionTimeoutHandler = new Handler(Looper.myLooper());
@@ -189,7 +225,7 @@ public class Pill {
             public void run() {
                 Pill.this.disconnect(); // Connect timeout, disconnect
                 if(connectTimeOutCallback != null){
-                    connectTimeOutCallback.onCompleted(null, null);
+                    connectTimeOutCallback.onCompleted(Pill.this, null);
                 }
             }
         };

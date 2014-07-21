@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +34,7 @@ public class BleTestActivity extends ListActivity implements
         this.deviceArrayAdapter = new ArrayAdapter<Pill>(this, android.R.layout.simple_list_item_1);
         this.setListAdapter(this.deviceArrayAdapter);
 
-        this.startService(new Intent(this, BleService.class));
+        //this.startService(new Intent(this, BleService.class));
 
     }
 
@@ -127,6 +126,7 @@ public class BleTestActivity extends ListActivity implements
             builder.setItems(new CharSequence[]{
                     "Set Time",
                     "Get Time",
+                    "Calibrate",
                     "Get Data",
                     "Disconnect"
             }, new DialogInterface.OnClickListener() {
@@ -165,6 +165,13 @@ public class BleTestActivity extends ListActivity implements
                             });
                             break;
                         case 2:
+                            selectedPill.calibrate(new PillOperationCallback<Void>() {
+                                @Override
+                                public void onCompleted(Pill connectedPill, Void data) {
+                                    Toast.makeText(BleTestActivity.this, selectedPill.getName() + " calibrated.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        case 3:
                             selectedPill.getData(new PillOperationCallback<List<PillData>>() {
                                 @Override
                                 public void onCompleted(final Pill connectedPill, final List<PillData> data) {
@@ -172,7 +179,7 @@ public class BleTestActivity extends ListActivity implements
                                 }
                             });
                             break;
-                        case 3:
+                        case 4:
                             selectedPill.disconnect(new PillOperationCallback<Void>() {
                                 @Override
                                 public void onCompleted(Pill connectedPill, Void data) {

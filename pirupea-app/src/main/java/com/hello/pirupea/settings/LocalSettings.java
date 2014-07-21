@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
  */
 public class LocalSettings {
     private static final String PILL_ADDRESS = "pill_address";
+    private static final String OAUTH_TOKEN = "current_token";
 
 
     public static String getPillAddress(final Context context){
@@ -20,5 +21,17 @@ public class LocalSettings {
         editor.putString(PILL_ADDRESS, value);
 
         editor.commit();
+    }
+
+
+    public static void saveOAuthToken(Context context, String token){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.putString(OAUTH_TOKEN, token);
+
+        editor.commit();
+    }
+
+    public static String getOAuthToken(Context context){
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(OAUTH_TOKEN, "");
     }
 }

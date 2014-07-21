@@ -6,7 +6,8 @@ package com.hello.ble;
 public enum PillCommand {
     SET_TIME((byte)0x06),
     GET_TIME((byte)0x05),
-    SEND_DATA((byte)0x04);
+    SEND_DATA((byte)0x04),
+    CALIBRATE((byte)0x02);
 
     private byte value;
     private PillCommand(byte value){
@@ -15,5 +16,20 @@ public enum PillCommand {
 
     public byte getValue(){
         return this.value;
+    }
+
+    public static PillCommand fromByte(final byte value){
+        switch (value){
+            case 0x02:
+                return CALIBRATE;
+            case 0x04:
+                return SEND_DATA;
+            case 0x05:
+                return GET_TIME;
+            case 0x06:
+                return SET_TIME;
+            default:
+                return CALIBRATE;
+        }
     }
 }

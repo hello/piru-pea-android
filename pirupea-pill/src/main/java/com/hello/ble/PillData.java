@@ -1,5 +1,7 @@
 package com.hello.ble;
 
+import android.util.Log;
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.LittleEndianDataInputStream;
 
@@ -17,7 +19,7 @@ import java.util.List;
  */
 public class PillData {
 
-    public final static int STRUCT_HEADER_SIZE = 1 + 1 + 2 + 5 + 1 + 2 + 2;
+    public final static int STRUCT_HEADER_SIZE = 1 + 1 + 2 + 8 + 2;
 
     public final DateTime timestamp;
     public final Integer maxAmplitude;
@@ -41,52 +43,63 @@ public class PillData {
 
             int structLength = pillInputStream.readUnsignedShort();
 
-            byte second = pillInputStream.readByte();
-            byte minute = pillInputStream.readByte();
-            byte hour = pillInputStream.readByte();
-            byte day = pillInputStream.readByte();
-            byte month = pillInputStream.readByte();
-            byte reserved2 = pillInputStream.readByte();
 
-            int year = pillInputStream.readUnsignedShort();
+            long timestamp = pillInputStream.readLong();
 
             int validIndex = pillInputStream.readUnsignedShort();
+            int currentIndex = validIndex == 0xFFFF ? 0 : validIndex + 1;
+            final int[] valueList = new int[(structLength - STRUCT_HEADER_SIZE) / 2];
+            for (int i = 0; i < valueList.length; i++) {
+                valueList[i] = pillInputStream.readShort();
 
-            final DateTime startTime = new DateTime(year, month, day, hour, minute, second, DateTimeZone.UTC);
-            final int[] valueList = new int[(payload.length - STRUCT_HEADER_SIZE) / 2];
-
-            DateTime currentDataTime = startTime;
-
-            if(validIndex > valueList.length - 1 || payload.length != structLength){
-                throw new IllegalArgumentException("Corrupted data");
-            }
-
-            for(int i = 0; i < valueList.length; i++){
-                valueList[i] = pillInputStream.readUnsignedShort();
             }
 
             pillInputStream.close();
 
-            int index = validIndex;
-            while(list.size() < valueList.length - 1){
-                int value = valueList[index] - 1;
-                final PillData pillData = new PillData(currentDataTime, value);
-                list.add(0, pillData);
-                currentDataTime = currentDataTime.minusMinutes(1);
+            if(validIndex != 0xFFFF) {
 
-                index--;
-                if(index == -1){
-                    index = valueList.length - 1;
+                final DateTime startTime = new DateTime(timestamp, DateTimeZone.UTC);
+
+                if(currentIndex > valueList.length - 1){
+                    currentIndex = 0;
                 }
+
+                DateTime currentDataTime = startTime;
+
+                if (validIndex > valueList.length - 1 || payload.length != structLength) {
+                    throw new IllegalArgumentException("Corrupted data");
+                }
+
+                int index = validIndex;
+                while (list.size() < valueList.length - 1) {
+                    if(index != currentIndex) {
+                        int value = valueList[index] - 1;
+                        final PillData pillData = new PillData(currentDataTime, value);
+                        list.add(0, pillData);
+                        currentDataTime = currentDataTime.minusMinutes(1);
+                        Log.i("IMU DATA", pillData.timestamp + ", " + pillData.maxAmplitude);
+                    }
+
+                    index--;
+
+                    if (index == -1) {
+                        index = valueList.length - 1;
+                    }
+                }
+
             }
 
-
+            Log.i("Current max at index " + currentIndex, String.valueOf(valueList[currentIndex]));
 
         }catch (IOException ioe){
             ioe.printStackTrace();
         }catch (IllegalFieldValueException ifvEx){
             ifvEx.printStackTrace();
         }
+
+
+
+
 
         return ImmutableList.<PillData>copyOf(list);
     }

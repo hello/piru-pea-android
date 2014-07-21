@@ -24,13 +24,16 @@ public class BleDateTimeConverter {
         byte[] bleDateTime = null;
 
         try {
-            outputStream.writeShort(utcDateTime.getYear());
+            /*outputStream.writeShort(utcDateTime.getYear());
             outputStream.writeByte(utcDateTime.getMonthOfYear());
             outputStream.writeByte(utcDateTime.getDayOfMonth());
             outputStream.writeByte(utcDateTime.getHourOfDay());
             outputStream.writeByte(utcDateTime.getMinuteOfHour());
             outputStream.writeByte(utcDateTime.getSecondOfMinute());
-            outputStream.writeByte(utcDateTime.getDayOfWeek());
+            outputStream.writeByte(utcDateTime.getDayOfWeek());*/
+
+
+            outputStream.writeLong(dateTime.getMillis());
             outputStream.flush();
 
             bleDateTime = byteArrayOutputStream.toByteArray();
@@ -52,7 +55,7 @@ public class BleDateTimeConverter {
         byte[] bleDateTime = null;
 
         try {
-            int year = inputStream.readShort();
+            /*int year = inputStream.readShort();
             byte month = inputStream.readByte();
             byte day = inputStream.readByte();
             byte hour = inputStream.readByte();
@@ -60,6 +63,10 @@ public class BleDateTimeConverter {
             byte second = inputStream.readByte();
 
             return new DateTime(year, month, day, hour, minute, second, DateTimeZone.UTC);
+            */
+
+            long timestamp = inputStream.readLong();
+            return new DateTime(timestamp, DateTimeZone.UTC);
 
         }catch (IOException ioe){
             ioe.printStackTrace();

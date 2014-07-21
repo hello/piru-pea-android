@@ -163,21 +163,22 @@ public class PillGattLayer extends BluetoothGattCallback {
     @Override
     public void onServicesDiscovered(final BluetoothGatt gatt, final int status) {
 
-        this.messageHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                PillGattLayer.this.bluetoothGattService = gatt.getService(PillUUID.PILL_SERVICE_UUID);
-                PillGattLayer.this.connectionStatus = BluetoothProfile.STATE_CONNECTED;
-                PillGattLayer.this.subscribeFinishedCallbacks.clear();
-                PillGattLayer.this.unsubscribeFinishedCallbacks.clear();
+        if(status == BluetoothGatt.GATT_SUCCESS) {
+            this.messageHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    PillGattLayer.this.bluetoothGattService = gatt.getService(PillUUID.PILL_SERVICE_UUID);
+                    PillGattLayer.this.connectionStatus = BluetoothProfile.STATE_CONNECTED;
+                    PillGattLayer.this.subscribeFinishedCallbacks.clear();
+                    PillGattLayer.this.unsubscribeFinishedCallbacks.clear();
 
-                if(connectedCallback != null){
-                    connectedCallback.onCompleted(PillGattLayer.this.sender, (Void)null);
+                    if (connectedCallback != null) {
+                        connectedCallback.onCompleted(PillGattLayer.this.sender, (Void) null);
+                    }
+                    //IO.log("Pill connected: " + PillGattLayer.this.sender.getAddress());
                 }
-                //IO.log("Pill connected: " + PillGattLayer.this.sender.getAddress());
-            }
-        });
-
+            });
+        }
 
     }
 

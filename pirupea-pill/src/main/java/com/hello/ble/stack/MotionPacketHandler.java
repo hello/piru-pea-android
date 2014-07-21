@@ -47,7 +47,9 @@ public class MotionPacketHandler extends PillBlePacketHandler<List<PillData>> {
         if(blePacket.sequenceNumber == 0){
             // Assume the packets arrive in order.
             this.packets.clear();
-            totalPackets = blePacket.payload[0];
+            this.totalPackets = blePacket.payload[0];
+            this.bufferOffsetIndex = 0;
+
             final PillBlePacket headPacket = new PillBlePacket(0, Arrays.copyOfRange(blePacket.payload, 1, blePacket.payload.length));
             this.packets.add(headPacket);
 
@@ -71,7 +73,7 @@ public class MotionPacketHandler extends PillBlePacketHandler<List<PillData>> {
         }
 
         final PillBlePacket lastPacket = this.packets.getLast();
-        for(int i = 0; i < lastPacket.payload.length; i++, this.bufferOffsetIndex++){
+        for(int i = 0; (this.bufferOffsetIndex < this.buffer.length && i < lastPacket.payload.length); i++, this.bufferOffsetIndex++){
             this.buffer[this.bufferOffsetIndex] = lastPacket.payload[i];
         }
 
