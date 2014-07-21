@@ -32,6 +32,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':pirupea-pill')
+    compile project(':pirupea-ble')
     compile project(':suripu-android')
 }

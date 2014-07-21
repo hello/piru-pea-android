@@ -4,7 +4,7 @@ import com.google.common.io.LittleEndianDataInputStream;
 import com.hello.ble.PillBlePacket;
 import com.hello.ble.PillData;
 import com.hello.ble.devices.Pill;
-import com.hello.ble.util.PillUUID;
+import com.hello.ble.util.BleUUID;
 
 import org.joda.time.DateTime;
 
@@ -35,7 +35,7 @@ public class MotionPacketHandler extends PillBlePacketHandler<List<PillData>> {
 
     @Override
     public boolean shouldProcess(final UUID charUUID) {
-        if(charUUID.equals(PillUUID.CHAR_DATA_UUID)){
+        if(charUUID.equals(BleUUID.CHAR_DATA_UUID)){
             return true;
         }
 

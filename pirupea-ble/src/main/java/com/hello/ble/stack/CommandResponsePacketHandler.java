@@ -3,7 +3,7 @@ package com.hello.ble.stack;
 import com.hello.ble.PillBlePacket;
 import com.hello.ble.PillCommand;
 import com.hello.ble.devices.Pill;
-import com.hello.ble.util.PillUUID;
+import com.hello.ble.util.BleUUID;
 
 import java.util.UUID;
 
@@ -18,7 +18,7 @@ public class CommandResponsePacketHandler extends PillBlePacketHandler<PillComma
 
     @Override
     protected boolean shouldProcess(UUID charUUID) {
-        if(PillUUID.CHAR_COMMAND_RESPONSE_UUID.equals(charUUID)){
+        if(BleUUID.CHAR_COMMAND_RESPONSE_UUID.equals(charUUID)){
             return true;
         }
         return false;

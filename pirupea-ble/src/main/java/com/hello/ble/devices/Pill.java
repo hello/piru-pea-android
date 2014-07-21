@@ -21,7 +21,7 @@ import com.hello.ble.stack.CommandResponsePacketHandler;
 import com.hello.ble.stack.MotionPacketHandler;
 import com.hello.ble.stack.PillGattLayer;
 import com.hello.ble.util.BleDateTimeConverter;
-import com.hello.ble.util.PillUUID;
+import com.hello.ble.util.BleUUID;
 
 import org.joda.time.DateTime;
 
@@ -130,7 +130,7 @@ public class Pill {
         this.bleTimePacketHandler.setDataCallback(new PillOperationCallback<DateTime>() {
             @Override
             public void onCompleted(final Pill connectedPill, final DateTime data) {
-                Pill.this.gattLayer.unsubscribeNotification(PillUUID.CHAR_DAY_DATETIME_UUID, null);
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DAY_DATETIME_UUID, null);
                 if(getTimeCallback != null){
                     getTimeCallback.onCompleted(Pill.this, data);
                 }
@@ -138,7 +138,7 @@ public class Pill {
         });
 
 
-        this.gattLayer.subscribeNotification(PillUUID.CHAR_DAY_DATETIME_UUID, new PillOperationCallback<BluetoothGattDescriptor>() {
+        this.gattLayer.subscribeNotification(BleUUID.CHAR_DAY_DATETIME_UUID, new PillOperationCallback<BluetoothGattDescriptor>() {
             @Override
             public void onCompleted(Pill connectedPill, BluetoothGattDescriptor data) {
                 final byte[] pillCommandData = new byte[]{PillCommand.GET_TIME.getValue()};
@@ -158,7 +158,7 @@ public class Pill {
         this.commandResponsePacketHandler.setDataCallback(new PillOperationCallback<PillCommand>() {
             @Override
             public void onCompleted(final Pill connectedPill, final PillCommand data) {
-                Pill.this.gattLayer.unsubscribeNotification(PillUUID.CHAR_COMMAND_RESPONSE_UUID, null);
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_COMMAND_RESPONSE_UUID, null);
                 if(calibrateCallback != null){
                     calibrateCallback.onCompleted(Pill.this, null);
                 }
@@ -166,7 +166,7 @@ public class Pill {
         });
 
 
-        this.gattLayer.subscribeNotification(PillUUID.CHAR_COMMAND_RESPONSE_UUID, new PillOperationCallback<BluetoothGattDescriptor>() {
+        this.gattLayer.subscribeNotification(BleUUID.CHAR_COMMAND_RESPONSE_UUID, new PillOperationCallback<BluetoothGattDescriptor>() {
             @Override
             public void onCompleted(Pill connectedPill, BluetoothGattDescriptor data) {
                 final byte[] pillCommandData = new byte[]{PillCommand.CALIBRATE.getValue()};
@@ -187,7 +187,7 @@ public class Pill {
         this.motionPacketHandler.setDataCallback(new PillOperationCallback<List<PillData>>() {
             @Override
             public void onCompleted(final Pill connectedPill, final List<PillData> data) {
-                Pill.this.gattLayer.unsubscribeNotification(PillUUID.CHAR_DATA_UUID, null);
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DATA_UUID, null);
                 if(getDataCallback != null){
                     getDataCallback.onCompleted(Pill.this, data);
                 }
@@ -195,7 +195,7 @@ public class Pill {
         });
 
 
-        this.gattLayer.subscribeNotification(PillUUID.CHAR_DATA_UUID, new PillOperationCallback<BluetoothGattDescriptor>() {
+        this.gattLayer.subscribeNotification(BleUUID.CHAR_DATA_UUID, new PillOperationCallback<BluetoothGattDescriptor>() {
             @Override
             public void onCompleted(final Pill connectedPill, final BluetoothGattDescriptor data) {
                 final byte[] pillCommandData = new byte[]{PillCommand.SEND_DATA.getValue()};

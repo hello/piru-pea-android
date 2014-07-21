@@ -3,7 +3,7 @@ package com.hello.ble.stack;
 import com.hello.ble.PillBlePacket;
 import com.hello.ble.devices.Pill;
 import com.hello.ble.util.BleDateTimeConverter;
-import com.hello.ble.util.PillUUID;
+import com.hello.ble.util.BleUUID;
 
 import org.joda.time.DateTime;
 
@@ -20,7 +20,7 @@ public class BleTimePacketHandler extends PillBlePacketHandler<DateTime> {
 
     @Override
     public boolean shouldProcess(final UUID charUUID) {
-        if(charUUID.equals(PillUUID.CHAR_DAY_DATETIME_UUID)){
+        if(charUUID.equals(BleUUID.CHAR_DAY_DATETIME_UUID)){
             return true;
         }
 

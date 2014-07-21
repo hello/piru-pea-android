@@ -13,7 +13,7 @@ import android.util.Log;
 import com.hello.ble.PillBlePacket;
 import com.hello.ble.PillOperationCallback;
 import com.hello.ble.devices.Pill;
-import com.hello.ble.util.PillUUID;
+import com.hello.ble.util.BleUUID;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -114,7 +114,7 @@ public class PillGattLayer extends BluetoothGattCallback {
     }
 
     public void writeCommand(final byte[] commandData){
-        writeCommand(PillUUID.CHAR_COMMAND_UUID, commandData);
+        writeCommand(BleUUID.CHAR_COMMAND_UUID, commandData);
     }
 
     public void writeCommand(final UUID commandInterfaceUUID, final byte[] commandData){
@@ -167,7 +167,7 @@ public class PillGattLayer extends BluetoothGattCallback {
             this.messageHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    PillGattLayer.this.bluetoothGattService = gatt.getService(PillUUID.PILL_SERVICE_UUID);
+                    PillGattLayer.this.bluetoothGattService = gatt.getService(BleUUID.PILL_SERVICE_UUID);
                     PillGattLayer.this.connectionStatus = BluetoothProfile.STATE_CONNECTED;
                     PillGattLayer.this.subscribeFinishedCallbacks.clear();
                     PillGattLayer.this.unsubscribeFinishedCallbacks.clear();
@@ -193,7 +193,7 @@ public class PillGattLayer extends BluetoothGattCallback {
             this.messageHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    if(PillUUID.CHAR_COMMAND_UUID.equals(characteristic.getUuid()) && PillGattLayer.this.commandWriteCallback != null){
+                    if(BleUUID.CHAR_COMMAND_UUID.equals(characteristic.getUuid()) && PillGattLayer.this.commandWriteCallback != null){
                         PillGattLayer.this.commandWriteCallback.onCompleted(PillGattLayer.this.sender, characteristic);
                     }
                 }
@@ -275,7 +275,7 @@ public class PillGattLayer extends BluetoothGattCallback {
                     Log.w(Pill.class.getName(), "Set notification for Characteristic: " + characteristic.getUuid() + " failed.");
                     return;
                 }else {
-                    final BluetoothGattDescriptor descriptor = characteristic.getDescriptor(PillUUID.DESCRIPTOR_CHAR_COMMAND_RESPONSE_CONFIG);
+                    final BluetoothGattDescriptor descriptor = characteristic.getDescriptor(BleUUID.DESCRIPTOR_CHAR_COMMAND_RESPONSE_CONFIG);
                     descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);  // This is the {0x01, 0x00} that shows up in the firmware
                     if (!PillGattLayer.this.bluetoothGatt.writeDescriptor(descriptor)) {
                         Log.w(Pill.class.getName(), "Set notification for descriptor: " + descriptor.getUuid() + " failed.");
@@ -299,7 +299,7 @@ public class PillGattLayer extends BluetoothGattCallback {
                 PillGattLayer.this.subscribeFinishedCallbacks.remove(charUUID);
 
                 final BluetoothGattCharacteristic characteristic = PillGattLayer.this.bluetoothGattService.getCharacteristic(charUUID);
-                final BluetoothGattDescriptor descriptor = characteristic.getDescriptor(PillUUID.DESCRIPTOR_CHAR_COMMAND_RESPONSE_CONFIG);
+                final BluetoothGattDescriptor descriptor = characteristic.getDescriptor(BleUUID.DESCRIPTOR_CHAR_COMMAND_RESPONSE_CONFIG);
                 descriptor.setValue(BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE);  // This is the {0x01, 0x00} that shows up in the firmware
                 if (!PillGattLayer.this.bluetoothGatt.writeDescriptor(descriptor)) {
                     Log.w(Pill.class.getName(), "Set notification for descriptor: " + descriptor.getUuid() + " failed.");
