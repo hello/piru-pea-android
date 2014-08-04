@@ -17,21 +17,21 @@ import java.util.List;
 /**
  * Created by pangwu on 7/7/14.
  */
-public class PillData {
+public class PillMotionData {
 
     public final static int STRUCT_HEADER_SIZE = 1 + 1 + 2 + 8 + 2;
 
     public final DateTime timestamp;
     public final Integer maxAmplitude;
 
-    public PillData(final DateTime timestamp, final Integer maxAmplitude){
+    public PillMotionData(final DateTime timestamp, final Integer maxAmplitude){
         this.timestamp = timestamp;
         this.maxAmplitude = maxAmplitude;
     }
 
 
-    public static List<PillData> fromBytes(final byte[] payload){
-        final List<PillData> list = new ArrayList<>();
+    public static List<PillMotionData> fromBytes(final byte[] payload){
+        final List<PillMotionData> list = new ArrayList<>();
         final ByteArrayInputStream pillByteArrayInputStream = new ByteArrayInputStream(payload);
         final LittleEndianDataInputStream pillInputStream = new LittleEndianDataInputStream(pillByteArrayInputStream);
 
@@ -74,10 +74,10 @@ public class PillData {
                 while (list.size() < valueList.length - 1) {
                     if(index != currentIndex) {
                         int value = valueList[index] - 1;
-                        final PillData pillData = new PillData(currentDataTime, value);
-                        list.add(0, pillData);
+                        final PillMotionData pillMotionData = new PillMotionData(currentDataTime, value);
+                        list.add(0, pillMotionData);
                         currentDataTime = currentDataTime.minusMinutes(1);
-                        Log.i("IMU DATA", pillData.timestamp + ", " + pillData.maxAmplitude);
+                        Log.i("IMU DATA", pillMotionData.timestamp + ", " + pillMotionData.maxAmplitude);
                     }
 
                     index--;
@@ -101,6 +101,6 @@ public class PillData {
 
 
 
-        return ImmutableList.<PillData>copyOf(list);
+        return ImmutableList.<PillMotionData>copyOf(list);
     }
 }

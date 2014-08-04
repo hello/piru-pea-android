@@ -1,6 +1,6 @@
 package com.hello.ble.stack;
 
-import com.hello.ble.PillBlePacket;
+import com.hello.ble.HelloBlePacket;
 import com.hello.ble.devices.Pill;
 import com.hello.ble.util.BleDateTimeConverter;
 import com.hello.ble.util.BleUUID;
@@ -13,8 +13,8 @@ import java.util.UUID;
 /**
  * Created by pangwu on 7/14/14.
  */
-public class BleTimePacketHandler extends PillBlePacketHandler<DateTime> {
-    public BleTimePacketHandler(final Pill pill){
+public class TimeDataHandler extends HelloDataHandler<DateTime> {
+    public TimeDataHandler(final Pill pill){
         super(pill);
     }
 
@@ -28,7 +28,7 @@ public class BleTimePacketHandler extends PillBlePacketHandler<DateTime> {
     }
 
     @Override
-    public void onDataArrival(final PillBlePacket blePacket) {
+    public void onDataArrival(final HelloBlePacket blePacket) {
         if(blePacket.sequenceNumber > 0){
             throw new IllegalArgumentException("Invalid packet.");
         }

@@ -14,7 +14,8 @@ import android.os.PowerManager.WakeLock;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.hello.ble.PillOperationCallback;
+import com.hello.ble.BleOperationCallback;
+import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Pill;
 import com.hello.pirupea.settings.LocalSettings;
 
@@ -33,37 +34,55 @@ public class BleService extends Service {
     private WakeLock cpuWakeLock;
     private Handler mainHandler;
 
-    private PillOperationCallback<Void> connectionCallback = new PillOperationCallback<Void>() {
+    private BleOperationCallback<Void> connectionCallback = new BleOperationCallback<Void>() {
         @Override
-        public void onCompleted(final Pill connectedPill, final Void data) {
-            BleService.this.currentPill.getTime(BleService.this.getTimeCallback);
+        public void onCompleted(final HelloBleDevice sender, final Void data) {
+            final Pill pill = (Pill)sender;
+            pill.getTime(BleService.this.getTimeCallback);
+        }
+
+        @Override
+        public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+            final Pill pill = (Pill)sender;
+            Log.w(BleService.class.getName(), "Pill: " + pill.getName() + " get time error, " + reason + ": " + errorCode);
+            sender.disconnect();
         }
     };
 
-    private PillOperationCallback<Void> connectionTimeOutCallback = new PillOperationCallback<Void>() {
+    private BleOperationCallback<Integer> disconnectCallback = new BleOperationCallback<Integer>() {
         @Override
-        public void onCompleted(final Pill connectedPill, final Void data) {
-            Log.w(BleService.class.getName(), "Connect to pill: " + connectedPill.getName() + " failed.");
+        public void onCompleted(final HelloBleDevice connectedPill, final Integer data) {
+            final Pill pill = (Pill)connectedPill;
+            Log.w(BleService.class.getName(), "Pill: " + pill.getName() + " disconnected: " + data);
+            setNextAlarm(BleService.this.alarmManager);
+            BleService.this.currentPill = null;
+            BleService.this.cpuWakeLock.release();
+        }
+
+        @Override
+        public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
             setNextAlarm(BleService.this.alarmManager);
             BleService.this.currentPill = null;
             BleService.this.cpuWakeLock.release();
         }
     };
 
-    private PillOperationCallback<DateTime> getTimeCallback = new PillOperationCallback<DateTime>() {
+    private BleOperationCallback<DateTime> getTimeCallback = new BleOperationCallback<DateTime>() {
         @Override
-        public void onCompleted(final Pill connectedPill, final DateTime data) {
+        public void onCompleted(final HelloBleDevice connectedPill, final DateTime data) {
             //Toast.makeText(BleService.this, data.toString("MM/dd HH:mm:ss"), Toast.LENGTH_SHORT).show();
             BleService.this.mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    BleService.this.currentPill.disconnect();
-                    BleService.this.currentPill = null;
-                    setNextAlarm(BleService.this.alarmManager);
-                    BleService.this.cpuWakeLock.release();
+                    connectedPill.disconnect();
                 }
             });
 
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            sender.disconnect();
         }
     };
 
@@ -96,16 +115,18 @@ public class BleService extends Service {
             currentPill.disconnect();
         }
 
-        Pill.discover(address, new PillOperationCallback<Pill>() {
+        Pill.discover(address, new BleOperationCallback<Pill>() {
             @Override
-            public void onCompleted(final Pill connectedPill, final Pill pill) {
+            public void onCompleted(final HelloBleDevice connectedPill, final Pill pill) {
                 BleService.this.currentPill = pill;
+                pill.setConnectedCallback(BleService.this.connectionCallback);
+                pill.setDisconnectedCallback(BleService.this.disconnectCallback);
 
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         if(pill != null) {
-                            pill.connect(BleService.this.connectionCallback, BleService.this.connectionTimeOutCallback);
+                            pill.connect(true);
                         }else{
                             setNextAlarm(BleService.this.alarmManager);
                             BleService.this.cpuWakeLock.release();
@@ -114,6 +135,11 @@ public class BleService extends Service {
                 });
 
 
+            }
+
+            @Override
+            public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                // discover always success.
             }
         }, 20000);
 

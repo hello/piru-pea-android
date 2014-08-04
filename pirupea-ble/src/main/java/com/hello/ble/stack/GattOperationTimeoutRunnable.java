@@ -2,8 +2,9 @@ package com.hello.ble.stack;
 
 import android.bluetooth.BluetoothGatt;
 
-import com.hello.ble.PillOperationCallback;
-import com.hello.ble.devices.Pill;
+import com.hello.ble.BleOperationCallback;
+import com.hello.ble.BleOperationCallback.OperationFailReason;
+import com.hello.ble.devices.HelloBleDevice;
 
 /**
  * Created by pangwu on 7/15/14.
@@ -11,16 +12,16 @@ import com.hello.ble.devices.Pill;
 class GattOperationTimeoutRunnable implements Runnable {
 
     private BluetoothGatt gatt;
-    private PillOperationCallback<Void> disconnectCallback;
-    private Pill sender;
+    private BleOperationCallback callback;
+    private HelloBleDevice sender;
 
     private GattOperationTimeoutRunnable(){}
 
-    public GattOperationTimeoutRunnable(final Pill sender,
+    public GattOperationTimeoutRunnable(final HelloBleDevice sender,
                                         final BluetoothGatt gatt,
-                                        final PillOperationCallback<Void> disconnectCallback){
+                                        final BleOperationCallback callback){
         this.gatt = gatt;
-        this.disconnectCallback = disconnectCallback;
+        this.callback = callback;
         this.sender = sender;
     }
 
@@ -30,8 +31,8 @@ class GattOperationTimeoutRunnable implements Runnable {
 
         // Although this is a timeout, we still need to make sure the
         // callback set by user is still called.
-        if(this.disconnectCallback != null && this.sender != null){
-            this.disconnectCallback.onCompleted(this.sender, null);
+        if(this.callback != null && this.sender != null){
+            this.callback.onFailed(this.sender, OperationFailReason.TIME_OUT, 0);
         }
     }
 }

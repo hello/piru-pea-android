@@ -1,8 +1,8 @@
 package com.hello.ble.stack;
 
 import com.google.common.io.LittleEndianDataInputStream;
-import com.hello.ble.PillBlePacket;
-import com.hello.ble.PillData;
+import com.hello.ble.HelloBlePacket;
+import com.hello.ble.PillMotionData;
 import com.hello.ble.devices.Pill;
 import com.hello.ble.util.BleUUID;
 
@@ -18,7 +18,7 @@ import java.util.UUID;
 /**
  * Created by pangwu on 7/14/14.
  */
-public class MotionPacketHandler extends PillBlePacketHandler<List<PillData>> {
+public class MotionDataHandler extends HelloDataHandler<List<PillMotionData>> {
 
     private int totalPackets = 0;
 
@@ -27,9 +27,9 @@ public class MotionPacketHandler extends PillBlePacketHandler<List<PillData>> {
 
     private int bufferOffsetIndex = 0;
 
-    private LinkedList<PillBlePacket> packets = new LinkedList<>();
+    private LinkedList<HelloBlePacket> packets = new LinkedList<>();
 
-    public MotionPacketHandler(final Pill sender) {
+    public MotionDataHandler(final Pill sender) {
         super(sender);
     }
 
@@ -43,14 +43,14 @@ public class MotionPacketHandler extends PillBlePacketHandler<List<PillData>> {
     }
 
     @Override
-    public void onDataArrival(final PillBlePacket blePacket) {
+    public void onDataArrival(final HelloBlePacket blePacket) {
         if(blePacket.sequenceNumber == 0){
             // Assume the packets arrive in order.
             this.packets.clear();
             this.totalPackets = blePacket.payload[0];
             this.bufferOffsetIndex = 0;
 
-            final PillBlePacket headPacket = new PillBlePacket(0, Arrays.copyOfRange(blePacket.payload, 1, blePacket.payload.length));
+            final HelloBlePacket headPacket = new HelloBlePacket(0, Arrays.copyOfRange(blePacket.payload, 1, blePacket.payload.length));
             this.packets.add(headPacket);
 
             final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(headPacket.payload);
@@ -72,13 +72,13 @@ public class MotionPacketHandler extends PillBlePacketHandler<List<PillData>> {
             this.packets.add(blePacket);
         }
 
-        final PillBlePacket lastPacket = this.packets.getLast();
+        final HelloBlePacket lastPacket = this.packets.getLast();
         for(int i = 0; (this.bufferOffsetIndex < this.buffer.length && i < lastPacket.payload.length); i++, this.bufferOffsetIndex++){
             this.buffer[this.bufferOffsetIndex] = lastPacket.payload[i];
         }
 
         if(this.packets.size() == this.totalPackets){
-            final List<PillData> data = PillData.fromBytes(this.buffer);
+            final List<PillMotionData> data = PillMotionData.fromBytes(this.buffer);
             this.dataFinished(data);
         }
     }
