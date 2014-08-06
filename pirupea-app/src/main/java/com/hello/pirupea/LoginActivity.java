@@ -29,6 +29,13 @@ public class LoginActivity
     private EditText edPassword;
     private TextView txtError;
 
+
+    private void goNextScreen(){
+        Intent bleActivityIntent = new Intent(LoginActivity.this, BleTestSelectionActivity.class);
+        bleActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(bleActivityIntent);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +45,16 @@ public class LoginActivity
         this.edPassword = (EditText)this.findViewById(R.id.edPassword);
         this.txtError = (TextView)this.findViewById(R.id.txtError);
 
+        if(!"".equals(LocalSettings.getLastLoginUser())){
+
+        }
+
     }
 
     public void onSignInClicked(View sender){
         final String userName = this.edUserName.getText().toString();
         final String passWord = this.edPassword.getText().toString();
+
 
         SuripuClient.getToken(userName, passWord, new BleTestApplication(), this);
 
@@ -64,10 +76,9 @@ public class LoginActivity
 
         try {
             String accessTokenJSONString = new ObjectMapper().writeValueAsString(accessToken);
-            LocalSettings.saveOAuthToken(LoginActivity.this, accessTokenJSONString);
-            Intent bleActivityIntent = new Intent(LoginActivity.this, BleTestActivity.class);
-            bleActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(bleActivityIntent);
+            LocalSettings.saveOAuthToken(accessTokenJSONString);
+            LocalSettings.saveLastLoginUser(this.edUserName.getText().toString());
+            goNextScreen();
             finish();
         }catch (Exception ex){
             ex.printStackTrace();

@@ -104,7 +104,7 @@ public class BleService extends Service {
         this.cpuWakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "BleServiceWakeLock");
         this.cpuWakeLock.acquire();
 
-        final String address = LocalSettings.getPillAddress(this);
+        final String address = LocalSettings.getPillAddress();
         if (address == null) {
             BleService.this.cpuWakeLock.release();
 

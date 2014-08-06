@@ -1,0 +1,61 @@
+package com.hello.pirupea;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+
+public class BleTestSelectionActivity extends Activity {
+
+    private Button btnPillTest;
+    private Button btnMorpheus;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ble_test_selection);
+
+        this.btnMorpheus = (Button) findViewById(R.id.btnMorpheusTest);
+        this.btnMorpheus.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+
+            }
+        });
+
+
+        this.btnPillTest = (Button) findViewById(R.id.btnPillTest);
+        this.btnPillTest.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                Intent bleActivityIntent = new Intent(BleTestSelectionActivity.this, PillBleTestActivity.class);
+                bleActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(bleActivityIntent);
+            }
+        });
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.ble_test_selection, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}

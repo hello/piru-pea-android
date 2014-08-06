@@ -33,7 +33,7 @@ public class BleDateTimeConverter {
             outputStream.writeByte(utcDateTime.getDayOfWeek());*/
 
 
-            outputStream.writeLong(dateTime.getMillis());
+            outputStream.writeLong(utcDateTime.getMillis());
             outputStream.flush();
 
             bleDateTime = byteArrayOutputStream.toByteArray();

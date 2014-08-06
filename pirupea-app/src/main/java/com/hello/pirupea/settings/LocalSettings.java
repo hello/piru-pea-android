@@ -1,8 +1,11 @@
 package com.hello.pirupea.settings;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import com.hello.ble.LibApplication;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Created by pangwu on 7/11/14.
@@ -10,28 +13,42 @@ import android.preference.PreferenceManager;
 public class LocalSettings {
     private static final String PILL_ADDRESS = "pill_address";
     private static final String OAUTH_TOKEN = "current_token";
+    private static final String LAST_LOGIN_USER = "last_login_user";
 
 
-    public static String getPillAddress(final Context context){
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(PILL_ADDRESS, null);
+    public static String getPillAddress(){
+        return PreferenceManager.getDefaultSharedPreferences(LibApplication.getAppContext()).getString(PILL_ADDRESS, null);
     }
 
-    public static void setPillAddress(final Context context, final String value){
-        final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+    public static void setPillAddress(final String value){
+        final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(LibApplication.getAppContext()).edit();
         editor.putString(PILL_ADDRESS, value);
 
         editor.commit();
     }
 
 
-    public static void saveOAuthToken(Context context, String token){
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+    public static void saveOAuthToken(final String token){
+        checkNotNull(token);
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(LibApplication.getAppContext()).edit();
         editor.putString(OAUTH_TOKEN, token);
 
         editor.commit();
     }
 
-    public static String getOAuthToken(Context context){
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(OAUTH_TOKEN, "");
+    public static String getOAuthToken(){
+        return PreferenceManager.getDefaultSharedPreferences(LibApplication.getAppContext()).getString(OAUTH_TOKEN, "");
+    }
+
+    public static void saveLastLoginUser(final String userName){
+        checkNotNull(userName);
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(LibApplication.getAppContext()).edit();
+        editor.putString(LAST_LOGIN_USER, userName);
+
+        editor.commit();
+    }
+
+    public static String getLastLoginUser(){
+        return PreferenceManager.getDefaultSharedPreferences(LibApplication.getAppContext()).getString(LAST_LOGIN_USER, "");
     }
 }

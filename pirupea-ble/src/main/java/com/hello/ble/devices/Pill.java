@@ -331,7 +331,7 @@ public class Pill implements HelloBleDevice {
         this.gattLayer.subscribeNotification(BleUUID.CHAR_DATA_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
             @Override
             public void onCompleted(final HelloBleDevice connectedPill, final BluetoothGattDescriptor data) {
-                final byte[] pillCommandData = new byte[]{PillCommand.SEND_DATA.getValue()};
+                final byte[] pillCommandData = new byte[]{PillCommand.GET_DATA.getValue()};
                 Pill.this.gattLayer.writeCommand(pillCommandData);
             }
 

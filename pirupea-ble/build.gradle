@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.hello.ble"
-        minSdkVersion 19
-        targetSdkVersion 19
+        minSdkVersion rootProject.ext.compileSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }

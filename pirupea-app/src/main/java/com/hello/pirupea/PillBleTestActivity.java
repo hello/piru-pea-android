@@ -13,19 +13,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.hello.ble.PillMotionData;
 import com.hello.ble.BleOperationCallback;
+import com.hello.ble.PillMotionData;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Pill;
+import com.hello.ble.util.IO;
 import com.hello.pirupea.settings.LocalSettings;
 
 import org.joda.time.DateTime;
 
+import java.io.File;
 import java.util.List;
 import java.util.Set;
 
 
-public class BleTestActivity extends ListActivity implements
+public class PillBleTestActivity extends ListActivity implements
         BleOperationCallback<Set<Pill>> {
 
     private ArrayAdapter<Pill> deviceArrayAdapter;
@@ -34,14 +36,16 @@ public class BleTestActivity extends ListActivity implements
         @Override
         public void onCompleted(final HelloBleDevice sender, Void data) {
             final Pill connectedPill = (Pill)sender;
-            LocalSettings.setPillAddress(BleTestActivity.this, connectedPill.getAddress());
-            Toast.makeText(BleTestActivity.this, "Pill: " + connectedPill.getName() + " connected.", Toast.LENGTH_SHORT).show();
+            LocalSettings.setPillAddress(connectedPill.getAddress());
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this, "Pill: " + connectedPill.getName() + " connected.", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
             final Pill connectedPill = (Pill)sender;
-            Toast.makeText(BleTestActivity.this,
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this,
                     "Connect to pill: " + connectedPill.getName() + " failed: " + reason + " " + errorCode,
                     Toast.LENGTH_SHORT).show();
         }
@@ -52,13 +56,15 @@ public class BleTestActivity extends ListActivity implements
         @Override
         public void onCompleted(final HelloBleDevice sender, final Integer data) {
             final Pill disconnectedPill = (Pill)sender;
-            Toast.makeText(BleTestActivity.this, disconnectedPill.getName() + " disconnected: " + data, Toast.LENGTH_SHORT).show();
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this, disconnectedPill.getName() + " disconnected: " + data, Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
             final Pill disconnectedPill = (Pill)sender;
-            Toast.makeText(BleTestActivity.this, disconnectedPill.getName() + " disconnect failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this, disconnectedPill.getName() + " disconnect failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -68,13 +74,15 @@ public class BleTestActivity extends ListActivity implements
         public void onCompleted(final HelloBleDevice connectedPill, final DateTime data) {
             if(data != null) {
                 final DateTime localTime = new DateTime(data.getMillis());
-                Toast.makeText(BleTestActivity.this, "Pill time: " + localTime.toString("MM/dd HH:mm:ss"), Toast.LENGTH_SHORT).show();
+                uiEndOperation();
+                Toast.makeText(PillBleTestActivity.this, "Pill time: " + localTime.toString("MM/dd HH:mm:ss"), Toast.LENGTH_SHORT).show();
             }
         }
 
         @Override
         public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-            Toast.makeText(BleTestActivity.this, "Get time error, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this, "Get time error, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
 
         }
 
@@ -85,19 +93,58 @@ public class BleTestActivity extends ListActivity implements
         @Override
         public void onCompleted(final HelloBleDevice connectedPill, final BluetoothGattCharacteristic data) {
             final Pill selectedPill = (Pill)connectedPill;
-            Toast.makeText(BleTestActivity.this,
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this,
                     "Time set to " + DateTime.now().toString("MM/dd/yyyy HH:mm:ss") + " in " + selectedPill.getName(),
                     Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-            Toast.makeText(BleTestActivity.this, "Set time error, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this, "Set time error, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private final BleOperationCallback<List<PillMotionData>> dataCallback = new BleOperationCallback<List<PillMotionData>>() {
+        @Override
+        public void onCompleted(final HelloBleDevice connectedPill, final List<PillMotionData> data) {
+            final Pill pill = (Pill)connectedPill;
+            final StringBuilder stringBuilder = new StringBuilder(1000);
+            stringBuilder.append("timestamp,amplitude,time_string\r\n");
+            for(final PillMotionData datum:data){
+                stringBuilder.append(datum.timestamp.getMillis()).append(",")
+                        .append(datum.maxAmplitude).append(",")
+                        .append(datum.timestamp)
+                        .append("\r\n");
+            }
+
+            final File csvFile = IO.getFileByName(pill.getName(), "csv");
+            IO.appendStringToFile(csvFile, stringBuilder.toString());
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this, "Pill: " + pill.getName() + " get data completed.", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            final Pill pill = (Pill)sender;
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this,
+                    "Pill: " + pill.getName() + " get data failed, " + reason + ": " + errorCode,
+                    Toast.LENGTH_SHORT).show();
         }
     };
 
 
+    private void uiBeginOperation(){
+        setProgressBarIndeterminateVisibility(true);
+        setProgressBarIndeterminate(true);
+    }
 
+    private void uiEndOperation(){
+        setProgressBarIndeterminate(false);
+        setProgressBarIndeterminateVisibility(false);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,21 +235,22 @@ public class BleTestActivity extends ListActivity implements
             builder.setItems(new CharSequence[]{ "Connect to Pill" }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    uiBeginOperation();
                     selectedPill.connect(false);
                 }
             });
         }else{
             builder.setItems(new CharSequence[]{
-                    "Set Time",
-                    "Get Time",
-                    "Calibrate",
-                    "Get Data",
-                    "Stop Advertising",
-                    "Start Advertising",
-                    "Disconnect"
+                    "Set Time",//0
+                    "Get Time",//1
+                    "Calibrate",//2
+                    "Get Data",//3
+
+                    "Disconnect"//4
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    uiBeginOperation();
                     switch (which){
                         case 0: // set time
                             final DateTime targetDateTime = DateTime.now();
@@ -215,42 +263,23 @@ public class BleTestActivity extends ListActivity implements
                             selectedPill.calibrate(new BleOperationCallback<Void>() {
                                 @Override
                                 public void onCompleted(final HelloBleDevice connectedPill, final Void data) {
-                                    Toast.makeText(BleTestActivity.this, selectedPill.getName() + " calibrated.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PillBleTestActivity.this, selectedPill.getName() + " calibrated.", Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override
                                 public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-                                    Toast.makeText(BleTestActivity.this,
-                                            selectedPill.getName() + " calibrat failed, " + reason + ": " + errorCode,
+                                    Toast.makeText(PillBleTestActivity.this,
+                                            selectedPill.getName() + " calibrate failed, " + reason + ": " + errorCode,
                                             Toast.LENGTH_SHORT).show();
                                 }
                             });
                         case 3:
-                            selectedPill.getData(new BleOperationCallback<List<PillMotionData>>() {
-                                @Override
-                                public void onCompleted(final HelloBleDevice connectedPill, final List<PillMotionData> data) {
-                                    final Pill pill = (Pill)connectedPill;
-                                    Toast.makeText(BleTestActivity.this, "Pill: " + pill.getName() + " get data completed.", Toast.LENGTH_SHORT).show();
-                                }
-
-                                @Override
-                                public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
-                                    final Pill pill = (Pill)sender;
-                                    Toast.makeText(BleTestActivity.this,
-                                            "Pill: " + pill.getName() + " get data failed, " + reason + ": " + errorCode,
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            break;
-                        case 6:
-                            selectedPill.disconnect();
+                            selectedPill.getData(dataCallback);
                             break;
                         case 4:
-                            selectedPill.stopAdvertising();
+                            selectedPill.disconnect();
                             break;
-                        case 5:
-                            selectedPill.startAdvertising();
-                            break;
+
                         default:
                             break;
                     }

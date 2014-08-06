@@ -6,7 +6,7 @@ package com.hello.ble;
 public enum PillCommand {
     SET_TIME((byte)0x06),
     GET_TIME((byte)0x05),
-    SEND_DATA((byte)0x04),
+    GET_DATA((byte)0x04),
     CALIBRATE((byte)0x02),
     START_ADVERTISE((byte)0x07),
     STOP_ADVERTISE((byte)0x08);
@@ -25,7 +25,7 @@ public enum PillCommand {
             case 0x02:
                 return CALIBRATE;
             case 0x04:
-                return SEND_DATA;
+                return GET_DATA;
             case 0x05:
                 return GET_TIME;
             case 0x06:
