@@ -5,29 +5,25 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothManager;
-import android.bluetooth.BluetoothProfile;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.util.Log;
 
-import com.google.common.base.Objects;
 import com.hello.ble.BleOperationCallback;
 import com.hello.ble.LibApplication;
 import com.hello.ble.PillCommand;
 import com.hello.ble.PillMotionData;
-import com.hello.ble.stack.TimeDataHandler;
-import com.hello.ble.stack.CommandResponseDataHandler;
+import com.hello.ble.stack.application.MotionXYZDataHandler;
+import com.hello.ble.stack.application.PillResponseDataHandler;
 import com.hello.ble.stack.HelloGattLayer;
-import com.hello.ble.stack.MotionDataHandler;
-import com.hello.ble.stack.PillBlePacketHandler;
+import com.hello.ble.stack.application.MotionDataHandler;
+import com.hello.ble.stack.transmission.PillBlePacketHandler;
+import com.hello.ble.stack.application.TimeDataHandler;
 import com.hello.ble.util.BleDateTimeConverter;
 import com.hello.ble.util.BleUUID;
+import com.hello.ble.util.HelloBleDeviceScanner;
+import com.hello.ble.util.PillScanner;
 
 import org.joda.time.DateTime;
 
-import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,72 +33,23 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Created by pangwu on 7/1/14.
  */
-public class Pill implements HelloBleDevice {
-
-    private static final int DEFAULT_SCAN_INTERVAL_MS = 10000;
-
-
-    protected Context context;
-    private BluetoothDevice bluetoothDevice;
-    private HelloGattLayer gattLayer;
-
+public class Pill extends HelloBleDevice {
     private TimeDataHandler bleTimeDataHandler;
     private MotionDataHandler motionPacketHandler;
-    private CommandResponseDataHandler commandResponsePacketHandler;
-    private BleOperationCallback<Void> pairedCallback;
-    private BleOperationCallback<Void> unpairCallback;
+    private MotionXYZDataHandler motionXYZDataHandler;
+    private PillResponseDataHandler commandResponsePacketHandler;
 
-    private BleOperationCallback<Void> connectedCallback;
-    private BleOperationCallback<Integer> disconnectedCallback;
-
-    private final BroadcastReceiver pairingReceiver = new BroadcastReceiver() {
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-
-            if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
-                final int state = intent.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.ERROR);
-                final int prevState = intent.getIntExtra(BluetoothDevice.EXTRA_PREVIOUS_BOND_STATE, BluetoothDevice.ERROR);
-                final BluetoothDevice bondedDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-
-                if(Pill.this.bluetoothDevice == null){
-                    return;
-                }
-
-                if(!Pill.this.bluetoothDevice.getAddress().equals(bondedDevice.getAddress())){
-                    return;
-                }
-
-                if (state == BluetoothDevice.BOND_BONDED) {
-                    context.unregisterReceiver(this);
-                    if(Pill.this.pairedCallback != null){
-                        Pill.this.pairedCallback.onCompleted(Pill.this, null);
-                    }
-                } else if (state == BluetoothDevice.BOND_NONE && prevState == BluetoothDevice.BOND_BONDED){
-                    context.unregisterReceiver(this);
-
-                    if(Pill.this.unpairCallback != null){
-                        Pill.this.unpairCallback.onCompleted(Pill.this, null);
-                    }
-                }
-
-            }
-        }
-    };
+    private PillBlePacketHandler transmissionLayer;
 
 
-    private Pill(){
-
-    }
-
-    protected Pill(final Context context, final BluetoothDevice pillDevice){
+    public Pill(final Context context, final BluetoothDevice pillDevice){
+        super(context, pillDevice);
         checkNotNull(context);
-
-        this.bluetoothDevice = pillDevice;
-        this.context = context;
 
         this.bleTimeDataHandler = new TimeDataHandler(this);
         this.motionPacketHandler = new MotionDataHandler(this);
-        this.commandResponsePacketHandler = new CommandResponseDataHandler(this);
+        this.commandResponsePacketHandler = new PillResponseDataHandler(this);
+        this.motionXYZDataHandler = new MotionXYZDataHandler(this);
 
         final BleOperationCallback<Void> connectedCallback = new BleOperationCallback<Void>() {
             @Override
@@ -137,7 +84,7 @@ public class Pill implements HelloBleDevice {
         };
 
         // this is the transmission layer
-        final PillBlePacketHandler transmissionLayer = new PillBlePacketHandler();
+        this.transmissionLayer = new PillBlePacketHandler();
 
         // attach application layer on top of transmission layer
         transmissionLayer.registerDataHandler(this.bleTimeDataHandler);
@@ -147,28 +94,13 @@ public class Pill implements HelloBleDevice {
 
         // attach the link layer to transmission layer
         this.gattLayer = new HelloGattLayer(this, this.bluetoothDevice,
+                BleUUID.PILL_SERVICE_UUID,
                 transmissionLayer,
                 connectedCallback,
                 disconnectCallback);
 
-
-
     }
 
-    public String getAddress(){
-        checkNotNull(this.bluetoothDevice);
-        return this.bluetoothDevice.getAddress();
-    }
-
-    public String getName(){
-        checkNotNull(this.bluetoothDevice);
-        return this.bluetoothDevice.getName();
-    }
-
-    @Override
-    public String toString(){
-        return getName() + "@" + getAddress();
-    }
 
     public void setTime(final DateTime target){
         setTime(target, null);
@@ -211,21 +143,6 @@ public class Pill implements HelloBleDevice {
     }
 
 
-    public void stopAdvertising(){
-        saveAndResetPreviousCommandWriteCallback();
-
-        final byte[] pillCommandData = new byte[]{PillCommand.STOP_ADVERTISE.getValue()};
-        Pill.this.gattLayer.writeCommand(pillCommandData);
-    }
-
-    public void startAdvertising(){
-
-        saveAndResetPreviousCommandWriteCallback();
-        final byte[] pillCommandData = new byte[]{ PillCommand.START_ADVERTISE.getValue() };
-        this.gattLayer.writeCommand(pillCommandData);
-    }
-
-
     public void getTime(final BleOperationCallback<DateTime> getTimeCallback){
 
         saveAndResetPreviousCommandWriteCallback();
@@ -243,6 +160,7 @@ public class Pill implements HelloBleDevice {
 
             @Override
             public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DAY_DATETIME_UUID, null);
                 if(getTimeCallback != null){
                     getTimeCallback.onFailed(sender, reason, errorCode);
                 }
@@ -281,6 +199,7 @@ public class Pill implements HelloBleDevice {
 
             @Override
             public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_COMMAND_RESPONSE_UUID, null);
                 if(calibrateCallback != null){
                     calibrateCallback.onFailed(sender, reason, errorCode);
                 }
@@ -306,6 +225,87 @@ public class Pill implements HelloBleDevice {
     }
 
 
+    @Deprecated
+    public void startStream(final BleOperationCallback<Void> operationCallback, final BleOperationCallback<Short[]> dataCallback){
+        this.gattLayer.setCommandWriteCallback(null);
+
+        this.gattLayer.subscribeNotification(BleUUID.CHAR_DATA_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
+
+            @Override
+            public void onCompleted(final HelloBleDevice sender, final BluetoothGattDescriptor data) {
+                Pill.this.gattLayer.setCommandWriteCallback(new BleOperationCallback<BluetoothGattCharacteristic>() {
+                    @Override
+                    public void onCompleted(final HelloBleDevice sender, final BluetoothGattCharacteristic data) {
+                        Pill.this.transmissionLayer.unregisterDataHandler(Pill.this.motionPacketHandler);
+                        Pill.this.transmissionLayer.registerDataHandler(Pill.this.motionXYZDataHandler);
+                        Pill.this.motionXYZDataHandler.setDataCallback(dataCallback);
+
+                        if(operationCallback != null){
+                            operationCallback.onCompleted(sender, null);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+                        if(operationCallback != null){
+                            operationCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+                });
+
+                final byte[] pillCommandData = new byte[]{PillCommand.START_STREAM.getValue()};
+                Pill.this.gattLayer.writeCommand(pillCommandData);
+            }
+
+            @Override
+            public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+                if(operationCallback != null){
+                    operationCallback.onFailed(sender, reason, errorCode);
+                }
+            }
+        });
+    }
+
+    @Deprecated
+    public void stopStream(final BleOperationCallback<Void> operationCallback){
+
+        this.transmissionLayer.unregisterDataHandler(this.motionXYZDataHandler);
+        this.transmissionLayer.registerDataHandler(this.motionPacketHandler);
+
+        this.gattLayer.setCommandWriteCallback(new BleOperationCallback<BluetoothGattCharacteristic>() {
+            @Override
+            public void onCompleted(HelloBleDevice sender, BluetoothGattCharacteristic data) {
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DATA_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
+                    @Override
+                    public void onCompleted(HelloBleDevice sender, BluetoothGattDescriptor data) {
+                        if(operationCallback != null){
+                            operationCallback.onCompleted(sender, null);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                        if(operationCallback != null){
+                            operationCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                if(operationCallback != null){
+                    operationCallback.onFailed(sender, reason, errorCode);
+                }
+            }
+        });
+
+        final byte[] pillCommandData = new byte[]{PillCommand.STOP_STREAM.getValue()};
+        Pill.this.gattLayer.writeCommand(pillCommandData);
+
+    }
+
+
     public void getData(final BleOperationCallback<List<PillMotionData>> getDataCallback){
 
         saveAndResetPreviousCommandWriteCallback();
@@ -321,6 +321,7 @@ public class Pill implements HelloBleDevice {
 
             @Override
             public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DATA_UUID, null);
                 if(getDataCallback != null){
                     getDataCallback.onFailed(sender, reason, errorCode);
                 }
@@ -349,144 +350,8 @@ public class Pill implements HelloBleDevice {
         this.connectedCallback = connectedCallback;
     }
 
-    public void connect(final BleOperationCallback<Void> connectedCallback, final boolean autoBond){
-        checkNotNull(this.bluetoothDevice);
-        if(isConnected()){
-            return;
-        }
-
-        if(this.bluetoothDevice.getBondState() != BluetoothDevice.BOND_BONDED && autoBond){
-            final BleOperationCallback<Void> pairedCallback = new BleOperationCallback<Void>() {
-                @Override
-                public void onCompleted(final HelloBleDevice connectedPill, final Void data) {
-                    Pill.this.connect(connectedCallback);
-                }
-
-                @Override
-                public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
-                    if(Pill.this.connectedCallback != null){
-                        Pill.this.connectedCallback.onFailed(sender, reason, errorCode);
-                    }
-                }
-            };
-            pair(pairedCallback);
-        }else{
-            this.connect(connectedCallback);
-        }
-    }
-
-    @Override
-    public void connect(final BleOperationCallback<Void> connectedCallback) {
-        setConnectedCallback(connectedCallback);
-        Pill.this.gattLayer.connect();
-    }
-
-    public void connect(){
-        checkNotNull(this.bluetoothDevice);
-        if(isConnected()){
-            return;
-        }
-
-        Pill.this.gattLayer.connect();
-    }
-
-    public void connect(boolean autoBond){
-        checkNotNull(this.bluetoothDevice);
-        if(isConnected()){
-            return;
-        }
-
-        if(this.bluetoothDevice.getBondState() != BluetoothDevice.BOND_BONDED && autoBond){
-            final BleOperationCallback<Void> pairedCallback = new BleOperationCallback<Void>() {
-                @Override
-                public void onCompleted(final HelloBleDevice connectedPill, final Void data) {
-                    Pill.this.gattLayer.connect();
-                }
-
-                @Override
-                public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
-                    if(Pill.this.connectedCallback != null){
-                        Pill.this.connectedCallback.onFailed(sender, reason, errorCode);
-                    }
-                }
-            };
-            pair(pairedCallback);
-        }else{
-            this.gattLayer.connect();
-        }
-    }
-
     public void setDisconnectedCallback(final BleOperationCallback<Integer> disconnectCallback){
         this.disconnectedCallback = disconnectCallback;
-    }
-
-    public void disconnect(){
-        if(this.gattLayer != null) {
-            this.gattLayer.disconnect();
-        }
-
-        try {
-            LibApplication.getAppContext().unregisterReceiver(this.pairingReceiver);
-        }catch (IllegalArgumentException iae){
-            Log.w(Pill.class.getName(), "Disconnect without paired.");
-        }
-        //IO.log("Try to disconnect pill " + this.getName() + "@" + this.getAddress());
-    }
-
-    public boolean isConnected(){
-        return this.gattLayer.getConnectionStatus() == BluetoothProfile.STATE_CONNECTED;
-    }
-
-    public void pair(final BleOperationCallback<Void> pairedCallback) {
-        try {
-
-            this.pairedCallback = pairedCallback;
-            final IntentFilter filter = new IntentFilter();
-            filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
-
-            LibApplication.getAppContext().registerReceiver(this.pairingReceiver, filter);
-
-            Method method = this.bluetoothDevice.getClass().getMethod("createBond", (Class[]) null);  // this is shit!
-            method.invoke(this.bluetoothDevice, (Object[]) null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void unpair(final BleOperationCallback<Void> unpairCallback) {
-        try {
-            this.unpairCallback = unpairCallback;
-            final IntentFilter filter = new IntentFilter();
-            filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
-
-            LibApplication.getAppContext().registerReceiver(this.pairingReceiver, filter);
-
-            Method method = this.bluetoothDevice.getClass().getMethod("removeBond", (Class[]) null);
-            method.invoke(this.bluetoothDevice, (Object[]) null);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @Override
-    public boolean equals(Object other){
-        if (other == null){
-            return false;
-        }
-
-        if (getClass() != other.getClass()){
-            return false;
-        }
-
-        final Pill convertedObject = (Pill) other;
-        return  Objects.equal(this.getAddress(), convertedObject.getAddress());
-    }
-
-    @Override
-    public int hashCode(){
-        return this.getAddress().hashCode();
     }
 
 
@@ -505,32 +370,12 @@ public class Pill implements HelloBleDevice {
 
         final Set<Pill> pills = new HashSet<Pill>();
 
-        /*
-        final PillOperationCallback<Set<Pill>> bondDiscoveryCallback = new PillOperationCallback<Set<Pill>>() {
+        final BleOperationCallback<Set<HelloBleDevice>> scanDiscoveryCallback = new BleOperationCallback<Set<HelloBleDevice>>() {
             @Override
-            public void onCompleted(final Pill connectedPill, final Set<Pill> bondedPills) {
-                pills.addAll(bondedPills);
-                Pill targetPill = null;
-
-                for(final Pill pill:pills){
-                    if(pill.getAddress().equals(address)){
-                        targetPill = pill;
-                    }
+            public void onCompleted(final HelloBleDevice connectedPill, final Set<HelloBleDevice> advertisingPills) {
+                for(final HelloBleDevice device:advertisingPills){
+                    pills.add((Pill)device);
                 }
-
-                onDiscoverCompleted.onCompleted(null, targetPill);
-            }
-        };
-
-        final ConnectionBasedPillDetector bondScanner =
-                new ConnectionBasedPillDetector(bluetoothAdapter.getBondedDevices(), bondDiscoveryCallback);
-        */
-
-        final BleOperationCallback<Set<Pill>> scanDiscoveryCallback = new BleOperationCallback<Set<Pill>>() {
-            @Override
-            public void onCompleted(final HelloBleDevice connectedPill, final Set<Pill> advertisingPills) {
-                pills.addAll(advertisingPills);
-                //bondScanner.beginDiscovery();
 
                 Pill targetPill = null;
 
@@ -550,7 +395,7 @@ public class Pill implements HelloBleDevice {
         };
 
 
-        final ScanBasedPillDetector scanner = new ScanBasedPillDetector(new String[]{ address },
+        final HelloBleDeviceScanner scanner = new PillScanner(new String[]{ address },
                 maxScanTime <= 0 ? DEFAULT_SCAN_INTERVAL_MS : maxScanTime,
                 scanDiscoveryCallback);
 
@@ -575,23 +420,13 @@ public class Pill implements HelloBleDevice {
 
         final Set<Pill> finalPills = new HashSet<Pill>();
 
-        /*
-        final PillOperationCallback<Set<Pill>> bondDiscoveryCallback = new PillOperationCallback<Set<Pill>>() {
+        final BleOperationCallback<Set<HelloBleDevice>> scanDiscoveryCallback = new BleOperationCallback<Set<HelloBleDevice>>() {
             @Override
-            public void onCompleted(final Pill connectedPill, final Set<Pill> bondedPills) {
-                finalPills.addAll(bondedPills);
-                //scanner.beginDiscovery();
-                onDiscoverCompleted.onCompleted(null, finalPills);
-            }
-        };
+            public void onCompleted(final HelloBleDevice connectedPill, final Set<HelloBleDevice> advertisingDevices) {
 
-        final ConnectionBasedPillDetector bondScanner = new ConnectionBasedPillDetector(bluetoothAdapter.getBondedDevices(), bondDiscoveryCallback);
-        */
-
-        final BleOperationCallback<Set<Pill>> scanDiscoveryCallback = new BleOperationCallback<Set<Pill>>() {
-            @Override
-            public void onCompleted(final HelloBleDevice connectedPill, final Set<Pill> advertisingPills) {
-                finalPills.addAll(advertisingPills);
+                for(final HelloBleDevice device:advertisingDevices){
+                   finalPills.add((Pill)device);
+                }
                 onDiscoverCompleted.onCompleted(null, finalPills);
                 //bondScanner.beginDiscovery();
             }
@@ -602,7 +437,7 @@ public class Pill implements HelloBleDevice {
             }
         };
 
-        final ScanBasedPillDetector scanner = new ScanBasedPillDetector(null,
+        final HelloBleDeviceScanner scanner = new PillScanner(null,
                 maxScanTime <= 0 ? DEFAULT_SCAN_INTERVAL_MS : maxScanTime,
                 scanDiscoveryCallback);
 

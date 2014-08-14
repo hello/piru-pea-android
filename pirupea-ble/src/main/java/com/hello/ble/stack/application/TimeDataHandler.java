@@ -1,4 +1,4 @@
-package com.hello.ble.stack;
+package com.hello.ble.stack.application;
 
 import com.hello.ble.HelloBlePacket;
 import com.hello.ble.devices.Pill;

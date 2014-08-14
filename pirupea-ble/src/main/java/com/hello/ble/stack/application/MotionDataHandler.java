@@ -1,12 +1,10 @@
-package com.hello.ble.stack;
+package com.hello.ble.stack.application;
 
 import com.google.common.io.LittleEndianDataInputStream;
 import com.hello.ble.HelloBlePacket;
 import com.hello.ble.PillMotionData;
 import com.hello.ble.devices.Pill;
 import com.hello.ble.util.BleUUID;
-
-import org.joda.time.DateTime;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -22,7 +20,6 @@ public class MotionDataHandler extends HelloDataHandler<List<PillMotionData>> {
 
     private int totalPackets = 0;
 
-    private DateTime startTime;
     private byte[] buffer;
 
     private int bufferOffsetIndex = 0;

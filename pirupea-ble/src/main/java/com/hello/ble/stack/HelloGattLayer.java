@@ -6,7 +6,9 @@ import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
+import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
@@ -16,10 +18,12 @@ import com.hello.ble.BleOperationCallback.OperationFailReason;
 import com.hello.ble.LibApplication;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Pill;
+import com.hello.ble.stack.transmission.BlePacketHandler;
 import com.hello.ble.util.BleUUID;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -37,6 +41,8 @@ public class HelloGattLayer extends BluetoothGattCallback {
 
     private BluetoothGatt bluetoothGatt;
     private BluetoothGattService bluetoothGattService;
+
+    private UUID targetServiceUUID;
     private int connectionStatus = BluetoothProfile.STATE_DISCONNECTED;
 
     private final BleOperationCallback<Void> connectedCallback;
@@ -86,11 +92,14 @@ public class HelloGattLayer extends BluetoothGattCallback {
 
     public HelloGattLayer(final HelloBleDevice helloDevice,
                           final BluetoothDevice device,
+                          final UUID targetDeviceService,
                           final BlePacketHandler transmissionLayer,
                           final BleOperationCallback<Void> userProvidedconnectedCallback,
                           final BleOperationCallback<Integer> disconnectedCallback){
         this.sender = helloDevice;
         this.bluetoothDevice = device;
+        this.targetServiceUUID = targetDeviceService;
+
         this.transmissionLayer = transmissionLayer;
 
         this.disconnectedCallback = new BleOperationCallback<Integer>() {
@@ -176,6 +185,10 @@ public class HelloGattLayer extends BluetoothGattCallback {
     }
 
     public void writeCommand(final UUID commandInterfaceUUID, final byte[] commandData){
+        if(commandData.length > 20){
+            throw new IllegalArgumentException("data should not exceed 20 bytes.");
+        }
+
         final byte[] commandCopy = Arrays.copyOf(commandData, commandData.length);
         this.messageHandler.post(new Runnable() {
             @Override
@@ -185,6 +198,25 @@ public class HelloGattLayer extends BluetoothGattCallback {
                 HelloGattLayer.this.bluetoothGatt.writeCharacteristic(commandCharacteristic);
             }
         });
+
+    }
+
+    public void writeLargeCommand(final UUID commandInterfaceUUID, final byte[] commandData){
+        final byte[] commandCopy = Arrays.copyOf(commandData, commandData.length);
+        final List<byte[]> blePackets = this.transmissionLayer.prepareBlePacket(commandCopy);
+
+
+        // TODO: write next packet after the previous one succeed.
+        for(final byte[] rawBlePacket:blePackets) {
+            this.messageHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    final BluetoothGattCharacteristic commandCharacteristic = HelloGattLayer.this.bluetoothGattService.getCharacteristic(commandInterfaceUUID);
+                    commandCharacteristic.setValue(rawBlePacket);
+                    HelloGattLayer.this.bluetoothGatt.writeCharacteristic(commandCharacteristic);
+                }
+            });
+        }
 
     }
 
@@ -285,7 +317,7 @@ public class HelloGattLayer extends BluetoothGattCallback {
                 // unregister the timeout event.
                 HelloGattLayer.this.messageHandler.removeCallbacks(HelloGattLayer.this.connectTimeoutRunnable);
                 if(status == BluetoothGatt.GATT_SUCCESS) {
-                    HelloGattLayer.this.bluetoothGattService = gatt.getService(BleUUID.PILL_SERVICE_UUID);
+                    HelloGattLayer.this.bluetoothGattService = gatt.getService(HelloGattLayer.this.targetServiceUUID);
                     if(HelloGattLayer.this.bluetoothGattService != null) {
                         HelloGattLayer.this.connectedCallback.onCompleted(HelloGattLayer.this.sender, null);
                     }else{
@@ -505,6 +537,20 @@ public class HelloGattLayer extends BluetoothGattCallback {
         if(this.connectionStatus == BluetoothProfile.STATE_DISCONNECTED){
             // Do not trigger the disconnect event
             Log.i(HelloGattLayer.class.getName(), "disconnect() called without connect.");
+            return;
+        }
+
+        final BluetoothManager bluetoothManager =
+                (BluetoothManager) LibApplication.getAppContext().getSystemService(Context.BLUETOOTH_SERVICE);
+        if(this.bluetoothGatt != null && bluetoothManager.getConnectionState(this.bluetoothDevice, BluetoothProfile.GATT) == BluetoothProfile.STATE_DISCONNECTED){
+            Log.i(HelloGattLayer.class.getName(), "device is actually disconnected.");
+            this.messageHandler.post(new Runnable() {
+                public void run(){
+                    HelloGattLayer.this.connectionStatus = BluetoothProfile.STATE_DISCONNECTED;
+                    HelloGattLayer.this.disconnectedCallback.onCompleted(HelloGattLayer.this.sender, 0);
+                }
+            });
+
             return;
         }
 

@@ -14,7 +14,9 @@ public interface BleOperationCallback<T> {
         SET_CHAR_NOTIFICATION_FAILED(3),
         WRITE_CCCD_FAILED(4),
         MESSAGE_QUEUE_ERROR(5),
-        SERVICE_DISCOVERY_FAILED(6);
+        SERVICE_DISCOVERY_FAILED(6),
+        DATA_LOST_OR_OUT_OF_ORDER(7),
+        INVALID_PROTOBUF(8);
 
         private int value = 0;
         private OperationFailReason(int value){

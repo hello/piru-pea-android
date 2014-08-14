@@ -5,6 +5,7 @@ import android.app.ListActivity;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -136,6 +137,83 @@ public class PillBleTestActivity extends ListActivity implements
     };
 
 
+    private final BleOperationCallback<Void> startStreamOperationalCallback = new BleOperationCallback<Void>() {
+        @Override
+        public void onCompleted(HelloBleDevice sender, Void data) {
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this, "Streaming started.", Toast.LENGTH_SHORT);
+        }
+
+        @Override
+        public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this, "Start streaming failed.", Toast.LENGTH_SHORT);
+        }
+    };
+
+
+    private final BleOperationCallback<Void> stopStreamOperationalCallback = new BleOperationCallback<Void>() {
+        @Override
+        public void onCompleted(HelloBleDevice sender, Void data) {
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this, "Streaming stopped.", Toast.LENGTH_SHORT);
+        }
+
+        @Override
+        public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this, "Stop streaming failed.", Toast.LENGTH_SHORT);
+        }
+    };
+
+
+    private final BleOperationCallback<Short[]> streamDataCallback = new BleOperationCallback<Short[]>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final Short[] data) {
+            final Pill pill = (Pill)sender;
+            final File csvFile = IO.getFileByName(pill.getName(), "stream.csv");
+            final DateTime dateTime = DateTime.now();
+
+            if(!csvFile.exists()){
+                IO.appendStringToFile(csvFile, "timestamp,x,y,z,readable_time\r\n");
+            }
+
+            final StringBuilder builder = new StringBuilder();
+            builder.append(dateTime.getMillis()).append(",")
+                    .append(data[0]).append(",")
+                    .append(data[1]).append(",")
+                    .append(data[2]).append(",")
+                    .append(dateTime.toString()).append(",")
+                    .append("\r\n");
+            IO.appendStringToFile(csvFile, builder.toString());
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            Log.w("Streaming error", "Stream data error.");
+        }
+    };
+
+
+    final BleOperationCallback<Void> calibrateOperationCallback = new BleOperationCallback<Void>() {
+        @Override
+        public void onCompleted(final HelloBleDevice connectedPill, final Void data) {
+            uiEndOperation();
+            final Pill selectedPill = (Pill)connectedPill;
+            Toast.makeText(PillBleTestActivity.this, selectedPill.getName() + " calibrated.", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+            uiEndOperation();
+            final Pill selectedPill = (Pill)sender;
+            Toast.makeText(PillBleTestActivity.this,
+                    selectedPill.getName() + " calibrate failed, " + reason + ": " + errorCode,
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
     private void uiBeginOperation(){
         setProgressBarIndeterminateVisibility(true);
         setProgressBarIndeterminate(true);
@@ -241,12 +319,13 @@ public class PillBleTestActivity extends ListActivity implements
             });
         }else{
             builder.setItems(new CharSequence[]{
-                    "Set Time",//0
-                    "Get Time",//1
-                    "Calibrate",//2
-                    "Get Data",//3
-
-                    "Disconnect"//4
+                    "Set Time",             //0
+                    "Get Time",             //1
+                    "Calibrate",            //2
+                    "Get Data",             //3
+                    "Start Streaming",
+                    "Stop Streaming",
+                    "Disconnect"            //6
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -260,23 +339,18 @@ public class PillBleTestActivity extends ListActivity implements
                             selectedPill.getTime(getTimeCallback);
                             break;
                         case 2:
-                            selectedPill.calibrate(new BleOperationCallback<Void>() {
-                                @Override
-                                public void onCompleted(final HelloBleDevice connectedPill, final Void data) {
-                                    Toast.makeText(PillBleTestActivity.this, selectedPill.getName() + " calibrated.", Toast.LENGTH_SHORT).show();
-                                }
-
-                                @Override
-                                public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-                                    Toast.makeText(PillBleTestActivity.this,
-                                            selectedPill.getName() + " calibrate failed, " + reason + ": " + errorCode,
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            selectedPill.calibrate(calibrateOperationCallback);
+                            break;
                         case 3:
                             selectedPill.getData(dataCallback);
                             break;
                         case 4:
+                            selectedPill.startStream(startStreamOperationalCallback, streamDataCallback);
+                            break;
+                        case 5:
+                            selectedPill.stopStream(stopStreamOperationalCallback);
+                            break;
+                        case 6:
                             selectedPill.disconnect();
                             break;
 

@@ -1,4 +1,4 @@
-package com.hello.ble.stack;
+package com.hello.ble.stack.application;
 
 import com.hello.ble.BleOperationCallback;
 import com.hello.ble.HelloBlePacket;
@@ -12,6 +12,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Created by pangwu on 7/14/14.
  */
 public abstract class HelloDataHandler<T> {
+
+
     private BleOperationCallback<T> dataCallback;
     private HelloBleDevice sender;
 
@@ -20,11 +22,15 @@ public abstract class HelloDataHandler<T> {
         this.sender = sender;
     }
 
-    protected abstract boolean shouldProcess(final UUID charUUID);
-    protected abstract void onDataArrival(final HelloBlePacket blePacket);
+    public abstract boolean shouldProcess(final UUID charUUID);
+    public abstract void onDataArrival(final HelloBlePacket blePacket);
 
     public final void setDataCallback(final BleOperationCallback<T> bleOperationCallback){
         this.dataCallback = bleOperationCallback;
+    }
+
+    public final HelloBleDevice getSender(){
+        return this.sender;
     }
 
     public final BleOperationCallback<T> getDataCallback(){

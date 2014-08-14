@@ -20,11 +20,20 @@
         <activity
             android:name=".PillBleTestActivity"
             android:label="@string/app_name" >
+
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
+        </activity>
+
+        <activity
+            android:name=".MorpheusBleTestActivity"
+            android:label="@string/app_name" >
+
         </activity>
 
         <service android:name=".BleService" >
@@ -33,6 +42,13 @@
         <activity
             android:name=".BleTestSelectionActivity"
             android:label="@string/title_activity_ble_test_selection" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
     </application>
 

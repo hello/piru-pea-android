@@ -1,8 +1,8 @@
-package com.hello.ble.stack;
+package com.hello.ble.stack.application;
 
 import com.hello.ble.HelloBlePacket;
 import com.hello.ble.PillCommand;
-import com.hello.ble.devices.Pill;
+import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.util.BleUUID;
 
 import java.util.UUID;
@@ -10,14 +10,14 @@ import java.util.UUID;
 /**
  * Created by pangwu on 7/18/14.
  */
-public class CommandResponseDataHandler extends HelloDataHandler<PillCommand> {
+public class PillResponseDataHandler extends HelloDataHandler<PillCommand> {
 
-    public CommandResponseDataHandler(final Pill pill){
-        super(pill);
+    public PillResponseDataHandler(final HelloBleDevice helloBleDevice){
+        super(helloBleDevice);
     }
 
     @Override
-    protected boolean shouldProcess(UUID charUUID) {
+    public boolean shouldProcess(UUID charUUID) {
         if(BleUUID.CHAR_COMMAND_RESPONSE_UUID.equals(charUUID)){
             return true;
         }
@@ -25,7 +25,7 @@ public class CommandResponseDataHandler extends HelloDataHandler<PillCommand> {
     }
 
     @Override
-    protected void onDataArrival(HelloBlePacket blePacket) {
+    public void onDataArrival(HelloBlePacket blePacket) {
         final PillCommand command = PillCommand.fromByte(blePacket.payload[1]);
         this.dataFinished(command);
     }

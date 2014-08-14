@@ -4,6 +4,8 @@ package com.hello.ble;
  * Created by pangwu on 7/2/14.
  */
 public enum PillCommand {
+    START_STREAM((byte)0x01),
+    STOP_STREAM((byte)0x00),
     SET_TIME((byte)0x06),
     GET_TIME((byte)0x05),
     GET_DATA((byte)0x04),
