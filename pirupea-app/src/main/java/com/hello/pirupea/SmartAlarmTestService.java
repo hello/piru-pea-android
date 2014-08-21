@@ -21,6 +21,7 @@ import com.hello.ble.util.IO;
 
 import org.joda.time.DateTime;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -28,7 +29,7 @@ import java.util.Set;
 
 public class SmartAlarmTestService extends Service {
 
-    private final static long WAKEUP_INTERVAL = 10 * 60 * 1000;
+    private final static long WAKEUP_INTERVAL = 40 * 1000;
     private final static String ACTION_WAKEUP = SmartAlarmTestService.class.getName() + ".action_wakeup";
 
 
@@ -96,7 +97,7 @@ public class SmartAlarmTestService extends Service {
             Log.w(SmartAlarmTestService.class.getName(), pill.getName() + " disconnected: " + data);
             IO.log(pill.getName() + " disconnected: " + data);
 
-            SmartAlarmTestService.this.pillRetryInfoHashMap.remove(pill);
+
             if(SmartAlarmTestService.this.pillRetryInfoHashMap.size() == 0){
                 SmartAlarmTestService.this.setNextAlarm(SmartAlarmTestService.this.alarmManager);
                 SmartAlarmTestService.this.cpuWakeLock.release();
@@ -109,7 +110,6 @@ public class SmartAlarmTestService extends Service {
             IO.log(pill + " disconnect failed, " + reason + ": " + errorCode);
             // Retry ends here, if disconnect failed, go ahead.
 
-            SmartAlarmTestService.this.pillRetryInfoHashMap.remove(pill);
             if(SmartAlarmTestService.this.pillRetryInfoHashMap.size() == 0){
                 SmartAlarmTestService.this.setNextAlarm(SmartAlarmTestService.this.alarmManager);
                 SmartAlarmTestService.this.cpuWakeLock.release();
@@ -128,14 +128,14 @@ public class SmartAlarmTestService extends Service {
                 // Don't quit, let's still try to get data.
             }
 
-            pill.getData(SmartAlarmTestService.this.getDataCallback);
+            pill.getData(32, SmartAlarmTestService.this.getDataCallback);
 
         }
 
         @Override
         public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
             final Pill pill = (Pill)sender;
-            IO.log("Get time failed for " + pill.getName());
+            IO.log("Get time failed for " + pill.getName() + ", " + reason + ", error: " + errorCode);
 
             final RetryInfo retryInfo = SmartAlarmTestService.this.pillRetryInfoHashMap.get(pill);
             if(retryInfo == null){
@@ -144,6 +144,7 @@ public class SmartAlarmTestService extends Service {
             }
 
             if(retryInfo.getTimeRetryCounts == RetryInfo.MAX_RETRY_COUNTS){
+                SmartAlarmTestService.this.pillRetryInfoHashMap.remove(pill);
                 IO.log("Get time retry for " + pill.getName() + " reach " + RetryInfo.MAX_RETRY_COUNTS + " times. Give up.");
                 pill.disconnect();
                 IO.log("Disconnecting " + pill.getName() + " because too many failures in get time.");
@@ -162,13 +163,33 @@ public class SmartAlarmTestService extends Service {
         @Override
         public void onCompleted(final HelloBleDevice sender, final List<PillMotionData> data) {
             final Pill pill = (Pill)sender;
+
+            final StringBuilder stringBuilder = new StringBuilder(1000);
+            final File csvFile = IO.getFileByName(pill.getName(), "csv");
+
+            if(!csvFile.exists()) {
+                stringBuilder.append("timestamp,amplitude,time_string\r\n");
+            }
+
+            for(final PillMotionData datum:data){
+                stringBuilder.append(datum.timestamp.getMillis()).append(",")
+                        .append(datum.maxAmplitude).append(",")
+                        .append(new DateTime(datum.timestamp.getMillis()))
+                        .append("\r\n");
+            }
+
+            IO.appendStringToFile(csvFile, stringBuilder.toString());
+
+            IO.log("Dump data completed. data size: " + data.size());
+            SmartAlarmTestService.this.pillRetryInfoHashMap.remove(pill);
+            pill.disconnect();
         }
 
         @Override
         public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
             final Pill pill = (Pill)sender;
 
-            IO.log("Get data failed for " + pill.getName());
+            IO.log("Get data failed for " + pill.getName() + ", " + reason + ", error: " + errorCode);
 
             final RetryInfo retryInfo = SmartAlarmTestService.this.pillRetryInfoHashMap.get(pill);
             if(retryInfo == null){
@@ -177,12 +198,13 @@ public class SmartAlarmTestService extends Service {
             }
 
             if(retryInfo.getDataRetryCounts == RetryInfo.MAX_RETRY_COUNTS){
+                SmartAlarmTestService.this.pillRetryInfoHashMap.remove(pill);
                 IO.log("Get data retry for " + pill.getName() + " reach " + RetryInfo.MAX_RETRY_COUNTS + " times. Give up.");
                 pill.disconnect();
                 IO.log("Disconnecting " + pill.getName() + " because too many failures in get data.");
             }else{
                 retryInfo.getDataRetryCounts++;
-                pill.getData(this);
+                pill.getData(32, this);
                 IO.log("Retry get data for the " + retryInfo.getDataRetryCounts + " times.");
             }
         }
@@ -204,8 +226,10 @@ public class SmartAlarmTestService extends Service {
     private final BleOperationCallback<Set<Pill>> onDiscoverCompleted = new BleOperationCallback<Set<Pill>>() {
         @Override
         public void onCompleted(final HelloBleDevice sender, final Set<Pill> data) {
+
             for(final Pill pill:data){
                 if(pill.isPaired()){
+                    IO.log("Paired pill detected: " + pill.getName());
                     final RetryInfo retryInfo = new RetryInfo();
                     retryInfo.pill = pill;
 
@@ -237,6 +261,7 @@ public class SmartAlarmTestService extends Service {
         this.cpuWakeLock.acquire();
 
         // Scan for 20 seconds to pickup all pills around.
+        IO.log("Discovering pills...");
         Pill.discover(onDiscoverCompleted, 20000);
     }
 
@@ -258,12 +283,14 @@ public class SmartAlarmTestService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // If we get killed, after returning from here, restart
+        Toast.makeText(this, "Service running.", Toast.LENGTH_SHORT).show();
         return START_STICKY;
     }
 
     @Override
     public void onDestroy(){
         IO.log(SmartAlarmTestService.class.getName() + " destroyed.");
+        Toast.makeText(this, "Service stopped.", Toast.LENGTH_SHORT).show();
         super.onDestroy();
     }
 

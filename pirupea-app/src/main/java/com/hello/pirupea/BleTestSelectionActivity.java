@@ -40,6 +40,17 @@ public class BleTestSelectionActivity extends Activity {
                 startActivity(bleActivityIntent);
             }
         });
+
+
+        this.btnSmartAlarm = (Button) findViewById(R.id.btnSmartAlarmTest);
+        this.btnSmartAlarm.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent bleActivityIntent = new Intent(BleTestSelectionActivity.this, SmartAlarmTestActivity.class);
+                bleActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(bleActivityIntent);
+            }
+        });
     }
 
 

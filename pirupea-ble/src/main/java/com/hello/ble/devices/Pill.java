@@ -153,21 +153,44 @@ public class Pill extends HelloBleDevice {
 
         this.bleTimeDataHandler.setDataCallback(new BleOperationCallback<DateTime>() {
             @Override
-            public void onCompleted(final HelloBleDevice connectedPill, final DateTime data) {
+            public void onCompleted(final HelloBleDevice connectedPill, final DateTime dateTime) {
                 // We don't care whether the unsubscription is successful or not
-                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DAY_DATETIME_UUID, null);
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DAY_DATETIME_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
+                    @Override
+                    public void onCompleted(HelloBleDevice sender, BluetoothGattDescriptor data) {
+                        if(getTimeCallback != null){
+                            getTimeCallback.onCompleted(Pill.this, dateTime);
+                        }
+                    }
 
-                if(getTimeCallback != null){
-                    getTimeCallback.onCompleted(Pill.this, data);
-                }
+                    @Override
+                    public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+                        if(getTimeCallback != null){
+                            getTimeCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+                });
+
+
             }
 
             @Override
             public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
-                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DAY_DATETIME_UUID, null);
-                if(getTimeCallback != null){
-                    getTimeCallback.onFailed(sender, reason, errorCode);
-                }
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DAY_DATETIME_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
+                    @Override
+                    public void onCompleted(final HelloBleDevice sender, final BluetoothGattDescriptor data) {
+                        if(getTimeCallback != null){
+                            getTimeCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(final HelloBleDevice sender, final OperationFailReason internalReason, final int internalCode) {
+                        if(getTimeCallback != null){
+                            getTimeCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+                });
             }
         });
 
@@ -195,18 +218,42 @@ public class Pill extends HelloBleDevice {
         this.commandResponsePacketHandler.setDataCallback(new BleOperationCallback<PillCommand>() {
             @Override
             public void onCompleted(final HelloBleDevice connectedPill, final PillCommand data) {
-                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_COMMAND_RESPONSE_UUID, null);
-                if(calibrateCallback != null){
-                    calibrateCallback.onCompleted(Pill.this, null);
-                }
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_COMMAND_RESPONSE_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
+                    @Override
+                    public void onCompleted(HelloBleDevice sender, BluetoothGattDescriptor data) {
+                        if(calibrateCallback != null){
+                            calibrateCallback.onCompleted(Pill.this, null);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                        if(calibrateCallback != null){
+                            calibrateCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+                });
+
             }
 
             @Override
-            public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_COMMAND_RESPONSE_UUID, null);
-                if(calibrateCallback != null){
-                    calibrateCallback.onFailed(sender, reason, errorCode);
-                }
+            public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_COMMAND_RESPONSE_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
+                    @Override
+                    public void onCompleted(HelloBleDevice sender, BluetoothGattDescriptor data) {
+                        if(calibrateCallback != null){
+                            calibrateCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(final HelloBleDevice sender, final OperationFailReason internalReason, final int internalCode) {
+                        if(calibrateCallback != null){
+                            calibrateCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+                });
+
             }
         });
 
@@ -310,48 +357,6 @@ public class Pill extends HelloBleDevice {
     }
 
 
-    public void getData(final BleOperationCallback<List<PillMotionData>> getDataCallback){
-
-        saveAndResetPreviousCommandWriteCallback();
-        this.transmissionLayer.registerDataHandler(this.motionPacketHandler);
-
-        this.motionPacketHandler.setDataCallback(new BleOperationCallback<List<PillMotionData>>() {
-            @Override
-            public void onCompleted(final HelloBleDevice connectedPill, final List<PillMotionData> data) {
-                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DATA_UUID, null);
-                if(getDataCallback != null){
-                    getDataCallback.onCompleted(Pill.this, data);
-                }
-            }
-
-            @Override
-            public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DATA_UUID, null);
-                if(getDataCallback != null){
-                    getDataCallback.onFailed(sender, reason, errorCode);
-                }
-            }
-        });
-
-
-        this.gattLayer.subscribeNotification(BleUUID.CHAR_DATA_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
-            @Override
-            public void onCompleted(final HelloBleDevice connectedPill, final BluetoothGattDescriptor data) {
-                final byte[] pillCommandData = new byte[]{PillCommand.GET_DATA.getValue()};
-                Pill.this.gattLayer.writeCommand(pillCommandData);
-            }
-
-            @Override
-            public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-                if(getDataCallback != null){
-                    getDataCallback.onFailed(sender, reason, errorCode);
-                }
-            }
-        });
-
-    }
-
-
     public void getData(final int unitLength, final BleOperationCallback<List<PillMotionData>> getDataCallback){
 
         saveAndResetPreviousCommandWriteCallback();
@@ -363,20 +368,44 @@ public class Pill extends HelloBleDevice {
         motionDataHandler32Bit.setDataCallback(new BleOperationCallback<List<PillMotionData>>() {
             @Override
             public void onCompleted(final HelloBleDevice connectedPill, final List<PillMotionData> data) {
-                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DATA_UUID, null);
                 Pill.this.transmissionLayer.unregisterDataHandler(motionDataHandler32Bit);
-                if(getDataCallback != null){
-                    getDataCallback.onCompleted(Pill.this, data);
-                }
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DATA_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
+                    @Override
+                    public void onCompleted(final HelloBleDevice sender, final BluetoothGattDescriptor bluetoothGattDescriptor) {
+                        if(getDataCallback != null){
+                            getDataCallback.onCompleted(Pill.this, data);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                        if(getDataCallback != null){
+                            getDataCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+                });
             }
 
             @Override
-            public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DATA_UUID, null);
+            public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
                 Pill.this.transmissionLayer.unregisterDataHandler(motionDataHandler32Bit);
-                if(getDataCallback != null){
-                    getDataCallback.onFailed(sender, reason, errorCode);
-                }
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_DATA_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
+                    @Override
+                    public void onCompleted(final HelloBleDevice sender, final BluetoothGattDescriptor data) {
+                        if(getDataCallback != null){
+                            getDataCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(final HelloBleDevice sender, final OperationFailReason internalReason, final int internalCode) {
+                        if(getDataCallback != null){
+                            getDataCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+                });
+
+
             }
         });
 
@@ -407,28 +436,53 @@ public class Pill extends HelloBleDevice {
         this.pillBatteryVoltageDataHandler.setDataCallback(new BleOperationCallback<Integer>() {
             @Override
             public void onCompleted(final HelloBleDevice connectedPill, final Integer data) {
-                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_COMMAND_RESPONSE_UUID, null);
 
                 Pill.this.gattLayer.setCommandWriteCallback(previousCommandWriteCallback);
                 Pill.this.transmissionLayer.registerDataHandler(Pill.this.commandResponsePacketHandler);
                 Pill.this.transmissionLayer.unregisterDataHandler(Pill.this.pillBatteryVoltageDataHandler);
 
-                if(getBatteryLevelCallback != null){
-                    getBatteryLevelCallback.onCompleted(Pill.this, data);
-                }
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_COMMAND_RESPONSE_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
+                    @Override
+                    public void onCompleted(final HelloBleDevice sender, final BluetoothGattDescriptor bluetoothGattDescriptor) {
+                        if(getBatteryLevelCallback != null){
+                            getBatteryLevelCallback.onCompleted(Pill.this, data);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                        if(getBatteryLevelCallback != null){
+                            getBatteryLevelCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+                });
+
             }
 
             @Override
-            public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_COMMAND_RESPONSE_UUID, null);
+            public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+
 
                 Pill.this.gattLayer.setCommandWriteCallback(previousCommandWriteCallback);
                 Pill.this.transmissionLayer.registerDataHandler(Pill.this.commandResponsePacketHandler);
                 Pill.this.transmissionLayer.unregisterDataHandler(Pill.this.pillBatteryVoltageDataHandler);
 
-                if(getBatteryLevelCallback != null){
-                    getBatteryLevelCallback.onFailed(sender, reason, errorCode);
-                }
+                Pill.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_COMMAND_RESPONSE_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
+                    @Override
+                    public void onCompleted(final HelloBleDevice sender, final BluetoothGattDescriptor bluetoothGattDescriptor) {
+                        if(getBatteryLevelCallback != null){
+                            getBatteryLevelCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(final HelloBleDevice sender, final OperationFailReason internalReason, final int internalCode) {
+                        if(getBatteryLevelCallback != null){
+                            getBatteryLevelCallback.onFailed(sender, reason, errorCode);
+                        }
+                    }
+                });
+
             }
         });
 

@@ -34,13 +34,13 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Smart Alarm"
+        android:text="Start Service"
         android:id="@+id/btnStartAlarmService"/>
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="Stop Service"
         android:id="@+id/btnEndAlarmService"/>
 
 

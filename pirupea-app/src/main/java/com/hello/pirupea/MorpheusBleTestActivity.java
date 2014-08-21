@@ -69,9 +69,24 @@ public class MorpheusBleTestActivity extends ListActivity implements
         }
 
         @Override
-        public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
             uiEndOperation();
             Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " mode switched failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
+    private final BleOperationCallback<String> getDeviceIdOperationCallback = new BleOperationCallback<String>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final String data) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " device id: " + data, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " get device id failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -200,8 +215,8 @@ public class MorpheusBleTestActivity extends ListActivity implements
                             selectedDevice.switchToNormalMode(modeSwitchCallback);
                             break;
 
-                        case 3:
-
+                        case 2:
+                            selectedDevice.getDeviceId(getDeviceIdOperationCallback);
                             break;
                         case 6:
                             selectedDevice.disconnect();
