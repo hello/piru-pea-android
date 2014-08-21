@@ -17,7 +17,13 @@
             android:text="Pill"
             android:id="@+id/btnPillTest"/>
 
-        <Button
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Smart Alarm"
+        android:id="@+id/btnSmartAlarmTest"/>
+
+    <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Morpheus"

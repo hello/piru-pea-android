@@ -30,7 +30,7 @@ public class PillMotionData {
     }
 
 
-    public static List<PillMotionData> fromBytes(final byte[] payload){
+    public static List<PillMotionData> fromBytes(final byte[] payload, final int unitLength){
         final List<PillMotionData> list = new ArrayList<>();
         final ByteArrayInputStream pillByteArrayInputStream = new ByteArrayInputStream(payload);
         final LittleEndianDataInputStream pillInputStream = new LittleEndianDataInputStream(pillByteArrayInputStream);
@@ -41,6 +41,7 @@ public class PillMotionData {
             byte version = pillInputStream.readByte();
             byte reserved1 = pillInputStream.readByte();
 
+
             int structLength = pillInputStream.readUnsignedShort();
 
 
@@ -48,9 +49,13 @@ public class PillMotionData {
 
             int validIndex = pillInputStream.readUnsignedShort();
             int currentIndex = validIndex == 0xFFFF ? 0 : validIndex + 1;
-            final int[] valueList = new int[(structLength - STRUCT_HEADER_SIZE) / 2];
+            final int[] valueList = new int[(structLength - STRUCT_HEADER_SIZE) / (unitLength / 8)];
             for (int i = 0; i < valueList.length; i++) {
-                valueList[i] = pillInputStream.readShort();
+                if(unitLength == 16) {
+                    valueList[i] = pillInputStream.readShort();
+                }else if(unitLength == 32){
+                    valueList[i] = pillInputStream.readInt();
+                }
 
             }
 

@@ -221,7 +221,7 @@ public class Morpheus extends HelloBleDevice {
                         (toPairingMode && response.getType() != CommandType.MORPHEUS_COMMAND_SWITCH_TO_PAIRING_MODE)){
                     // something is wrong here
                     if(modeChangedFinishedCallback != null){
-                        modeChangedFinishedCallback.onFailed(sender, OperationFailReason.DATA_LOST_OR_OUT_OF_ORDER, 1);
+                        modeChangedFinishedCallback.onFailed(sender, OperationFailReason.WRONG_ACK_TYPE, 0);
                     }
                 }
 
@@ -244,17 +244,69 @@ public class Morpheus extends HelloBleDevice {
         this.gattLayer.subscribeNotification(BleUUID.CHAR_PROTOBUF_COMMAND_RESPONSE_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
             @Override
             public void onCompleted(final HelloBleDevice connectedDevice, final BluetoothGattDescriptor data) {
-                final byte[] commandData = toPairingMode ?
-                        new byte[]{ MorpheusCommandType.MORPHEUS_COMMAND_SWITCH_TO_PAIRING_MODE.getValue() }
-                        :
-                        new byte[]{ MorpheusCommandType.MORPHEUS_COMMAND_SWITCH_TO_NORMAL_MODE.getValue() };
-                Morpheus.this.gattLayer.writeCommand(commandData);
+                final MorpheusCommand morpheusCommand = MorpheusCommand.newBuilder().setType(toPairingMode ?
+                            CommandType.MORPHEUS_COMMAND_SWITCH_TO_PAIRING_MODE : CommandType.MORPHEUS_COMMAND_SWITCH_TO_NORMAL_MODE)
+                        .setVersion(0)
+                        .build();
+                final byte[] commandData = morpheusCommand.toByteArray();
+                Morpheus.this.gattLayer.writeLargeCommand(BleUUID.CHAR_PROTOBUF_COMMAND_UUID, commandData);
             }
 
             @Override
             public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
                 if(modeChangedFinishedCallback != null){
                     modeChangedFinishedCallback.onFailed(sender, reason, errorCode);
+                }
+            }
+        });
+    }
+
+
+    public void clearPairedUser(final BleOperationCallback<Void> clearFinishedCallback){
+        this.protobufCommandResponseHandler.setDataCallback(new BleOperationCallback<MorpheusCommand>() {
+            @Override
+            public void onCompleted(final HelloBleDevice sender, final MorpheusCommand response) {
+                Morpheus.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_PROTOBUF_COMMAND_RESPONSE_UUID, null);
+
+                if(response.getType() != CommandType.MORPHEUS_COMMAND_EREASE_PAIRED_USER){
+                    // something is wrong here
+                    if(clearFinishedCallback != null){
+                        // Wrong command received, which means data out of order for some reason.
+                        clearFinishedCallback.onFailed(sender, OperationFailReason.WRONG_ACK_TYPE, 0);
+                    }
+                }
+
+
+                if(clearFinishedCallback != null){
+                    clearFinishedCallback.onCompleted(sender, null);
+                }
+            }
+
+            @Override
+            public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+                Morpheus.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_PROTOBUF_COMMAND_RESPONSE_UUID, null);
+                if(clearFinishedCallback != null){
+                    clearFinishedCallback.onFailed(sender, reason, errorCode);
+                }
+            }
+        });
+
+
+        this.gattLayer.subscribeNotification(BleUUID.CHAR_PROTOBUF_COMMAND_RESPONSE_UUID, new BleOperationCallback<BluetoothGattDescriptor>() {
+            @Override
+            public void onCompleted(final HelloBleDevice connectedDevice, final BluetoothGattDescriptor data) {
+                final MorpheusCommand morpheusCommand = MorpheusCommand.newBuilder()
+                        .setType(CommandType.MORPHEUS_COMMAND_EREASE_PAIRED_USER)
+                        .setVersion(0)
+                        .build();
+                final byte[] commandData = morpheusCommand.toByteArray();
+                Morpheus.this.gattLayer.writeLargeCommand(BleUUID.CHAR_PROTOBUF_COMMAND_UUID, commandData);
+            }
+
+            @Override
+            public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                if(clearFinishedCallback != null){
+                    clearFinishedCallback.onFailed(sender, reason, errorCode);
                 }
             }
         });

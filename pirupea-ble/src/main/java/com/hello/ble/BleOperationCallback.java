@@ -16,7 +16,8 @@ public interface BleOperationCallback<T> {
         MESSAGE_QUEUE_ERROR(5),
         SERVICE_DISCOVERY_FAILED(6),
         DATA_LOST_OR_OUT_OF_ORDER(7),
-        INVALID_PROTOBUF(8);
+        INVALID_PROTOBUF(8),
+        WRONG_ACK_TYPE(9);
 
         private int value = 0;
         private OperationFailReason(int value){

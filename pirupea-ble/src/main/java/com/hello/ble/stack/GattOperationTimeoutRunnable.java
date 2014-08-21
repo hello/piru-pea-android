@@ -27,7 +27,9 @@ class GattOperationTimeoutRunnable implements Runnable {
 
     @Override
     public void run() {
-        this.gatt.close();
+        if(this.gatt != null) {
+            this.gatt.close();
+        }
 
         // Although this is a timeout, we still need to make sure the
         // callback set by user is still called.

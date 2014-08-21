@@ -13,6 +13,7 @@ public class BleTestSelectionActivity extends Activity {
 
     private Button btnPillTest;
     private Button btnMorpheus;
+    private Button btnSmartAlarm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

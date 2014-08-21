@@ -24,13 +24,13 @@ public final class MorpheusBle {
     com.google.protobuf.ByteString
         getNameBytes();
 
-    // optional bytes mac = 2;
+    // required bytes mac = 2;
     /**
-     * <code>optional bytes mac = 2;</code>
+     * <code>required bytes mac = 2;</code>
      */
     boolean hasMac();
     /**
-     * <code>optional bytes mac = 2;</code>
+     * <code>required bytes mac = 2;</code>
      */
     com.google.protobuf.ByteString getMac();
   }
@@ -178,17 +178,17 @@ public final class MorpheusBle {
       }
     }
 
-    // optional bytes mac = 2;
+    // required bytes mac = 2;
     public static final int MAC_FIELD_NUMBER = 2;
     private com.google.protobuf.ByteString mac_;
     /**
-     * <code>optional bytes mac = 2;</code>
+     * <code>required bytes mac = 2;</code>
      */
     public boolean hasMac() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional bytes mac = 2;</code>
+     * <code>required bytes mac = 2;</code>
      */
     public com.google.protobuf.ByteString getMac() {
       return mac_;
@@ -203,6 +203,10 @@ public final class MorpheusBle {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
 
+      if (!hasMac()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -418,6 +422,10 @@ public final class MorpheusBle {
       }
 
       public final boolean isInitialized() {
+        if (!hasMac()) {
+          
+          return false;
+        }
         return true;
       }
 
@@ -514,22 +522,22 @@ public final class MorpheusBle {
         return this;
       }
 
-      // optional bytes mac = 2;
+      // required bytes mac = 2;
       private com.google.protobuf.ByteString mac_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>optional bytes mac = 2;</code>
+       * <code>required bytes mac = 2;</code>
        */
       public boolean hasMac() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional bytes mac = 2;</code>
+       * <code>required bytes mac = 2;</code>
        */
       public com.google.protobuf.ByteString getMac() {
         return mac_;
       }
       /**
-       * <code>optional bytes mac = 2;</code>
+       * <code>required bytes mac = 2;</code>
        */
       public Builder setMac(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -541,7 +549,7 @@ public final class MorpheusBle {
         return this;
       }
       /**
-       * <code>optional bytes mac = 2;</code>
+       * <code>required bytes mac = 2;</code>
        */
       public Builder clearMac() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -776,6 +784,12 @@ public final class MorpheusBle {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
 
+      if (hasEndPoint()) {
+        if (!getEndPoint().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -1000,6 +1014,12 @@ public final class MorpheusBle {
       }
 
       public final boolean isInitialized() {
+        if (hasEndPoint()) {
+          if (!getEndPoint().isInitialized()) {
+            
+            return false;
+          }
+        }
         return true;
       }
 
@@ -1260,6 +1280,16 @@ public final class MorpheusBle {
      * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
      */
     SelectedWifiEndPointOrBuilder getSelectedWIFIEndPointOrBuilder();
+
+    // optional bytes deviceId = 4;
+    /**
+     * <code>optional bytes deviceId = 4;</code>
+     */
+    boolean hasDeviceId();
+    /**
+     * <code>optional bytes deviceId = 4;</code>
+     */
+    com.google.protobuf.ByteString getDeviceId();
   }
   /**
    * Protobuf type {@code MorpheusCommand}
@@ -1339,6 +1369,11 @@ public final class MorpheusBle {
                 selectedWIFIEndPoint_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000004;
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              deviceId_ = input.readBytes();
               break;
             }
           }
@@ -1429,6 +1464,10 @@ public final class MorpheusBle {
        * <code>MORPHEUS_COMMAND_GET_DEVICE_ID = 10;</code>
        */
       MORPHEUS_COMMAND_GET_DEVICE_ID(10, 10),
+      /**
+       * <code>MORPHEUS_COMMAND_EREASE_PAIRED_USER = 11;</code>
+       */
+      MORPHEUS_COMMAND_EREASE_PAIRED_USER(11, 11),
       ;
 
       /**
@@ -1475,6 +1514,10 @@ public final class MorpheusBle {
        * <code>MORPHEUS_COMMAND_GET_DEVICE_ID = 10;</code>
        */
       public static final int MORPHEUS_COMMAND_GET_DEVICE_ID_VALUE = 10;
+      /**
+       * <code>MORPHEUS_COMMAND_EREASE_PAIRED_USER = 11;</code>
+       */
+      public static final int MORPHEUS_COMMAND_EREASE_PAIRED_USER_VALUE = 11;
 
 
       public final int getNumber() { return value; }
@@ -1492,6 +1535,7 @@ public final class MorpheusBle {
           case 8: return MORPHEUS_COMMAND_START_WIFISCAN;
           case 9: return MORPHEUS_COMMAND_STOP_WIFISCAN;
           case 10: return MORPHEUS_COMMAND_GET_DEVICE_ID;
+          case 11: return MORPHEUS_COMMAND_EREASE_PAIRED_USER;
           default: return null;
         }
       }
@@ -1598,10 +1642,27 @@ public final class MorpheusBle {
       return selectedWIFIEndPoint_;
     }
 
+    // optional bytes deviceId = 4;
+    public static final int DEVICEID_FIELD_NUMBER = 4;
+    private com.google.protobuf.ByteString deviceId_;
+    /**
+     * <code>optional bytes deviceId = 4;</code>
+     */
+    public boolean hasDeviceId() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional bytes deviceId = 4;</code>
+     */
+    public com.google.protobuf.ByteString getDeviceId() {
+      return deviceId_;
+    }
+
     private void initFields() {
       version_ = 0;
       type_ = CommandType.MORPHEUS_COMMAND_SET_TIME;
       selectedWIFIEndPoint_ = SelectedWifiEndPoint.getDefaultInstance();
+      deviceId_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1615,6 +1676,12 @@ public final class MorpheusBle {
       if (!hasType()) {
         memoizedIsInitialized = 0;
         return false;
+      }
+      if (hasSelectedWIFIEndPoint()) {
+        if (!getSelectedWIFIEndPoint().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
       memoizedIsInitialized = 1;
       return true;
@@ -1631,6 +1698,9 @@ public final class MorpheusBle {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeMessage(3, selectedWIFIEndPoint_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, deviceId_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1652,6 +1722,10 @@ public final class MorpheusBle {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, selectedWIFIEndPoint_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, deviceId_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1780,6 +1854,8 @@ public final class MorpheusBle {
           selectedWIFIEndPointBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000004);
+        deviceId_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -1824,6 +1900,10 @@ public final class MorpheusBle {
         } else {
           result.selectedWIFIEndPoint_ = selectedWIFIEndPointBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.deviceId_ = deviceId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1849,6 +1929,9 @@ public final class MorpheusBle {
         if (other.hasSelectedWIFIEndPoint()) {
           mergeSelectedWIFIEndPoint(other.getSelectedWIFIEndPoint());
         }
+        if (other.hasDeviceId()) {
+          setDeviceId(other.getDeviceId());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -1861,6 +1944,12 @@ public final class MorpheusBle {
         if (!hasType()) {
           
           return false;
+        }
+        if (hasSelectedWIFIEndPoint()) {
+          if (!getSelectedWIFIEndPoint().isInitialized()) {
+            
+            return false;
+          }
         }
         return true;
       }
@@ -2070,6 +2159,42 @@ public final class MorpheusBle {
         return selectedWIFIEndPointBuilder_;
       }
 
+      // optional bytes deviceId = 4;
+      private com.google.protobuf.ByteString deviceId_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes deviceId = 4;</code>
+       */
+      public boolean hasDeviceId() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional bytes deviceId = 4;</code>
+       */
+      public com.google.protobuf.ByteString getDeviceId() {
+        return deviceId_;
+      }
+      /**
+       * <code>optional bytes deviceId = 4;</code>
+       */
+      public Builder setDeviceId(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        deviceId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes deviceId = 4;</code>
+       */
+      public Builder clearDeviceId() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        deviceId_ = getDefaultInstance().getDeviceId();
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:MorpheusCommand)
     }
 
@@ -2106,23 +2231,25 @@ public final class MorpheusBle {
   static {
     String[] descriptorData = {
       "\n\033morpheus/morpheus_ble.proto\")\n\014WifiEnd" +
-      "Point\022\014\n\004name\030\001 \001(\t\022\013\n\003mac\030\002 \001(\014\"I\n\024Sele" +
+      "Point\022\014\n\004name\030\001 \001(\t\022\013\n\003mac\030\002 \002(\014\"I\n\024Sele" +
       "ctedWifiEndPoint\022\037\n\010endPoint\030\001 \001(\0132\r.Wif" +
-      "iEndPoint\022\020\n\010password\030\002 \001(\t\"\251\004\n\017Morpheus" +
+      "iEndPoint\022\020\n\010password\030\002 \001(\t\"\344\004\n\017Morpheus" +
       "Command\022\017\n\007version\030\001 \002(\005\022*\n\004type\030\002 \002(\0162\034" +
       ".MorpheusCommand.CommandType\0223\n\024selected" +
       "WIFIEndPoint\030\003 \001(\0132\025.SelectedWifiEndPoin" +
-      "t\"\243\003\n\013CommandType\022\035\n\031MORPHEUS_COMMAND_SE" +
-      "T_TIME\020\000\022\035\n\031MORPHEUS_COMMAND_GET_TIME\020\001\022" +
-      "&\n\"MORPHEUS_COMMAND_SET_WIFI_ENDPOINT\020\002\022",
-      "&\n\"MORPHEUS_COMMAND_GET_WIFI_ENDPOINT\020\003\022" +
-      "\037\n\033MORPHEUS_COMMAND_SET_ALARMS\020\004\022\037\n\033MORP" +
-      "HEUS_COMMAND_GET_ALARMS\020\005\022+\n\'MORPHEUS_CO" +
-      "MMAND_SWITCH_TO_PAIRING_MODE\020\006\022*\n&MORPHE" +
-      "US_COMMAND_SWITCH_TO_NORMAL_MODE\020\007\022#\n\037MO" +
-      "RPHEUS_COMMAND_START_WIFISCAN\020\010\022\"\n\036MORPH" +
-      "EUS_COMMAND_STOP_WIFISCAN\020\t\022\"\n\036MORPHEUS_" +
-      "COMMAND_GET_DEVICE_ID\020\n"
+      "t\022\020\n\010deviceId\030\004 \001(\014\"\314\003\n\013CommandType\022\035\n\031M" +
+      "ORPHEUS_COMMAND_SET_TIME\020\000\022\035\n\031MORPHEUS_C" +
+      "OMMAND_GET_TIME\020\001\022&\n\"MORPHEUS_COMMAND_SE",
+      "T_WIFI_ENDPOINT\020\002\022&\n\"MORPHEUS_COMMAND_GE" +
+      "T_WIFI_ENDPOINT\020\003\022\037\n\033MORPHEUS_COMMAND_SE" +
+      "T_ALARMS\020\004\022\037\n\033MORPHEUS_COMMAND_GET_ALARM" +
+      "S\020\005\022+\n\'MORPHEUS_COMMAND_SWITCH_TO_PAIRIN" +
+      "G_MODE\020\006\022*\n&MORPHEUS_COMMAND_SWITCH_TO_N" +
+      "ORMAL_MODE\020\007\022#\n\037MORPHEUS_COMMAND_START_W" +
+      "IFISCAN\020\010\022\"\n\036MORPHEUS_COMMAND_STOP_WIFIS" +
+      "CAN\020\t\022\"\n\036MORPHEUS_COMMAND_GET_DEVICE_ID\020" +
+      "\n\022\'\n#MORPHEUS_COMMAND_EREASE_PAIRED_USER" +
+      "\020\013"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2146,7 +2273,7 @@ public final class MorpheusBle {
           internal_static_MorpheusCommand_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_MorpheusCommand_descriptor,
-              new String[] { "Version", "Type", "SelectedWIFIEndPoint", });
+              new String[] { "Version", "Type", "SelectedWIFIEndPoint", "DeviceId", });
           return null;
         }
       };

@@ -19,15 +19,20 @@ import java.util.UUID;
 public class MotionDataHandler extends HelloDataHandler<List<PillMotionData>> {
 
     private int totalPackets = 0;
-
     private byte[] buffer;
-
     private int bufferOffsetIndex = 0;
+    private int unitLength = 16;
 
     private LinkedList<HelloBlePacket> packets = new LinkedList<>();
 
     public MotionDataHandler(final Pill sender) {
         super(sender);
+    }
+
+    public MotionDataHandler(final int unitLength, final Pill sender) {
+        super(sender);
+
+        this.unitLength = unitLength;
     }
 
     @Override
@@ -75,7 +80,7 @@ public class MotionDataHandler extends HelloDataHandler<List<PillMotionData>> {
         }
 
         if(this.packets.size() == this.totalPackets){
-            final List<PillMotionData> data = PillMotionData.fromBytes(this.buffer);
+            final List<PillMotionData> data = PillMotionData.fromBytes(this.buffer, this.unitLength);
             this.dataFinished(data);
         }
     }

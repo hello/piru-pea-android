@@ -3,6 +3,7 @@ package com.hello.ble.stack.transmission;
 import com.hello.ble.HelloBlePacket;
 import com.hello.ble.stack.application.HelloDataHandler;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,12 +25,19 @@ public abstract class BlePacketHandler {
 
     public final void dispatch(final UUID charUUID, final byte[] blePacket){
         final HelloBlePacket helloBlePacket = getHelloBlePacket(blePacket);
+        final ArrayList<HelloDataHandler> validHandlers = new ArrayList<HelloDataHandler>();
+
 
         for (final HelloDataHandler handler : this.dataHandlers) {
             if(!handler.shouldProcess(charUUID)){
                 continue;
             }
 
+            validHandlers.add(handler);
+        }
+
+        for (final HelloDataHandler handler:validHandlers)
+        {
             handler.onDataArrival(helloBlePacket);
         }
     }

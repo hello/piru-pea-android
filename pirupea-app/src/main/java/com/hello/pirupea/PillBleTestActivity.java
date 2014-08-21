@@ -195,6 +195,27 @@ public class PillBleTestActivity extends ListActivity implements
     };
 
 
+    private final BleOperationCallback<Integer> batteryLevelCallback = new BleOperationCallback<Integer>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final Integer data) {
+            uiEndOperation();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(PillBleTestActivity.this, "Battery voltage: " + data + " milli volt", Toast.LENGTH_LONG);
+                }
+            });
+
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this, "Get battery voltage failed," + reason + ": " + errorCode, Toast.LENGTH_SHORT);
+        }
+    };
+
+
     final BleOperationCallback<Void> calibrateOperationCallback = new BleOperationCallback<Void>() {
         @Override
         public void onCompleted(final HelloBleDevice connectedPill, final Void data) {
@@ -322,9 +343,11 @@ public class PillBleTestActivity extends ListActivity implements
                     "Set Time",             //0
                     "Get Time",             //1
                     "Calibrate",            //2
-                    "Get Data",             //3
+                    "Get Data, 16bit",             //3
+                    "Get Data, 32bit",             //3
                     "Start Streaming",
                     "Stop Streaming",
+                    "Get Battery Voltage",
                     "Disconnect"            //6
             }, new DialogInterface.OnClickListener() {
                 @Override
@@ -342,15 +365,21 @@ public class PillBleTestActivity extends ListActivity implements
                             selectedPill.calibrate(calibrateOperationCallback);
                             break;
                         case 3:
-                            selectedPill.getData(dataCallback);
+                            selectedPill.getData(16, dataCallback);
                             break;
                         case 4:
-                            selectedPill.startStream(startStreamOperationalCallback, streamDataCallback);
+                            selectedPill.getData(32, dataCallback);
                             break;
                         case 5:
-                            selectedPill.stopStream(stopStreamOperationalCallback);
+                            selectedPill.startStream(startStreamOperationalCallback, streamDataCallback);
                             break;
                         case 6:
+                            selectedPill.stopStream(stopStreamOperationalCallback);
+                            break;
+                        case 7:
+                            selectedPill.getBatteryLevel(batteryLevelCallback);
+                            break;
+                        case 8:
                             selectedPill.disconnect();
                             break;
 
