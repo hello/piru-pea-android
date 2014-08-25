@@ -1,10 +1,13 @@
 package com.hello.suripu.android;
 
+import com.hello.suripu.core.db.models.TempTrackerData;
 import com.hello.suripu.core.oauth.AccessToken;
 
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit.Callback;
+import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FieldMap;
 import retrofit.http.FormUrlEncoded;
@@ -33,4 +36,10 @@ interface SuripuHTTPService {
                   @Field("password") final String password,
                   @FieldMap final HashMap<String, String> optionalParams,
                   final Callback<AccessToken> accessTokenCallback);
+
+
+    @POST("/in/temp/tracker")
+    @Deprecated
+    public void sendTempData(
+            @Body final List<TempTrackerData> trackerData, final Callback<Void> sendCallback);
 }

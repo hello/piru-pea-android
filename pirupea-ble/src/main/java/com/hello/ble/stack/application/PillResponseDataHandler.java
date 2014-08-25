@@ -17,7 +17,7 @@ public class PillResponseDataHandler extends HelloDataHandler<PillCommand> {
     }
 
     @Override
-    public boolean shouldProcess(UUID charUUID) {
+    public boolean shouldProcess(final UUID charUUID) {
         if(BleUUID.CHAR_COMMAND_RESPONSE_UUID.equals(charUUID)){
             return true;
         }
@@ -25,7 +25,7 @@ public class PillResponseDataHandler extends HelloDataHandler<PillCommand> {
     }
 
     @Override
-    public void onDataArrival(HelloBlePacket blePacket) {
+    public void onDataArrival(final HelloBlePacket blePacket) {
         final PillCommand command = PillCommand.fromByte(blePacket.payload[1]);
         this.dataFinished(command);
     }

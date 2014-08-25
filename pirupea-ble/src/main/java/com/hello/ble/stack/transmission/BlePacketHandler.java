@@ -20,11 +20,11 @@ public abstract class BlePacketHandler {
 
     private final Set<HelloDataHandler> dataHandlers = new HashSet<>();
 
-    protected abstract HelloBlePacket getHelloBlePacket(final byte[] blePacket);
+    protected abstract HelloBlePacket getHelloBlePacket(final UUID charUUID, final byte[] blePacket);
     public abstract List<byte[]> prepareBlePacket(final byte[] applicationData);
 
     public final void dispatch(final UUID charUUID, final byte[] blePacket){
-        final HelloBlePacket helloBlePacket = getHelloBlePacket(blePacket);
+        final HelloBlePacket helloBlePacket = getHelloBlePacket(charUUID, blePacket);
         final ArrayList<HelloDataHandler> validHandlers = new ArrayList<HelloDataHandler>();
 
 

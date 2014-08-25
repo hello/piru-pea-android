@@ -2,7 +2,6 @@ package com.hello.pirupea;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,24 +13,38 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hello.ble.BleOperationCallback;
 import com.hello.ble.PillMotionData;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Pill;
 import com.hello.ble.util.IO;
+import com.hello.data.collection.ContinuesMotionWidget;
 import com.hello.pirupea.settings.LocalSettings;
+import com.hello.suripu.android.SuripuClient;
+import com.hello.suripu.core.db.models.TempTrackerData;
+import com.hello.suripu.core.oauth.AccessToken;
 
 import org.joda.time.DateTime;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 public class PillBleTestActivity extends ListActivity implements
         BleOperationCallback<Set<Pill>> {
 
     private ArrayAdapter<Pill> deviceArrayAdapter;
+    private String currentDeviceId;
+    private SuripuClient suripuClient;
 
     private final BleOperationCallback<Void> pillConnectedCallback = new BleOperationCallback<Void>() {
         @Override
@@ -90,9 +103,9 @@ public class PillBleTestActivity extends ListActivity implements
     };
 
 
-    private final BleOperationCallback<BluetoothGattCharacteristic> setTimeCallback = new BleOperationCallback<BluetoothGattCharacteristic>() {
+    private final BleOperationCallback<UUID> setTimeCallback = new BleOperationCallback<UUID>() {
         @Override
-        public void onCompleted(final HelloBleDevice connectedPill, final BluetoothGattCharacteristic data) {
+        public void onCompleted(final HelloBleDevice connectedPill, final UUID charUUID) {
             final Pill selectedPill = (Pill)connectedPill;
             uiEndOperation();
             Toast.makeText(PillBleTestActivity.this,
@@ -107,6 +120,21 @@ public class PillBleTestActivity extends ListActivity implements
         }
     };
 
+
+    private final BleOperationCallback<String> deviceIdCallback = new BleOperationCallback<String>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final String data) {
+            currentDeviceId = data;
+
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            uiEndOperation();
+            Toast.makeText(PillBleTestActivity.this, "Get device id, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+
     private final BleOperationCallback<List<PillMotionData>> dataCallback = new BleOperationCallback<List<PillMotionData>>() {
         @Override
         public void onCompleted(final HelloBleDevice connectedPill, final List<PillMotionData> data) {
@@ -116,14 +144,33 @@ public class PillBleTestActivity extends ListActivity implements
             for(final PillMotionData datum:data){
                 stringBuilder.append(datum.timestamp.getMillis()).append(",")
                         .append(datum.maxAmplitude).append(",")
-                        .append(datum.timestamp)
+                        .append(new DateTime(datum.timestamp.getMillis()))
                         .append("\r\n");
             }
 
             final File csvFile = IO.getFileByName(pill.getName(), "csv");
             IO.appendStringToFile(csvFile, stringBuilder.toString());
-            uiEndOperation();
-            Toast.makeText(PillBleTestActivity.this, "Pill: " + pill.getName() + " get data completed.", Toast.LENGTH_SHORT).show();
+
+
+            final ArrayList<TempTrackerData> dataArrayList = new ArrayList<TempTrackerData>();
+            for(final PillMotionData datum:data){
+                dataArrayList.add(new TempTrackerData(datum.timestamp.getMillis(), datum.maxAmplitude, currentDeviceId));
+            }
+
+            suripuClient.uploadPillData(dataArrayList, new Callback<Void>() {
+                @Override
+                public void success(final Void aVoid, final Response response) {
+                    uiEndOperation();
+                    Toast.makeText(PillBleTestActivity.this, "Pill: " + pill.getName() + " get data completed.", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void failure(final RetrofitError error) {
+                    uiEndOperation();
+                    Toast.makeText(PillBleTestActivity.this, "Pill: " + pill.getName() + " get data completed, but upload failed: " + error.getResponse().getReason(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
 
         @Override
@@ -235,6 +282,9 @@ public class PillBleTestActivity extends ListActivity implements
     };
 
 
+    private ContinuesMotionWidget continuesMotionWidget = new ContinuesMotionWidget();
+
+
     private void uiBeginOperation(){
         setProgressBarIndeterminateVisibility(true);
         setProgressBarIndeterminate(true);
@@ -257,6 +307,8 @@ public class PillBleTestActivity extends ListActivity implements
         this.setListAdapter(this.deviceArrayAdapter);
 
         //this.startService(new Intent(this, BleService.class));
+
+        this.suripuClient = new SuripuClient();
         setProgressBarIndeterminateVisibility(true);
         Pill.discover(this, 10000);
     }
@@ -264,6 +316,16 @@ public class PillBleTestActivity extends ListActivity implements
     @Override
     protected void onResume(){
         super.onResume();
+
+        final String accessTokenString = LocalSettings.getOAuthToken();
+        final ObjectMapper mapper = new ObjectMapper();
+        try {
+            final AccessToken token = mapper.readValue(accessTokenString, AccessToken.class);
+            this.suripuClient.setAccessToken(token);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -365,16 +427,41 @@ public class PillBleTestActivity extends ListActivity implements
                             selectedPill.calibrate(calibrateOperationCallback);
                             break;
                         case 3:
-                            selectedPill.getData(16, dataCallback);
+                            selectedPill.getDeviceId(new BleOperationCallback<String>() {
+                                @Override
+                                public void onCompleted(final HelloBleDevice sender, final String deviceId) {
+                                    currentDeviceId = deviceId;
+                                    selectedPill.getData(16, dataCallback);
+                                }
+
+                                @Override
+                                public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                                    deviceIdCallback.onFailed(sender, reason, errorCode);
+                                }
+                            });
                             break;
                         case 4:
-                            selectedPill.getData(32, dataCallback);
+                            selectedPill.getDeviceId(new BleOperationCallback<String>() {
+                                @Override
+                                public void onCompleted(final HelloBleDevice sender, final String deviceId) {
+                                    currentDeviceId = deviceId;
+                                    selectedPill.getData(32, dataCallback);
+                                }
+
+                                @Override
+                                public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                                    deviceIdCallback.onFailed(sender, reason, errorCode);
+                                }
+                            });
                             break;
                         case 5:
                             selectedPill.startStream(startStreamOperationalCallback, streamDataCallback);
+                            //continuesMotionWidget.register(PillBleTestActivity.this);
+                            //continuesMotionWidget.beginWork(0);
                             break;
                         case 6:
                             selectedPill.stopStream(stopStreamOperationalCallback);
+                            //continuesMotionWidget.unregister();
                             break;
                         case 7:
                             selectedPill.getBatteryLevel(batteryLevelCallback);

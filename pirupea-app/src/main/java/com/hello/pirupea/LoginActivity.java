@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -31,7 +32,7 @@ public class LoginActivity
 
 
     private void goNextScreen(){
-        Intent bleActivityIntent = new Intent(LoginActivity.this, BleTestSelectionActivity.class);
+        final Intent bleActivityIntent = new Intent(LoginActivity.this, BleTestSelectionActivity.class);
         bleActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(bleActivityIntent);
     }
@@ -39,21 +40,22 @@ public class LoginActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
         setContentView(R.layout.login_activity);
 
         this.edUserName = (EditText)this.findViewById(R.id.edUserName);
         this.edPassword = (EditText)this.findViewById(R.id.edPassword);
         this.txtError = (TextView)this.findViewById(R.id.txtError);
 
-        if(!"".equals(LocalSettings.getLastLoginUser())){
-
-        }
-
     }
 
     public void onSignInClicked(View sender){
         final String userName = this.edUserName.getText().toString();
         final String passWord = this.edPassword.getText().toString();
+
+        setProgressBarIndeterminate(true);
+        setProgressBarIndeterminateVisibility(true);
 
 
         SuripuClient.getToken(userName, passWord, new BleTestApplication(), this);
@@ -71,11 +73,13 @@ public class LoginActivity
 
 
     @Override
-    public void success(AccessToken accessToken, Response response) {
+    public void success(final AccessToken accessToken, final Response response) {
         LoginActivity.this.txtError.setVisibility(View.GONE);
+        setProgressBarIndeterminate(false);
+        setProgressBarIndeterminateVisibility(false);
 
         try {
-            String accessTokenJSONString = new ObjectMapper().writeValueAsString(accessToken);
+            final String accessTokenJSONString = new ObjectMapper().writeValueAsString(accessToken);
             LocalSettings.saveOAuthToken(accessTokenJSONString);
             LocalSettings.saveLastLoginUser(this.edUserName.getText().toString());
             goNextScreen();
@@ -91,7 +95,10 @@ public class LoginActivity
     }
 
     @Override
-    public void failure(RetrofitError error) {
+    public void failure(final RetrofitError error) {
+        setProgressBarIndeterminate(false);
+        setProgressBarIndeterminateVisibility(false);
+
         Response r = error.getResponse();
         if (r != null && r.getStatus() == 401) {
             LoginActivity.this.txtError.setVisibility(View.VISIBLE);

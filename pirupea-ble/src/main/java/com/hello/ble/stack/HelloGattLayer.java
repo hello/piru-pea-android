@@ -51,10 +51,10 @@ public class HelloGattLayer extends BluetoothGattCallback {
     private final BleOperationCallback<Integer> disconnectedCallback;
     private GattOperationTimeoutRunnable disconnectTimeoutRunnable;
 
-    private BleOperationCallback<BluetoothGattCharacteristic> commandWriteCallback;
+    private BleOperationCallback<UUID> commandWriteCallback;
 
-    private Map<UUID, BleOperationCallback<BluetoothGattDescriptor>> subscribeFinishedCallbacks = new HashMap<>();
-    private Map<UUID, BleOperationCallback<BluetoothGattDescriptor>> unsubscribeFinishedCallbacks = new HashMap<>();
+    private Map<UUID, BleOperationCallback<UUID>> subscribeFinishedCallbacks = new HashMap<>();
+    private Map<UUID, BleOperationCallback<UUID>> unsubscribeFinishedCallbacks = new HashMap<>();
 
     private Map<UUID, GattOperationTimeoutRunnable> subscribeTimeoutRunnables = new HashMap<>();
     private Map<UUID, GattOperationTimeoutRunnable> unsubscribeTimeoutRunnables = new HashMap<>();
@@ -76,7 +76,7 @@ public class HelloGattLayer extends BluetoothGattCallback {
 
 
 
-    public void setCommandWriteCallback(final BleOperationCallback<BluetoothGattCharacteristic> bleOperationCallback){
+    public void setCommandWriteCallback(final BleOperationCallback<UUID> bleOperationCallback){
         this.messageHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -85,7 +85,7 @@ public class HelloGattLayer extends BluetoothGattCallback {
         });
     }
 
-    public BleOperationCallback<BluetoothGattCharacteristic> getCommandWriteCallback(){
+    public BleOperationCallback<UUID> getCommandWriteCallback(){
         return this.commandWriteCallback;
     }
 
@@ -165,6 +165,24 @@ public class HelloGattLayer extends BluetoothGattCallback {
 
         //this.lopperThread.start();
         this.waitUntilReady();
+    }
+
+    public boolean readCharacteristic(final UUID targetServiceUUID, final UUID charUUID){
+        if(this.bluetoothGattService == null){
+            return false;
+        }
+
+        final BluetoothGattService service = this.bluetoothGatt.getService(targetServiceUUID);
+        if(service == null){
+            return false;
+        }
+        final BluetoothGattCharacteristic characteristic = service.getCharacteristic(charUUID);
+        if(characteristic == null){
+            return false;
+        }
+
+        return this.bluetoothGatt.readCharacteristic(characteristic);
+
     }
 
     public void connect(){
@@ -334,8 +352,16 @@ public class HelloGattLayer extends BluetoothGattCallback {
     }
 
     @Override
-    public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+    public void onCharacteristicRead(final BluetoothGatt gatt, final BluetoothGattCharacteristic characteristic, final int status) {
         super.onCharacteristicRead(gatt, characteristic, status);
+
+        final byte[] values = characteristic.getValue();
+        this.messageHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                HelloGattLayer.this.transmissionLayer.dispatch(characteristic.getUuid(), values);
+            }
+        });
     }
 
     @Override
@@ -346,7 +372,7 @@ public class HelloGattLayer extends BluetoothGattCallback {
             public void run() {
                 if(BleUUID.CHAR_COMMAND_UUID.equals(characteristic.getUuid()) && HelloGattLayer.this.commandWriteCallback != null){
                     if(status == BluetoothGatt.GATT_SUCCESS) {
-                        HelloGattLayer.this.commandWriteCallback.onCompleted(HelloGattLayer.this.sender, characteristic);
+                        HelloGattLayer.this.commandWriteCallback.onCompleted(HelloGattLayer.this.sender, characteristic.getUuid());
                     }else{
                         HelloGattLayer.this.commandWriteCallback.onFailed(HelloGattLayer.this.sender, OperationFailReason.GATT_ERROR, status);
                     }
@@ -379,7 +405,7 @@ public class HelloGattLayer extends BluetoothGattCallback {
             @Override
             public void run() {
                 Log.i(HelloGattLayer.class.getName(), "onDescriptorWrite, status: " + status);
-                BleOperationCallback<BluetoothGattDescriptor> callback = null;
+                BleOperationCallback<UUID> callback = null;
                 GattOperationTimeoutRunnable timeoutRunnable = null;
                 final UUID charUUID = descriptor.getCharacteristic().getUuid();
 
@@ -402,7 +428,7 @@ public class HelloGattLayer extends BluetoothGattCallback {
                 }
 
                 if(status == BluetoothGatt.GATT_SUCCESS) {
-                    callback.onCompleted(HelloGattLayer.this.sender, descriptor);
+                    callback.onCompleted(HelloGattLayer.this.sender, descriptor.getCharacteristic().getUuid());
                 }else{
                     callback.onFailed(HelloGattLayer.this.sender, OperationFailReason.GATT_ERROR, status);
                 }
@@ -421,7 +447,7 @@ public class HelloGattLayer extends BluetoothGattCallback {
     }
 
     public void subscribeNotification(final UUID charUUID,
-                                          final BleOperationCallback<BluetoothGattDescriptor> subscribeFinishedCallback){
+                                          final BleOperationCallback<UUID> subscribeFinishedCallback){
 
         this.messageHandler.post(new Runnable() {
             @Override
@@ -474,7 +500,7 @@ public class HelloGattLayer extends BluetoothGattCallback {
     }
 
     public void unsubscribeNotification(final UUID charUUID,
-                                            final BleOperationCallback<BluetoothGattDescriptor> unsubscribeFinishedCallback){
+                                            final BleOperationCallback<UUID> unsubscribeFinishedCallback){
 
 
         this.messageHandler.post(new Runnable() {

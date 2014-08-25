@@ -18,16 +18,16 @@
             android:id="@+id/btnPillTest"/>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Smart Alarm"
-        android:id="@+id/btnSmartAlarmTest"/>
-
-    <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Morpheus"
             android:id="@+id/btnMorpheusTest"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Smart Alarm"
+        android:id="@+id/btnSmartAlarmTest"/>
 
 
 </LinearLayout>

@@ -29,7 +29,7 @@ import java.util.Set;
 
 public class SmartAlarmTestService extends Service {
 
-    private final static long WAKEUP_INTERVAL = 40 * 1000;
+    private final static long WAKEUP_INTERVAL = 3 * 60 * 60 * 1000;
     private final static String ACTION_WAKEUP = SmartAlarmTestService.class.getName() + ".action_wakeup";
 
 
@@ -128,7 +128,7 @@ public class SmartAlarmTestService extends Service {
                 // Don't quit, let's still try to get data.
             }
 
-            pill.getData(32, SmartAlarmTestService.this.getDataCallback);
+            pill.getData(16, SmartAlarmTestService.this.getDataCallback);
 
         }
 
@@ -204,7 +204,7 @@ public class SmartAlarmTestService extends Service {
                 IO.log("Disconnecting " + pill.getName() + " because too many failures in get data.");
             }else{
                 retryInfo.getDataRetryCounts++;
-                pill.getData(32, this);
+                pill.getData(16, this);
                 IO.log("Retry get data for the " + retryInfo.getDataRetryCounts + " times.");
             }
         }
@@ -226,12 +226,13 @@ public class SmartAlarmTestService extends Service {
     private final BleOperationCallback<Set<Pill>> onDiscoverCompleted = new BleOperationCallback<Set<Pill>>() {
         @Override
         public void onCompleted(final HelloBleDevice sender, final Set<Pill> data) {
-
+            int pairedCount = 0;
             for(final Pill pill:data){
                 if(pill.isPaired()){
                     IO.log("Paired pill detected: " + pill.getName());
                     final RetryInfo retryInfo = new RetryInfo();
                     retryInfo.pill = pill;
+                    pairedCount++;
 
                     pill.setConnectedCallback(SmartAlarmTestService.this.connectionCallback);
                     pill.setDisconnectedCallback(SmartAlarmTestService.this.disconnectCallback);
@@ -241,6 +242,12 @@ public class SmartAlarmTestService extends Service {
                     pill.connect(SmartAlarmTestService.this.connectionCallback);
                     IO.log("Connecting to " + pill.getName() + " ....");
                 }
+            }
+
+            if(pairedCount == 0){
+                SmartAlarmTestService.this.setNextAlarm(SmartAlarmTestService.this.alarmManager);
+                SmartAlarmTestService.this.cpuWakeLock.release();
+                IO.log("No paired pill discovered, sleep.");
             }
         }
 
@@ -291,6 +298,7 @@ public class SmartAlarmTestService extends Service {
     public void onDestroy(){
         IO.log(SmartAlarmTestService.class.getName() + " destroyed.");
         Toast.makeText(this, "Service stopped.", Toast.LENGTH_SHORT).show();
+        this.unregisterReceiver(this.alarmReceiver);
         super.onDestroy();
     }
 
