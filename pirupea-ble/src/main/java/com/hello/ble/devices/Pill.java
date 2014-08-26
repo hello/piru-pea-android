@@ -13,7 +13,7 @@ import com.hello.ble.PillMotionData;
 import com.hello.ble.stack.HelloGattLayer;
 import com.hello.ble.stack.application.DeviceIdDataHandler;
 import com.hello.ble.stack.application.MotionDataHandler;
-import com.hello.ble.stack.application.MotionXYZDataHandler;
+import com.hello.ble.stack.application.MotionStreamDataHandler;
 import com.hello.ble.stack.application.PillBatteryVoltageDataHandler;
 import com.hello.ble.stack.application.PillResponseDataHandler;
 import com.hello.ble.stack.application.TimeDataHandler;
@@ -38,7 +38,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class Pill extends HelloBleDevice {
     private TimeDataHandler bleTimeDataHandler;
     private MotionDataHandler motionPacketHandler;
-    private MotionXYZDataHandler motionXYZDataHandler;
+    private MotionStreamDataHandler motionStreamDataHandler;
     private PillResponseDataHandler commandResponsePacketHandler;
     private DeviceIdDataHandler deviceIdDataHandler;
 
@@ -54,7 +54,7 @@ public class Pill extends HelloBleDevice {
         this.bleTimeDataHandler = new TimeDataHandler(this);
         this.motionPacketHandler = new MotionDataHandler(this);
         this.commandResponsePacketHandler = new PillResponseDataHandler(this);
-        this.motionXYZDataHandler = new MotionXYZDataHandler(this);
+        this.motionStreamDataHandler = new MotionStreamDataHandler(this);
         this.pillBatteryVoltageDataHandler = new PillBatteryVoltageDataHandler(this);
         this.deviceIdDataHandler = new DeviceIdDataHandler(this);
 
@@ -281,7 +281,7 @@ public class Pill extends HelloBleDevice {
 
 
     @Deprecated
-    public void startStream(final BleOperationCallback<Void> operationCallback, final BleOperationCallback<Short[]> dataCallback){
+    public void startStream(final BleOperationCallback<Void> operationCallback, final BleOperationCallback<Integer[]> dataCallback){
         this.gattLayer.setCommandWriteCallback(null);
 
         this.gattLayer.subscribeNotification(BleUUID.CHAR_DATA_UUID, new BleOperationCallback<UUID>() {
@@ -292,8 +292,8 @@ public class Pill extends HelloBleDevice {
                     @Override
                     public void onCompleted(final HelloBleDevice sender, final UUID commandCharUUID) {
                         Pill.this.transmissionLayer.unregisterDataHandler(Pill.this.motionPacketHandler);
-                        Pill.this.transmissionLayer.registerDataHandler(Pill.this.motionXYZDataHandler);
-                        Pill.this.motionXYZDataHandler.setDataCallback(dataCallback);
+                        Pill.this.transmissionLayer.registerDataHandler(Pill.this.motionStreamDataHandler);
+                        Pill.this.motionStreamDataHandler.setDataCallback(dataCallback);
 
                         if(operationCallback != null){
                             operationCallback.onCompleted(sender, null);
@@ -324,7 +324,7 @@ public class Pill extends HelloBleDevice {
     @Deprecated
     public void stopStream(final BleOperationCallback<Void> operationCallback){
 
-        this.transmissionLayer.unregisterDataHandler(this.motionXYZDataHandler);
+        this.transmissionLayer.unregisterDataHandler(this.motionStreamDataHandler);
         this.transmissionLayer.registerDataHandler(this.motionPacketHandler);
 
         this.gattLayer.setCommandWriteCallback(new BleOperationCallback<UUID>() {

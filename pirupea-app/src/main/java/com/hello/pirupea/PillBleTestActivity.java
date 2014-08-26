@@ -214,15 +214,15 @@ public class PillBleTestActivity extends ListActivity implements
     };
 
 
-    private final BleOperationCallback<Short[]> streamDataCallback = new BleOperationCallback<Short[]>() {
+    private final BleOperationCallback<Integer[]> streamDataCallback = new BleOperationCallback<Integer[]>() {
         @Override
-        public void onCompleted(final HelloBleDevice sender, final Short[] data) {
+        public void onCompleted(final HelloBleDevice sender, final Integer[] data) {
             final Pill pill = (Pill)sender;
             final File csvFile = IO.getFileByName(pill.getName(), "stream.csv");
             final DateTime dateTime = DateTime.now();
 
             if(!csvFile.exists()){
-                IO.appendStringToFile(csvFile, "timestamp,x,y,z,readable_time\r\n");
+                IO.appendStringToFile(csvFile, "timestamp,x,y,z,aggregate,readable_time\r\n");
             }
 
             final StringBuilder builder = new StringBuilder();
@@ -230,6 +230,7 @@ public class PillBleTestActivity extends ListActivity implements
                     .append(data[0]).append(",")
                     .append(data[1]).append(",")
                     .append(data[2]).append(",")
+                    .append(data[3]).append(",")
                     .append(dateTime.toString()).append(",")
                     .append("\r\n");
             IO.appendStringToFile(csvFile, builder.toString());
@@ -456,12 +457,12 @@ public class PillBleTestActivity extends ListActivity implements
                             break;
                         case 5:
                             selectedPill.startStream(startStreamOperationalCallback, streamDataCallback);
-                            //continuesMotionWidget.register(PillBleTestActivity.this);
-                            //continuesMotionWidget.beginWork(0);
+                            continuesMotionWidget.register(PillBleTestActivity.this);
+                            continuesMotionWidget.beginWork(0);
                             break;
                         case 6:
                             selectedPill.stopStream(stopStreamOperationalCallback);
-                            //continuesMotionWidget.unregister();
+                            continuesMotionWidget.unregister();
                             break;
                         case 7:
                             selectedPill.getBatteryLevel(batteryLevelCallback);

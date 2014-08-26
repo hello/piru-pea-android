@@ -128,7 +128,7 @@ public class SmartAlarmTestService extends Service {
                 // Don't quit, let's still try to get data.
             }
 
-            pill.getData(16, SmartAlarmTestService.this.getDataCallback);
+            pill.getData(32, SmartAlarmTestService.this.getDataCallback);
 
         }
 
@@ -204,7 +204,7 @@ public class SmartAlarmTestService extends Service {
                 IO.log("Disconnecting " + pill.getName() + " because too many failures in get data.");
             }else{
                 retryInfo.getDataRetryCounts++;
-                pill.getData(16, this);
+                pill.getData(32, this);
                 IO.log("Retry get data for the " + retryInfo.getDataRetryCounts + " times.");
             }
         }

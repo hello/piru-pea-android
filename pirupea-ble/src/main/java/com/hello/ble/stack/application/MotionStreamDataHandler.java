@@ -13,9 +13,9 @@ import java.util.UUID;
 /**
  * Created by pangwu on 8/11/14.
  */
-public class MotionXYZDataHandler extends HelloDataHandler<Short[]> {
+public class MotionStreamDataHandler extends HelloDataHandler<Integer[]> {
 
-    public MotionXYZDataHandler(final Pill sender) {
+    public MotionStreamDataHandler(final Pill sender) {
         super(sender);
     }
 
@@ -30,12 +30,14 @@ public class MotionXYZDataHandler extends HelloDataHandler<Short[]> {
 
         final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
         final LittleEndianDataInputStream littleEndianDataInputStream = new LittleEndianDataInputStream(byteArrayInputStream);
-        final Short[] xyz = new Short[3];
+        final Integer[] xyz = new Integer[4];
 
         try {
-            xyz[0] = littleEndianDataInputStream.readShort();
-            xyz[1] = littleEndianDataInputStream.readShort();
-            xyz[2] = littleEndianDataInputStream.readShort();
+            xyz[0] = (int)littleEndianDataInputStream.readShort();
+            xyz[1] = (int)littleEndianDataInputStream.readShort();
+            xyz[2] = (int)littleEndianDataInputStream.readShort();
+            xyz[3] = littleEndianDataInputStream.readInt();
+
             littleEndianDataInputStream.close();
             byteArrayInputStream.close();
 
