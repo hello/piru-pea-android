@@ -1,6 +1,7 @@
 package com.hello.suripu.android;
 
 import com.google.common.net.HttpHeaders;
+import com.hello.suripu.core.db.models.PillRegistration;
 import com.hello.suripu.core.db.models.TempTrackerData;
 import com.hello.suripu.core.oauth.AccessToken;
 
@@ -27,7 +28,10 @@ public class SuripuClient {
     private SuripuHTTPService apiService;
     private SuripuHTTPService dataService;
 
+    private AccessToken token;
+
     public void setAccessToken(final AccessToken accessToken){
+        this.token = accessToken;
 
         final RequestInterceptor dataRequestInterceptor = new RequestInterceptor() {
             @Override
@@ -78,6 +82,11 @@ public class SuripuClient {
     public void uploadPillData(final List<TempTrackerData> pillData,
                                       final Callback<Void> uploadDataCallback){
         this.dataService.sendTempData(pillData, uploadDataCallback);
+    }
+
+    public void registerPill(final String pillId, final Callback<Void> callback){
+        this.apiService.registerPill(new PillRegistration(pillId), callback);
+
     }
 
 

@@ -43,7 +43,6 @@ public class PillBleTestActivity extends ListActivity implements
         BleOperationCallback<Set<Pill>> {
 
     private ArrayAdapter<Pill> deviceArrayAdapter;
-    private String currentDeviceId;
     private SuripuClient suripuClient;
 
     private final BleOperationCallback<Void> pillConnectedCallback = new BleOperationCallback<Void>() {
@@ -120,21 +119,6 @@ public class PillBleTestActivity extends ListActivity implements
         }
     };
 
-
-    private final BleOperationCallback<String> deviceIdCallback = new BleOperationCallback<String>() {
-        @Override
-        public void onCompleted(final HelloBleDevice sender, final String data) {
-            currentDeviceId = data;
-
-        }
-
-        @Override
-        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
-            uiEndOperation();
-            Toast.makeText(PillBleTestActivity.this, "Get device id, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
-        }
-    };
-
     private final BleOperationCallback<List<PillMotionData>> dataCallback = new BleOperationCallback<List<PillMotionData>>() {
         @Override
         public void onCompleted(final HelloBleDevice connectedPill, final List<PillMotionData> data) {
@@ -154,22 +138,46 @@ public class PillBleTestActivity extends ListActivity implements
 
             final ArrayList<TempTrackerData> dataArrayList = new ArrayList<TempTrackerData>();
             for(final PillMotionData datum:data){
-                dataArrayList.add(new TempTrackerData(datum.timestamp.getMillis(), datum.maxAmplitude, currentDeviceId));
+                dataArrayList.add(new TempTrackerData(datum.timestamp.getMillis(), datum.maxAmplitude, connectedPill.getId()));
             }
 
-            suripuClient.uploadPillData(dataArrayList, new Callback<Void>() {
+            suripuClient.registerPill(connectedPill.getId(), new Callback<Void>() {
+
+                private void doUpload(){
+                    suripuClient.uploadPillData(dataArrayList, new Callback<Void>() {
+                        @Override
+                        public void success(final Void aVoid, final Response response) {
+                            uiEndOperation();
+                            Toast.makeText(PillBleTestActivity.this, "Pill: " + pill.getName() + " get data completed.", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void failure(final RetrofitError error) {
+                            uiEndOperation();
+                            Toast.makeText(PillBleTestActivity.this, "Pill: " + pill.getName() + " get data completed, but upload failed: " + error.getResponse().getReason(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
                 @Override
                 public void success(final Void aVoid, final Response response) {
-                    uiEndOperation();
-                    Toast.makeText(PillBleTestActivity.this, "Pill: " + pill.getName() + " get data completed.", Toast.LENGTH_SHORT).show();
+                    doUpload();
                 }
 
                 @Override
                 public void failure(final RetrofitError error) {
-                    uiEndOperation();
-                    Toast.makeText(PillBleTestActivity.this, "Pill: " + pill.getName() + " get data completed, but upload failed: " + error.getResponse().getReason(), Toast.LENGTH_SHORT).show();
+                    if(error.getResponse().getStatus() == 409){ // Pill already registered..
+                        doUpload();
+                    }else{
+                        uiEndOperation();
+                        Toast.makeText(PillBleTestActivity.this, "Failed to register device " + connectedPill.getId(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
+
+
+
+
 
         }
 
@@ -428,32 +436,10 @@ public class PillBleTestActivity extends ListActivity implements
                             selectedPill.calibrate(calibrateOperationCallback);
                             break;
                         case 3:
-                            selectedPill.getDeviceId(new BleOperationCallback<String>() {
-                                @Override
-                                public void onCompleted(final HelloBleDevice sender, final String deviceId) {
-                                    currentDeviceId = deviceId;
-                                    selectedPill.getData(16, dataCallback);
-                                }
-
-                                @Override
-                                public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-                                    deviceIdCallback.onFailed(sender, reason, errorCode);
-                                }
-                            });
+                            selectedPill.getData(16, dataCallback);
                             break;
                         case 4:
-                            selectedPill.getDeviceId(new BleOperationCallback<String>() {
-                                @Override
-                                public void onCompleted(final HelloBleDevice sender, final String deviceId) {
-                                    currentDeviceId = deviceId;
-                                    selectedPill.getData(32, dataCallback);
-                                }
-
-                                @Override
-                                public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-                                    deviceIdCallback.onFailed(sender, reason, errorCode);
-                                }
-                            });
+                            selectedPill.getData(32, dataCallback);
                             break;
                         case 5:
                             selectedPill.startStream(startStreamOperationalCallback, streamDataCallback);

@@ -27,6 +27,8 @@ public abstract class HelloBleDevice {
     protected BluetoothDevice bluetoothDevice;
     protected HelloGattLayer gattLayer;
 
+    protected String id;
+
     protected BleOperationCallback<Void> connectedCallback;
     protected BleOperationCallback<Integer> disconnectedCallback;
 
@@ -97,6 +99,14 @@ public abstract class HelloBleDevice {
         }else{
             this.connect(connectedCallback);
         }
+    }
+
+    protected void setId(final String deviceId){
+        this.id = deviceId;
+    }
+
+    public String getId(){
+        return this.id;
     }
 
     public void connect(){

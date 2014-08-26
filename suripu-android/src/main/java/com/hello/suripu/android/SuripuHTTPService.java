@@ -1,5 +1,7 @@
 package com.hello.suripu.android;
 
+import com.hello.suripu.core.db.models.Account;
+import com.hello.suripu.core.db.models.PillRegistration;
 import com.hello.suripu.core.db.models.TempTrackerData;
 import com.hello.suripu.core.oauth.AccessToken;
 
@@ -11,6 +13,7 @@ import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FieldMap;
 import retrofit.http.FormUrlEncoded;
+import retrofit.http.GET;
 import retrofit.http.POST;
 
 /**
@@ -42,4 +45,11 @@ interface SuripuHTTPService {
     @Deprecated
     public void sendTempData(
             @Body final List<TempTrackerData> trackerData, final Callback<Void> sendCallback);
+
+    @POST("/devices/pill")
+    public void registerPill(
+            @Body final PillRegistration pillRegistration, final Callback<Void> sendCallback);
+
+    @GET("/account")
+    public void getCurrentAccount(final Callback<Account> sendCallback);
 }

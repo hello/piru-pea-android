@@ -36,6 +36,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Created by pangwu on 7/1/14.
  */
 public class Pill extends HelloBleDevice {
+
     private TimeDataHandler bleTimeDataHandler;
     private MotionDataHandler motionPacketHandler;
     private MotionStreamDataHandler motionStreamDataHandler;
@@ -58,12 +59,12 @@ public class Pill extends HelloBleDevice {
         this.pillBatteryVoltageDataHandler = new PillBatteryVoltageDataHandler(this);
         this.deviceIdDataHandler = new DeviceIdDataHandler(this);
 
+
         final BleOperationCallback<Void> connectedCallback = new BleOperationCallback<Void>() {
             @Override
             public void onCompleted(final HelloBleDevice sender, final Void data) {
-                if(Pill.this.connectedCallback != null){
-                    Pill.this.connectedCallback.onCompleted(sender, data);
-                }
+                // We are not connected yet. get device id then we are connected.
+                Pill.this.updateDeviceId(Pill.this.connectedCallback);
             }
 
             @Override
@@ -432,26 +433,30 @@ public class Pill extends HelloBleDevice {
 
     }
 
-    public void getDeviceId(final BleOperationCallback<String> getDeviceIdCallback){
+    private void updateDeviceId(final BleOperationCallback<Void> followupOperationCallback){
         this.deviceIdDataHandler.setDataCallback(new BleOperationCallback<String>() {
             @Override
             public void onCompleted(final HelloBleDevice sender, final String data) {
-                if(getDeviceIdCallback != null){
-                    getDeviceIdCallback.onCompleted(sender, data);
+                Pill.this.deviceIdDataHandler.setDataCallback(null);
+                Pill.this.setId(data);
+                if(followupOperationCallback != null){
+                    followupOperationCallback.onCompleted(sender, null);
                 }
             }
 
             @Override
             public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
-                if(getDeviceIdCallback != null){
-                    getDeviceIdCallback.onFailed(sender, reason, errorCode);
+                Pill.this.deviceIdDataHandler.setDataCallback(null);
+                if(followupOperationCallback != null){
+                    followupOperationCallback.onFailed(sender, reason, errorCode);
                 }
             }
         });
 
         if(!this.gattLayer.readCharacteristic(BleUUID.DEVICE_INFO_SERVICE_UUID, BleUUID.CHAR_DEVICEID_UUID)){
-            if(getDeviceIdCallback != null){
-                getDeviceIdCallback.onFailed(this, OperationFailReason.GATT_ERROR, -1);
+            this.deviceIdDataHandler.setDataCallback(null);
+            if(followupOperationCallback != null){
+                followupOperationCallback.onFailed(this, OperationFailReason.GET_ID_FAILED, -1);
             }
         }
     }
