@@ -75,13 +75,16 @@ public class MotionDataHandler extends HelloDataHandler<List<PillMotionData>> {
         }
 
         final HelloBlePacket lastPacket = this.packets.getLast();
-        for(int i = 0; (this.bufferOffsetIndex < this.buffer.length && i < lastPacket.payload.length); i++, this.bufferOffsetIndex++){
-            this.buffer[this.bufferOffsetIndex] = lastPacket.payload[i];
-        }
 
-        if(this.packets.size() == this.totalPackets){
-            final List<PillMotionData> data = PillMotionData.fromBytes(this.buffer, this.unitLength);
-            this.dataFinished(data);
+        if(lastPacket != null) {
+            for (int i = 0; (this.bufferOffsetIndex < this.buffer.length && i < lastPacket.payload.length); i++, this.bufferOffsetIndex++) {
+                this.buffer[this.bufferOffsetIndex] = lastPacket.payload[i];
+            }
+
+            if (this.packets.size() == this.totalPackets) {
+                final List<PillMotionData> data = PillMotionData.fromBytes(this.buffer, this.unitLength);
+                this.dataFinished(data);
+            }
         }
     }
 

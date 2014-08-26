@@ -10,8 +10,8 @@ import android.util.Log;
 
 import com.google.common.base.Objects;
 import com.hello.ble.BleOperationCallback;
-import com.hello.ble.LibApplication;
 import com.hello.ble.stack.HelloGattLayer;
+import com.hello.pirupea.core.SharedApplication;
 
 import java.lang.reflect.Method;
 
@@ -152,7 +152,7 @@ public abstract class HelloBleDevice {
         }
 
         try {
-            LibApplication.getAppContext().unregisterReceiver(this.pairingReceiver);
+            SharedApplication.getAppContext().unregisterReceiver(this.pairingReceiver);
         }catch (IllegalArgumentException iae){
             Log.w(Pill.class.getName(), "Disconnect without paired.");
         }
@@ -207,7 +207,7 @@ public abstract class HelloBleDevice {
             final IntentFilter filter = new IntentFilter();
             filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
 
-            LibApplication.getAppContext().registerReceiver(this.pairingReceiver, filter);
+            SharedApplication.getAppContext().registerReceiver(this.pairingReceiver, filter);
 
             Method method = this.bluetoothDevice.getClass().getMethod("createBond", (Class[]) null);  // this is shit!
             method.invoke(this.bluetoothDevice, (Object[]) null);
@@ -222,7 +222,7 @@ public abstract class HelloBleDevice {
             final IntentFilter filter = new IntentFilter();
             filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
 
-            LibApplication.getAppContext().registerReceiver(this.pairingReceiver, filter);
+            SharedApplication.getAppContext().registerReceiver(this.pairingReceiver, filter);
 
             Method method = this.bluetoothDevice.getClass().getMethod("removeBond", (Class[]) null);
             method.invoke(this.bluetoothDevice, (Object[]) null);

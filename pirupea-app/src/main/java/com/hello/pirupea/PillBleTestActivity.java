@@ -3,6 +3,7 @@ package com.hello.pirupea;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -171,6 +172,12 @@ public class PillBleTestActivity extends ListActivity implements
                     }else{
                         uiEndOperation();
                         Toast.makeText(PillBleTestActivity.this, "Failed to register device " + connectedPill.getId(), Toast.LENGTH_SHORT).show();
+
+                        if(error.getResponse().getStatus() == 401) { // token expired
+                            connectedPill.disconnect();
+                            goLoginScreen();
+                            finish();
+                        }
                     }
                 }
             });
@@ -220,6 +227,8 @@ public class PillBleTestActivity extends ListActivity implements
             Toast.makeText(PillBleTestActivity.this, "Stop streaming failed.", Toast.LENGTH_SHORT);
         }
     };
+
+
 
 
     private final BleOperationCallback<Integer[]> streamDataCallback = new BleOperationCallback<Integer[]>() {
@@ -365,6 +374,13 @@ public class PillBleTestActivity extends ListActivity implements
         if (id == R.id.action_settings) {
             return true;
         }
+
+        if(R.id.action_scan == id){
+            setProgressBarIndeterminateVisibility(true);
+            Pill.discover(this, 10000);
+            this.deviceArrayAdapter.clear();
+            this.deviceArrayAdapter.notifyDataSetChanged();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -466,5 +482,13 @@ public class PillBleTestActivity extends ListActivity implements
 
         builder.show();
         super.onListItemClick(l, v, position, id);
+    }
+
+    private void goLoginScreen(){
+        final Intent bleActivityIntent = new Intent(this, LoginActivity.class);
+        bleActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(bleActivityIntent);
+
+
     }
 }

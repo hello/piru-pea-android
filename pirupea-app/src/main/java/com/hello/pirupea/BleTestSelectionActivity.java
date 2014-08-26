@@ -9,11 +9,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.hello.pirupea.settings.LocalSettings;
+
 public class BleTestSelectionActivity extends Activity {
 
     private Button btnPillTest;
     private Button btnMorpheus;
     private Button btnSmartAlarm;
+    private Button btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,19 @@ public class BleTestSelectionActivity extends Activity {
                 Intent bleActivityIntent = new Intent(BleTestSelectionActivity.this, SmartAlarmTestActivity.class);
                 bleActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(bleActivityIntent);
+            }
+        });
+
+        this.btnLogout = (Button) findViewById(R.id.btnLogout);
+        this.btnLogout.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                LocalSettings.saveOAuthToken("");
+                final Intent bleActivityIntent = new Intent(BleTestSelectionActivity.this, LoginActivity.class);
+                bleActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(bleActivityIntent);
+
+                finish();
             }
         });
     }

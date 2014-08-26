@@ -8,8 +8,8 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.hello.ble.BleOperationCallback;
-import com.hello.ble.LibApplication;
 import com.hello.ble.devices.HelloBleDevice;
+import com.hello.pirupea.core.SharedApplication;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -40,7 +40,7 @@ public abstract class HelloBleDeviceScanner implements LeScanCallback {
             bluetoothAdapter.stopLeScan(HelloBleDeviceScanner.this);
 
             for(final String address: devices.keySet()){
-                discoveredDevices.add(createDevice(LibApplication.getAppContext(), devices.get(address)));
+                discoveredDevices.add(createDevice(SharedApplication.getAppContext(), devices.get(address)));
             }
             discoveryCallback.onCompleted(null, discoveredDevices);
         }
@@ -50,7 +50,7 @@ public abstract class HelloBleDeviceScanner implements LeScanCallback {
                                  final int maxScanTimeInMS,
                                  final BleOperationCallback<Set<HelloBleDevice>> discoveryCallback){
 
-        final Context context = LibApplication.getAppContext();
+        final Context context = SharedApplication.getAppContext();
         final BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
         final BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
         this.bluetoothAdapter = bluetoothAdapter;

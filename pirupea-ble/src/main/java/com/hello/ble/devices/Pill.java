@@ -7,7 +7,6 @@ import android.content.Context;
 
 import com.hello.ble.BleOperationCallback;
 import com.hello.ble.BleOperationCallback.OperationFailReason;
-import com.hello.ble.LibApplication;
 import com.hello.ble.PillCommand;
 import com.hello.ble.PillMotionData;
 import com.hello.ble.stack.HelloGattLayer;
@@ -22,6 +21,7 @@ import com.hello.ble.util.BleDateTimeConverter;
 import com.hello.ble.util.BleUUID;
 import com.hello.ble.util.HelloBleDeviceScanner;
 import com.hello.ble.util.PillScanner;
+import com.hello.pirupea.core.SharedApplication;
 
 import org.joda.time.DateTime;
 
@@ -582,10 +582,10 @@ public class Pill extends HelloBleDevice {
 
     public static boolean discover(final String address, final BleOperationCallback<Pill> onDiscoverCompleted, final int maxScanTime){
         //checkNotNull(context);
-        checkNotNull(LibApplication.getAppContext());
+        checkNotNull(SharedApplication.getAppContext());
         checkNotNull(onDiscoverCompleted);
 
-        final Context context = LibApplication.getAppContext();
+        final Context context = SharedApplication.getAppContext();
         final BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
         final BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
         if(bluetoothAdapter == null || !bluetoothAdapter.isEnabled()){
@@ -632,10 +632,10 @@ public class Pill extends HelloBleDevice {
 
     public static boolean discover(final BleOperationCallback<Set<Pill>> onDiscoverCompleted, final int maxScanTime){
         //checkNotNull(context);
-        checkNotNull(LibApplication.getAppContext());
+        checkNotNull(SharedApplication.getAppContext());
         checkNotNull(onDiscoverCompleted);
 
-        final Context context = LibApplication.getAppContext();
+        final Context context = SharedApplication.getAppContext();
         final BluetoothManager bluetoothManager =
                 (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
         final BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();

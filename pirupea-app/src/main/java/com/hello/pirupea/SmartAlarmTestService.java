@@ -13,23 +13,36 @@ import android.os.PowerManager.WakeLock;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hello.ble.BleOperationCallback;
 import com.hello.ble.PillMotionData;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Pill;
 import com.hello.ble.util.IO;
+import com.hello.pirupea.settings.LocalSettings;
+import com.hello.suripu.android.SuripuClient;
+import com.hello.suripu.core.db.models.TempTrackerData;
+import com.hello.suripu.core.oauth.AccessToken;
 
 import org.joda.time.DateTime;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 public class SmartAlarmTestService extends Service {
 
     private final static long WAKEUP_INTERVAL = 3 * 60 * 60 * 1000;
+    private final static long FAST_WAKEUP_INTERVAL = 30 * 1000;
+
     private final static String ACTION_WAKEUP = SmartAlarmTestService.class.getName() + ".action_wakeup";
 
 
@@ -46,6 +59,7 @@ public class SmartAlarmTestService extends Service {
 
     private AlarmManager alarmManager;
     private AlarmReceiver alarmReceiver;
+    private SuripuClient suripuClient;
 
     private WakeLock cpuWakeLock;
 
@@ -171,18 +185,54 @@ public class SmartAlarmTestService extends Service {
                 stringBuilder.append("timestamp,amplitude,time_string\r\n");
             }
 
+            final ArrayList<TempTrackerData> pillData = new ArrayList<TempTrackerData>();
             for(final PillMotionData datum:data){
                 stringBuilder.append(datum.timestamp.getMillis()).append(",")
                         .append(datum.maxAmplitude).append(",")
                         .append(new DateTime(datum.timestamp.getMillis()))
                         .append("\r\n");
+                pillData.add(new TempTrackerData(datum.timestamp.getMillis(), datum.maxAmplitude, sender.getId()));
             }
 
             IO.appendStringToFile(csvFile, stringBuilder.toString());
 
             IO.log("Dump data completed. data size: " + data.size());
             SmartAlarmTestService.this.pillRetryInfoHashMap.remove(pill);
-            pill.disconnect();
+
+
+            suripuClient.registerPill(sender.getId(), new Callback<Void>() {
+
+                private void doUpload(){
+                    suripuClient.uploadPillData(pillData, new Callback<Void>() {
+                        @Override
+                        public void success(final Void aVoid, final Response response) {
+                            IO.log("upload data for pill " + sender.getId() + " finished.");
+                            pill.disconnect();
+                        }
+
+                        @Override
+                        public void failure(final RetrofitError error) {
+                            IO.log("upload data for pill " + sender.getId() + " failed: " + error.getResponse().getReason());
+                            pill.disconnect();
+                        }
+                    });
+                }
+
+                @Override
+                public void success(final Void aVoid, final Response response) {
+                    doUpload();
+                }
+
+                @Override
+                public void failure(final RetrofitError error) {
+                    if(error.getResponse().getStatus() == 409){
+                        doUpload();
+                    }else {
+                        IO.log("Register pill " + sender.getId() + " failed: " + error.getResponse().getReason());
+                        pill.disconnect();
+                    }
+                }
+            });
         }
 
         @Override
@@ -245,7 +295,7 @@ public class SmartAlarmTestService extends Service {
             }
 
             if(pairedCount == 0){
-                SmartAlarmTestService.this.setNextAlarm(SmartAlarmTestService.this.alarmManager);
+                SmartAlarmTestService.this.setNextFastAlarm(SmartAlarmTestService.this.alarmManager);
                 SmartAlarmTestService.this.cpuWakeLock.release();
                 IO.log("No paired pill discovered, sleep.");
             }
@@ -256,7 +306,7 @@ public class SmartAlarmTestService extends Service {
             IO.log("Pill discovery failed, " + reason + ": " + errorCode);
 
             // Discovery failed for some reason, set next wakeup time and release the power lock.
-            SmartAlarmTestService.this.setNextAlarm(SmartAlarmTestService.this.alarmManager);
+            SmartAlarmTestService.this.setNextFastAlarm(SmartAlarmTestService.this.alarmManager);
             SmartAlarmTestService.this.cpuWakeLock.release();
         }
     };
@@ -283,6 +333,8 @@ public class SmartAlarmTestService extends Service {
         this.alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         setNextAlarm(this.alarmManager);
 
+        this.suripuClient = new SuripuClient();
+
         Toast.makeText(this, "Service created.", Toast.LENGTH_SHORT).show();
         IO.log(SmartAlarmTestService.class.getName() + " created.");
     }
@@ -290,6 +342,20 @@ public class SmartAlarmTestService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // If we get killed, after returning from here, restart
+        final ObjectMapper mapper = new ObjectMapper();
+        final String accessTokenString = LocalSettings.getOAuthToken();
+
+
+        final AccessToken accessToken;
+        try {
+            accessToken = mapper.readValue(accessTokenString, AccessToken.class);
+            this.suripuClient.setAccessToken(accessToken);
+        } catch (IOException e) {
+            IO.log("Parse access token failed.");
+            e.printStackTrace();
+        }
+
+
         Toast.makeText(this, "Service running.", Toast.LENGTH_SHORT).show();
         return START_STICKY;
     }
@@ -318,6 +384,15 @@ public class SmartAlarmTestService extends Service {
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + WAKEUP_INTERVAL,
+                alarmIntent);
+    }
+
+    private void setNextFastAlarm(final AlarmManager alarmManager){
+        final Intent intent = new Intent(ACTION_WAKEUP);
+        final PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP,
+                System.currentTimeMillis() + FAST_WAKEUP_INTERVAL,
                 alarmIntent);
     }
 }

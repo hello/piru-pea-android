@@ -15,11 +15,11 @@ import android.util.Log;
 
 import com.hello.ble.BleOperationCallback;
 import com.hello.ble.BleOperationCallback.OperationFailReason;
-import com.hello.ble.LibApplication;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Pill;
 import com.hello.ble.stack.transmission.BlePacketHandler;
 import com.hello.ble.util.BleUUID;
+import com.hello.pirupea.core.SharedApplication;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -67,7 +67,7 @@ public class HelloGattLayer extends BluetoothGattCallback {
 
 
     private synchronized void waitUntilReady() {
-        messageHandler = new Handler(LibApplication.getAppContext().getMainLooper());
+        messageHandler = new Handler(SharedApplication.getAppContext().getMainLooper());
     }
 
     public int getConnectionStatus(){
@@ -189,7 +189,7 @@ public class HelloGattLayer extends BluetoothGattCallback {
         this.connectionStatus = BluetoothProfile.STATE_CONNECTING;
         this.connectTimeoutRunnable = new GattOperationTimeoutRunnable(this.sender, this.bluetoothGatt, this.connectedCallback);
 
-        HelloGattLayer.this.bluetoothGatt = HelloGattLayer.this.bluetoothDevice.connectGatt(LibApplication.getAppContext(), false, HelloGattLayer.this);
+        HelloGattLayer.this.bluetoothGatt = HelloGattLayer.this.bluetoothDevice.connectGatt(SharedApplication.getAppContext(), false, HelloGattLayer.this);
         if(!HelloGattLayer.this.messageHandler.postDelayed(this.connectTimeoutRunnable, HelloGattLayer.GATT_OPERATION_TIMEOUT_MS)){
             // Hard reset everything.
             this.connectedCallback.onFailed(HelloGattLayer.this.sender, OperationFailReason.MESSAGE_QUEUE_ERROR, 0);
@@ -567,7 +567,7 @@ public class HelloGattLayer extends BluetoothGattCallback {
         }
 
         final BluetoothManager bluetoothManager =
-                (BluetoothManager) LibApplication.getAppContext().getSystemService(Context.BLUETOOTH_SERVICE);
+                (BluetoothManager) SharedApplication.getAppContext().getSystemService(Context.BLUETOOTH_SERVICE);
         if(this.bluetoothGatt != null && bluetoothManager.getConnectionState(this.bluetoothDevice, BluetoothProfile.GATT) == BluetoothProfile.STATE_DISCONNECTED){
             Log.i(HelloGattLayer.class.getName(), "device is actually disconnected.");
             this.messageHandler.post(new Runnable() {

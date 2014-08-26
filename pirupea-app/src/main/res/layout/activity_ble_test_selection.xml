@@ -29,5 +29,12 @@
         android:text="Smart Alarm"
         android:id="@+id/btnSmartAlarmTest"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:id="@+id/btnLogout"
+        android:layout_marginTop="20dp"/>
+
 
 </LinearLayout>

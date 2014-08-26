@@ -6,7 +6,6 @@ import android.bluetooth.BluetoothManager;
 import android.content.Context;
 
 import com.hello.ble.BleOperationCallback;
-import com.hello.ble.LibApplication;
 import com.hello.ble.MorpheusCommandType;
 import com.hello.ble.protobuf.MorpheusBle.MorpheusCommand;
 import com.hello.ble.protobuf.MorpheusBle.MorpheusCommand.CommandType;
@@ -17,6 +16,7 @@ import com.hello.ble.stack.transmission.MorpheusBlePacketHandler;
 import com.hello.ble.util.BleUUID;
 import com.hello.ble.util.HelloBleDeviceScanner;
 import com.hello.ble.util.MorpheusScanner;
+import com.hello.pirupea.core.SharedApplication;
 
 import org.apache.commons.codec.binary.Hex;
 
@@ -106,10 +106,10 @@ public class Morpheus extends HelloBleDevice {
 
     public static boolean discover(final String address, final BleOperationCallback<Morpheus> onDiscoverCompleted, final int maxScanTime){
         //checkNotNull(context);
-        checkNotNull(LibApplication.getAppContext());
+        checkNotNull(SharedApplication.getAppContext());
         checkNotNull(onDiscoverCompleted);
 
-        final Context context = LibApplication.getAppContext();
+        final Context context = SharedApplication.getAppContext();
         final BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
         final BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
         if(bluetoothAdapter == null || !bluetoothAdapter.isEnabled()){
@@ -156,10 +156,10 @@ public class Morpheus extends HelloBleDevice {
 
     public static boolean discover(final BleOperationCallback<Set<Morpheus>> onDiscoverCompleted, final int maxScanTime){
         //checkNotNull(context);
-        checkNotNull(LibApplication.getAppContext());
+        checkNotNull(SharedApplication.getAppContext());
         checkNotNull(onDiscoverCompleted);
 
-        final Context context = LibApplication.getAppContext();
+        final Context context = SharedApplication.getAppContext();
         final BluetoothManager bluetoothManager =
                 (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
         final BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
