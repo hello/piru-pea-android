@@ -40,8 +40,8 @@ import retrofit.client.Response;
 
 public class SmartAlarmTestService extends Service {
 
-    private final static long WAKEUP_INTERVAL = 3 * 60 * 60 * 1000;
-    private final static long FAST_WAKEUP_INTERVAL = 30 * 1000;
+    private final static long WAKEUP_INTERVAL = 4 * 60 * 60 * 1000;
+    private final static long FAST_WAKEUP_INTERVAL = 30 * 60 * 1000;
 
     private final static String ACTION_WAKEUP = SmartAlarmTestService.class.getName() + ".action_wakeup";
 
@@ -196,7 +196,7 @@ public class SmartAlarmTestService extends Service {
 
             IO.appendStringToFile(csvFile, stringBuilder.toString());
 
-            IO.log("Dump data completed. data size: " + data.size());
+            IO.log("Dump data from" + sender.getName() + "," + sender.getId() + " completed. data size: " + data.size());
             SmartAlarmTestService.this.pillRetryInfoHashMap.remove(pill);
 
 

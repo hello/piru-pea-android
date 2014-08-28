@@ -19,10 +19,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Created by pangwu on 4/9/14.
  */
 public class SuripuClient {
-    public static final String SURIPU_API_ENDPOINT = "http://api.skeletor.com";
+    public static final String SURIPU_API_ENDPOINT = "https://dev-api.hello.is/";
     //public static final String SURIPU_API_ENDPOINT = "http://192.168.128.52:9999";
 
-    public static final String SURIPU_DATA_ENDPOINT = "http://in.skeletor.com";
+    public static final String SURIPU_DATA_ENDPOINT = "https://dev-in.hello.is/";
     //public static final String SURIPU_DATA_ENDPOINT = "http://192.168.128.52:5555";
 
     private SuripuHTTPService apiService;

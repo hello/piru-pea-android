@@ -282,7 +282,7 @@ public class Pill extends HelloBleDevice {
 
 
     @Deprecated
-    public void startStream(final BleOperationCallback<Void> operationCallback, final BleOperationCallback<Integer[]> dataCallback){
+    public void startStream(final BleOperationCallback<Void> operationCallback, final BleOperationCallback<Long[]> dataCallback){
         this.gattLayer.setCommandWriteCallback(null);
 
         this.gattLayer.subscribeNotification(BleUUID.CHAR_DATA_UUID, new BleOperationCallback<UUID>() {

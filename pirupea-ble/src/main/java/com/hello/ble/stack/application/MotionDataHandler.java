@@ -1,6 +1,9 @@
 package com.hello.ble.stack.application;
 
+import android.util.Log;
+
 import com.google.common.io.LittleEndianDataInputStream;
+import com.hello.ble.BleOperationCallback.OperationFailReason;
 import com.hello.ble.HelloBlePacket;
 import com.hello.ble.PillMotionData;
 import com.hello.ble.devices.Pill;
@@ -24,6 +27,7 @@ public class MotionDataHandler extends HelloDataHandler<List<PillMotionData>> {
     private int unitLength = 16;
 
     private LinkedList<HelloBlePacket> packets = new LinkedList<>();
+    private int expectedIndex = 0;
 
     public MotionDataHandler(final Pill sender) {
         super(sender);
@@ -46,10 +50,21 @@ public class MotionDataHandler extends HelloDataHandler<List<PillMotionData>> {
 
     @Override
     public void onDataArrival(final HelloBlePacket blePacket) {
+        if(this.expectedIndex != blePacket.sequenceNumber){
+            this.packets.clear();
+            this.expectedIndex = 0;
+            if(this.getDataCallback() != null) {
+                this.getDataCallback().onFailed(this.getSender(), OperationFailReason.DATA_LOST_OR_OUT_OF_ORDER, -1);
+            }
+            return;
+        }else{
+            this.expectedIndex = blePacket.sequenceNumber + 1;
+        }
+
         if(blePacket.sequenceNumber == 0){
             // Assume the packets arrive in order.
             this.packets.clear();
-            this.totalPackets = blePacket.payload[0];
+            this.totalPackets = blePacket.payload[0] > 0 ? blePacket.payload[0] : 256 + blePacket.payload[0];
             this.bufferOffsetIndex = 0;
 
             final HelloBlePacket headPacket = new HelloBlePacket(0, Arrays.copyOfRange(blePacket.payload, 1, blePacket.payload.length));
@@ -80,6 +95,8 @@ public class MotionDataHandler extends HelloDataHandler<List<PillMotionData>> {
             for (int i = 0; (this.bufferOffsetIndex < this.buffer.length && i < lastPacket.payload.length); i++, this.bufferOffsetIndex++) {
                 this.buffer[this.bufferOffsetIndex] = lastPacket.payload[i];
             }
+
+            Log.i("Get data: ", this.packets.size() + " in " + this.totalPackets);
 
             if (this.packets.size() == this.totalPackets) {
                 final List<PillMotionData> data = PillMotionData.fromBytes(this.buffer, this.unitLength);

@@ -231,9 +231,9 @@ public class PillBleTestActivity extends ListActivity implements
 
 
 
-    private final BleOperationCallback<Integer[]> streamDataCallback = new BleOperationCallback<Integer[]>() {
+    private final BleOperationCallback<Long[]> streamDataCallback = new BleOperationCallback<Long[]>() {
         @Override
-        public void onCompleted(final HelloBleDevice sender, final Integer[] data) {
+        public void onCompleted(final HelloBleDevice sender, final Long[] data) {
             final Pill pill = (Pill)sender;
             final File csvFile = IO.getFileByName(pill.getName(), "stream.csv");
             final DateTime dateTime = DateTime.now();
@@ -377,7 +377,7 @@ public class PillBleTestActivity extends ListActivity implements
 
         if(R.id.action_scan == id){
             setProgressBarIndeterminateVisibility(true);
-            Pill.discover(this, 10000);
+            Pill.discover(this, 20000);
             this.deviceArrayAdapter.clear();
             this.deviceArrayAdapter.notifyDataSetChanged();
         }
@@ -430,7 +430,7 @@ public class PillBleTestActivity extends ListActivity implements
                     "Set Time",             //0
                     "Get Time",             //1
                     "Calibrate",            //2
-                    "Get Data, 16bit",             //3
+                    //"Get Data, 16bit",             //3
                     "Get Data, 32bit",             //3
                     "Start Streaming",
                     "Stop Streaming",
@@ -451,25 +451,25 @@ public class PillBleTestActivity extends ListActivity implements
                         case 2:
                             selectedPill.calibrate(calibrateOperationCallback);
                             break;
-                        case 3:
+                        /*case 3:
                             selectedPill.getData(16, dataCallback);
-                            break;
-                        case 4:
+                            break;*/
+                        case 3:
                             selectedPill.getData(32, dataCallback);
                             break;
-                        case 5:
+                        case 4:
                             selectedPill.startStream(startStreamOperationalCallback, streamDataCallback);
                             continuesMotionWidget.register(PillBleTestActivity.this);
                             continuesMotionWidget.beginWork(0);
                             break;
-                        case 6:
+                        case 5:
                             selectedPill.stopStream(stopStreamOperationalCallback);
                             continuesMotionWidget.unregister();
                             break;
-                        case 7:
+                        case 6:
                             selectedPill.getBatteryLevel(batteryLevelCallback);
                             break;
-                        case 8:
+                        case 7:
                             selectedPill.disconnect();
                             break;
 

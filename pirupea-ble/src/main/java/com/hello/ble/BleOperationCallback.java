@@ -18,7 +18,8 @@ public interface BleOperationCallback<T> {
         DATA_LOST_OR_OUT_OF_ORDER(7),
         INVALID_PROTOBUF(8),
         WRONG_ACK_TYPE(9),
-        GET_ID_FAILED(10);
+        GET_ID_FAILED(10),
+        GATT_NOT_INITIALIZED(11);
 
         private int value = 0;
         private OperationFailReason(int value){

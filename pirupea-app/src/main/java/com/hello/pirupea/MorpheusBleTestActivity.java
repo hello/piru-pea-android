@@ -90,6 +90,20 @@ public class MorpheusBleTestActivity extends ListActivity implements
         }
     };
 
+    private final BleOperationCallback<Void> erasePairedUsersCallback = new BleOperationCallback<Void>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final Void data) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " erase apired users.", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " erase paired user failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+
 
     private void uiBeginOperation(){
         setProgressBarIndeterminateVisibility(true);
@@ -199,8 +213,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
                     "Pairing Mode",//0
                     "Normal Mode",//1
                     "Get Device ID",//2
-                    "Start WIFI Scan",
-                    "Stop WIFI Scan",
+                    "Erase Paired Users", // 3
                     "Set WIFI End Point",
                     "Disconnect"//3
             }, new DialogInterface.OnClickListener() {
@@ -218,7 +231,10 @@ public class MorpheusBleTestActivity extends ListActivity implements
                         case 2:
                             selectedDevice.getDeviceId(getDeviceIdOperationCallback);
                             break;
-                        case 6:
+                        case 3:
+                            selectedDevice.clearPairedUser(erasePairedUsersCallback);
+                            break;
+                        case 5:
                             selectedDevice.disconnect();
                             break;
 

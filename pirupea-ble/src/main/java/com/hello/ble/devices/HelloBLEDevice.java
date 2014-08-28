@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.google.common.base.Objects;
 import com.hello.ble.BleOperationCallback;
+import com.hello.ble.BleOperationCallback.OperationFailReason;
 import com.hello.ble.stack.HelloGattLayer;
 import com.hello.pirupea.core.SharedApplication;
 
@@ -72,6 +73,14 @@ public abstract class HelloBleDevice {
 
     public void connect(final BleOperationCallback<Void> connectedCallback){
         this.connectedCallback = connectedCallback;
+        if(this.gattLayer == null){
+            if(connectedCallback != null){
+                connectedCallback.onFailed(this, OperationFailReason.GATT_NOT_INITIALIZED, 0);
+            }
+
+            return;
+        }
+
         this.gattLayer.connect();
     }
 
@@ -115,6 +124,10 @@ public abstract class HelloBleDevice {
             return;
         }
 
+        if(this.gattLayer == null){
+            return;
+        }
+
         HelloBleDevice.this.gattLayer.connect();
     }
 
@@ -140,6 +153,11 @@ public abstract class HelloBleDevice {
             };
             pair(pairedCallback);
         }else{
+
+            if(this.gattLayer == null){
+                return;
+            }
+
             this.gattLayer.connect();
         }
     }
@@ -233,6 +251,11 @@ public abstract class HelloBleDevice {
     }
 
     public boolean isConnected(){
-        return this.gattLayer.getConnectionStatus() == BluetoothProfile.STATE_CONNECTED;
+        if(this.gattLayer != null) {
+            int status = this.gattLayer.getConnectionStatus();
+            return this.gattLayer.getConnectionStatus() == BluetoothProfile.STATE_CONNECTED;
+        }else{
+            return false;
+        }
     }
 }
