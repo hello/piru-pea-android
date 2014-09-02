@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.hello.pirupea"
-        minSdkVersion 19
-        targetSdkVersion 20
+        minSdkVersion rootProject.ext.compileSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -23,9 +23,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':pirupea-pill')
+    compile project(':pirupea-ble')
+    compile project(':suripu-android')
 }
