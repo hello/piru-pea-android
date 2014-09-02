@@ -62,7 +62,7 @@ public class MorpheusBlePacketHandler extends BlePacketHandler {
                 final byte[] packet = new byte[BlePacketHandler.BLE_PACKET_LEN];
                 packet[0] = (byte)i;
                 for(int k = 0; k < packet.length - 1; k++){
-                    packet[k + 1] = applicationData[BlePacketHandler.HEADER_PACKET_PAYLOAD_LEN + i * BlePacketHandler.PACKET_PAYLOAD_LEN + k];
+                    packet[k + 1] = applicationData[BlePacketHandler.HEADER_PACKET_PAYLOAD_LEN + (i - 1) * BlePacketHandler.PACKET_PAYLOAD_LEN + k];
                     bytesRemain--;
                 }
                 packets.add(packet);
@@ -72,7 +72,7 @@ public class MorpheusBlePacketHandler extends BlePacketHandler {
                 final byte[] packet = new byte[bytesRemain + 1];
                 packet[0] = (byte)i;
                 for(int k = 0; k < packet.length - 1; k++){
-                    packet[k + 1] = applicationData[BlePacketHandler.HEADER_PACKET_PAYLOAD_LEN + i * BlePacketHandler.PACKET_PAYLOAD_LEN + k];
+                    packet[k + 1] = applicationData[BlePacketHandler.HEADER_PACKET_PAYLOAD_LEN + (i - 1) * BlePacketHandler.PACKET_PAYLOAD_LEN + k];
                     bytesRemain--;
                 }
                 packets.add(packet);

@@ -12,11 +12,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hello.ble.BleOperationCallback;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Morpheus;
 import com.hello.pirupea.settings.LocalSettings;
+import com.hello.suripu.core.oauth.AccessToken;
 
+import java.io.IOException;
 import java.util.Set;
 
 
@@ -101,6 +104,21 @@ public class MorpheusBleTestActivity extends ListActivity implements
         public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
             uiEndOperation();
             Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " erase paired user failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
+    private final BleOperationCallback<Void> pairPillCallback = new BleOperationCallback<Void>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final Void data) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " pill paired.", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " pair pill failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -210,33 +228,47 @@ public class MorpheusBleTestActivity extends ListActivity implements
             });
         }else{
             builder.setItems(new CharSequence[]{
+                    "Disconnect", //3
                     "Pairing Mode",//0
                     "Normal Mode",//1
                     "Get Device ID",//2
                     "Erase Paired Users", // 3
                     "Set WIFI End Point",
-                    "Disconnect"//3
+                    "Pair Pill"//3
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     uiBeginOperation();
                     switch (which){
                         case 0:
-                            selectedDevice.switchToPairingMode(modeSwitchCallback);
+                            selectedDevice.disconnect();
                             break;
                         case 1:
+                            selectedDevice.switchToPairingMode(modeSwitchCallback);
+                            break;
+                        case 2:
                             selectedDevice.switchToNormalMode(modeSwitchCallback);
                             break;
 
-                        case 2:
+                        case 3:
                             selectedDevice.getDeviceId(getDeviceIdOperationCallback);
                             break;
-                        case 3:
+                        case 4:
                             selectedDevice.clearPairedUser(erasePairedUsersCallback);
                             break;
                         case 5:
                             selectedDevice.disconnect();
                             break;
+                        case 6:
+                            final String accessTokenString = LocalSettings.getOAuthToken();
+                            final ObjectMapper mapper = new ObjectMapper();
+                            try {
+                                final AccessToken accessToken = mapper.readValue(accessTokenString, AccessToken.class);
+                                selectedDevice.pairPill(accessToken.token, pairPillCallback);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
 
                         default:
                             break;

@@ -19,7 +19,8 @@ public interface BleOperationCallback<T> {
         INVALID_PROTOBUF(8),
         WRONG_ACK_TYPE(9),
         GET_ID_FAILED(10),
-        GATT_NOT_INITIALIZED(11);
+        GATT_NOT_INITIALIZED(11),
+        INTERNAL_ERROR(12);
 
         private int value = 0;
         private OperationFailReason(int value){

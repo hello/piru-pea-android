@@ -23,6 +23,7 @@ import com.hello.pirupea.core.SharedApplication;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -219,22 +220,52 @@ public class HelloGattLayer extends BluetoothGattCallback {
 
     }
 
-    public void writeLargeCommand(final UUID commandInterfaceUUID, final byte[] commandData){
+    public void writeLargeCommand(final UUID commandInterfaceUUID, final byte[] commandData, final BleOperationCallback operationCallback){
         final byte[] commandCopy = Arrays.copyOf(commandData, commandData.length);
         final List<byte[]> blePackets = this.transmissionLayer.prepareBlePacket(commandCopy);
+        final LinkedList<byte[]> remainingPackets = new LinkedList<byte[]>(blePackets);
 
+        final BleOperationCallback<UUID> loopCommandWriteCallback = new BleOperationCallback<UUID>() {
+            @Override
+            public void onCompleted(final HelloBleDevice sender, final UUID data) {
+                remainingPackets.removeFirst();
+
+                if(remainingPackets.size() > 0) {
+                    HelloGattLayer.this.messageHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            final BluetoothGattCharacteristic commandCharacteristic = HelloGattLayer.this.bluetoothGattService.getCharacteristic(commandInterfaceUUID);
+                            commandCharacteristic.setValue(remainingPackets.getFirst());
+                            HelloGattLayer.this.bluetoothGatt.writeCharacteristic(commandCharacteristic);
+                        }
+                    });
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+                HelloGattLayer.this.setCommandWriteCallback(null);
+                if(operationCallback != null){
+                    operationCallback.onFailed(sender, reason, errorCode);
+                }
+            }
+        };
+
+        this.setCommandWriteCallback(loopCommandWriteCallback);
 
         // TODO: write next packet after the previous one succeed.
-        for(final byte[] rawBlePacket:blePackets) {
-            this.messageHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    final BluetoothGattCharacteristic commandCharacteristic = HelloGattLayer.this.bluetoothGattService.getCharacteristic(commandInterfaceUUID);
-                    commandCharacteristic.setValue(rawBlePacket);
-                    HelloGattLayer.this.bluetoothGatt.writeCharacteristic(commandCharacteristic);
-                }
-            });
-        }
+
+        this.messageHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                final BluetoothGattCharacteristic commandCharacteristic = HelloGattLayer.this.bluetoothGattService.getCharacteristic(commandInterfaceUUID);
+                commandCharacteristic.setValue(remainingPackets.getFirst());
+                HelloGattLayer.this.bluetoothGatt.writeCharacteristic(commandCharacteristic);
+            }
+        });
+
 
     }
 
@@ -370,7 +401,8 @@ public class HelloGattLayer extends BluetoothGattCallback {
         this.messageHandler.post(new Runnable() {
             @Override
             public void run() {
-                if(BleUUID.CHAR_COMMAND_UUID.equals(characteristic.getUuid()) && HelloGattLayer.this.commandWriteCallback != null){
+                if((BleUUID.CHAR_COMMAND_UUID.equals(characteristic.getUuid())  || BleUUID.CHAR_PROTOBUF_COMMAND_UUID.equals(characteristic.getUuid()))
+                        && HelloGattLayer.this.commandWriteCallback != null){
                     if(status == BluetoothGatt.GATT_SUCCESS) {
                         HelloGattLayer.this.commandWriteCallback.onCompleted(HelloGattLayer.this.sender, characteristic.getUuid());
                     }else{

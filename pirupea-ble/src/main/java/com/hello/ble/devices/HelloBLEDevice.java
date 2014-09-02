@@ -73,15 +73,7 @@ public abstract class HelloBleDevice {
 
     public void connect(final BleOperationCallback<Void> connectedCallback){
         this.connectedCallback = connectedCallback;
-        if(this.gattLayer == null){
-            if(connectedCallback != null){
-                connectedCallback.onFailed(this, OperationFailReason.GATT_NOT_INITIALIZED, 0);
-            }
-
-            return;
-        }
-
-        this.gattLayer.connect();
+        connect();
     }
 
     public void connect(final BleOperationCallback<Void> connectedCallback, final boolean autoBond){
@@ -90,24 +82,8 @@ public abstract class HelloBleDevice {
             return;
         }
 
-        if(this.bluetoothDevice.getBondState() != BluetoothDevice.BOND_BONDED && autoBond){
-            final BleOperationCallback<Void> pairedCallback = new BleOperationCallback<Void>() {
-                @Override
-                public void onCompleted(final HelloBleDevice connectedPill, final Void data) {
-                    HelloBleDevice.this.connect(connectedCallback);
-                }
-
-                @Override
-                public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
-                    if(HelloBleDevice.this.connectedCallback != null){
-                        HelloBleDevice.this.connectedCallback.onFailed(sender, reason, errorCode);
-                    }
-                }
-            };
-            pair(pairedCallback);
-        }else{
-            this.connect(connectedCallback);
-        }
+        this.connectedCallback = connectedCallback;
+        connect(autoBond);
     }
 
     protected void setId(final String deviceId){
@@ -120,11 +96,11 @@ public abstract class HelloBleDevice {
 
     public void connect(){
         checkNotNull(this.bluetoothDevice);
-        if(isConnected()){
-            return;
-        }
-
         if(this.gattLayer == null){
+            if(connectedCallback != null){
+                connectedCallback.onFailed(this, OperationFailReason.GATT_NOT_INITIALIZED, 0);
+            }
+
             return;
         }
 
@@ -141,7 +117,7 @@ public abstract class HelloBleDevice {
             final BleOperationCallback<Void> pairedCallback = new BleOperationCallback<Void>() {
                 @Override
                 public void onCompleted(final HelloBleDevice connectedPill, final Void data) {
-                    HelloBleDevice.this.gattLayer.connect();
+                    connect();
                 }
 
                 @Override
@@ -154,11 +130,23 @@ public abstract class HelloBleDevice {
             pair(pairedCallback);
         }else{
 
-            if(this.gattLayer == null){
-                return;
-            }
+            if(autoBond && this.bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
+                final BleOperationCallback<Void> unpairCallback = new BleOperationCallback<Void>() {
+                    @Override
+                    public void onCompleted(final HelloBleDevice sender, final Void data) {
+                        connect();
+                    }
 
-            this.gattLayer.connect();
+                    @Override
+                    public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+                        connect();
+                    }
+                };
+
+                unpair(unpairCallback);
+            }else{
+                connect();
+            }
         }
     }
 
