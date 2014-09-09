@@ -108,17 +108,45 @@ public class MorpheusBleTestActivity extends ListActivity implements
     };
 
 
-    private final BleOperationCallback<Void> pairPillCallback = new BleOperationCallback<Void>() {
+    private final BleOperationCallback<String> unpairPillCallback = new BleOperationCallback<String>() {
         @Override
-        public void onCompleted(final HelloBleDevice sender, final Void data) {
+        public void onCompleted(final HelloBleDevice sender, final String data) {
             uiEndOperation();
-            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " pill paired.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " pill " + data + " unpaired.", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " unpair pill failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private final BleOperationCallback<String> pairPillCallback = new BleOperationCallback<String>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final String data) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " pill " + data + " paired.", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
             uiEndOperation();
             Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " pair pill failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private final BleOperationCallback<Void> linkAccountCallback = new BleOperationCallback<Void>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final Void data) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " account linked.", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " link account failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -182,6 +210,13 @@ public class MorpheusBleTestActivity extends ListActivity implements
         if (id == R.id.action_settings) {
             return true;
         }
+
+        if(R.id.action_scan == id){
+            setProgressBarIndeterminateVisibility(true);
+            Morpheus.discover(this, 10000);
+            this.deviceArrayAdapter.clear();
+            this.deviceArrayAdapter.notifyDataSetChanged();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -223,7 +258,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     uiBeginOperation();
-                    selectedDevice.connect(true);
+                    selectedDevice.connect();
                 }
             });
         }else{
@@ -234,7 +269,9 @@ public class MorpheusBleTestActivity extends ListActivity implements
                     "Get Device ID",//2
                     "Erase Paired Users", // 3
                     "Set WIFI End Point",
-                    "Pair Pill"//3
+                    "Pair Pill", //3
+                    "Link Account",
+                    "Unpair Pill"
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -259,7 +296,8 @@ public class MorpheusBleTestActivity extends ListActivity implements
                         case 5:
                             selectedDevice.disconnect();
                             break;
-                        case 6:
+
+                        case 6: {
                             final String accessTokenString = LocalSettings.getOAuthToken();
                             final ObjectMapper mapper = new ObjectMapper();
                             try {
@@ -268,8 +306,25 @@ public class MorpheusBleTestActivity extends ListActivity implements
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                        }
+                        break;
 
+                        case 7: {
+                            final String accessTokenString = LocalSettings.getOAuthToken();
+                            final ObjectMapper mapper = new ObjectMapper();
+                            try {
+                                final AccessToken accessToken = mapper.readValue(accessTokenString, AccessToken.class);
+                                selectedDevice.linkAccount(accessToken.token, linkAccountCallback);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
 
+                        }
+                        break;
+
+                        case 8:
+                            selectedDevice.unpairPill("55614E945A95CA03", unpairPillCallback);
+                            break;
                         default:
                             break;
                     }

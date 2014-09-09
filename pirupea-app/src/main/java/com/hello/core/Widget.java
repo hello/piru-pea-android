@@ -8,7 +8,7 @@ import android.content.IntentFilter;
 import android.os.PowerManager;
 import android.telephony.TelephonyManager;
 
-import com.hello.ble.util.IO;
+import com.hello.pirupea.core.IO;
 
 import java.util.Iterator;
 

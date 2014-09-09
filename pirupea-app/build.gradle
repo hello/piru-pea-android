@@ -36,4 +36,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':pirupea-ble')
     compile project(':suripu-android')
+    compile project(':HoloGraphLibrary')
+
+    compile 'com.github.flavienlaurent.datetimepicker:library:+'
 }

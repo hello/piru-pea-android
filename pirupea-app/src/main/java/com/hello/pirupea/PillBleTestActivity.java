@@ -19,7 +19,7 @@ import com.hello.ble.BleOperationCallback;
 import com.hello.ble.PillMotionData;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Pill;
-import com.hello.ble.util.IO;
+import com.hello.pirupea.core.IO;
 import com.hello.data.collection.ContinuesMotionWidget;
 import com.hello.pirupea.settings.LocalSettings;
 import com.hello.suripu.android.SuripuClient;
@@ -171,7 +171,7 @@ public class PillBleTestActivity extends ListActivity implements
                         doUpload();
                     }else{
                         uiEndOperation();
-                        Toast.makeText(PillBleTestActivity.this, "Failed to register device " + connectedPill.getId(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PillBleTestActivity.this, "Failed to register device " + connectedPill.getId() + ": " + error.getResponse().getStatus(), Toast.LENGTH_SHORT).show();
 
                         if(error.getResponse().getStatus() == 401) { // token expired
                             connectedPill.disconnect();
@@ -299,6 +299,24 @@ public class PillBleTestActivity extends ListActivity implements
         }
     };
 
+    final BleOperationCallback<Void> pairingCallback = new BleOperationCallback<Void>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final Void data) {
+            uiEndOperation();
+
+            Toast.makeText(PillBleTestActivity.this, "Paired " + sender.getName(), Toast.LENGTH_SHORT);
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            uiEndOperation();
+
+            Toast.makeText(PillBleTestActivity.this,
+                    sender.getName() + " pair failed, " + reason + ": " + errorCode,
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
+
 
     private ContinuesMotionWidget continuesMotionWidget = new ContinuesMotionWidget();
 
@@ -377,7 +395,7 @@ public class PillBleTestActivity extends ListActivity implements
 
         if(R.id.action_scan == id){
             setProgressBarIndeterminateVisibility(true);
-            Pill.discover(this, 20000);
+            Pill.discover(this, 10000);
             this.deviceArrayAdapter.clear();
             this.deviceArrayAdapter.notifyDataSetChanged();
         }
@@ -432,10 +450,11 @@ public class PillBleTestActivity extends ListActivity implements
                     "Calibrate",            //2
                     //"Get Data, 16bit",             //3
                     "Get Data, 32bit",             //3
-                    "Start Streaming",
-                    "Stop Streaming",
-                    "Get Battery Voltage",
-                    "Disconnect"            //6
+                    "Start Streaming",  //4
+                    "Stop Streaming",  //5
+                    "Get Battery Voltage",   //6
+                    "Pair",  //7
+                    "Disconnect"            //8
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -470,6 +489,9 @@ public class PillBleTestActivity extends ListActivity implements
                             selectedPill.getBatteryLevel(batteryLevelCallback);
                             break;
                         case 7:
+                            selectedPill.pair(pairingCallback);
+                            break;
+                        case 8:
                             selectedPill.disconnect();
                             break;
 

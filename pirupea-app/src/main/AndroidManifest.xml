@@ -76,6 +76,9 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_smart_alarm_test" >
         </activity>
+
+
+        <service android:name=".SmartAlarmTestService$AlarmService"/>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.hello.ble.util;
+package com.hello.pirupea.core;
 
 import android.os.Environment;
 
@@ -77,6 +77,11 @@ public class IO {
         //targetFile.mkdirs();
 
         return targetFile;
+    }
+
+    public static File getFile(String fileName){
+        final File file  = new File(DOWNLOAD_DIR + "/" + fileName);
+        return file;
     }
 
     public static DateTime getDateFromFileName(String fileName){

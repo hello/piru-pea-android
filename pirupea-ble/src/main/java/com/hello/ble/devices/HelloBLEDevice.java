@@ -65,6 +65,11 @@ public abstract class HelloBleDevice {
                     if(HelloBleDevice.this.unpairCallback != null){
                         HelloBleDevice.this.unpairCallback.onCompleted(HelloBleDevice.this, null);
                     }
+                } else if(state == BluetoothDevice.ERROR){
+                    context.unregisterReceiver(this);
+                    if(HelloBleDevice.this.pairedCallback != null){
+                        HelloBleDevice.this.pairedCallback.onFailed(HelloBleDevice.this, OperationFailReason.INTERNAL_ERROR, state);
+                    }
                 }
 
             }
@@ -143,7 +148,7 @@ public abstract class HelloBleDevice {
                     }
                 };
 
-                unpair(unpairCallback);
+                connect();
             }else{
                 connect();
             }
@@ -219,6 +224,9 @@ public abstract class HelloBleDevice {
             method.invoke(this.bluetoothDevice, (Object[]) null);
         } catch (Exception e) {
             e.printStackTrace();
+            if(pairedCallback != null){
+                pairedCallback.onFailed(this, OperationFailReason.INTERNAL_ERROR, -1);
+            }
         }
     }
 

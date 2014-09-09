@@ -51,6 +51,18 @@ public final class MorpheusBle {
      * </pre>
      */
     DEVICE_DATABASE_FULL(4, 4),
+    /**
+     * <code>DEVICE_NO_MEMORY = 5;</code>
+     *
+     * <pre>
+     * Device run out of heap
+     * </pre>
+     */
+    DEVICE_NO_MEMORY(5, 5),
+    /**
+     * <code>INTERNAL_OPERATION_FAILED = 6;</code>
+     */
+    INTERNAL_OPERATION_FAILED(6, 6),
     ;
 
     /**
@@ -93,6 +105,18 @@ public final class MorpheusBle {
      * </pre>
      */
     public static final int DEVICE_DATABASE_FULL_VALUE = 4;
+    /**
+     * <code>DEVICE_NO_MEMORY = 5;</code>
+     *
+     * <pre>
+     * Device run out of heap
+     * </pre>
+     */
+    public static final int DEVICE_NO_MEMORY_VALUE = 5;
+    /**
+     * <code>INTERNAL_OPERATION_FAILED = 6;</code>
+     */
+    public static final int INTERNAL_OPERATION_FAILED_VALUE = 6;
 
 
     public final int getNumber() { return value; }
@@ -104,6 +128,8 @@ public final class MorpheusBle {
         case 2: return DEVICE_ALREADY_PAIRED;
         case 3: return INTERNAL_DATA_ERROR;
         case 4: return DEVICE_DATABASE_FULL;
+        case 5: return DEVICE_NO_MEMORY;
+        case 6: return INTERNAL_OPERATION_FAILED;
         default: return null;
       }
     }
@@ -155,1316 +181,6 @@ public final class MorpheusBle {
     // @@protoc_insertion_point(enum_scope:ErrorType)
   }
 
-  public interface WifiEndPointOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-
-    // optional string name = 1;
-    /**
-     * <code>optional string name = 1;</code>
-     */
-    boolean hasName();
-    /**
-     * <code>optional string name = 1;</code>
-     */
-    String getName();
-    /**
-     * <code>optional string name = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    // required string ssid = 2;
-    /**
-     * <code>required string ssid = 2;</code>
-     */
-    boolean hasSsid();
-    /**
-     * <code>required string ssid = 2;</code>
-     */
-    String getSsid();
-    /**
-     * <code>required string ssid = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getSsidBytes();
-  }
-  /**
-   * Protobuf type {@code WifiEndPoint}
-   */
-  public static final class WifiEndPoint extends
-      com.google.protobuf.GeneratedMessage
-      implements WifiEndPointOrBuilder {
-    // Use WifiEndPoint.newBuilder() to construct.
-    private WifiEndPoint(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private WifiEndPoint(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final WifiEndPoint defaultInstance;
-    public static WifiEndPoint getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public WifiEndPoint getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private WifiEndPoint(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              bitField0_ |= 0x00000001;
-              name_ = input.readBytes();
-              break;
-            }
-            case 18: {
-              bitField0_ |= 0x00000002;
-              ssid_ = input.readBytes();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return MorpheusBle.internal_static_WifiEndPoint_descriptor;
-    }
-
-    protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return MorpheusBle.internal_static_WifiEndPoint_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              WifiEndPoint.class, Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<WifiEndPoint> PARSER =
-        new com.google.protobuf.AbstractParser<WifiEndPoint>() {
-      public WifiEndPoint parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new WifiEndPoint(input, extensionRegistry);
-      }
-    };
-
-    @Override
-    public com.google.protobuf.Parser<WifiEndPoint> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    // optional string name = 1;
-    public static final int NAME_FIELD_NUMBER = 1;
-    private Object name_;
-    /**
-     * <code>optional string name = 1;</code>
-     */
-    public boolean hasName() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional string name = 1;</code>
-     */
-    public String getName() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          name_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string name = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    // required string ssid = 2;
-    public static final int SSID_FIELD_NUMBER = 2;
-    private Object ssid_;
-    /**
-     * <code>required string ssid = 2;</code>
-     */
-    public boolean hasSsid() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>required string ssid = 2;</code>
-     */
-    public String getSsid() {
-      Object ref = ssid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          ssid_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string ssid = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSsidBytes() {
-      Object ref = ssid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        ssid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private void initFields() {
-      name_ = "";
-      ssid_ = "";
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-
-      if (!hasSsid()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getNameBytes());
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getSsidBytes());
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getNameBytes());
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getSsidBytes());
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static WifiEndPoint parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static WifiEndPoint parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static WifiEndPoint parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static WifiEndPoint parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static WifiEndPoint parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static WifiEndPoint parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static WifiEndPoint parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static WifiEndPoint parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static WifiEndPoint parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static WifiEndPoint parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(WifiEndPoint prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @Override
-    protected Builder newBuilderForType(
-        BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code WifiEndPoint}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements WifiEndPointOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return MorpheusBle.internal_static_WifiEndPoint_descriptor;
-      }
-
-      protected FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return MorpheusBle.internal_static_WifiEndPoint_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                WifiEndPoint.class, Builder.class);
-      }
-
-      // Construct using MorpheusBle.WifiEndPoint.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        ssid_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return MorpheusBle.internal_static_WifiEndPoint_descriptor;
-      }
-
-      public WifiEndPoint getDefaultInstanceForType() {
-        return WifiEndPoint.getDefaultInstance();
-      }
-
-      public WifiEndPoint build() {
-        WifiEndPoint result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public WifiEndPoint buildPartial() {
-        WifiEndPoint result = new WifiEndPoint(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.name_ = name_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.ssid_ = ssid_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof WifiEndPoint) {
-          return mergeFrom((WifiEndPoint)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(WifiEndPoint other) {
-        if (other == WifiEndPoint.getDefaultInstance()) return this;
-        if (other.hasName()) {
-          bitField0_ |= 0x00000001;
-          name_ = other.name_;
-          onChanged();
-        }
-        if (other.hasSsid()) {
-          bitField0_ |= 0x00000002;
-          ssid_ = other.ssid_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasSsid()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        WifiEndPoint parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (WifiEndPoint) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      // optional string name = 1;
-      private Object name_ = "";
-      /**
-       * <code>optional string name = 1;</code>
-       */
-      public boolean hasName() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional string name = 1;</code>
-       */
-      public String getName() {
-        Object ref = name_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <code>optional string name = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string name = 1;</code>
-       */
-      public Builder setName(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string name = 1;</code>
-       */
-      public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string name = 1;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
-      // required string ssid = 2;
-      private Object ssid_ = "";
-      /**
-       * <code>required string ssid = 2;</code>
-       */
-      public boolean hasSsid() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>required string ssid = 2;</code>
-       */
-      public String getSsid() {
-        Object ref = ssid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
-          ssid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <code>required string ssid = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSsidBytes() {
-        Object ref = ssid_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          ssid_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string ssid = 2;</code>
-       */
-      public Builder setSsid(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        ssid_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string ssid = 2;</code>
-       */
-      public Builder clearSsid() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        ssid_ = getDefaultInstance().getSsid();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string ssid = 2;</code>
-       */
-      public Builder setSsidBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        ssid_ = value;
-        onChanged();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:WifiEndPoint)
-    }
-
-    static {
-      defaultInstance = new WifiEndPoint(true);
-      defaultInstance.initFields();
-    }
-
-    // @@protoc_insertion_point(class_scope:WifiEndPoint)
-  }
-
-  public interface SelectedWifiEndPointOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-
-    // optional .WifiEndPoint endPoint = 1;
-    /**
-     * <code>optional .WifiEndPoint endPoint = 1;</code>
-     */
-    boolean hasEndPoint();
-    /**
-     * <code>optional .WifiEndPoint endPoint = 1;</code>
-     */
-    WifiEndPoint getEndPoint();
-    /**
-     * <code>optional .WifiEndPoint endPoint = 1;</code>
-     */
-    WifiEndPointOrBuilder getEndPointOrBuilder();
-
-    // optional string password = 2;
-    /**
-     * <code>optional string password = 2;</code>
-     */
-    boolean hasPassword();
-    /**
-     * <code>optional string password = 2;</code>
-     */
-    String getPassword();
-    /**
-     * <code>optional string password = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getPasswordBytes();
-  }
-  /**
-   * Protobuf type {@code SelectedWifiEndPoint}
-   */
-  public static final class SelectedWifiEndPoint extends
-      com.google.protobuf.GeneratedMessage
-      implements SelectedWifiEndPointOrBuilder {
-    // Use SelectedWifiEndPoint.newBuilder() to construct.
-    private SelectedWifiEndPoint(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private SelectedWifiEndPoint(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final SelectedWifiEndPoint defaultInstance;
-    public static SelectedWifiEndPoint getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public SelectedWifiEndPoint getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SelectedWifiEndPoint(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              WifiEndPoint.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000001) == 0x00000001)) {
-                subBuilder = endPoint_.toBuilder();
-              }
-              endPoint_ = input.readMessage(WifiEndPoint.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(endPoint_);
-                endPoint_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000001;
-              break;
-            }
-            case 18: {
-              bitField0_ |= 0x00000002;
-              password_ = input.readBytes();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return MorpheusBle.internal_static_SelectedWifiEndPoint_descriptor;
-    }
-
-    protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return MorpheusBle.internal_static_SelectedWifiEndPoint_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              SelectedWifiEndPoint.class, Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<SelectedWifiEndPoint> PARSER =
-        new com.google.protobuf.AbstractParser<SelectedWifiEndPoint>() {
-      public SelectedWifiEndPoint parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SelectedWifiEndPoint(input, extensionRegistry);
-      }
-    };
-
-    @Override
-    public com.google.protobuf.Parser<SelectedWifiEndPoint> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    // optional .WifiEndPoint endPoint = 1;
-    public static final int ENDPOINT_FIELD_NUMBER = 1;
-    private WifiEndPoint endPoint_;
-    /**
-     * <code>optional .WifiEndPoint endPoint = 1;</code>
-     */
-    public boolean hasEndPoint() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional .WifiEndPoint endPoint = 1;</code>
-     */
-    public WifiEndPoint getEndPoint() {
-      return endPoint_;
-    }
-    /**
-     * <code>optional .WifiEndPoint endPoint = 1;</code>
-     */
-    public WifiEndPointOrBuilder getEndPointOrBuilder() {
-      return endPoint_;
-    }
-
-    // optional string password = 2;
-    public static final int PASSWORD_FIELD_NUMBER = 2;
-    private Object password_;
-    /**
-     * <code>optional string password = 2;</code>
-     */
-    public boolean hasPassword() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional string password = 2;</code>
-     */
-    public String getPassword() {
-      Object ref = password_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          password_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string password = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getPasswordBytes() {
-      Object ref = password_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        password_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private void initFields() {
-      endPoint_ = WifiEndPoint.getDefaultInstance();
-      password_ = "";
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-
-      if (hasEndPoint()) {
-        if (!getEndPoint().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, endPoint_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getPasswordBytes());
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, endPoint_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getPasswordBytes());
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static SelectedWifiEndPoint parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static SelectedWifiEndPoint parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static SelectedWifiEndPoint parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static SelectedWifiEndPoint parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static SelectedWifiEndPoint parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static SelectedWifiEndPoint parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static SelectedWifiEndPoint parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static SelectedWifiEndPoint parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static SelectedWifiEndPoint parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static SelectedWifiEndPoint parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(SelectedWifiEndPoint prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @Override
-    protected Builder newBuilderForType(
-        BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code SelectedWifiEndPoint}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements SelectedWifiEndPointOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return MorpheusBle.internal_static_SelectedWifiEndPoint_descriptor;
-      }
-
-      protected FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return MorpheusBle.internal_static_SelectedWifiEndPoint_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                SelectedWifiEndPoint.class, Builder.class);
-      }
-
-      // Construct using MorpheusBle.SelectedWifiEndPoint.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getEndPointFieldBuilder();
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        if (endPointBuilder_ == null) {
-          endPoint_ = WifiEndPoint.getDefaultInstance();
-        } else {
-          endPointBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000001);
-        password_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return MorpheusBle.internal_static_SelectedWifiEndPoint_descriptor;
-      }
-
-      public SelectedWifiEndPoint getDefaultInstanceForType() {
-        return SelectedWifiEndPoint.getDefaultInstance();
-      }
-
-      public SelectedWifiEndPoint build() {
-        SelectedWifiEndPoint result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public SelectedWifiEndPoint buildPartial() {
-        SelectedWifiEndPoint result = new SelectedWifiEndPoint(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        if (endPointBuilder_ == null) {
-          result.endPoint_ = endPoint_;
-        } else {
-          result.endPoint_ = endPointBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.password_ = password_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof SelectedWifiEndPoint) {
-          return mergeFrom((SelectedWifiEndPoint)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(SelectedWifiEndPoint other) {
-        if (other == SelectedWifiEndPoint.getDefaultInstance()) return this;
-        if (other.hasEndPoint()) {
-          mergeEndPoint(other.getEndPoint());
-        }
-        if (other.hasPassword()) {
-          bitField0_ |= 0x00000002;
-          password_ = other.password_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (hasEndPoint()) {
-          if (!getEndPoint().isInitialized()) {
-            
-            return false;
-          }
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        SelectedWifiEndPoint parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (SelectedWifiEndPoint) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      // optional .WifiEndPoint endPoint = 1;
-      private WifiEndPoint endPoint_ = WifiEndPoint.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          WifiEndPoint, WifiEndPoint.Builder, WifiEndPointOrBuilder> endPointBuilder_;
-      /**
-       * <code>optional .WifiEndPoint endPoint = 1;</code>
-       */
-      public boolean hasEndPoint() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional .WifiEndPoint endPoint = 1;</code>
-       */
-      public WifiEndPoint getEndPoint() {
-        if (endPointBuilder_ == null) {
-          return endPoint_;
-        } else {
-          return endPointBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .WifiEndPoint endPoint = 1;</code>
-       */
-      public Builder setEndPoint(WifiEndPoint value) {
-        if (endPointBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          endPoint_ = value;
-          onChanged();
-        } else {
-          endPointBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000001;
-        return this;
-      }
-      /**
-       * <code>optional .WifiEndPoint endPoint = 1;</code>
-       */
-      public Builder setEndPoint(
-          WifiEndPoint.Builder builderForValue) {
-        if (endPointBuilder_ == null) {
-          endPoint_ = builderForValue.build();
-          onChanged();
-        } else {
-          endPointBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000001;
-        return this;
-      }
-      /**
-       * <code>optional .WifiEndPoint endPoint = 1;</code>
-       */
-      public Builder mergeEndPoint(WifiEndPoint value) {
-        if (endPointBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              endPoint_ != WifiEndPoint.getDefaultInstance()) {
-            endPoint_ =
-              WifiEndPoint.newBuilder(endPoint_).mergeFrom(value).buildPartial();
-          } else {
-            endPoint_ = value;
-          }
-          onChanged();
-        } else {
-          endPointBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000001;
-        return this;
-      }
-      /**
-       * <code>optional .WifiEndPoint endPoint = 1;</code>
-       */
-      public Builder clearEndPoint() {
-        if (endPointBuilder_ == null) {
-          endPoint_ = WifiEndPoint.getDefaultInstance();
-          onChanged();
-        } else {
-          endPointBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000001);
-        return this;
-      }
-      /**
-       * <code>optional .WifiEndPoint endPoint = 1;</code>
-       */
-      public WifiEndPoint.Builder getEndPointBuilder() {
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return getEndPointFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .WifiEndPoint endPoint = 1;</code>
-       */
-      public WifiEndPointOrBuilder getEndPointOrBuilder() {
-        if (endPointBuilder_ != null) {
-          return endPointBuilder_.getMessageOrBuilder();
-        } else {
-          return endPoint_;
-        }
-      }
-      /**
-       * <code>optional .WifiEndPoint endPoint = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          WifiEndPoint, WifiEndPoint.Builder, WifiEndPointOrBuilder>
-          getEndPointFieldBuilder() {
-        if (endPointBuilder_ == null) {
-          endPointBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              WifiEndPoint, WifiEndPoint.Builder, WifiEndPointOrBuilder>(
-                  endPoint_,
-                  getParentForChildren(),
-                  isClean());
-          endPoint_ = null;
-        }
-        return endPointBuilder_;
-      }
-
-      // optional string password = 2;
-      private Object password_ = "";
-      /**
-       * <code>optional string password = 2;</code>
-       */
-      public boolean hasPassword() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional string password = 2;</code>
-       */
-      public String getPassword() {
-        Object ref = password_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
-          password_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <code>optional string password = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getPasswordBytes() {
-        Object ref = password_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          password_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string password = 2;</code>
-       */
-      public Builder setPassword(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        password_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string password = 2;</code>
-       */
-      public Builder clearPassword() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        password_ = getDefaultInstance().getPassword();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string password = 2;</code>
-       */
-      public Builder setPasswordBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        password_ = value;
-        onChanged();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:SelectedWifiEndPoint)
-    }
-
-    static {
-      defaultInstance = new SelectedWifiEndPoint(true);
-      defaultInstance.initFields();
-    }
-
-    // @@protoc_insertion_point(class_scope:SelectedWifiEndPoint)
-  }
-
   public interface MorpheusCommandOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -1488,50 +204,24 @@ public final class MorpheusBle {
      */
     MorpheusCommand.CommandType getType();
 
-    // optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;
+    // optional string deviceId = 3;
     /**
-     * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-     *
-     * <pre>
-     * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-     * </pre>
-     */
-    boolean hasSelectedWIFIEndPoint();
-    /**
-     * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-     *
-     * <pre>
-     * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-     * </pre>
-     */
-    SelectedWifiEndPoint getSelectedWIFIEndPoint();
-    /**
-     * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-     *
-     * <pre>
-     * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-     * </pre>
-     */
-    SelectedWifiEndPointOrBuilder getSelectedWIFIEndPointOrBuilder();
-
-    // optional string deviceId = 4;
-    /**
-     * <code>optional string deviceId = 4;</code>
+     * <code>optional string deviceId = 3;</code>
      */
     boolean hasDeviceId();
     /**
-     * <code>optional string deviceId = 4;</code>
+     * <code>optional string deviceId = 3;</code>
      */
     String getDeviceId();
     /**
-     * <code>optional string deviceId = 4;</code>
+     * <code>optional string deviceId = 3;</code>
      */
     com.google.protobuf.ByteString
         getDeviceIdBytes();
 
-    // optional string accountId = 5;
+    // optional string accountId = 4;
     /**
-     * <code>optional string accountId = 5;</code>
+     * <code>optional string accountId = 4;</code>
      *
      * <pre>
      * Used by MORPHEUS_COMMAND_PAIRE_PILL
@@ -1539,7 +229,7 @@ public final class MorpheusBle {
      */
     boolean hasAccountId();
     /**
-     * <code>optional string accountId = 5;</code>
+     * <code>optional string accountId = 4;</code>
      *
      * <pre>
      * Used by MORPHEUS_COMMAND_PAIRE_PILL
@@ -1547,7 +237,7 @@ public final class MorpheusBle {
      */
     String getAccountId();
     /**
-     * <code>optional string accountId = 5;</code>
+     * <code>optional string accountId = 4;</code>
      *
      * <pre>
      * Used by MORPHEUS_COMMAND_PAIRE_PILL
@@ -1556,9 +246,9 @@ public final class MorpheusBle {
     com.google.protobuf.ByteString
         getAccountIdBytes();
 
-    // optional .ErrorType error = 6;
+    // optional .ErrorType error = 5;
     /**
-     * <code>optional .ErrorType error = 6;</code>
+     * <code>optional .ErrorType error = 5;</code>
      *
      * <pre>
      * MORPHEUS_COMMAND_ERROR
@@ -1566,13 +256,58 @@ public final class MorpheusBle {
      */
     boolean hasError();
     /**
-     * <code>optional .ErrorType error = 6;</code>
+     * <code>optional .ErrorType error = 5;</code>
      *
      * <pre>
      * MORPHEUS_COMMAND_ERROR
      * </pre>
      */
     ErrorType getError();
+
+    // optional string wifiName = 6;
+    /**
+     * <code>optional string wifiName = 6;</code>
+     */
+    boolean hasWifiName();
+    /**
+     * <code>optional string wifiName = 6;</code>
+     */
+    String getWifiName();
+    /**
+     * <code>optional string wifiName = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getWifiNameBytes();
+
+    // optional string wifiSSID = 7;
+    /**
+     * <code>optional string wifiSSID = 7;</code>
+     */
+    boolean hasWifiSSID();
+    /**
+     * <code>optional string wifiSSID = 7;</code>
+     */
+    String getWifiSSID();
+    /**
+     * <code>optional string wifiSSID = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getWifiSSIDBytes();
+
+    // optional string wifiPassword = 8;
+    /**
+     * <code>optional string wifiPassword = 8;</code>
+     */
+    boolean hasWifiPassword();
+    /**
+     * <code>optional string wifiPassword = 8;</code>
+     */
+    String getWifiPassword();
+    /**
+     * <code>optional string wifiPassword = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getWifiPasswordBytes();
   }
   /**
    * Protobuf type {@code MorpheusCommand}
@@ -1642,37 +377,39 @@ public final class MorpheusBle {
               break;
             }
             case 26: {
-              SelectedWifiEndPoint.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                subBuilder = selectedWIFIEndPoint_.toBuilder();
-              }
-              selectedWIFIEndPoint_ = input.readMessage(SelectedWifiEndPoint.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(selectedWIFIEndPoint_);
-                selectedWIFIEndPoint_ = subBuilder.buildPartial();
-              }
               bitField0_ |= 0x00000004;
+              deviceId_ = input.readBytes();
               break;
             }
             case 34: {
               bitField0_ |= 0x00000008;
-              deviceId_ = input.readBytes();
-              break;
-            }
-            case 42: {
-              bitField0_ |= 0x00000010;
               accountId_ = input.readBytes();
               break;
             }
-            case 48: {
+            case 40: {
               int rawValue = input.readEnum();
               ErrorType value = ErrorType.valueOf(rawValue);
               if (value == null) {
-                unknownFields.mergeVarintField(6, rawValue);
+                unknownFields.mergeVarintField(5, rawValue);
               } else {
-                bitField0_ |= 0x00000020;
+                bitField0_ |= 0x00000010;
                 error_ = value;
               }
+              break;
+            }
+            case 50: {
+              bitField0_ |= 0x00000020;
+              wifiName_ = input.readBytes();
+              break;
+            }
+            case 58: {
+              bitField0_ |= 0x00000040;
+              wifiSSID_ = input.readBytes();
+              break;
+            }
+            case 66: {
+              bitField0_ |= 0x00000080;
+              wifiPassword_ = input.readBytes();
               break;
             }
           }
@@ -1779,6 +516,14 @@ public final class MorpheusBle {
        * </pre>
        */
       MORPHEUS_COMMAND_ERROR(13, 13),
+      /**
+       * <code>MORPHEUS_COMMAND_PAIR_SENSE = 14;</code>
+       */
+      MORPHEUS_COMMAND_PAIR_SENSE(14, 14),
+      /**
+       * <code>MORPHEUS_COMMAND_UNPAIR_PILL = 15;</code>
+       */
+      MORPHEUS_COMMAND_UNPAIR_PILL(15, 15),
       ;
 
       /**
@@ -1841,6 +586,14 @@ public final class MorpheusBle {
        * </pre>
        */
       public static final int MORPHEUS_COMMAND_ERROR_VALUE = 13;
+      /**
+       * <code>MORPHEUS_COMMAND_PAIR_SENSE = 14;</code>
+       */
+      public static final int MORPHEUS_COMMAND_PAIR_SENSE_VALUE = 14;
+      /**
+       * <code>MORPHEUS_COMMAND_UNPAIR_PILL = 15;</code>
+       */
+      public static final int MORPHEUS_COMMAND_UNPAIR_PILL_VALUE = 15;
 
 
       public final int getNumber() { return value; }
@@ -1861,6 +614,8 @@ public final class MorpheusBle {
           case 11: return MORPHEUS_COMMAND_EREASE_PAIRED_PHONE;
           case 12: return MORPHEUS_COMMAND_PAIR_PILL;
           case 13: return MORPHEUS_COMMAND_ERROR;
+          case 14: return MORPHEUS_COMMAND_PAIR_SENSE;
+          case 15: return MORPHEUS_COMMAND_UNPAIR_PILL;
           default: return null;
         }
       }
@@ -1945,51 +700,17 @@ public final class MorpheusBle {
       return type_;
     }
 
-    // optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;
-    public static final int SELECTEDWIFIENDPOINT_FIELD_NUMBER = 3;
-    private SelectedWifiEndPoint selectedWIFIEndPoint_;
+    // optional string deviceId = 3;
+    public static final int DEVICEID_FIELD_NUMBER = 3;
+    private Object deviceId_;
     /**
-     * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-     *
-     * <pre>
-     * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-     * </pre>
+     * <code>optional string deviceId = 3;</code>
      */
-    public boolean hasSelectedWIFIEndPoint() {
+    public boolean hasDeviceId() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-     *
-     * <pre>
-     * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-     * </pre>
-     */
-    public SelectedWifiEndPoint getSelectedWIFIEndPoint() {
-      return selectedWIFIEndPoint_;
-    }
-    /**
-     * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-     *
-     * <pre>
-     * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-     * </pre>
-     */
-    public SelectedWifiEndPointOrBuilder getSelectedWIFIEndPointOrBuilder() {
-      return selectedWIFIEndPoint_;
-    }
-
-    // optional string deviceId = 4;
-    public static final int DEVICEID_FIELD_NUMBER = 4;
-    private Object deviceId_;
-    /**
-     * <code>optional string deviceId = 4;</code>
-     */
-    public boolean hasDeviceId() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional string deviceId = 4;</code>
+     * <code>optional string deviceId = 3;</code>
      */
     public String getDeviceId() {
       Object ref = deviceId_;
@@ -2006,7 +727,7 @@ public final class MorpheusBle {
       }
     }
     /**
-     * <code>optional string deviceId = 4;</code>
+     * <code>optional string deviceId = 3;</code>
      */
     public com.google.protobuf.ByteString
         getDeviceIdBytes() {
@@ -2022,21 +743,21 @@ public final class MorpheusBle {
       }
     }
 
-    // optional string accountId = 5;
-    public static final int ACCOUNTID_FIELD_NUMBER = 5;
+    // optional string accountId = 4;
+    public static final int ACCOUNTID_FIELD_NUMBER = 4;
     private Object accountId_;
     /**
-     * <code>optional string accountId = 5;</code>
+     * <code>optional string accountId = 4;</code>
      *
      * <pre>
      * Used by MORPHEUS_COMMAND_PAIRE_PILL
      * </pre>
      */
     public boolean hasAccountId() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>optional string accountId = 5;</code>
+     * <code>optional string accountId = 4;</code>
      *
      * <pre>
      * Used by MORPHEUS_COMMAND_PAIRE_PILL
@@ -2057,7 +778,7 @@ public final class MorpheusBle {
       }
     }
     /**
-     * <code>optional string accountId = 5;</code>
+     * <code>optional string accountId = 4;</code>
      *
      * <pre>
      * Used by MORPHEUS_COMMAND_PAIRE_PILL
@@ -2077,21 +798,21 @@ public final class MorpheusBle {
       }
     }
 
-    // optional .ErrorType error = 6;
-    public static final int ERROR_FIELD_NUMBER = 6;
+    // optional .ErrorType error = 5;
+    public static final int ERROR_FIELD_NUMBER = 5;
     private ErrorType error_;
     /**
-     * <code>optional .ErrorType error = 6;</code>
+     * <code>optional .ErrorType error = 5;</code>
      *
      * <pre>
      * MORPHEUS_COMMAND_ERROR
      * </pre>
      */
     public boolean hasError() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>optional .ErrorType error = 6;</code>
+     * <code>optional .ErrorType error = 5;</code>
      *
      * <pre>
      * MORPHEUS_COMMAND_ERROR
@@ -2101,13 +822,144 @@ public final class MorpheusBle {
       return error_;
     }
 
+    // optional string wifiName = 6;
+    public static final int WIFINAME_FIELD_NUMBER = 6;
+    private Object wifiName_;
+    /**
+     * <code>optional string wifiName = 6;</code>
+     */
+    public boolean hasWifiName() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional string wifiName = 6;</code>
+     */
+    public String getWifiName() {
+      Object ref = wifiName_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          wifiName_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string wifiName = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWifiNameBytes() {
+      Object ref = wifiName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        wifiName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string wifiSSID = 7;
+    public static final int WIFISSID_FIELD_NUMBER = 7;
+    private Object wifiSSID_;
+    /**
+     * <code>optional string wifiSSID = 7;</code>
+     */
+    public boolean hasWifiSSID() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    /**
+     * <code>optional string wifiSSID = 7;</code>
+     */
+    public String getWifiSSID() {
+      Object ref = wifiSSID_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          wifiSSID_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string wifiSSID = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWifiSSIDBytes() {
+      Object ref = wifiSSID_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        wifiSSID_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string wifiPassword = 8;
+    public static final int WIFIPASSWORD_FIELD_NUMBER = 8;
+    private Object wifiPassword_;
+    /**
+     * <code>optional string wifiPassword = 8;</code>
+     */
+    public boolean hasWifiPassword() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional string wifiPassword = 8;</code>
+     */
+    public String getWifiPassword() {
+      Object ref = wifiPassword_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          wifiPassword_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string wifiPassword = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWifiPasswordBytes() {
+      Object ref = wifiPassword_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        wifiPassword_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private void initFields() {
       version_ = 0;
       type_ = CommandType.MORPHEUS_COMMAND_SET_TIME;
-      selectedWIFIEndPoint_ = SelectedWifiEndPoint.getDefaultInstance();
       deviceId_ = "";
       accountId_ = "";
       error_ = ErrorType.TIME_OUT;
+      wifiName_ = "";
+      wifiSSID_ = "";
+      wifiPassword_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2121,12 +973,6 @@ public final class MorpheusBle {
       if (!hasType()) {
         memoizedIsInitialized = 0;
         return false;
-      }
-      if (hasSelectedWIFIEndPoint()) {
-        if (!getSelectedWIFIEndPoint().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
       }
       memoizedIsInitialized = 1;
       return true;
@@ -2142,16 +988,22 @@ public final class MorpheusBle {
         output.writeEnum(2, type_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeMessage(3, selectedWIFIEndPoint_);
+        output.writeBytes(3, getDeviceIdBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getDeviceIdBytes());
+        output.writeBytes(4, getAccountIdBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(5, getAccountIdBytes());
+        output.writeEnum(5, error_.getNumber());
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeEnum(6, error_.getNumber());
+        output.writeBytes(6, getWifiNameBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeBytes(7, getWifiSSIDBytes());
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeBytes(8, getWifiPasswordBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -2172,19 +1024,27 @@ public final class MorpheusBle {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, selectedWIFIEndPoint_);
+          .computeBytesSize(3, getDeviceIdBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getDeviceIdBytes());
+          .computeBytesSize(4, getAccountIdBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, getAccountIdBytes());
+          .computeEnumSize(5, error_.getNumber());
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(6, error_.getNumber());
+          .computeBytesSize(6, getWifiNameBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(7, getWifiSSIDBytes());
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(8, getWifiPasswordBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2294,7 +1154,6 @@ public final class MorpheusBle {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getSelectedWIFIEndPointFieldBuilder();
         }
       }
       private static Builder create() {
@@ -2307,18 +1166,18 @@ public final class MorpheusBle {
         bitField0_ = (bitField0_ & ~0x00000001);
         type_ = CommandType.MORPHEUS_COMMAND_SET_TIME;
         bitField0_ = (bitField0_ & ~0x00000002);
-        if (selectedWIFIEndPointBuilder_ == null) {
-          selectedWIFIEndPoint_ = SelectedWifiEndPoint.getDefaultInstance();
-        } else {
-          selectedWIFIEndPointBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000004);
         deviceId_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         accountId_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         error_ = ErrorType.TIME_OUT;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        wifiName_ = "";
         bitField0_ = (bitField0_ & ~0x00000020);
+        wifiSSID_ = "";
+        bitField0_ = (bitField0_ & ~0x00000040);
+        wifiPassword_ = "";
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
 
@@ -2358,23 +1217,27 @@ public final class MorpheusBle {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        if (selectedWIFIEndPointBuilder_ == null) {
-          result.selectedWIFIEndPoint_ = selectedWIFIEndPoint_;
-        } else {
-          result.selectedWIFIEndPoint_ = selectedWIFIEndPointBuilder_.build();
-        }
+        result.deviceId_ = deviceId_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.deviceId_ = deviceId_;
+        result.accountId_ = accountId_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.accountId_ = accountId_;
+        result.error_ = error_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.error_ = error_;
+        result.wifiName_ = wifiName_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.wifiSSID_ = wifiSSID_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.wifiPassword_ = wifiPassword_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2397,21 +1260,33 @@ public final class MorpheusBle {
         if (other.hasType()) {
           setType(other.getType());
         }
-        if (other.hasSelectedWIFIEndPoint()) {
-          mergeSelectedWIFIEndPoint(other.getSelectedWIFIEndPoint());
-        }
         if (other.hasDeviceId()) {
-          bitField0_ |= 0x00000008;
+          bitField0_ |= 0x00000004;
           deviceId_ = other.deviceId_;
           onChanged();
         }
         if (other.hasAccountId()) {
-          bitField0_ |= 0x00000010;
+          bitField0_ |= 0x00000008;
           accountId_ = other.accountId_;
           onChanged();
         }
         if (other.hasError()) {
           setError(other.getError());
+        }
+        if (other.hasWifiName()) {
+          bitField0_ |= 0x00000020;
+          wifiName_ = other.wifiName_;
+          onChanged();
+        }
+        if (other.hasWifiSSID()) {
+          bitField0_ |= 0x00000040;
+          wifiSSID_ = other.wifiSSID_;
+          onChanged();
+        }
+        if (other.hasWifiPassword()) {
+          bitField0_ |= 0x00000080;
+          wifiPassword_ = other.wifiPassword_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2425,12 +1300,6 @@ public final class MorpheusBle {
         if (!hasType()) {
           
           return false;
-        }
-        if (hasSelectedWIFIEndPoint()) {
-          if (!getSelectedWIFIEndPoint().isInitialized()) {
-            
-            return false;
-          }
         }
         return true;
       }
@@ -2523,169 +1392,16 @@ public final class MorpheusBle {
         return this;
       }
 
-      // optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;
-      private SelectedWifiEndPoint selectedWIFIEndPoint_ = SelectedWifiEndPoint.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          SelectedWifiEndPoint, SelectedWifiEndPoint.Builder, SelectedWifiEndPointOrBuilder> selectedWIFIEndPointBuilder_;
+      // optional string deviceId = 3;
+      private Object deviceId_ = "";
       /**
-       * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-       *
-       * <pre>
-       * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-       * </pre>
+       * <code>optional string deviceId = 3;</code>
        */
-      public boolean hasSelectedWIFIEndPoint() {
+      public boolean hasDeviceId() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-       *
-       * <pre>
-       * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-       * </pre>
-       */
-      public SelectedWifiEndPoint getSelectedWIFIEndPoint() {
-        if (selectedWIFIEndPointBuilder_ == null) {
-          return selectedWIFIEndPoint_;
-        } else {
-          return selectedWIFIEndPointBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-       *
-       * <pre>
-       * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-       * </pre>
-       */
-      public Builder setSelectedWIFIEndPoint(SelectedWifiEndPoint value) {
-        if (selectedWIFIEndPointBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          selectedWIFIEndPoint_ = value;
-          onChanged();
-        } else {
-          selectedWIFIEndPointBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000004;
-        return this;
-      }
-      /**
-       * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-       *
-       * <pre>
-       * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-       * </pre>
-       */
-      public Builder setSelectedWIFIEndPoint(
-          SelectedWifiEndPoint.Builder builderForValue) {
-        if (selectedWIFIEndPointBuilder_ == null) {
-          selectedWIFIEndPoint_ = builderForValue.build();
-          onChanged();
-        } else {
-          selectedWIFIEndPointBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000004;
-        return this;
-      }
-      /**
-       * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-       *
-       * <pre>
-       * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-       * </pre>
-       */
-      public Builder mergeSelectedWIFIEndPoint(SelectedWifiEndPoint value) {
-        if (selectedWIFIEndPointBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004) &&
-              selectedWIFIEndPoint_ != SelectedWifiEndPoint.getDefaultInstance()) {
-            selectedWIFIEndPoint_ =
-              SelectedWifiEndPoint.newBuilder(selectedWIFIEndPoint_).mergeFrom(value).buildPartial();
-          } else {
-            selectedWIFIEndPoint_ = value;
-          }
-          onChanged();
-        } else {
-          selectedWIFIEndPointBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000004;
-        return this;
-      }
-      /**
-       * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-       *
-       * <pre>
-       * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-       * </pre>
-       */
-      public Builder clearSelectedWIFIEndPoint() {
-        if (selectedWIFIEndPointBuilder_ == null) {
-          selectedWIFIEndPoint_ = SelectedWifiEndPoint.getDefaultInstance();
-          onChanged();
-        } else {
-          selectedWIFIEndPointBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000004);
-        return this;
-      }
-      /**
-       * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-       *
-       * <pre>
-       * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-       * </pre>
-       */
-      public SelectedWifiEndPoint.Builder getSelectedWIFIEndPointBuilder() {
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return getSelectedWIFIEndPointFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-       *
-       * <pre>
-       * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-       * </pre>
-       */
-      public SelectedWifiEndPointOrBuilder getSelectedWIFIEndPointOrBuilder() {
-        if (selectedWIFIEndPointBuilder_ != null) {
-          return selectedWIFIEndPointBuilder_.getMessageOrBuilder();
-        } else {
-          return selectedWIFIEndPoint_;
-        }
-      }
-      /**
-       * <code>optional .SelectedWifiEndPoint selectedWIFIEndPoint = 3;</code>
-       *
-       * <pre>
-       * MORPHEUS_COMMAND_SET_WIFI_ENDPOINT, MORPHEUS_COMMAND_GET_WIFI_ENDPOINT
-       * </pre>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          SelectedWifiEndPoint, SelectedWifiEndPoint.Builder, SelectedWifiEndPointOrBuilder>
-          getSelectedWIFIEndPointFieldBuilder() {
-        if (selectedWIFIEndPointBuilder_ == null) {
-          selectedWIFIEndPointBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              SelectedWifiEndPoint, SelectedWifiEndPoint.Builder, SelectedWifiEndPointOrBuilder>(
-                  selectedWIFIEndPoint_,
-                  getParentForChildren(),
-                  isClean());
-          selectedWIFIEndPoint_ = null;
-        }
-        return selectedWIFIEndPointBuilder_;
-      }
-
-      // optional string deviceId = 4;
-      private Object deviceId_ = "";
-      /**
-       * <code>optional string deviceId = 4;</code>
-       */
-      public boolean hasDeviceId() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional string deviceId = 4;</code>
+       * <code>optional string deviceId = 3;</code>
        */
       public String getDeviceId() {
         Object ref = deviceId_;
@@ -2699,7 +1415,7 @@ public final class MorpheusBle {
         }
       }
       /**
-       * <code>optional string deviceId = 4;</code>
+       * <code>optional string deviceId = 3;</code>
        */
       public com.google.protobuf.ByteString
           getDeviceIdBytes() {
@@ -2715,55 +1431,55 @@ public final class MorpheusBle {
         }
       }
       /**
-       * <code>optional string deviceId = 4;</code>
+       * <code>optional string deviceId = 3;</code>
        */
       public Builder setDeviceId(
           String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  bitField0_ |= 0x00000004;
         deviceId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string deviceId = 4;</code>
+       * <code>optional string deviceId = 3;</code>
        */
       public Builder clearDeviceId() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         deviceId_ = getDefaultInstance().getDeviceId();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string deviceId = 4;</code>
+       * <code>optional string deviceId = 3;</code>
        */
       public Builder setDeviceIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  bitField0_ |= 0x00000004;
         deviceId_ = value;
         onChanged();
         return this;
       }
 
-      // optional string accountId = 5;
+      // optional string accountId = 4;
       private Object accountId_ = "";
       /**
-       * <code>optional string accountId = 5;</code>
+       * <code>optional string accountId = 4;</code>
        *
        * <pre>
        * Used by MORPHEUS_COMMAND_PAIRE_PILL
        * </pre>
        */
       public boolean hasAccountId() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>optional string accountId = 5;</code>
+       * <code>optional string accountId = 4;</code>
        *
        * <pre>
        * Used by MORPHEUS_COMMAND_PAIRE_PILL
@@ -2781,7 +1497,7 @@ public final class MorpheusBle {
         }
       }
       /**
-       * <code>optional string accountId = 5;</code>
+       * <code>optional string accountId = 4;</code>
        *
        * <pre>
        * Used by MORPHEUS_COMMAND_PAIRE_PILL
@@ -2801,7 +1517,7 @@ public final class MorpheusBle {
         }
       }
       /**
-       * <code>optional string accountId = 5;</code>
+       * <code>optional string accountId = 4;</code>
        *
        * <pre>
        * Used by MORPHEUS_COMMAND_PAIRE_PILL
@@ -2812,26 +1528,26 @@ public final class MorpheusBle {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  bitField0_ |= 0x00000008;
         accountId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string accountId = 5;</code>
+       * <code>optional string accountId = 4;</code>
        *
        * <pre>
        * Used by MORPHEUS_COMMAND_PAIRE_PILL
        * </pre>
        */
       public Builder clearAccountId() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         accountId_ = getDefaultInstance().getAccountId();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string accountId = 5;</code>
+       * <code>optional string accountId = 4;</code>
        *
        * <pre>
        * Used by MORPHEUS_COMMAND_PAIRE_PILL
@@ -2842,26 +1558,26 @@ public final class MorpheusBle {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  bitField0_ |= 0x00000008;
         accountId_ = value;
         onChanged();
         return this;
       }
 
-      // optional .ErrorType error = 6;
+      // optional .ErrorType error = 5;
       private ErrorType error_ = ErrorType.TIME_OUT;
       /**
-       * <code>optional .ErrorType error = 6;</code>
+       * <code>optional .ErrorType error = 5;</code>
        *
        * <pre>
        * MORPHEUS_COMMAND_ERROR
        * </pre>
        */
       public boolean hasError() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>optional .ErrorType error = 6;</code>
+       * <code>optional .ErrorType error = 5;</code>
        *
        * <pre>
        * MORPHEUS_COMMAND_ERROR
@@ -2871,7 +1587,7 @@ public final class MorpheusBle {
         return error_;
       }
       /**
-       * <code>optional .ErrorType error = 6;</code>
+       * <code>optional .ErrorType error = 5;</code>
        *
        * <pre>
        * MORPHEUS_COMMAND_ERROR
@@ -2881,21 +1597,243 @@ public final class MorpheusBle {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
         error_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .ErrorType error = 6;</code>
+       * <code>optional .ErrorType error = 5;</code>
        *
        * <pre>
        * MORPHEUS_COMMAND_ERROR
        * </pre>
        */
       public Builder clearError() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         error_ = ErrorType.TIME_OUT;
+        onChanged();
+        return this;
+      }
+
+      // optional string wifiName = 6;
+      private Object wifiName_ = "";
+      /**
+       * <code>optional string wifiName = 6;</code>
+       */
+      public boolean hasWifiName() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional string wifiName = 6;</code>
+       */
+      public String getWifiName() {
+        Object ref = wifiName_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          wifiName_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>optional string wifiName = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWifiNameBytes() {
+        Object ref = wifiName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          wifiName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string wifiName = 6;</code>
+       */
+      public Builder setWifiName(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        wifiName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string wifiName = 6;</code>
+       */
+      public Builder clearWifiName() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        wifiName_ = getDefaultInstance().getWifiName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string wifiName = 6;</code>
+       */
+      public Builder setWifiNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        wifiName_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string wifiSSID = 7;
+      private Object wifiSSID_ = "";
+      /**
+       * <code>optional string wifiSSID = 7;</code>
+       */
+      public boolean hasWifiSSID() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional string wifiSSID = 7;</code>
+       */
+      public String getWifiSSID() {
+        Object ref = wifiSSID_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          wifiSSID_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>optional string wifiSSID = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWifiSSIDBytes() {
+        Object ref = wifiSSID_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          wifiSSID_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string wifiSSID = 7;</code>
+       */
+      public Builder setWifiSSID(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000040;
+        wifiSSID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string wifiSSID = 7;</code>
+       */
+      public Builder clearWifiSSID() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        wifiSSID_ = getDefaultInstance().getWifiSSID();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string wifiSSID = 7;</code>
+       */
+      public Builder setWifiSSIDBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000040;
+        wifiSSID_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string wifiPassword = 8;
+      private Object wifiPassword_ = "";
+      /**
+       * <code>optional string wifiPassword = 8;</code>
+       */
+      public boolean hasWifiPassword() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional string wifiPassword = 8;</code>
+       */
+      public String getWifiPassword() {
+        Object ref = wifiPassword_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          wifiPassword_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>optional string wifiPassword = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWifiPasswordBytes() {
+        Object ref = wifiPassword_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          wifiPassword_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string wifiPassword = 8;</code>
+       */
+      public Builder setWifiPassword(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000080;
+        wifiPassword_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string wifiPassword = 8;</code>
+       */
+      public Builder clearWifiPassword() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        wifiPassword_ = getDefaultInstance().getWifiPassword();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string wifiPassword = 8;</code>
+       */
+      public Builder setWifiPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000080;
+        wifiPassword_ = value;
         onChanged();
         return this;
       }
@@ -2912,16 +1850,6 @@ public final class MorpheusBle {
   }
 
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_WifiEndPoint_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_WifiEndPoint_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_SelectedWifiEndPoint_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_SelectedWifiEndPoint_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_MorpheusCommand_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -2935,55 +1863,44 @@ public final class MorpheusBle {
       descriptor;
   static {
     String[] descriptorData = {
-      "\n\033morpheus/morpheus_ble.proto\"*\n\014WifiEnd" +
-      "Point\022\014\n\004name\030\001 \001(\t\022\014\n\004ssid\030\002 \002(\t\"I\n\024Sel" +
-      "ectedWifiEndPoint\022\037\n\010endPoint\030\001 \001(\0132\r.Wi" +
-      "fiEndPoint\022\020\n\010password\030\002 \001(\t\"\317\005\n\017Morpheu" +
-      "sCommand\022\017\n\007version\030\001 \002(\005\022*\n\004type\030\002 \002(\0162" +
-      "\034.MorpheusCommand.CommandType\0223\n\024selecte" +
-      "dWIFIEndPoint\030\003 \001(\0132\025.SelectedWifiEndPoi" +
-      "nt\022\020\n\010deviceId\030\004 \001(\t\022\021\n\taccountId\030\005 \001(\t\022" +
-      "\031\n\005error\030\006 \001(\0162\n.ErrorType\"\211\004\n\013CommandTy" +
-      "pe\022\035\n\031MORPHEUS_COMMAND_SET_TIME\020\000\022\035\n\031MOR",
-      "PHEUS_COMMAND_GET_TIME\020\001\022&\n\"MORPHEUS_COM" +
-      "MAND_SET_WIFI_ENDPOINT\020\002\022&\n\"MORPHEUS_COM" +
-      "MAND_GET_WIFI_ENDPOINT\020\003\022\037\n\033MORPHEUS_COM" +
-      "MAND_SET_ALARMS\020\004\022\037\n\033MORPHEUS_COMMAND_GE" +
-      "T_ALARMS\020\005\022+\n\'MORPHEUS_COMMAND_SWITCH_TO" +
-      "_PAIRING_MODE\020\006\022*\n&MORPHEUS_COMMAND_SWIT" +
-      "CH_TO_NORMAL_MODE\020\007\022#\n\037MORPHEUS_COMMAND_" +
-      "START_WIFISCAN\020\010\022\"\n\036MORPHEUS_COMMAND_STO" +
-      "P_WIFISCAN\020\t\022\"\n\036MORPHEUS_COMMAND_GET_DEV" +
-      "ICE_ID\020\n\022(\n$MORPHEUS_COMMAND_EREASE_PAIR",
-      "ED_PHONE\020\013\022\036\n\032MORPHEUS_COMMAND_PAIR_PILL" +
-      "\020\014\022\032\n\026MORPHEUS_COMMAND_ERROR\020\r*z\n\tErrorT" +
-      "ype\022\014\n\010TIME_OUT\020\000\022\021\n\rNETWORK_ERROR\020\001\022\031\n\025" +
-      "DEVICE_ALREADY_PAIRED\020\002\022\027\n\023INTERNAL_DATA" +
-      "_ERROR\020\003\022\030\n\024DEVICE_DATABASE_FULL\020\004"
+      "\n\033morpheus/morpheus_ble.proto\"\227\006\n\017Morphe" +
+      "usCommand\022\017\n\007version\030\001 \002(\005\022*\n\004type\030\002 \002(\016" +
+      "2\034.MorpheusCommand.CommandType\022\020\n\010device" +
+      "Id\030\003 \001(\t\022\021\n\taccountId\030\004 \001(\t\022\031\n\005error\030\005 \001" +
+      "(\0162\n.ErrorType\022\020\n\010wifiName\030\006 \001(\t\022\020\n\010wifi" +
+      "SSID\030\007 \001(\t\022\024\n\014wifiPassword\030\010 \001(\t\"\314\004\n\013Com" +
+      "mandType\022\035\n\031MORPHEUS_COMMAND_SET_TIME\020\000\022" +
+      "\035\n\031MORPHEUS_COMMAND_GET_TIME\020\001\022&\n\"MORPHE" +
+      "US_COMMAND_SET_WIFI_ENDPOINT\020\002\022&\n\"MORPHE" +
+      "US_COMMAND_GET_WIFI_ENDPOINT\020\003\022\037\n\033MORPHE",
+      "US_COMMAND_SET_ALARMS\020\004\022\037\n\033MORPHEUS_COMM" +
+      "AND_GET_ALARMS\020\005\022+\n\'MORPHEUS_COMMAND_SWI" +
+      "TCH_TO_PAIRING_MODE\020\006\022*\n&MORPHEUS_COMMAN" +
+      "D_SWITCH_TO_NORMAL_MODE\020\007\022#\n\037MORPHEUS_CO" +
+      "MMAND_START_WIFISCAN\020\010\022\"\n\036MORPHEUS_COMMA" +
+      "ND_STOP_WIFISCAN\020\t\022\"\n\036MORPHEUS_COMMAND_G" +
+      "ET_DEVICE_ID\020\n\022(\n$MORPHEUS_COMMAND_EREAS" +
+      "E_PAIRED_PHONE\020\013\022\036\n\032MORPHEUS_COMMAND_PAI" +
+      "R_PILL\020\014\022\032\n\026MORPHEUS_COMMAND_ERROR\020\r\022\037\n\033" +
+      "MORPHEUS_COMMAND_PAIR_SENSE\020\016\022 \n\034MORPHEU",
+      "S_COMMAND_UNPAIR_PILL\020\017*\257\001\n\tErrorType\022\014\n" +
+      "\010TIME_OUT\020\000\022\021\n\rNETWORK_ERROR\020\001\022\031\n\025DEVICE" +
+      "_ALREADY_PAIRED\020\002\022\027\n\023INTERNAL_DATA_ERROR" +
+      "\020\003\022\030\n\024DEVICE_DATABASE_FULL\020\004\022\024\n\020DEVICE_N" +
+      "O_MEMORY\020\005\022\035\n\031INTERNAL_OPERATION_FAILED\020" +
+      "\006"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_WifiEndPoint_descriptor =
-            getDescriptor().getMessageTypes().get(0);
-          internal_static_WifiEndPoint_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_WifiEndPoint_descriptor,
-              new String[] { "Name", "Ssid", });
-          internal_static_SelectedWifiEndPoint_descriptor =
-            getDescriptor().getMessageTypes().get(1);
-          internal_static_SelectedWifiEndPoint_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_SelectedWifiEndPoint_descriptor,
-              new String[] { "EndPoint", "Password", });
           internal_static_MorpheusCommand_descriptor =
-            getDescriptor().getMessageTypes().get(2);
+            getDescriptor().getMessageTypes().get(0);
           internal_static_MorpheusCommand_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_MorpheusCommand_descriptor,
-              new String[] { "Version", "Type", "SelectedWIFIEndPoint", "DeviceId", "AccountId", "Error", });
+              new String[] { "Version", "Type", "DeviceId", "AccountId", "Error", "WifiName", "WifiSSID", "WifiPassword", });
           return null;
         }
       };

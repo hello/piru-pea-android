@@ -24,6 +24,15 @@
         android:textSize="40dp"
         android:layout_marginTop="10dp"/>
 
+    <com.echo.holographlibrary.BarGraph
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/bgSleepCycle"
+        />
+
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -34,14 +43,16 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Start Service"
-        android:id="@+id/btnStartAlarmService"/>
+        android:text="Cancel Alarm"
+        android:id="@+id/btnEndAlarmService"/>
+
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Stop Service"
-        android:id="@+id/btnEndAlarmService"/>
+        android:text="Test Ringtone"
+        android:layout_marginTop="30dp"
+        android:id="@+id/btnRingtoneTest"/>
 
 
 </LinearLayout>
