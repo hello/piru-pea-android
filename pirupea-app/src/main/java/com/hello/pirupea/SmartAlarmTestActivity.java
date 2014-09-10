@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.echo.holographlibrary.Bar;
 import com.echo.holographlibrary.BarGraph;
 import com.hello.pirupea.settings.LocalSettings;
+import com.hello.pirupea.settings.PillUserMap;
 import com.hello.suripu.algorithm.core.Segment;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
 import com.sleepbot.datetimepicker.time.TimePickerDialog;
@@ -37,6 +38,11 @@ public class SmartAlarmTestActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_smart_alarm_test);
+
+        final String email = LocalSettings.getLastLoginUser();
+        final String targetPillName = new PillUserMap().get(email);
+
+        this.setTitle("Target: " + targetPillName);
 
         this.cancelAlarm = (Button) findViewById(R.id.btnEndAlarmService);
         this.btnSetAlarm = (Button) findViewById(R.id.btnSetAlarmTime);

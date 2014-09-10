@@ -27,6 +27,7 @@ import com.hello.pirupea.core.IO;
 import com.hello.pirupea.core.SharedApplication;
 import com.hello.pirupea.datasource.InMemoryPillDataSource;
 import com.hello.pirupea.settings.LocalSettings;
+import com.hello.pirupea.settings.PillUserMap;
 import com.hello.suripu.algorithm.core.AmplitudeData;
 import com.hello.suripu.algorithm.core.DataSource;
 import com.hello.suripu.algorithm.core.Segment;
@@ -73,7 +74,7 @@ public class SmartAlarmTestService extends Service {
 
     private WakeLock cpuWakeLock;
 
-    private Handler handler;
+    private static Handler handler;
 
     private BleOperationCallback<Void> connectionCallback = new BleOperationCallback<Void>() {
         @Override
@@ -241,17 +242,19 @@ public class SmartAlarmTestService extends Service {
                 e.printStackTrace();
             }
 
+            pill.disconnect();
+
             suripuClient.uploadPillData(pillData, new Callback<Void>() {
                 @Override
                 public void success(final Void aVoid, final Response response) {
                     IO.log("upload data for pill " + sender.getId() + " finished.");
-                    pill.disconnect();
+
                 }
 
                 @Override
                 public void failure(final RetrofitError error) {
                     IO.log("upload data for pill " + sender.getId() + " failed: " + error.getResponse().getReason());
-                    pill.disconnect();
+
                 }
             });
         }
@@ -286,8 +289,12 @@ public class SmartAlarmTestService extends Service {
         @Override
         public void onCompleted(final HelloBleDevice sender, final Set<Pill> data) {
             int pairedCount = 0;
+
+            final String email = LocalSettings.getLastLoginUser();
+            final String targetPillName = new PillUserMap().get(email);
+
             for(final Pill pill:data){
-                if(pill.isPaired()){
+                if(pill.getName().equals(targetPillName)){
                     IO.log("Paired pill detected: " + pill.getName());
                     final RetryInfo retryInfo = new RetryInfo();
                     retryInfo.pill = pill;
@@ -402,6 +409,7 @@ public class SmartAlarmTestService extends Service {
     public static class AlarmService extends IntentService {
         public static final String EXTRA_TYPE = AlarmService.class.getName() + ".extra_type";
 
+
         public AlarmService(){
             super("Alarm Service");
 
@@ -421,10 +429,15 @@ public class SmartAlarmTestService extends Service {
     }
 
     public static void ring(){
+        final PowerManager powerManager = (PowerManager) SharedApplication.getAppContext().getSystemService(Context.POWER_SERVICE);
+        final WakeLock cpuWakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "RingWakeLock");
+        cpuWakeLock.acquire();
 
         try {
-
-            final Handler handler = new Handler();
+            if(handler == null) {
+                handler = new Handler();
+            }
+            
             final Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
             final Ringtone ringtone = RingtoneManager.getRingtone(SharedApplication.getAppContext(), notification);
             final AudioManager audioManager = (AudioManager) SharedApplication.getAppContext().getSystemService(AUDIO_SERVICE);
@@ -438,6 +451,8 @@ public class SmartAlarmTestService extends Service {
                 public void run() {
                     ringtone.stop();
                     audioManager.setStreamVolume(ringtone.getStreamType(), currentVolume, 0);
+
+                    cpuWakeLock.release();
                 }
             }, 6000);
 
@@ -452,10 +467,6 @@ public class SmartAlarmTestService extends Service {
         intent.putExtra(AlarmService.EXTRA_TYPE, 1);
 
         final PendingIntent alarmIntent = PendingIntent.getService(SharedApplication.getAppContext(), 0, intent, 0);
-
-        if(LocalSettings.getAlarmTime() == 0){
-            return;
-        }
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP,
                 ringTime.getMillis(),
