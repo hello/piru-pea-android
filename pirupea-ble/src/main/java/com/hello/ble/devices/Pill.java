@@ -434,11 +434,15 @@ public class Pill extends HelloBleDevice {
     }
 
     private void updateDeviceId(final BleOperationCallback<Void> followupOperationCallback){
+        this.transmissionLayer.unregisterDataHandler(this.motionPacketHandler);
         this.deviceIdDataHandler.setDataCallback(new BleOperationCallback<String>() {
             @Override
             public void onCompleted(final HelloBleDevice sender, final String data) {
                 Pill.this.deviceIdDataHandler.setDataCallback(null);
                 Pill.this.setId(data);
+
+                Pill.this.transmissionLayer.registerDataHandler(Pill.this.motionPacketHandler);
+
                 if(followupOperationCallback != null){
                     followupOperationCallback.onCompleted(sender, null);
                 }
@@ -447,6 +451,8 @@ public class Pill extends HelloBleDevice {
             @Override
             public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
                 Pill.this.deviceIdDataHandler.setDataCallback(null);
+                Pill.this.transmissionLayer.registerDataHandler(Pill.this.motionPacketHandler);
+
                 if(followupOperationCallback != null){
                     followupOperationCallback.onFailed(sender, reason, errorCode);
                 }

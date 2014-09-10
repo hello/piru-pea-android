@@ -13,13 +13,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class TempTrackerData {
 
     public final Long timestamp;
-    public final Integer value;
+    public final Long value;
     public final String trackerId;
 
     @JsonCreator
     public TempTrackerData(
             @JsonProperty("timestamp") Long timestamp,
-            @JsonProperty("value") Integer value,
+            @JsonProperty("value") Long value,
             @JsonProperty("tracker_id") String trackerId) {
 
         this.timestamp = timestamp;

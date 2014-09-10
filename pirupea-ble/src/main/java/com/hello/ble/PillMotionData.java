@@ -22,9 +22,9 @@ public class PillMotionData {
     public final static int STRUCT_HEADER_SIZE = 1 + 1 + 2 + 8 + 2;
 
     public final DateTime timestamp;
-    public final Integer maxAmplitude;
+    public final Long maxAmplitude;
 
-    public PillMotionData(final DateTime timestamp, final Integer maxAmplitude){
+    public PillMotionData(final DateTime timestamp, final Long maxAmplitude){
         this.timestamp = timestamp;
         this.maxAmplitude = maxAmplitude;
     }
@@ -49,12 +49,15 @@ public class PillMotionData {
 
             int validIndex = pillInputStream.readUnsignedShort();
             int currentIndex = validIndex == 0xFFFF ? 0 : validIndex + 1;
-            final int[] valueList = new int[(structLength - STRUCT_HEADER_SIZE) / (unitLength / 8)];
+            final long[] valueList = new long[(structLength - STRUCT_HEADER_SIZE) / (unitLength / 8)];
             for (int i = 0; i < valueList.length; i++) {
                 if(unitLength == 16) {
-                    valueList[i] = pillInputStream.readShort();
+                    valueList[i] = pillInputStream.readUnsignedShort();
                 }else if(unitLength == 32){
                     valueList[i] = pillInputStream.readInt();
+                    if(valueList[i] < 0){
+                        valueList[i] += 0xFFFFFFFF - 1;
+                    }
                 }
 
             }
@@ -78,7 +81,7 @@ public class PillMotionData {
                 int index = validIndex;
                 while (list.size() < valueList.length - 1) {
                     if(index != currentIndex) {
-                        int value = valueList[index] - 1;
+                        long value = valueList[index] - 1;
                         final PillMotionData pillMotionData = new PillMotionData(currentDataTime, value);
                         list.add(0, pillMotionData);
                         currentDataTime = currentDataTime.minusMinutes(1);
