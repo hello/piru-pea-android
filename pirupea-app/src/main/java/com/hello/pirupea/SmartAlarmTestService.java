@@ -253,8 +253,11 @@ public class SmartAlarmTestService extends Service {
 
                 @Override
                 public void failure(final RetrofitError error) {
-                    IO.log("upload data for pill " + sender.getId() + " failed: " + error.getResponse().getReason());
-
+                    if(error.isNetworkError()){
+                        IO.log("upload data for pill " + sender.getId() + " failed: no network.");
+                    }else {
+                        IO.log("upload data for pill " + sender.getId() + " failed: " + error.getResponse().getReason());
+                    }
                 }
             });
         }
@@ -437,7 +440,7 @@ public class SmartAlarmTestService extends Service {
             if(handler == null) {
                 handler = new Handler();
             }
-            
+
             final Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
             final Ringtone ringtone = RingtoneManager.getRingtone(SharedApplication.getAppContext(), notification);
             final AudioManager audioManager = (AudioManager) SharedApplication.getAppContext().getSystemService(AUDIO_SERVICE);
