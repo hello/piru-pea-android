@@ -76,7 +76,16 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_smart_alarm_test" >
         </activity>
+        <activity
+            android:name="no.nordicsemi.android.nrftoolbox.dfu.DfuActivity"
+            android:icon="@drawable/ic_dfu_feature"
+            android:label="@string/dfu_feature_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="no.nordicsemi.android.nrftoolbox.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".SmartAlarmTestService$AlarmService"/>
         <service android:name=".SmartAlarmTestService$RingService"/>

@@ -5,7 +5,8 @@
   The information contained herein is property of Nordic Semiconductor ASA.
   Terms and conditions of usage are described in detail in NORDIC SEMICONDUCTOR STANDARD SOFTWARE LICENSE AGREEMENT.
   Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
-  This heading must NOT be removed from the file.-->
+  This heading must NOT be removed from the file.
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="no.nordicsemi.android.nrftoolbox"
     android:versionCode="17"
@@ -48,7 +49,7 @@
             android:launchMode="singleTask" >
         </activity>
         <!-- Plug-in activities -->
-        <activity
+       <!-- <activity
             android:name="no.nordicsemi.android.nrftoolbox.dfu.DfuActivity"
             android:icon="@drawable/ic_dfu_feature"
             android:label="@string/dfu_feature_title" >
@@ -57,7 +58,7 @@
 
                 <category android:name="no.nordicsemi.android.nrftoolbox.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity>-->
         <activity
             android:name="no.nordicsemi.android.nrftoolbox.dfu.settings.SettingsActivity"
             android:label="@string/dfu_settings_title" />
