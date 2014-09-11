@@ -233,7 +233,8 @@ public class SmartAlarmTestService extends Service {
             LocalSettings.setSleepCycles(segments);
             final File jsonFile = IO.getFileByDate(DateTime.now(), "cycles", "json");
 
-            getSmartAlarmTimestamp(segments, LocalSettings.getAlarmTime());
+            final DateTime smartAlarmTime = getSmartAlarmTimestamp(segments, LocalSettings.getAlarmTime());
+            setRingTime(smartAlarmTime);
 
             try {
                 final String jsonSegments = (new ObjectMapper()).writeValueAsString(segments);
@@ -354,7 +355,7 @@ public class SmartAlarmTestService extends Service {
             e.printStackTrace();
         }
 
-        handler = new Handler();
+        handler = new Handler(SharedApplication.getAppContext().getMainLooper());
 
         // Scan for 20 seconds to pickup all pills around.
         IO.log("Discovering pills...");
@@ -377,7 +378,7 @@ public class SmartAlarmTestService extends Service {
     }
 
 
-    private void getSmartAlarmTimestamp(final List<Segment> sleepCycles, long alarmDeadline){
+    public static DateTime getSmartAlarmTimestamp(final List<Segment> sleepCycles, long alarmDeadline){
         final Segment lastCycle = sleepCycles.get(sleepCycles.size() - 1);
         long deepSleepMoment = lastCycle.getEndTimestamp() + 20 * DateTimeConstants.MILLIS_PER_MINUTE;
         long dataCollectionMoment = alarmDeadline - 20 * DateTimeConstants.MILLIS_PER_MINUTE;
@@ -387,10 +388,13 @@ public class SmartAlarmTestService extends Service {
         final Random random = new Random();
 
         if(possibleSpanInMinutes > 0) {
+            IO.log("User still in light sleep. Next deep sleep moment: " + new DateTime(deepSleepMoment));
             smartAlarmTime = smartAlarmTime.minusMinutes(20).plusMinutes(random.nextInt(possibleSpanInMinutes) + 1);
         }else{
             // User already in deep sleep.
             long nextLightSleepMoment = lastCycle.getEndTimestamp() + (int)(1.4 * DateTimeConstants.MILLIS_PER_HOUR);
+            IO.log("User already in deep sleep. Next light sleep moment: " + new DateTime(nextLightSleepMoment));
+
             if(nextLightSleepMoment > dataCollectionMoment && nextLightSleepMoment < alarmDeadline){
                 smartAlarmTime = new DateTime(nextLightSleepMoment);
             }else {
@@ -399,13 +403,32 @@ public class SmartAlarmTestService extends Service {
         }
 
         IO.log("Smart alarm time: " + smartAlarmTime);
-        setRingTime(smartAlarmTime);
+
+        return smartAlarmTime;
 
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    public static class RingService extends IntentService {
+        // It looks like if we use the same IntentService for both
+        // data collection and ring, they will conflict to each other on SOME phones.
+        // It is a better idea to split them rather to register the same intent with different
+        // extras.
+        // This is Android.
+        
+        public RingService(){
+            super("Ring Service");
+        }
+
+        @Override
+        protected void onHandleIntent(final Intent intent) {
+            ring();
+        }
+
     }
 
 
@@ -420,14 +443,8 @@ public class SmartAlarmTestService extends Service {
 
         @Override
         protected void onHandleIntent(final Intent intent) {
+            startService(new Intent(this, SmartAlarmTestService.class));
 
-            final int type = intent.getIntExtra(EXTRA_TYPE, 0);
-
-            if(type == 0) {
-                startService(new Intent(this, SmartAlarmTestService.class));
-            }else if(type == 1){
-                ring();
-            }
         }
     }
 
@@ -438,7 +455,7 @@ public class SmartAlarmTestService extends Service {
 
         try {
             if(handler == null) {
-                handler = new Handler();
+                handler = new Handler(SharedApplication.getAppContext().getMainLooper());
             }
 
             final Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
@@ -447,11 +464,12 @@ public class SmartAlarmTestService extends Service {
 
             final int currentVolume = audioManager.getStreamVolume(ringtone.getStreamType());
             audioManager.setStreamVolume(ringtone.getStreamType(), audioManager.getStreamMaxVolume(ringtone.getStreamType()), 0);
-
+            IO.log("Ring started.");
             ringtone.play();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    IO.log("Ring stop.");
                     ringtone.stop();
                     audioManager.setStreamVolume(ringtone.getStreamType(), currentVolume, 0);
 
@@ -466,14 +484,14 @@ public class SmartAlarmTestService extends Service {
 
     public static void setRingTime(final DateTime ringTime){
         final AlarmManager alarmManager = (AlarmManager) SharedApplication.getAppContext().getSystemService(Context.ALARM_SERVICE);
-        final Intent intent = new Intent(SharedApplication.getAppContext(), AlarmService.class);
-        intent.putExtra(AlarmService.EXTRA_TYPE, 1);
+        final Intent intent = new Intent(SharedApplication.getAppContext(), RingService.class);
 
         final PendingIntent alarmIntent = PendingIntent.getService(SharedApplication.getAppContext(), 0, intent, 0);
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP,
                 ringTime.getMillis(),
                 alarmIntent);
+        IO.log("Ring scheduled for " + ringTime);
     }
 
     public static void setNextAlarm(final DateTime alarmTime){
@@ -509,5 +527,9 @@ public class SmartAlarmTestService extends Service {
         final Intent intent = new Intent(SharedApplication.getAppContext(), AlarmService.class);
         final PendingIntent alarmIntent = PendingIntent.getService(SharedApplication.getAppContext(), 0, intent, 0);
         alarmManager.cancel(alarmIntent);
+
+        final Intent ringIntent = new Intent(SharedApplication.getAppContext(), RingService.class);
+        final PendingIntent pendingRingIntent = PendingIntent.getService(SharedApplication.getAppContext(), 0, ringIntent, 0);
+        alarmManager.cancel(pendingRingIntent);
     }
 }

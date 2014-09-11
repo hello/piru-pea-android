@@ -52,7 +52,7 @@ public class SmartAlarmTestActivity extends FragmentActivity {
         this.btnRingtoneTest.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View view) {
-                SmartAlarmTestService.ring();
+                SmartAlarmTestService.setRingTime(DateTime.now().plusSeconds(3));
             }
         });
 
