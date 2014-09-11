@@ -414,6 +414,12 @@ public class SmartAlarmTestService extends Service {
     }
 
     public static class RingService extends IntentService {
+        // It looks like if we use the same IntentService for both
+        // data collection and ring, they will conflict to each other on SOME phones.
+        // It is a better idea to split them rather to register the same intent with different
+        // extras.
+        // This is Android.
+        
         public RingService(){
             super("Ring Service");
         }
