@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merger version="2" >
 
-    <dataSet config="unspecified" >
-        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/assets" />
-    </dataSet>
     <dataSet config="main" >
         <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/assets" >
             <file

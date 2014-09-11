@@ -347,6 +347,7 @@ public class DfuActivity extends Activity implements LoaderCallbacks<Cursor>, Sc
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
+        /*
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			onBackPressed();
@@ -359,7 +360,7 @@ public class DfuActivity extends Activity implements LoaderCallbacks<Cursor>, Sc
 			final Intent intent = new Intent(this, SettingsActivity.class);
 			startActivity(intent);
 			break;
-		}
+		}*/
 		return true;
 	}
 

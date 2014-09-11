@@ -90,7 +90,7 @@ public class GlucoseActivity extends BleProfileExpandableListActivity implements
 
 	@Override
 	public boolean onMenuItemClick(final MenuItem item) {
-		switch (item.getItemId()) {
+		/*switch (item.getItemId()) {
 		case R.id.action_refresh:
 			mGlucoseManager.refreshRecords();
 			break;
@@ -103,7 +103,7 @@ public class GlucoseActivity extends BleProfileExpandableListActivity implements
 		case R.id.action_delete_all:
 			mGlucoseManager.deleteAllRecords();
 			break;
-		}
+		}*/
 		return true;
 	}
 

@@ -139,6 +139,7 @@ public abstract class BleProfileExpandableListActivity extends ExpandableListAct
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
+        /*
 		final int id = item.getItemId();
 		switch (id) {
 		case android.R.id.home:
@@ -150,7 +151,7 @@ public abstract class BleProfileExpandableListActivity extends ExpandableListAct
 			break;
 		default:
 			return onOptionsItemSelected(id);
-		}
+		}*/
 		return true;
 	}
 

@@ -97,12 +97,11 @@ public class FeaturesActivity extends Activity {
 			return true;
 		}
 
-		switch (item.getItemId()) {
-		case R.id.action_about:
+/*
+		if(item.getItemId() == R.id.action_about){
 			final AppHelpFragment fragment = AppHelpFragment.getInstance(R.string.about_text, true);
 			fragment.show(getFragmentManager(), null);
-			break;
-		}
+		}*/
 		return true;
 	}
 

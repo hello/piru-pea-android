@@ -316,6 +316,7 @@ public abstract class BleProfileServiceReadyActivity<E extends BleProfileService
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
+        /*
 		final int id = item.getItemId();
 		switch (id) {
 		case android.R.id.home:
@@ -327,7 +328,7 @@ public abstract class BleProfileServiceReadyActivity<E extends BleProfileService
 			break;
 		default:
 			return onOptionsItemSelected(id);
-		}
+		}*/
 		return true;
 	}
 

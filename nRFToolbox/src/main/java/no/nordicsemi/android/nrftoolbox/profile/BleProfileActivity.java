@@ -142,6 +142,7 @@ public abstract class BleProfileActivity extends Activity implements BleManagerC
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
+        /*
 		final int id = item.getItemId();
 		switch (id) {
 		case android.R.id.home:
@@ -153,7 +154,7 @@ public abstract class BleProfileActivity extends Activity implements BleManagerC
 			break;
 		default:
 			return onOptionsItemSelected(id);
-		}
+		}*/
 		return true;
 	}
 

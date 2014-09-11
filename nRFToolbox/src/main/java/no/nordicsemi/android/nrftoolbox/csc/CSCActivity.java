@@ -82,12 +82,13 @@ public class CSCActivity extends BleProfileServiceReadyActivity<CSCService.CSCBi
 
 	@Override
 	protected boolean onOptionsItemSelected(final int itemId) {
+        /*
 		switch (itemId) {
 		case R.id.action_settings:
 			final Intent intent = new Intent(this, SettingsActivity.class);
 			startActivity(intent);
 			break;
-		}
+		}*/
 		return true;
 	}
 
