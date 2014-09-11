@@ -1,0 +1,2212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="unspecified" >
+        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res" >
+            <file
+                name="stat_dfu"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res/drawable-hdpi-v4/stat_dfu.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="stat_dfu"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res/drawable-xhdpi-v4/stat_dfu.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res/values/values.xml"
+                qualifiers="" >
+                <string name="dfu_status_error" >Upload failed
+                </string>
+                <string name="dfu_status_validating_msg" >Validating…
+                </string>
+                <string name="dfu_status_starting" >Starting DFU…
+                </string>
+                <string name="dfu_status_initializing" >Initializing…
+                </string>
+                <string name="dfu_status_uploading" >Uploading…
+                </string>
+                <string name="dfu_status_completed_msg" >Application has been send successfully.
+                </string>
+                <string
+                    name="dfu_status_uploading_part"
+                    formatted="false" >Uploading part %d/%d…
+                </string>
+                <string name="dfu_status_error_msg" >DFU process failed.
+                </string>
+                <string name="dfu_status_disconnecting" >Disconnecting…
+                </string>
+                <string name="dfu_status_aborted_msg" >Application upload has been canceled.
+                </string>
+                <string name="dfu_status_aborting" >Aborting…
+                </string>
+                <string name="dfu_status_uploading_msg" >Transmitting application to %s…
+                </string>
+                <string name="dfu_status_validating" >Validating…
+                </string>
+                <string name="dfu_status_aborted" >Aborted
+                </string>
+                <string name="dfu_status_connecting_msg" >Connecting to %s…
+                </string>
+                <string name="dfu_status_connecting" >Connecting…
+                </string>
+                <string name="dfu_status_completed" >Done
+                </string>
+                <string name="dfu_status_disconnecting_msg" >Disconnecting from %s…
+                </string>
+                <string name="dfu_unknown_name" >unnamed device
+                </string>
+                <string name="dfu_status_uploading_components_msg" >Transmitting components to %s…
+                </string>
+                <string name="dfu_status_starting_msg" >Initializing DFU process…
+                </string>
+            </file>
+        </source>
+    </dataSet>
+    <dataSet config="main" >
+        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res" >
+            <file
+                name="app_file_browser"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/app_file_browser.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="button"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/button.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="button_n"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/button_n.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="button_p"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/button_p.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="ic_feature_bg"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_bg.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="ic_feature_bg_n"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_bg_n.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="ic_feature_bg_p"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_bg_p.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="ic_feature_small_bg"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_small_bg.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="ic_feature_small_bg_n"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_small_bg_n.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="ic_feature_small_bg_p"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_small_bg_p.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="ic_mcp_feature_small"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_mcp_feature_small.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="ic_rssi_bar"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_rssi_bar.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="item_background_light"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/item_background_light.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="battery"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/battery.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="drawer_shadow"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/drawer_shadow.9.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_ab_back_holo_dark"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_ab_back_holo_dark.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_bluetooth"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_action_bluetooth.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_bpm_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_bpm_feature.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_csc_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_csc_feature.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_dfu_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_dfu_feature.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_drawer"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_drawer.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_glucose_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_glucose_feature.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_help"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_help.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_hrs_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_hrs_feature.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_hts_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_hts_feature.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_launcher.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_menu_about"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_menu_about.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_menu_moreoverflow"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_menu_moreoverflow.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_menu_settings"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_menu_settings.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_permission_log"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_permission_log.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_proximity_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_proximity_feature.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_rsc_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rsc_feature.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_rssi_0_bar"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rssi_0_bar.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_rssi_1_bar"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rssi_1_bar.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_rssi_2_bars"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rssi_2_bars.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_rssi_3_bars"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rssi_3_bars.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="item_background_light_n"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/item_background_light_n.9.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="item_background_light_p"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/item_background_light_p.9.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="list_divider_holo_light"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/list_divider_holo_light.9.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="nordic_logo"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/nordic_logo.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="nordic_n_logo"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/nordic_n_logo.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="proximity_lock_closed"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/proximity_lock_closed.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="proximity_lock_open"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/proximity_lock_open.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="stat_dfu"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_dfu.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="stat_notif_csc"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_notif_csc.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="stat_notif_hts"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_notif_hts.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="stat_notif_proximity"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_notif_proximity.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="stat_notif_rsc"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_notif_rsc.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="background"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-land-xhdpi/background.jpg"
+                qualifiers="land-xhdpi-v4"
+                type="drawable" />
+            <file
+                name="nordic_logo"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-land-xhdpi/nordic_logo.png"
+                qualifiers="land-xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-mdpi/ic_launcher.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="nordic_logo"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-sw600dp-xhdpi/nordic_logo.png"
+                qualifiers="sw600dp-xhdpi-v13"
+                type="drawable" />
+            <file
+                name="app_drive"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/app_drive.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="app_file_manager"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/app_file_manager.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="app_google_play"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/app_google_play.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="app_total_commander"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/app_total_commander.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="background"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/background.jpg"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="drawer_shadow"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/drawer_shadow.9.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_bluetooth"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_action_bluetooth.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_bpm_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_bpm_feature.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_csc_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_csc_feature.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_dfu_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_dfu_feature.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_drawer"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_drawer.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_glucose_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_glucose_feature.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_help"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_help.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_hrs_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_hrs_feature.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_hts_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_hts_feature.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_launcher.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_mcp_feature_fg"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_mcp_feature_fg.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_menu_about"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_menu_about.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_menu_moreoverflow"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_menu_moreoverflow.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_menu_settings"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_menu_settings.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_permission_log"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_permission_log.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_proximity_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_proximity_feature.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_rsc_feature"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_rsc_feature.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="item_background_light_n"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/item_background_light_n.9.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="item_background_light_p"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/item_background_light_p.9.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="list_divider_holo_light"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/list_divider_holo_light.9.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="nordic_logo"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/nordic_logo.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="nordic_logo_horiz"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/nordic_logo_horiz.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="nordic_n_logo"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/nordic_n_logo.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="proximity_lock_closed"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/proximity_lock_closed.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="proximity_lock_open"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/proximity_lock_open.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="stat_dfu"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_dfu.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="stat_notif_csc"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_notif_csc.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="stat_notif_hts"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_notif_hts.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="stat_notif_proximity"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_notif_proximity.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="stat_notif_rsc"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_notif_rsc.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="zip"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/zip.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xxhdpi/ic_launcher.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
+                name="activity_feature_bpm"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_bpm.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_feature_csc"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_csc.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_feature_dfu"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_dfu.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_feature_gls"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_gls.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_feature_gls_item"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_gls_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_feature_gls_subitem"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_gls_subitem.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_feature_hrs"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_hrs.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_feature_hts"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_hts.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_feature_proximity"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_proximity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_feature_rsc"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_rsc.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_features"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_features.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_splashscreen"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_splashscreen.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="app_file_browser"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/app_file_browser.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="app_file_browser_item"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/app_file_browser_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="device_list_empty"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/device_list_empty.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="device_list_row"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/device_list_row.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="device_list_title"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/device_list_title.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="drawer"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/drawer.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="drawer_plugin"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/drawer_plugin.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="feature_icon"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/feature_icon.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="fragment_device_selection"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/fragment_device_selection.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="fragment_zip_info"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/fragment_zip_info.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_feature_bpm"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_bpm.xml"
+                qualifiers="land"
+                type="layout" />
+            <file
+                name="activity_feature_csc"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_csc.xml"
+                qualifiers="land"
+                type="layout" />
+            <file
+                name="activity_feature_dfu"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_dfu.xml"
+                qualifiers="land"
+                type="layout" />
+            <file
+                name="activity_feature_gls"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_gls.xml"
+                qualifiers="land"
+                type="layout" />
+            <file
+                name="activity_feature_hrs"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_hrs.xml"
+                qualifiers="land"
+                type="layout" />
+            <file
+                name="activity_feature_hts"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_hts.xml"
+                qualifiers="land"
+                type="layout" />
+            <file
+                name="activity_feature_proximity"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_proximity.xml"
+                qualifiers="land"
+                type="layout" />
+            <file
+                name="activity_feature_rsc"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_rsc.xml"
+                qualifiers="land"
+                type="layout" />
+            <file
+                name="activity_feature_bpm"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-sw600dp-land/activity_feature_bpm.xml"
+                qualifiers="sw600dp-land-v13"
+                type="layout" />
+            <file
+                name="activity_feature_csc"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-sw600dp-land/activity_feature_csc.xml"
+                qualifiers="sw600dp-land-v13"
+                type="layout" />
+            <file
+                name="activity_feature_dfu"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-sw600dp-land/activity_feature_dfu.xml"
+                qualifiers="sw600dp-land-v13"
+                type="layout" />
+            <file
+                name="activity_feature_hrs"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-sw600dp-land/activity_feature_hrs.xml"
+                qualifiers="sw600dp-land-v13"
+                type="layout" />
+            <file
+                name="activity_feature_rsc"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-sw720dp-land/activity_feature_rsc.xml"
+                qualifiers="sw720dp-land-v13"
+                type="layout" />
+            <file
+                name="csc_menu"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/menu/csc_menu.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="dfu_menu"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/menu/dfu_menu.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="gls_more"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/menu/gls_more.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="help"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/menu/help.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="ble_app_hrs"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_hrs.hex"
+                qualifiers=""
+                type="raw" />
+            <file
+                name="ble_app_hrs_s110_v6_0_0"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_hrs_s110_v6_0_0.hex"
+                qualifiers=""
+                type="raw" />
+            <file
+                name="ble_app_hrs_s110_v7_0_0"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_hrs_s110_v7_0_0.hex"
+                qualifiers=""
+                type="raw" />
+            <file
+                name="ble_app_rscs"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_rscs.hex"
+                qualifiers=""
+                type="raw" />
+            <file
+                name="ble_app_rscs_s110_v6_0_0"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_rscs_s110_v6_0_0.hex"
+                qualifiers=""
+                type="raw" />
+            <file
+                name="ble_app_rscs_s110_v7_0_0"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_rscs_s110_v7_0_0.hex"
+                qualifiers=""
+                type="raw" />
+            <file
+                name="blinky_arm_s110_v7_0_0"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/blinky_arm_s110_v7_0_0.hex"
+                qualifiers=""
+                type="raw" />
+            <file
+                name="dfu_mac"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/dfu_mac.sh"
+                qualifiers=""
+                type="raw" />
+            <file
+                name="dfu_win"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/dfu_win.bat"
+                qualifiers=""
+                type="raw" />
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/color.xml"
+                qualifiers="" >
+                <color name="headerTextColor" >#FFFFFF
+                </color>
+                <color name="darkGray" >#AAABAF
+                </color>
+                <color name="featureTitleColor" >#939597
+                </color>
+                <color name="backgroundColor" >#E6E7E8
+                </color>
+                <color name="headerBackgroundColor" >#009ada
+                </color>
+                <color name="actionBarColor" >#009CDE
+                </color>
+                <color name="dividerColor" >#BBBDC0
+                </color>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/dimens.xml"
+                qualifiers="" >
+                <dimen name="activity_vertical_margin_bottom" >32dp
+                </dimen>
+                <dimen name="feature_horizontal_margin" >50dp
+                </dimen>
+                <dimen name="feature_vertical_margin_top" >50dp
+                </dimen>
+                <dimen name="activity_vertical_margin_top" >16dp
+                </dimen>
+                <dimen name="activity_horizontal_margin" >16dp
+                </dimen>
+                <dimen name="activity_vertical_margin" >16dp
+                </dimen>
+                <dimen name="feature_section_padding" >8dp
+                </dimen>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings.xml"
+                qualifiers="" >
+                <string name="no_apps" >No profiles found.
+                </string>
+                <string name="permission_log_description" >Allows the app to write and read from Nordic Semiconductor Event log
+                </string>
+                <string name="not_available_value" >" - "
+                </string>
+                <string name="action_settings" >Settings
+                </string>
+                <string name="not_available" >n/a
+                </string>
+                <string name="scanner_title" >Select device:
+                </string>
+                <string name="scanner_action_cancel" >Cancel
+                </string>
+                <string name="permission_log_label" >read and write log
+                </string>
+                <string name="action_connect" >CONNECT
+                </string>
+                <string name="bonded" >The device is now bonded.
+                </string>
+                <string name="action_about" >About
+                </string>
+                <string name="normal_font_path" >fonts/trebuc.ttf
+                </string>
+                <string name="about_title" >About
+                </string>
+                <string name="scanner_empty" >No device found
+                </string>
+                <string name="no_application" >Web Browser application is not available.
+                </string>
+                <string name="action_disconnect" >DISCONNECT
+                </string>
+                <string name="font_path" >fonts/trebucbd.ttf
+                </string>
+                <string name="about_version" >\n\nVersion: %s
+                </string>
+                <string name="scanner_action_scan" >Scan
+                </string>
+                <string name="bonding" >Bonding with the device…
+                </string>
+                <string name="drawer_close" >Close
+                </string>
+                <string name="about_text" >The nRF Toolbox is a container application that stores your Nordic Semiconductor apps in one location.
+                </string>
+                <string name="battery" >%d%%
+                </string>
+                <string name="scanner_subtitle_bonded" >BONDED DEVICES:
+                </string>
+                <string name="drawer_plugin_mcp" >nRF Master Control Panel
+                </string>
+                <string name="drawer_plugins" >PLUGINS
+                </string>
+                <string name="app_name" >nRF Toolbox
+                </string>
+                <string name="progress" >%d%%
+                </string>
+                <string name="no_ble" >Device doesn\'t have BLE support!
+                </string>
+                <string name="drawer_open" >Open
+                </string>
+                <string name="action_select" >SELECT DEVICE
+                </string>
+                <string name="scanner_subtitle__not_bonded" >AVAILABLE DEVICES:
+                </string>
+                <string name="not_supported" >The device does not have required services.
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_bpm.xml"
+                qualifiers="" >
+                <string name="bpm_timestamp" >%1$tT %1$te.%1$tm.%1$tY
+                </string>
+                <string name="bpm_unit_mmhg" >mmHg
+                </string>
+                <string name="bpm_pulse" >PULSE
+                </string>
+
+                <dimen name="bpm_feature_title_long_margin" >-115dp
+                </dimen>
+
+                <string name="bpm_systolic" >SYSTOLIC
+                </string>
+                <string name="bpm_feature_title_long" >BLOOD PRESSURE
+                </string>
+                <string name="bpm_feature_title" >BPM
+                </string>
+                <string name="bpm_mean_ap" >MEAN AP
+                </string>
+                <string name="bpm_section_bp_header" >BLOOD PRESSURE
+                </string>
+                <string name="bpm_default_name" >DEFAULT BPM
+                </string>
+                <string name="bpm_unit_kpa" >kPa
+                </string>
+                <string name="bpm_diastolic" >DIASTOLIC
+                </string>
+                <string name="bpm_section_pulse_header" >PULSE RATE
+                </string>
+                <string name="bpm_unit_bpm" >bpm
+                </string>
+                <string name="bpm_section_timestamp_header" >TIME &amp; DATE
+                </string>
+                <string name="bpm_about_text" >BPM (Blood Pressure Monitor) profile allows you to connect to your Blood Pressure device. 
+        It supports the cuff pressure notifications and displays systolic, diastolic and mean arterial pulse values as well as the pulse after blood pressure reading is completed. 
+        The implementation supports bondable devices.
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_csc.xml"
+                qualifiers="" >
+                <string name="csc_total_distance_unit" >km
+                </string>
+
+                <dimen name="csc_feature_title_long_margin" >-192dp
+                </dimen>
+
+                <string name="csc_speed_unit" >km/h
+                </string>
+                <string name="csc_feature_title" >CSC
+                </string>
+                <string name="csc_settings_title" >CSC Settnigs
+                </string>
+                <string name="csc_section_csc_header" >SPEED AND CADENCE
+                </string>
+                <string name="csc_feature_title_long" >CYCLING SPEED &amp; CADENCE
+                </string>
+
+                <string-array name="csc_settings_wheel_diameter_values" >
+                    <item>
+2340
+                    </item>
+                    <item>
+2284
+                    </item>
+                    <item>
+2268
+                    </item>
+                    <item>
+2224
+                    </item>
+                    <item>
+2265
+                    </item>
+                    <item>
+2224
+                    </item>
+                    <item>
+2180
+                    </item>
+                    <item>
+2205
+                    </item>
+                    <item>
+2168
+                    </item>
+                    <item>
+2199
+                    </item>
+                    <item>
+2174
+                    </item>
+                    <item>
+2155
+                    </item>
+                    <item>
+2149
+                    </item>
+                    <item>
+2146
+                    </item>
+                    <item>
+2136
+                    </item>
+                    <item>
+2146
+                    </item>
+                    <item>
+2105
+                    </item>
+                    <item>
+2133
+                    </item>
+                    <item>
+2114
+                    </item>
+                    <item>
+2102
+                    </item>
+                    <item>
+2169
+                    </item>
+                    <item>
+2161
+                    </item>
+                    <item>
+2155
+                    </item>
+                    <item>
+2133
+                    </item>
+                    <item>
+2114
+                    </item>
+                    <item>
+2105
+                    </item>
+                    <item>
+2097
+                    </item>
+                    <item>
+2089
+                    </item>
+                    <item>
+2086
+                    </item>
+                    <item>
+2114
+                    </item>
+                    <item>
+2070
+                    </item>
+                    <item>
+2068
+                    </item>
+                    <item>
+2105
+                    </item>
+                    <item>
+2055
+                    </item>
+                    <item>
+2089
+                    </item>
+                    <item>
+2051
+                    </item>
+                    <item>
+2026
+                    </item>
+                    <item>
+1973
+                    </item>
+                    <item>
+1954
+                    </item>
+                    <item>
+1953
+                    </item>
+                    <item>
+1952
+                    </item>
+                    <item>
+1948
+                    </item>
+                    <item>
+1910
+                    </item>
+                    <item>
+1907
+                    </item>
+                    <item>
+1618
+                    </item>
+                    <item>
+1593
+                    </item>
+                    <item>
+1590
+                    </item>
+                    <item>
+1325
+                    </item>
+                    <item>
+1282
+                    </item>
+                    <item>
+1272
+                    </item>
+                </string-array>
+
+                <string name="csc_settings_wheel_diameter" >Wheel size
+                </string>
+                <string name="csc_settings_wheel_diameter_summary" >Wheel circumference: %s mm
+                </string>
+                <string name="csc_about_text" >CSC (Cycling Speed and Cadence) profile allows you to connect to your bike activity sensor.
+        \nIt reads wheel and crank data if they are supported by the sensor and calculates speed, cadence, total and trip distance and gear ratio. Set up your wheel size in the settings to get correct readings. 
+        \nYou may exit the application when connected while still getting notifications.
+                </string>
+                <string name="csc_distance" >DISTANCE
+                </string>
+                <string name="csc_total_distance" >TOTAL DISTANCE
+                </string>
+                <string name="csc_cadence_unit" >RPM
+                </string>
+                <string name="csc_distance_unit_m" >m
+                </string>
+                <string name="csc_distance_unit_km" >km
+                </string>
+
+                <string-array name="csc_settings_wheel_diameters" >
+                    <item>
+60–622
+                    </item>
+                    <item>
+50–622
+                    </item>
+                    <item>
+47–622
+                    </item>
+                    <item>
+44–622
+                    </item>
+                    <item>
+40–635
+                    </item>
+                    <item>
+40–622
+                    </item>
+                    <item>
+38–622
+                    </item>
+                    <item>
+37–622
+                    </item>
+                    <item>
+35–622
+                    </item>
+                    <item>
+32–630
+                    </item>
+                    <item>
+32–622
+                    </item>
+                    <item>
+32–622
+                    </item>
+                    <item>
+28–622
+                    </item>
+                    <item>
+60–559
+                    </item>
+                    <item>
+28–622
+                    </item>
+                    <item>
+25–622
+                    </item>
+                    <item>
+25–622
+                    </item>
+                    <item>
+23–622
+                    </item>
+                    <item>
+20–622
+                    </item>
+                    <item>
+18–622
+                    </item>
+                    <item>
+35–630
+                    </item>
+                    <item>
+32–630
+                    </item>
+                    <item>
+28–630
+                    </item>
+                    <item>
+57–559
+                    </item>
+                    <item>
+54–559
+                    </item>
+                    <item>
+37–590
+                    </item>
+                    <item>
+23–622
+                    </item>
+                    <item>
+50–559
+                    </item>
+                    <item>
+20–622
+                    </item>
+                    <item>
+54–559
+                    </item>
+                    <item>
+47–559
+                    </item>
+                    <item>
+35–590
+                    </item>
+                    <item>
+37–590
+                    </item>
+                    <item>
+47–559
+                    </item>
+                    <item>
+50–559
+                    </item>
+                    <item>
+44–559
+                    </item>
+                    <item>
+40–559
+                    </item>
+                    <item>
+23–571
+                    </item>
+                    <item>
+20–571
+                    </item>
+                    <item>
+32–559
+                    </item>
+                    <item>
+25–571
+                    </item>
+                    <item>
+34–540
+                    </item>
+                    <item>
+50–507
+                    </item>
+                    <item>
+47–507
+                    </item>
+                    <item>
+28–451
+                    </item>
+                    <item>
+50–406
+                    </item>
+                    <item>
+47–406
+                    </item>
+                    <item>
+28–369
+                    </item>
+                    <item>
+35–349
+                    </item>
+                    <item>
+47–305
+                    </item>
+                </string-array>
+
+                <string name="csc_speed" >SPEED
+                </string>
+                <string name="csc_settings_wheel_diameter_title" >Wheel size
+                </string>
+                <string name="csc_notification_connected_message" >%s is connected.
+                </string>
+                <string name="csc_default_name" >DEFAULT CSC
+                </string>
+                <string name="csc_cadence" >CADENCE
+                </string>
+                <string name="csc_gear_ratio" >GEAR RATIO
+                </string>
+                <string name="csc_notification_action_disconnect" >Disconnect
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_dfu.xml"
+                qualifiers="" >
+                <string name="dfu_aborted" >Uploading of the application has been canceled.
+                </string>
+                <string name="dfu_file_size_text" >%d bytes
+                </string>
+                <string name="dfu_file_info" >Info
+                </string>
+                <string name="dfu_uploading_percentage" >%d%%
+                </string>
+                <string name="dfu_settings_dfu_number_of_packets_label" >Number of packets
+                </string>
+                <string name="dfu_confirmation_dialog_title" >Application Uploading
+                </string>
+                <string name="dfu_settings_title" >DFU Settnigs
+                </string>
+                <string name="dfu_default_name" >DEFAULT DFU
+                </string>
+                <string name="dfu_file_type_title" >Select file type
+                </string>
+
+                <string-array name="dfu_app_file_browser" >
+                    <item>
+Drive
+                    </item>
+                    <item>
+File Manager
+                    </item>
+                    <item>
+Total Commander
+                    </item>
+                    <item>
+Search for others
+                    </item>
+                </string-array>
+
+                <string name="dfu_action_upload" >UPLOAD
+                </string>
+
+                <string-array name="dfu_file_type" >
+                    <item>
+Soft Device
+                    </item>
+                    <item>
+Bootloader
+                    </item>
+                    <item>
+Application
+                    </item>
+                    <item>
+Multiple files (ZIP)
+                    </item>
+                </string-array>
+
+                <string name="dfu_settings_dfu_about" >About DFU
+                </string>
+                <string name="dfu_feature_title_long" >DEVICE FIRMWARE UPDATE
+                </string>
+                <string name="dfu_file_status_invalid_message" >Please, select valid HEX file
+                </string>
+                <string name="dfu_example_new_files_created" >New example HEX files were copied to /sdcard/Noric Semiconductor.
+                </string>
+                <string name="dfu_feature_title" >DFU
+                </string>
+                <string name="dfu_confirmation_dialog_exit_message" >Are you sure to exit?
+                </string>
+                <string name="dfu_uploading_percentage_label" >0%
+                </string>
+                <string name="dfu_section_dfu_header" >DEVICE FIRMWARE UPDATE
+                </string>
+                <string name="dfu_action_upload_help" >\?
+                </string>
+                <string name="dfu_alert_no_filebrowser_title" >File Browser not found
+                </string>
+                <string name="dfu_file_type_label" >File Type:
+                </string>
+
+                <string-array name="dfu_app_file_browser_action" >
+                    <item>
+market://details?id=com.google.android.apps.docs
+                    </item>
+                    <item>
+market://details?id=com.rhmsoft.fm
+                    </item>
+                    <item>
+market://details?id=com.ghisler.android.TotalCommander
+                    </item>
+                    <item>
+market://search?q=file manager
+                    </item>
+                </string-array>
+
+                <string name="dfu_file_status_ok" >OK
+                </string>
+                <string name="dfu_file_size_label" >File Size:
+                </string>
+                <string name="dfu_action_select_file" >SELECT FILE
+                </string>
+                <string name="dfu_upload_dialog_cancel_message" >Are you sure to cancel upload?
+                </string>
+                <string name="dfu_example_files_created" >Example HEX files were copied to /sdcard/Noric Semiconductor.
+                </string>
+                <string name="dfu_alert_no_filebrowser_message" >File browser application has not been found on your device. Would you like to download one?
+                </string>
+                <string name="dfu_file_status_no_file" >File not loaded
+                </string>
+                <string name="dfu_action_upload_cancel" >CANCEL
+                </string>
+                <string name="dfu_file_status_label" >Status:
+                </string>
+                <string name="dfu_about_text" >The Device Firmware Update (DFU) app that is compatible with Nordic Semiconductor nRF51822 devices that have the S110 SoftDevice 
+        and bootloader enabled. It allows to upload new application onto the device over-the-air (OTA).
+        \n\nWith SoftDevice 7.0.0 or newer it allows also to update SoftDevice and/or bootloader OTA. To upload more than one file (for example to upload new SoftDevice and a compatible bootloader) 
+        place HEX files in a single ZIP file and name them: softdevice.hex, bootloader.hex and application.hex. 
+        \n\nThe DFU discovers supported DFU devices, connects to them, and uploads user selected firmware to the device.
+                </string>
+                <string name="dfu_section_application_header" >APPLICATION
+                </string>
+                <string name="dfu_settings_dfu_packets_receipt_notification_label" >Packets receipt notification procedure
+                </string>
+                <string name="dfu_file_status_invalid" >Invalid file
+                </string>
+
+                <dimen name="dfu_feature_title_long_margin" >-186dp
+                </dimen>
+
+                <string name="dfu_file_status_error" >Reading file failed
+                </string>
+                <string name="dfu_zip_info_text" >Please, specify the firmware file type. Since SoftDevice 7.0.0 soft device and bootloader update is supported. In case the current bootloader is not compatible 
+        with the new version of soft device it is allowed to upload a new bootloader together with the new soft device in one connection. The application, if present in ZIP, will be send after the 
+        new bootloader is ready.
+        \n\nNote that the files in the ZIP must have the following names in order to be processed correctly:
+                </string>
+                <string name="dfu_help_message" >A file browser application must be installed on the device before selecting the HEX file.
+        \n\nThere are number of applications available on Google Play store, f.e. Total Commander or File Manager, that allow you to pick a file from internal memory of the device. To upload 
+        a file from the Internet you may use f.e. Drive or Dropbox application.
+        \n\nYou will be asked to select an application if more than one is installed. A single application will be launched automatically.
+        \n\nSince 
+<b>
+Android KitKat
+                    </b> you may use the preinstalled document picker application. Ensure 
+<i>
+Display advanced devices
+                    </i> option is enabled in settings to use the 
+<i>
+Internal storage
+                    </i>.
+        \n\nHeart Rate Monitor and Running Speed and Cadence applications were copied to 
+<i>
+Nordic Semiconductor
+                    </i> folder in the internal storage.
+                </string>
+                <string name="dfu_settings_dfu" >DFU options
+                </string>
+                <string name="dfu_file_name_label" >File Name:
+                </string>
+                <string name="dfu_scripts_created" >DFU script files were copied to /sdcard/Noric Semiconductor.
+                </string>
+                <string name="dfu_service_title" >nRF Toolbox DFU Proxy
+                </string>
+                <string name="dfu_settings_dfu_about_summary" >DFU documentation on Nordic\'s Developer Zone
+                </string>
+                <string name="dfu_help_title" >Select file
+                </string>
+                <string name="dfu_unknown_name" >unnamed device
+                </string>
+                <string name="dfu_success" >Application has been transferred successfully.
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_gls.xml"
+                qualifiers="" >
+                <string name="gls_context_carbohydrare_title" >Carbohydrate
+                </string>
+                <string name="gls_context_tester_title" >Tester
+                </string>
+                <string name="gls_action_abort" >Abort
+                </string>
+                <string name="gls_action_delete_all" >Delete all
+                </string>
+                <string name="gls_feature_title" >BGM
+                </string>
+
+                <string-array name="gls_context_health" >
+                    <item>
+Reserved for future use
+                    </item>
+                    <item>
+Minor health issues
+                    </item>
+                    <item>
+Major health issues
+                    </item>
+                    <item>
+During menses
+                    </item>
+                    <item>
+Under stress
+                    </item>
+                    <item>
+No health issues
+                    </item>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item>
+Health value not available
+                    </item>
+                </string-array>
+
+                <string name="gls_action_refresh" >Refresh
+                </string>
+                <string name="gls_status_annunciatioin_title" >Sensor Status Annunciation
+                </string>
+                <string name="gls_action_last" >Last
+                </string>
+                <string name="gls_section_data" >READINGS
+                </string>
+
+                <string-array name="gls_context_tester" >
+                    <item>
+Reserved for future use
+                    </item>
+                    <item>
+Self
+                    </item>
+                    <item>
+Health Care Professional
+                    </item>
+                    <item>
+Lab test
+                    </item>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item>
+Tester value not available
+                    </item>
+                </string-array>
+                <string-array name="gls_status_annunciatioin" >
+                    <item>
+Device battery low at time of measurement
+                    </item>
+                    <item>
+Sensor malfunction or faulting at time of measurement
+                    </item>
+                    <item>
+Sample size for blood or control solution insufficient at time of measurement
+                    </item>
+                    <item>
+Strip insertion error
+                    </item>
+                    <item>
+Strip type incorrect for device
+                    </item>
+                    <item>
+Sensor result higher than the device can process
+                    </item>
+                    <item>
+Sensor result lower than the device can process
+                    </item>
+                    <item>
+Sensor temperature too high for valid test/result at time of measurement
+                    </item>
+                    <item>
+Sensor temperature too low for valid test/result at time of measurement
+                    </item>
+                    <item>
+Sensor read interrupted because strip was pulled too soon at time of measurement
+                    </item>
+                    <item>
+General device fault has occurred in the sensor
+                    </item>
+                    <item>
+Time fault has occurred in the sensor and time may be inaccurate
+                    </item>
+                </string-array>
+                <string-array name="gls_context_carbohydrare" >
+                    <item>
+Reserved for future use
+                    </item>
+                    <item>
+Breakfast
+                    </item>
+                    <item>
+Lunch
+                    </item>
+                    <item>
+Dinner
+                    </item>
+                    <item>
+Snack
+                    </item>
+                    <item>
+Drink
+                    </item>
+                    <item>
+Supper
+                    </item>
+                    <item>
+Brunch
+                    </item>
+                </string-array>
+
+                <string name="gls_action_first" >First
+                </string>
+                <string name="gls_action_more" >More
+                </string>
+                <string name="gls_about_text" >GLUCOSE SERVICE profile allows you to connect to your Glucose sensor. 
+        You can read the last and historical glucose measurement readings from the device. Current implementation parially supports also the
+        Glucose Measurement Context characteristic which is not supported by the NRF51 SDK 4.4.2 (some parameters are not displayed).
+                </string>
+                <string name="gls_action_clear" >Clear
+                </string>
+
+                <string-array name="gls_context_meal" >
+                    <item>
+Reserved for future use
+                    </item>
+                    <item>
+Preprandial (before meal)
+                    </item>
+                    <item>
+Postprandial (after meal)
+                    </item>
+                    <item>
+Fasting
+                    </item>
+                    <item>
+Casual (snacks, drinks, etc.)
+                    </item>
+                    <item>
+Bedtime
+                    </item>
+                </string-array>
+
+                <string name="gls_no_data" >No values to display
+                </string>
+                <string name="gls_context_meal_title" >Meal
+                </string>
+                <string name="gls_section_actions" >CONTROL
+                </string>
+                <string name="gls_progress" >Downloading %d records
+                </string>
+                <string name="gls_location_title" >Sample Location
+                </string>
+                <string name="gls_action_all" >All
+                </string>
+                <string name="gls_value" >%.1f
+                </string>
+
+                <dimen name="gls_feature_title_long_margin" >-126dp
+                </dimen>
+
+                <string name="gls_feature_title_long" >GLUCOSE MONITOR
+                </string>
+                <string name="gls_operation_not_supported" >Operation not supported by the device
+                </string>
+                <string name="gls_unit_mgpdl" >mg/dl
+                </string>
+                <string name="gls_unit_mmolpl" >mmol/l
+                </string>
+                <string name="gls_operation_failed" >Operation failed
+                </string>
+
+                <string-array name="gls_type" >
+                    <item>
+Reserved for future use
+                    </item>
+                    <item>
+Capillary Whole blood
+                    </item>
+                    <item>
+Capillary Plasma
+                    </item>
+                    <item>
+Venous Whole blood
+                    </item>
+                    <item>
+Venous Plasma
+                    </item>
+                    <item>
+Arterial Whole blood
+                    </item>
+                    <item>
+Arterial Plasma
+                    </item>
+                    <item>
+Undetermined Whole blood
+                    </item>
+                    <item>
+Undetermined Plasma
+                    </item>
+                    <item>
+Interstitial Fluid (ISF)
+                    </item>
+                    <item>
+Control Solution
+                    </item>
+                </string-array>
+
+                <string name="gls_default_name" >DEFAULT BGM
+                </string>
+
+                <string-array name="gls_location" >
+                    <item>
+Reserved for future use
+                    </item>
+                    <item>
+Finger
+                    </item>
+                    <item>
+Alternate Site Test (AST)
+                    </item>
+                    <item>
+Earlobe
+                    </item>
+                    <item>
+Control solution
+                    </item>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item/>
+                    <item>
+Sample Location value not available
+                    </item>
+                </string-array>
+
+                <string name="gls_context_health_title" >Health
+                </string>
+                <string name="gls_timestamp" >%1$te %1$tb %1$tY at %1$tT
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_hrs.xml"
+                qualifiers="" >
+                <string name="hrs_location_other" >Reserved
+                </string>
+                <string name="hrs_default_name" >DEFAULT HRM
+                </string>
+                <string name="hrs_feature_title_long" >HEART RATE MONITOR
+                </string>
+
+                <string-array name="hrs_locations" >
+                    <item>
+Other
+                    </item>
+                    <item>
+Chest
+                    </item>
+                    <item>
+Wrist
+                    </item>
+                    <item>
+Finger
+                    </item>
+                    <item>
+Hand
+                    </item>
+                    <item>
+Ear Lobe
+                    </item>
+                    <item>
+Foot
+                    </item>
+                </string-array>
+
+                <string name="hrs_position_label" >sensor position
+                </string>
+                <string name="hrs_value_unit" >bpm
+                </string>
+                <string name="hrs_about_text" >HRM (Heart Rate Monitor) profile allows you to connect to your Heart Rate sensor (f.e. a belt). 
+        It shows you the current rate, location of the sensor and a historic data on the graph.
+                </string>
+
+                <dimen name="hrs_feature_title_long_margin" >-152dp
+                </dimen>
+
+                <string name="hrs_feature_title" >HRM
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_hts.xml"
+                qualifiers="" >
+                <string name="hts_notification_action_disconnect" >Disconnect
+                </string>
+                <string name="hts_feature_title_long" >HEALTH THERMOMETER MONITOR
+                </string>
+
+                <dimen name="hts_feature_title_long_margin" >-236dp
+                </dimen>
+
+                <string name="hts_about_text" >HTM (Health Thermometer Monitor) profile allows you to connect to your Health Thermometer sensor. 
+        It shows you the temperature value in Celisius.
+                </string>
+                <string name="hts_default_name" >DEFAULT HTM
+                </string>
+                <string name="hts_feature_title" >HTM
+                </string>
+                <string name="hts_unit_celsius" >°C
+                </string>
+                <string name="hts_notification_connected_message" >%s is connected.
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_proximity.xml"
+                qualifiers="" >
+                <string name="proximity_feature_title_long" >PROXIMITY MONITOR
+                </string>
+                <string name="proximity_enable_server" >GATT Server enabled
+                </string>
+                <string name="proximity_notification_connected_message" >%s is connected.
+                </string>
+                <string name="proximity_action_silentme" >SilentMe
+                </string>
+                <string name="proximity_about_text" >PROXIMITY profile allows you to connect to your Proximity sensor.
+        \nYou can find your valuables attached with Proximity tag by pressing FindMe button on screen and you can find your phone by pressing relevant button on your tag.
+        \n\nYou may close this activity when connected without being disconnected from the sensor. A notification will be shown.
+                </string>
+                <string name="proximity_default_name" >DEFAULT PROXIMITY
+                </string>
+                <string name="proximity_notification_action_disconnect" >Disconnect
+                </string>
+                <string name="proximity_action_findme" >FindMe
+                </string>
+                <string name="proximity_notification_linkloss_alert" >%s is getting away!
+                </string>
+                <string name="proximity_lock_image_description" >LOCK Image
+                </string>
+
+                <dimen name="proximity_feature_title_long_margin" >-142dp
+                </dimen>
+
+                <string name="proximity_feature_title" >PROXIMITY
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_rsc.xml"
+                qualifiers="" >
+                <string name="rsc_speed_unit" >km/h
+                </string>
+                <string name="rsc_about_text" >RSC (Running Speed and Cadence) profile allows you to connect to your activity sensor.
+        \nIt reads speed and cadence values from the sensor and calculates trip distance if stride length is supported. Strides count is calculated basing on the cadence and the time.
+        \nYou may exit the application when connected while still getting notifications.
+                </string>
+                <string name="rsc_notification_action_disconnect" >Disconnect
+                </string>
+                <string name="rsc_running" >RUNNING
+                </string>
+                <string name="rsc_section_activity_header" >ACTIVITY
+                </string>
+                <string name="rsc_feature_title" >RSC
+                </string>
+                <string name="rsc_default_name" >DEFAULT RSC
+                </string>
+                <string name="rsc_cadence" >CADENCE
+                </string>
+                <string name="rsc_section_rsc_header" >SPEED AND CADENCE
+                </string>
+                <string name="rsc_walking" >WALKING
+                </string>
+                <string name="rsc_strides" >STEPS
+                </string>
+                <string name="rsc_notification_connected_message" >%s is connected.
+                </string>
+                <string name="rsc_distance" >DISTANCE
+                </string>
+                <string name="rsc_speed" >SPEED
+                </string>
+                <string name="rsc_feature_title_long" >RUNNING SPEED &amp; CADENCE
+                </string>
+                <string name="rsc_cadence_unit" >SPM
+                </string>
+                <string name="rsc_section_strides_header" ></string>
+                <string name="rsc_total_distance_unit" >km
+                </string>
+
+                <dimen name="rsc_feature_title_long_margin" >-192dp
+                </dimen>
+
+                <string name="rsc_total_distance" >TOTAL DISTANCE
+                </string>
+                <string name="rsc_distance_unit_m" >m
+                </string>
+                <string name="rsc_distance_unit_km" >km
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/styles.xml"
+                qualifiers="" >
+
+                <style
+                    name="Widget.Connect"
+                    parent="@android:style/Widget.Holo.Light.Button" >
+                    <item name="android:background">
+@drawable/button
+                    </item>
+                    <item name="android:textColor">
+#FFFFFF
+                    </item>
+                    <item name="android:paddingLeft">
+40dp
+                    </item>
+                    <item name="android:paddingRight">
+40dp
+                    </item>
+                </style>
+
+                <style
+                    name="Widget.ActionBar"
+                    parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse" >
+                    <item name="android:background">
+@color/actionBarColor
+                    </item>
+                    <item name="android:backgroundStacked">
+@color/actionBarColor
+                    </item>
+                    <item name="android:backgroundSplit">
+@color/actionBarColor
+                    </item>
+                    <item name="android:displayOptions">
+useLogo|showHome|showTitle
+                    </item>
+                </style>
+
+                <style name="Widget" />
+
+                <style
+                    name="Widget.Button"
+                    parent="@android:style/Widget.Holo.Light.Button" >
+                    <item name="android:minWidth">
+160dip
+                    </item>
+                </style>
+
+                <style name="Widget.ListTitle" >
+                    <item name="android:background">
+@color/headerBackgroundColor
+                    </item>
+                    <item name="android:textColor">
+@color/headerTextColor
+                    </item>
+                    <item name="android:gravity">
+center
+                    </item>
+                </style>
+
+                <style name="TextAppearance" >
+                    <item name="android:textSize">
+15sp
+                    </item>
+                    <item name="android:textStyle">
+bold
+                    </item>
+                </style>
+
+                <style name="AppTheme.Translucent" >
+                    <item name="android:colorBackgroundCacheHint">
+@null
+                    </item>
+                    <item name="android:windowIsTranslucent">
+true
+                    </item>
+                    <item name="android:windowBackground">
+@android:color/transparent
+                    </item>
+                    <item name="android:windowActionBar">
+false
+                    </item>
+                    <item name="android:windowNoTitle">
+true
+                    </item>
+                    <item name="android:windowAnimationStyle">
+@android:style/Animation.Translucent
+                    </item>
+                </style>
+
+                <style name="TextAppearance.Small" >
+                    <item name="android:textSize">
+12sp
+                    </item>
+                    <item name="android:textStyle">
+normal
+                    </item>
+                </style>
+
+                <style
+                    name="AppTheme.Fullscreen"
+                    parent="@android:style/Theme.Holo.NoActionBar" >
+                    <item name="android:windowBackground">
+@drawable/background
+                    </item>
+                </style>
+
+                <style name="Widget.ScannerSubtitle" >
+                    <item name="android:textColor">
+@color/headerBackgroundColor
+                    </item>
+                    <item name="android:textStyle">
+bold
+                    </item>
+                </style>
+
+                <style
+                    name="Widget.ActionBar.Overflow"
+                    parent="@android:style/Widget.Holo.Light.ActionButton.Overflow" >
+                    <item name="android:src">
+@drawable/ic_menu_moreoverflow
+                    </item>
+                </style>
+
+                <style
+                    name="AppTheme"
+                    parent="@android:style/Theme.Holo.Light" >
+                    <item name="android:windowBackground">
+@drawable/background
+                    </item>
+                    <item name="android:actionBarStyle">
+@style/Widget.ActionBar
+                    </item>
+                    <item name="android:buttonStyle">
+@style/Widget.Button
+                    </item>
+                    <item name="android:homeAsUpIndicator">
+@drawable/ic_ab_back_holo_dark
+                    </item>
+                    <item name="android:textAppearanceListItem">
+@style/TextAppearance
+                    </item>
+                    <item name="android:textAppearanceListItemSmall">
+@style/TextAppearance.Small
+                    </item>
+                    <item name="android:actionOverflowButtonStyle">
+@style/Widget.ActionBar.Overflow
+                    </item>
+                </style>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/dimens.xml"
+                qualifiers="land" >
+                <dimen name="feature_vertical_margin_top" >40dp
+                </dimen>
+                <dimen name="activity_vertical_margin_bottom" >26dp
+                </dimen>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_bpm.xml"
+                qualifiers="land" >
+                <dimen name="bpm_feature_title_long_margin" >-115dp
+                </dimen>
+
+                <string name="bpm_feature_title_long" >BLOOD PRESSURE
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_csc.xml"
+                qualifiers="land" >
+                <dimen name="csc_feature_title_long_margin" >-13dp
+                </dimen>
+
+                <string name="csc_feature_title_long" >CSC
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_dfu.xml"
+                qualifiers="land" >
+                <string name="dfu_feature_title_long" >DFU
+                </string>
+
+                <dimen name="dfu_feature_title_long_margin" >-16dp
+                </dimen>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_gls.xml"
+                qualifiers="land" >
+                <dimen name="gls_feature_title_long_margin" >-126dp
+                </dimen>
+
+                <string name="gls_feature_title_long" >GLUCOSE MONITOR
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_hrs.xml"
+                qualifiers="land" >
+                <dimen name="hrs_feature_title_long_margin" >-16dp
+                </dimen>
+
+                <string name="hrs_feature_title_long" >HRM
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_hts.xml"
+                qualifiers="land" >
+                <string name="hts_feature_title_long" >HTM
+                </string>
+
+                <dimen name="hts_feature_title_long_margin" >-18dp
+                </dimen>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_proximity.xml"
+                qualifiers="land" >
+                <dimen name="proximity_feature_title_long_margin" >-66dp
+                </dimen>
+
+                <string name="proximity_feature_title_long" >PROXIMITY
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_rsc.xml"
+                qualifiers="land" >
+                <dimen name="rsc_feature_title_long_margin" >-13dp
+                </dimen>
+
+                <string name="rsc_feature_title_long" >RSC
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/dimens.xml"
+                qualifiers="sw600dp-v13" >
+                <dimen name="activity_vertical_margin_top" >24dp
+                </dimen>
+                <dimen name="feature_horizontal_margin" >80dp
+                </dimen>
+                <dimen name="activity_vertical_margin_bottom" >40dp
+                </dimen>
+                <dimen name="feature_vertical_margin_top" >50dp
+                </dimen>
+                <dimen name="activity_horizontal_margin" >24dp
+                </dimen>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_bpm.xml"
+                qualifiers="sw600dp-v13" >
+                <string name="bpm_feature_title_long" >BLOOD PRESSURE
+                </string>
+
+                <dimen name="bpm_feature_title_long_margin" >-115dp
+                </dimen>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_csc.xml"
+                qualifiers="sw600dp-v13" >
+                <dimen name="csc_feature_title_long_margin" >-192dp
+                </dimen>
+
+                <string name="csc_feature_title_long" >CYCLING SPEED &amp; CADENCE
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_dfu.xml"
+                qualifiers="sw600dp-v13" >
+                <dimen name="dfu_feature_title_long_margin" >-186dp
+                </dimen>
+
+                <string name="dfu_feature_title_long" >DEVICE FIRMWARE UPDATE
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_gls.xml"
+                qualifiers="sw600dp-v13" >
+                <dimen name="gls_feature_title_long_margin" >-126dp
+                </dimen>
+
+                <string name="gls_feature_title_long" >GLUCOSE MONITOR
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_hrs.xml"
+                qualifiers="sw600dp-v13" >
+                <string name="hrs_feature_title_long" >HEART RATE MONITOR
+                </string>
+
+                <dimen name="hrs_feature_title_long_margin" >-152dp
+                </dimen>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_hts.xml"
+                qualifiers="sw600dp-v13" >
+                <dimen name="hts_feature_title_long_margin" >-236dp
+                </dimen>
+
+                <string name="hts_feature_title_long" >HEALTH THERMOMETER MONITOR
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_rsc.xml"
+                qualifiers="sw600dp-v13" >
+                <dimen name="rsc_feature_title_long_margin" >-192dp
+                </dimen>
+
+                <string name="rsc_feature_title_long" >RUNNING SPEED &amp; CADENCE
+                </string>
+            </file>
+            <file
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw720dp-land/dimens.xml"
+                qualifiers="sw720dp-land-v13" >
+                <dimen name="activity_vertical_margin_top" >32dp
+                </dimen>
+                <dimen name="activity_horizontal_margin" >128dp
+                </dimen>
+                <dimen name="feature_vertical_margin_top" >60dp
+                </dimen>
+                <dimen name="activity_vertical_margin_bottom" >60dp
+                </dimen>
+                <dimen name="feature_horizontal_margin" >128dp
+                </dimen>
+            </file>
+            <file
+                name="settings_csc"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/xml/settings_csc.xml"
+                qualifiers=""
+                type="xml" />
+            <file
+                name="settings_dfu"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/xml/settings_dfu.xml"
+                qualifiers=""
+                type="xml" />
+        </source>
+        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/generated/res/rs/debug" />
+        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/generated/res/generated/debug" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/debug/res" />
+    </dataSet>
+
+</merger>
