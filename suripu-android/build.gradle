@@ -29,6 +29,7 @@ dependencies {
     compile 'joda-time:joda-time:2.3'
     compile 'com.squareup.retrofit:retrofit:1.5.+'
     compile 'com.squareup.retrofit:converter-protobuf:1.5.+'
+    compile 'com.intellij:annotations:5.1'
 
     compile 'com.google.guava:guava:+'
 }

@@ -167,16 +167,21 @@ public class PillBleTestActivity extends ListActivity implements
 
                 @Override
                 public void failure(final RetrofitError error) {
-                    if(error.getResponse().getStatus() == 409){ // Pill already registered..
-                        doUpload();
-                    }else{
+                    if(error.isNetworkError()){
                         uiEndOperation();
-                        Toast.makeText(PillBleTestActivity.this, "Failed to register device " + connectedPill.getId() + ": " + error.getResponse().getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PillBleTestActivity.this, "Failed to upload data " + connectedPill.getId() + ", network error.", Toast.LENGTH_SHORT).show();
+                    }else {
+                        if (error.getResponse().getStatus() == 409) { // Pill already registered..
+                            doUpload();
+                        } else {
+                            uiEndOperation();
+                            Toast.makeText(PillBleTestActivity.this, "Failed to register device " + connectedPill.getId() + ": " + error.getResponse().getStatus(), Toast.LENGTH_SHORT).show();
 
-                        if(error.getResponse().getStatus() == 401) { // token expired
-                            connectedPill.disconnect();
-                            goLoginScreen();
-                            finish();
+                            if (error.getResponse().getStatus() == 401) { // token expired
+                                connectedPill.disconnect();
+                                goLoginScreen();
+                                finish();
+                            }
                         }
                     }
                 }
@@ -444,6 +449,7 @@ public class PillBleTestActivity extends ListActivity implements
                 }
             });
         }else{
+            builder.setTitle("Pill Id: " + selectedPill.getId());
             builder.setItems(new CharSequence[]{
                     "Set Time",             //0
                     "Get Time",             //1
