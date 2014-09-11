@@ -79,6 +79,7 @@
 
 
         <service android:name=".SmartAlarmTestService$AlarmService"/>
+        <service android:name=".SmartAlarmTestService$RingService"/>
     </application>
 
 </manifest>
