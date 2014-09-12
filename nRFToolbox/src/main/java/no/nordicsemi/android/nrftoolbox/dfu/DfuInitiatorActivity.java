@@ -1,6 +1,6 @@
 package no.nordicsemi.android.nrftoolbox.dfu;
 
-import no.nordicsemi.android.nrftoolbox.scanner.ScannerFragment;
+import com.hello.scanner.ScannerFragment;
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;

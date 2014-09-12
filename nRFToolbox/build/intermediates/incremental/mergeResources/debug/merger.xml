@@ -616,11 +616,6 @@
                 qualifiers=""
                 type="layout" />
             <file
-                name="fragment_device_selection"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/fragment_device_selection.xml"
-                qualifiers=""
-                type="layout" />
-            <file
                 name="fragment_zip_info"
                 path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/fragment_zip_info.xml"
                 qualifiers=""

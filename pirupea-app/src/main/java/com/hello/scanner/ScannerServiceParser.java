@@ -6,7 +6,7 @@
  * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
  * This heading must NOT be removed from the file.
  ******************************************************************************/
-package no.nordicsemi.android.nrftoolbox.scanner;
+package com.hello.scanner;
 
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;

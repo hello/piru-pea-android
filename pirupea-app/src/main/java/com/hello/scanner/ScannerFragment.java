@@ -6,13 +6,7 @@
  * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
  * This heading must NOT be removed from the file.
  ******************************************************************************/
-package no.nordicsemi.android.nrftoolbox.scanner;
-
-import java.util.Set;
-import java.util.UUID;
-
-import no.nordicsemi.android.nrftoolbox.R;
-import no.nordicsemi.android.nrftoolbox.utility.DebugLogger;
+package com.hello.scanner;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -25,12 +19,17 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ParcelUuid;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+
+import java.util.Set;
+import java.util.UUID;
+import com.hello.pirupea.R;
 /**
  * ScannerFragment class scan required BLE devices and shows them in a list. This class scans and filter devices with standard BLE Service UUID and devices with custom BLE Service UUID It contains a
  * list and a button to scan/cancel. There is a interface {@link OnDeviceSelectedListener} which is implemented by activity in order to receive selected device. The scanning will continue for 5
@@ -265,7 +264,8 @@ public class ScannerFragment extends DialogFragment {
 							addScannedDevice(device, ScannerServiceParser.decodeDeviceName(scanRecord), rssi, DEVICE_NOT_BONDED);
 						}
 					} catch (Exception e) {
-						DebugLogger.e(TAG, "Invalid data in Advertisement packet " + e.toString());
+
+                        Log.e(TAG, "Invalid data in Advertisement packet " + e.toString());
 					}
 				} else {
 					addScannedDevice(device, ScannerServiceParser.decodeDeviceName(scanRecord), rssi, DEVICE_NOT_BONDED);

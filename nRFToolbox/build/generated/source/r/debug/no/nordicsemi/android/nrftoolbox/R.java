@@ -111,19 +111,18 @@ public final class R {
     }
     public static final class id {
         public static int action_abort=0x7f0c0023;
-        public static int action_about=0x7f0c003d;
+        public static int action_about=0x7f0c003c;
         public static int action_all=0x7f0c001f;
-        public static int action_cancel=0x7f0c003b;
-        public static int action_clear=0x7f0c0040;
+        public static int action_clear=0x7f0c003f;
         public static int action_connect=0x7f0c000c;
-        public static int action_delete_all=0x7f0c0041;
+        public static int action_delete_all=0x7f0c0040;
         public static int action_findme=0x7f0c002d;
-        public static int action_first=0x7f0c003f;
+        public static int action_first=0x7f0c003e;
         public static int action_last=0x7f0c0020;
         public static int action_more=0x7f0c0021;
-        public static int action_refresh=0x7f0c003e;
+        public static int action_refresh=0x7f0c003d;
         public static int action_select_file=0x7f0c0017;
-        public static int action_settings=0x7f0c003c;
+        public static int action_settings=0x7f0c003b;
         public static int action_upload=0x7f0c0019;
         public static int activity=0x7f0c0031;
         public static int address=0x7f0c0036;
@@ -198,8 +197,7 @@ public final class R {
         public static int drawer=0x7f030011;
         public static int drawer_plugin=0x7f030012;
         public static int feature_icon=0x7f030013;
-        public static int fragment_device_selection=0x7f030014;
-        public static int fragment_zip_info=0x7f030015;
+        public static int fragment_zip_info=0x7f030014;
     }
     public static final class menu {
         public static int csc_menu=0x7f0b0000;

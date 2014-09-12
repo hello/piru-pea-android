@@ -10,9 +10,8 @@ package no.nordicsemi.android.nrftoolbox.profile;
 
 import java.util.UUID;
 
-import no.nordicsemi.android.nrftoolbox.AppHelpFragment;
 import no.nordicsemi.android.nrftoolbox.R;
-import no.nordicsemi.android.nrftoolbox.scanner.ScannerFragment;
+import com.hello.scanner.ScannerFragment;
 import no.nordicsemi.android.nrftoolbox.utility.DebugLogger;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;

@@ -1,6 +1,8 @@
 package com.hello.pirupea;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -15,12 +17,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.hello.scanner.ScannerFragment;
 
-public class BleDFUActivity extends Activity{
+
+public class BleDFUActivity extends Activity implements ScannerFragment.OnDeviceSelectedListener{
     static final int REQUEST_ENABLE_BT = 2;
+    private static final String TAG = "DFU";
     private Button btnDFUScan;
     private BluetoothDevice dfuTarget;
+    @Override
+    public void onDeviceSelected(final BluetoothDevice device, final String name) {
+        Log.i(TAG, "Picked:"+name);
+    }
 
+    @Override
+    public void onDialogCanceled() {
+
+    }
 
     private void showToast(final String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
@@ -58,11 +71,20 @@ public class BleDFUActivity extends Activity{
             @Override
             public void onClick(final View view) {
                 Log.i("DFU", "Scan Button Pressed");
+                if (isBLEEnabled()) {
+                    showDeviceScanningDialog();
+                } else {
+                    showBLEDialog();
+                }
             }
         });
     }
 
-
+    private void showDeviceScanningDialog() {
+        final FragmentManager fm = getFragmentManager();
+        final ScannerFragment dialog = ScannerFragment.getInstance(BleDFUActivity.this, null, true);
+        dialog.show(fm, "scan_fragment");
+    }
 
 
     @Override

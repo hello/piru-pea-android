@@ -9,4 +9,11 @@
     <string name="title_activity_ble_dfu">BleDFUActivity</string>
     <string name="no_ble">No BLE on Device!</string>
 
+    <string name="scanner_title">Select device:</string>
+    <string name="scanner_empty">No device found</string>
+    <string name="scanner_action_scan">Scan</string>
+    <string name="scanner_action_cancel">Cancel</string>
+    <string name="scanner_subtitle_bonded">BONDED DEVICES:</string>
+    <string name="scanner_subtitle__not_bonded">AVAILABLE DEVICES:</string>
+    <string name="not_available">not_availble</string>
 </resources>

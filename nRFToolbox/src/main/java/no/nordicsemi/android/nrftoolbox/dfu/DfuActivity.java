@@ -12,13 +12,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import no.nordicsemi.android.error.GattError;
-import no.nordicsemi.android.nrftoolbox.AppHelpFragment;
 import no.nordicsemi.android.nrftoolbox.R;
 import no.nordicsemi.android.nrftoolbox.dfu.adapter.FileBrowserAppsAdapter;
 import no.nordicsemi.android.nrftoolbox.dfu.fragment.UploadCancelFragment;
 import no.nordicsemi.android.nrftoolbox.dfu.fragment.ZipInfoFragment;
-import no.nordicsemi.android.nrftoolbox.dfu.settings.SettingsActivity;
-import no.nordicsemi.android.nrftoolbox.scanner.ScannerFragment;
+
+import com.hello.scanner.ScannerFragment;
 import no.nordicsemi.android.nrftoolbox.utility.DebugLogger;
 import android.app.ActionBar;
 import android.app.Activity;
