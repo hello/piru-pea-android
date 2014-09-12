@@ -11,8 +11,6 @@ import android.widget.Button;
 
 import com.hello.pirupea.settings.LocalSettings;
 
-import no.nordicsemi.android.nrftoolbox.dfu.DfuActivity;
-
 public class BleTestSelectionActivity extends Activity {
 
     private Button btnPillTest;
@@ -62,7 +60,7 @@ public class BleTestSelectionActivity extends Activity {
         this.btnDFU.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent dfuIntent = new Intent(BleTestSelectionActivity.this, DfuActivity.class);
+                Intent dfuIntent = new Intent(BleTestSelectionActivity.this, BleDFUActivity.class);
                 dfuIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(dfuIntent);
             }

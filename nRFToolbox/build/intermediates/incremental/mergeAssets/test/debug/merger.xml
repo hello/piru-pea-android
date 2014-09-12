@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merger version="2" >
 
+    <dataSet config="unspecified" >
+        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/assets" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/bundles/debug/assets" >
+            <file
+                name="fonts/trebuc.ttf"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/bundles/debug/assets/fonts/trebuc.ttf" />
+            <file
+                name="fonts/trebucbd.ttf"
+                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/bundles/debug/assets/fonts/trebucbd.ttf" />
+        </source>
+    </dataSet>
     <dataSet config="main" >
         <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/androidTest/assets" />
     </dataSet>
