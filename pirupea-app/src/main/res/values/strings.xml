@@ -7,5 +7,6 @@
     <string name="title_activity_ble_test_selection">BleTestSelectionActivity</string>
     <string name="title_activity_smart_alarm_test">Smart Alarm Test</string>
     <string name="title_activity_ble_dfu">BleDFUActivity</string>
+    <string name="no_ble">No BLE on Device!</string>
 
 </resources>
