@@ -1,4 +1,4 @@
-package no.nordicsemi.android.nrftoolbox.dfu;
+package com.hello.pirupea;
 
 import no.nordicsemi.android.dfu.DfuBaseService;
 import android.app.Activity;
