@@ -80,6 +80,11 @@
             android:name=".BleDFUActivity"
             android:label="@string/title_activity_ble_dfu" >
         </activity>
+        <activity
+            android:name=".BleDFUNotificationActivity"
+            android:label="@string/title_activity_ble_dfu_notification" >
+        </activity>
+        <service android:name=".BleDFUService" />
     </application>
 
 </manifest>

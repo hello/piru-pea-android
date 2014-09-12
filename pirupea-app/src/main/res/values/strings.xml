@@ -16,4 +16,5 @@
     <string name="scanner_subtitle_bonded">BONDED DEVICES:</string>
     <string name="scanner_subtitle__not_bonded">AVAILABLE DEVICES:</string>
     <string name="not_available">not_availble</string>
+    <string name="title_activity_ble_dfu_notification">DFU Notification</string>
 </resources>

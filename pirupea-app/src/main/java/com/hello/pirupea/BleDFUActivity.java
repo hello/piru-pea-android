@@ -10,6 +10,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -19,6 +20,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 
 import com.hello.scanner.ScannerFragment;
 
@@ -38,19 +41,35 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
     private BluetoothDevice dfuTarget;
     private String filePath;
     private Button btnStartDFU;
-
+    private Uri fileStreamURI;
     private final BroadcastReceiver dfuReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(final Context context, final Intent intent) {
             final String action = intent.getAction();
-            if(DfuBaseService.BROADCAST_PROGRESS.equals(action)){
+            if(BleDFUService.BROADCAST_PROGRESS.equals(action)){
                 Log.i(TAG, "Progress");
-            }else if(DfuBaseService.BROADCAST_ERROR.equals(action)){
+            }else if(BleDFUService.BROADCAST_ERROR.equals(action)){
                 Log.i(TAG, "Error");
             }
         }
     };
 
+
+    private static IntentFilter makeDfuUpdateIntentFilter() {
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(BleDFUService.BROADCAST_PROGRESS);
+        intentFilter.addAction(BleDFUService.BROADCAST_ERROR);
+        intentFilter.addAction(BleDFUService.BROADCAST_LOG);
+        return intentFilter;
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // We are using LocalBroadcastReceiver instead of normal BroadcastReceiver for optimization purposes
+        final LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(this);
+        broadcastManager.registerReceiver(dfuReceiver, makeDfuUpdateIntentFilter());
+    }
 
     @Override
     public void onDeviceSelected(final BluetoothDevice device, final String name) {
@@ -143,9 +162,15 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
     }
 
     private void startDFU() {
-        if(this.filePath != null && this.dfuTarget != null){
+        final Intent service = new Intent(this, BleDFUService.class);
+        service.putExtra(BleDFUService.EXTRA_DEVICE_ADDRESS, dfuTarget.getAddress());
+        service.putExtra(BleDFUService.EXTRA_DEVICE_NAME, dfuTarget.getName());
+        service.putExtra(BleDFUService.EXTRA_FILE_MIME_TYPE, BleDFUService.MIME_TYPE_HEX);
+        service.putExtra(BleDFUService.EXTRA_FILE_TYPE, BleDFUService.TYPE_APPLICATION);
+        service.putExtra(BleDFUService.EXTRA_FILE_URI, fileStreamURI);
+        service.putExtra(BleDFUService.EXTRA_FILE_PATH, filePath);
 
-        }
+        startService(service);
     }
 
     private void copyRawResource(final int rawResId, final File dest) {
