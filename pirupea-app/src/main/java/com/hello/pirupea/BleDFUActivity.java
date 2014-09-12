@@ -1,15 +1,17 @@
 package com.hello.pirupea;
 
+import no.nordicsemi.android.dfu.DfuBaseService;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +22,12 @@ import android.widget.Toast;
 
 import com.hello.scanner.ScannerFragment;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+
 
 public class BleDFUActivity extends Activity implements ScannerFragment.OnDeviceSelectedListener{
     static final int REQUEST_ENABLE_BT = 2;
@@ -28,16 +36,33 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
     private Button btnSelectFirmware;
     private TextView tvDFUTarget;
     private BluetoothDevice dfuTarget;
+    private String filePath;
+    private Button btnStartDFU;
+
+    private final BroadcastReceiver dfuReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(final Context context, final Intent intent) {
+            final String action = intent.getAction();
+            if(DfuBaseService.BROADCAST_PROGRESS.equals(action)){
+                Log.i(TAG, "Progress");
+            }else if(DfuBaseService.BROADCAST_ERROR.equals(action)){
+                Log.i(TAG, "Error");
+            }
+        }
+    };
+
+
     @Override
     public void onDeviceSelected(final BluetoothDevice device, final String name) {
         Log.i(TAG, "Picked:"+name);
-        findViewById(R.id.btnSelectFirmware).setVisibility(View.VISIBLE);
-        ((TextView)findViewById(R.id.tvDFUTarget)).setText(name);
+        findViewById(R.id.btnSelectFirmware).setEnabled(true);
+        dfuTarget = device;
+        ((TextView)findViewById(R.id.tvDFUTarget)).setText(dfuTarget.getName());
     }
 
     @Override
     public void onDialogCanceled() {
-
+        dfuTarget = null;
     }
 
     private void showToast(final String message) {
@@ -84,16 +109,63 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
             }
         });
         //intiallaly hide the button
-        findViewById(R.id.btnSelectFirmware).setVisibility(View.INVISIBLE);
+        findViewById(R.id.btnSelectFirmware).setEnabled(false);
         this.btnSelectFirmware = (Button) findViewById(R.id.btnSelectFirmware);
         this.btnSelectFirmware.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(final View view){
                 Log.i(TAG, "Click");
+                //select firmware, but now just copy raw to file
+                final File folder = new File(Environment.getExternalStorageDirectory(), "pirupea");
+                if(!folder.exists()){
+                    folder.mkdir();
+                }
+                File f = new File(folder, "pill_default.hex");
+                if(!f.exists()){
+                    copyRawResource(R.raw.pill_default,f);
+                    Log.i(TAG, "Copied");
+                }else{
+                    Log.i(TAG, "Exists");
+                }
+                filePath = f.getPath();
+                btnStartDFU.setEnabled(true);
+            }
+        });
+        this.btnStartDFU = (Button)findViewById(R.id.btnStartDFU);
+        this.btnStartDFU.setEnabled(false);
+        this.btnStartDFU.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(final View view){
+                Log.i(TAG, "Start Service");
+                startDFU();
             }
         });
     }
 
+    private void startDFU() {
+        if(this.filePath != null && this.dfuTarget != null){
+
+        }
+    }
+
+    private void copyRawResource(final int rawResId, final File dest) {
+        try {
+            final InputStream is = getResources().openRawResource(rawResId);
+            final FileOutputStream fos = new FileOutputStream(dest);
+
+            final byte[] buf = new byte[1024];
+            int read = 0;
+            try {
+                while ((read = is.read(buf)) > 0)
+                    fos.write(buf, 0, read);
+            } finally {
+                is.close();
+                fos.close();
+            }
+        } catch (final IOException e) {
+            Log.e(TAG, "Error while copying HEX file " + e.toString());
+        }
+    }
     private void showDeviceScanningDialog() {
         final FragmentManager fm = getFragmentManager();
         final ScannerFragment dialog = ScannerFragment.getInstance(BleDFUActivity.this, null, true);
