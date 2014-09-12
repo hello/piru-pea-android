@@ -1,4 +1,4 @@
-package com.hello.pirupea;
+package no.nordicsemi.android.nrftoolbox.dfu;
 
 import no.nordicsemi.android.nrftoolbox.FeaturesActivity;
 import android.app.Activity;
