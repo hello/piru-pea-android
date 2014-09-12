@@ -9,7 +9,7 @@
     tools:context="com.hello.pirupea.BleDFUActivity">
 
     <TextView
-        android:text="@string/hello_world"
+        android:text="( > ^ _^ )> "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView" />
@@ -21,5 +21,22 @@
         android:id="@+id/btnDFUScan"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select FW"
+        android:id="@+id/btnSelectFirmware"
+        android:layout_below="@+id/btnDFUScan"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Target"
+        android:id="@+id/tvDFUTarget"
+        android:layout_above="@+id/btnSelectFirmware"
+        android:layout_toEndOf="@+id/btnDFUScan"
+        android:layout_alignTop="@+id/btnDFUScan" />
 
 </RelativeLayout>

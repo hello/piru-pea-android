@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hello.scanner.ScannerFragment;
@@ -24,10 +25,14 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
     static final int REQUEST_ENABLE_BT = 2;
     private static final String TAG = "DFU";
     private Button btnDFUScan;
+    private Button btnSelectFirmware;
+    private TextView tvDFUTarget;
     private BluetoothDevice dfuTarget;
     @Override
     public void onDeviceSelected(final BluetoothDevice device, final String name) {
         Log.i(TAG, "Picked:"+name);
+        findViewById(R.id.btnSelectFirmware).setVisibility(View.VISIBLE);
+        ((TextView)findViewById(R.id.tvDFUTarget)).setText(name);
     }
 
     @Override
@@ -70,12 +75,21 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
         this.btnDFUScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                Log.i("DFU", "Scan Button Pressed");
+                Log.i(TAG, "Scan Button Pressed");
                 if (isBLEEnabled()) {
                     showDeviceScanningDialog();
                 } else {
                     showBLEDialog();
                 }
+            }
+        });
+        //intiallaly hide the button
+        findViewById(R.id.btnSelectFirmware).setVisibility(View.INVISIBLE);
+        this.btnSelectFirmware = (Button) findViewById(R.id.btnSelectFirmware);
+        this.btnSelectFirmware.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(final View view){
+                Log.i(TAG, "Click");
             }
         });
     }
