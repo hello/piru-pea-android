@@ -42,12 +42,22 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
     private String filePath;
     private Button btnStartDFU;
     private Uri fileStreamURI;
+    private static final String kirby[] = {
+            "(>'-')>",
+            "<('-'<)",
+            "^(' - ')^",
+            "<('-'<)",
+            "(>'-')>"
+    };
     private final BroadcastReceiver dfuReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(final Context context, final Intent intent) {
             final String action = intent.getAction();
             if(BleDFUService.BROADCAST_PROGRESS.equals(action)){
+                final int progress = intent.getIntExtra(BleDFUService.EXTRA_DATA,0);
+                int idx = progress>0? progress % kirby.length : 0;
                 Log.i(TAG, "Progress");
+                ((TextView)findViewById(R.id.tvProgress)).setText("Progress: "+progress+" % " + kirby[idx]);
             }else if(BleDFUService.BROADCAST_ERROR.equals(action)){
                 Log.i(TAG, "Error");
             }

@@ -58,4 +58,14 @@
         android:layout_below="@+id/btnSelectFirmware"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvProgress"
+        android:layout_alignBottom="@+id/btnStartDFU"
+        android:layout_toEndOf="@+id/btnStartDFU"
+        android:layout_alignEnd="@+id/tvFW"
+        android:layout_alignTop="@+id/btnStartDFU"
+        android:gravity="center_vertical|center_horizontal" />
+
 </RelativeLayout>
