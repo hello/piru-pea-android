@@ -96,7 +96,8 @@ public class HexInputStream extends FilterInputStream {
 					break;
 				case 0x00:
 					// data type line
-					if ((lastULBA << 16) + offset >= 0x1000) // we must skip all data from below address 0x1000 as those are the MBR. The Soft Device starts at 0x1000, the app and bootloader futher more
+                    //TODO nordic bug, skipping MBR 0x1000
+					if ((lastULBA << 16) + offset >= 0x0000) // we must skip all data from below address 0x1000 as those are the MBR. The Soft Device starts at 0x1000, the app and bootloader futher more
 						binSize += lineSize;
 					// no break!
 				case 0x02:
@@ -233,7 +234,8 @@ public class HexInputStream extends FilterInputStream {
 			switch (type) {
 			case 0x00:
 				// data type
-				if ((lastAddress << 16) + offset < 0x1000) {
+                //TODO nordic bug do not skip 0x1000
+				if ((lastAddress << 16) + offset < 0x0000) {
 					type = -1; // some other than 0
 					pos += in.skip(lineSize * 2 /* 2 hex per one byte */+ 2 /* check sum */);
 				}
