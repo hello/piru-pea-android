@@ -12,7 +12,7 @@ android {
     }
     buildTypes {
         debug {
-            runProguard true
+            runProguard false
         }
     }
 }

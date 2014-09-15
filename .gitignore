@@ -6,4 +6,7 @@ target
 /.idea/workspace.xml
 .DS_Store
 /build
+DFULibrary/build
+HolographLibrary/build
+nRFToolbox/build
 .idea

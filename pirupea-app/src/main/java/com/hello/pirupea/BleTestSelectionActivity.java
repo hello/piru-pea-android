@@ -17,6 +17,7 @@ public class BleTestSelectionActivity extends Activity {
     private Button btnMorpheus;
     private Button btnSmartAlarm;
     private Button btnLogout;
+    private Button btnDFU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,16 @@ public class BleTestSelectionActivity extends Activity {
                 Intent bleActivityIntent = new Intent(BleTestSelectionActivity.this, SmartAlarmTestActivity.class);
                 bleActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(bleActivityIntent);
+            }
+        });
+
+        this.btnDFU = (Button) findViewById(R.id.btnDFU);
+        this.btnDFU.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent dfuIntent = new Intent(BleTestSelectionActivity.this, BleDFUActivity.class);
+                dfuIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(dfuIntent);
             }
         });
 
