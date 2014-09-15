@@ -20,4 +20,4 @@
     android:paddingStart="16dip"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:textColor="?android:attr/textColorAlertDialogListItem" />
-<!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/app_file_browser_item.xml -->
+<!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/app_file_browser_item.xml -->

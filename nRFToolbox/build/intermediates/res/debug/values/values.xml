@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_csc.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_csc.xml -->
     <eat-comment />
 
     <string-array name="csc_settings_wheel_diameter_values">
@@ -108,7 +108,7 @@
         <item>35–349</item>
         <item>47–305</item>
     </string-array>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_dfu.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_dfu.xml -->
     <eat-comment />
 
     <string-array name="dfu_app_file_browser">
@@ -129,7 +129,7 @@
         <item>Application</item>
         <item>Multiple files (ZIP)</item>
     </string-array>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_gls.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_gls.xml -->
     <eat-comment />
 
     <string-array name="gls_context_carbohydrare">
@@ -231,7 +231,7 @@
         <item>Interstitial Fluid (ISF)</item>
         <item>Control Solution</item>
     </string-array>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_hrs.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_hrs.xml -->
     <eat-comment />
 
     <string-array name="hrs_locations">
@@ -243,7 +243,7 @@
         <item>Ear Lobe</item>
         <item>Foot</item>
     </string-array>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/color.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/color.xml -->
     <eat-comment />
 
     <color name="actionBarColor">#009CDE</color>
@@ -253,52 +253,52 @@
     <color name="featureTitleColor">#939597</color>
     <color name="headerBackgroundColor">#009ada</color>
     <color name="headerTextColor">#FFFFFF</color>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_vertical_margin_bottom">32dp</dimen>
     <dimen name="activity_vertical_margin_top">16dp</dimen>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_bpm.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_bpm.xml -->
     <eat-comment />
 
     <dimen name="bpm_feature_title_long_margin">-115dp</dimen>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_csc.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_csc.xml -->
     <eat-comment />
 
     <dimen name="csc_feature_title_long_margin">-192dp</dimen>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_dfu.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_dfu.xml -->
     <eat-comment />
 
     <dimen name="dfu_feature_title_long_margin">-186dp</dimen>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="feature_horizontal_margin">50dp</dimen>
     <dimen name="feature_section_padding">8dp</dimen>
     <dimen name="feature_vertical_margin_top">50dp</dimen>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_gls.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_gls.xml -->
     <eat-comment />
 
     <dimen name="gls_feature_title_long_margin">-126dp</dimen>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_hrs.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_hrs.xml -->
     <eat-comment />
 
     <dimen name="hrs_feature_title_long_margin">-152dp</dimen>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_hts.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_hts.xml -->
     <eat-comment />
 
     <dimen name="hts_feature_title_long_margin">-236dp</dimen>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_proximity.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_proximity.xml -->
     <eat-comment />
 
     <dimen name="proximity_feature_title_long_margin">-142dp</dimen>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_rsc.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_rsc.xml -->
     <eat-comment />
 
     <dimen name="rsc_feature_title_long_margin">-192dp</dimen>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="about_text">The nRF Toolbox is a container application that stores your Nordic Semiconductor apps in one location.</string>
@@ -313,7 +313,7 @@
     <string name="battery">%d%%</string>
     <string name="bonded">The device is now bonded.</string>
     <string name="bonding">Bonding with the device…</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_bpm.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_bpm.xml -->
     <eat-comment />
 
     <string name="bpm_about_text">BPM (Blood Pressure Monitor) profile allows you to connect to your Blood Pressure device. 
@@ -333,7 +333,7 @@
     <string name="bpm_unit_bpm">bpm</string>
     <string name="bpm_unit_kpa">kPa</string>
     <string name="bpm_unit_mmhg">mmHg</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_csc.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_csc.xml -->
     <eat-comment />
 
     <string name="csc_about_text">CSC (Cycling Speed and Cadence) profile allows you to connect to your bike activity sensor.
@@ -359,7 +359,7 @@
     <string name="csc_speed_unit">km/h</string>
     <string name="csc_total_distance">TOTAL DISTANCE</string>
     <string name="csc_total_distance_unit">km</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_dfu.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_dfu.xml -->
     <eat-comment />
 
     <string name="dfu_aborted">Uploading of the application has been canceled.</string>
@@ -410,7 +410,7 @@
     <string name="dfu_settings_dfu_number_of_packets_label">Number of packets</string>
     <string name="dfu_settings_dfu_packets_receipt_notification_label">Packets receipt notification procedure</string>
     <string name="dfu_settings_title">DFU Settnigs</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res/values/values.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res/values/values.xml -->
     <eat-comment />
 
     <string name="dfu_status_aborted">Aborted</string>
@@ -433,7 +433,7 @@
     <string name="dfu_status_uploading_part" formatted="false">Uploading part %d/%d…</string>
     <string name="dfu_status_validating">Validating…</string>
     <string name="dfu_status_validating_msg">Validating…</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_dfu.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_dfu.xml -->
     <eat-comment />
 
     <string name="dfu_success">Application has been transferred successfully.</string>
@@ -445,7 +445,7 @@
         with the new version of soft device it is allowed to upload a new bootloader together with the new soft device in one connection. The application, if present in ZIP, will be send after the 
         new bootloader is ready.
         \n\nNote that the files in the ZIP must have the following names in order to be processed correctly:</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="drawer_close">Close</string>
@@ -453,7 +453,7 @@
     <string name="drawer_plugin_mcp">nRF Master Control Panel</string>
     <string name="drawer_plugins">PLUGINS</string>
     <string name="font_path">fonts/trebucbd.ttf</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_gls.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_gls.xml -->
     <eat-comment />
 
     <string name="gls_about_text">GLUCOSE SERVICE profile allows you to connect to your Glucose sensor. 
@@ -486,7 +486,7 @@
     <string name="gls_unit_mgpdl">mg/dl</string>
     <string name="gls_unit_mmolpl">mmol/l</string>
     <string name="gls_value">%.1f</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_hrs.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_hrs.xml -->
     <eat-comment />
 
     <string name="hrs_about_text">HRM (Heart Rate Monitor) profile allows you to connect to your Heart Rate sensor (f.e. a belt). 
@@ -497,7 +497,7 @@
     <string name="hrs_location_other">Reserved</string>
     <string name="hrs_position_label">sensor position</string>
     <string name="hrs_value_unit">bpm</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_hts.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_hts.xml -->
     <eat-comment />
 
     <string name="hts_about_text">HTM (Health Thermometer Monitor) profile allows you to connect to your Health Thermometer sensor. 
@@ -508,7 +508,7 @@
     <string name="hts_notification_action_disconnect">Disconnect</string>
     <string name="hts_notification_connected_message">%s is connected.</string>
     <string name="hts_unit_celsius">°C</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="no_application">Web Browser application is not available.</string>
@@ -521,7 +521,7 @@
     <string name="permission_log_description">Allows the app to write and read from Nordic Semiconductor Event log</string>
     <string name="permission_log_label">read and write log</string>
     <string name="progress">%d%%</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_proximity.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_proximity.xml -->
     <eat-comment />
 
     <string name="proximity_about_text">PROXIMITY profile allows you to connect to your Proximity sensor.
@@ -537,7 +537,7 @@
     <string name="proximity_notification_action_disconnect">Disconnect</string>
     <string name="proximity_notification_connected_message">%s is connected.</string>
     <string name="proximity_notification_linkloss_alert">%s is getting away!</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_rsc.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_rsc.xml -->
     <eat-comment />
 
     <string name="rsc_about_text">RSC (Running Speed and Cadence) profile allows you to connect to your activity sensor.
@@ -563,7 +563,7 @@
     <string name="rsc_total_distance">TOTAL DISTANCE</string>
     <string name="rsc_total_distance_unit">km</string>
     <string name="rsc_walking">WALKING</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="scanner_action_cancel">Cancel</string>
@@ -572,7 +572,7 @@
     <string name="scanner_subtitle__not_bonded">AVAILABLE DEVICES:</string>
     <string name="scanner_subtitle_bonded">BONDED DEVICES:</string>
     <string name="scanner_title">Select device:</string>
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light">

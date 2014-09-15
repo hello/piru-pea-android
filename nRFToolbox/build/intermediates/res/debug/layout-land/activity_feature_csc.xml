@@ -260,4 +260,4 @@
         android:onClick="onConnectClicked"
         android:text="@string/action_connect" />
 
-</RelativeLayout><!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_csc.xml -->
+</RelativeLayout><!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_csc.xml -->

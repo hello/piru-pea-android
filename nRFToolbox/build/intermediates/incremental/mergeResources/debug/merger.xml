@@ -2,19 +2,19 @@
 <merger version="2" >
 
     <dataSet config="unspecified" >
-        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res" >
+        <source path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res" >
             <file
                 name="stat_dfu"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res/drawable-hdpi-v4/stat_dfu.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res/drawable-hdpi-v4/stat_dfu.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="stat_dfu"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res/drawable-xhdpi-v4/stat_dfu.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res/drawable-xhdpi-v4/stat_dfu.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res/values/values.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/build/intermediates/exploded-aar/piru-pea-android/DFULibrary/unspecified/res/values/values.xml"
                 qualifiers="" >
                 <string name="dfu_status_error" >Upload failed
                 </string>
@@ -64,694 +64,679 @@
         </source>
     </dataSet>
     <dataSet config="main" >
-        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res" >
+        <source path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res" >
             <file
                 name="app_file_browser"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/app_file_browser.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/app_file_browser.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="button"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/button.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/button.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="button_n"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/button_n.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/button_n.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="button_p"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/button_p.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/button_p.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="ic_feature_bg"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_bg.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_bg.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="ic_feature_bg_n"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_bg_n.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_bg_n.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="ic_feature_bg_p"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_bg_p.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_bg_p.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="ic_feature_small_bg"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_small_bg.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_small_bg.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="ic_feature_small_bg_n"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_small_bg_n.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_small_bg_n.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="ic_feature_small_bg_p"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_small_bg_p.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_feature_small_bg_p.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="ic_mcp_feature_small"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_mcp_feature_small.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_mcp_feature_small.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="ic_rssi_bar"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_rssi_bar.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/ic_rssi_bar.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="item_background_light"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/item_background_light.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/item_background_light.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="battery"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/battery.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/battery.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="drawer_shadow"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/drawer_shadow.9.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/drawer_shadow.9.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_ab_back_holo_dark"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_ab_back_holo_dark.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_ab_back_holo_dark.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_action_bluetooth"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_action_bluetooth.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_action_bluetooth.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_bpm_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_bpm_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_bpm_feature.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_csc_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_csc_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_csc_feature.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_dfu_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_dfu_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_dfu_feature.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_drawer"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_drawer.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_drawer.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_glucose_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_glucose_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_glucose_feature.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_help"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_help.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_help.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_hrs_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_hrs_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_hrs_feature.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_hts_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_hts_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_hts_feature.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_launcher.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_launcher.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_menu_about"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_menu_about.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_menu_about.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_menu_moreoverflow"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_menu_moreoverflow.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_menu_moreoverflow.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_menu_settings"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_menu_settings.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_menu_settings.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_permission_log"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_permission_log.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_permission_log.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_proximity_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_proximity_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_proximity_feature.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_rsc_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rsc_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rsc_feature.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_rssi_0_bar"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rssi_0_bar.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rssi_0_bar.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_rssi_1_bar"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rssi_1_bar.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rssi_1_bar.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_rssi_2_bars"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rssi_2_bars.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rssi_2_bars.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_rssi_3_bars"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rssi_3_bars.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/ic_rssi_3_bars.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="item_background_light_n"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/item_background_light_n.9.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/item_background_light_n.9.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="item_background_light_p"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/item_background_light_p.9.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/item_background_light_p.9.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="list_divider_holo_light"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/list_divider_holo_light.9.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/list_divider_holo_light.9.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="nordic_logo"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/nordic_logo.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/nordic_logo.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="nordic_n_logo"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/nordic_n_logo.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/nordic_n_logo.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="proximity_lock_closed"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/proximity_lock_closed.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/proximity_lock_closed.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="proximity_lock_open"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/proximity_lock_open.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/proximity_lock_open.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="stat_dfu"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_dfu.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_dfu.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="stat_notif_csc"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_notif_csc.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_notif_csc.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="stat_notif_hts"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_notif_hts.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_notif_hts.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="stat_notif_proximity"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_notif_proximity.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_notif_proximity.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="stat_notif_rsc"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_notif_rsc.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-hdpi/stat_notif_rsc.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="background"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-land-xhdpi/background.jpg"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-land-xhdpi/background.jpg"
                 qualifiers="land-xhdpi-v4"
                 type="drawable" />
             <file
                 name="nordic_logo"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-land-xhdpi/nordic_logo.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-land-xhdpi/nordic_logo.png"
                 qualifiers="land-xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-mdpi/ic_launcher.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-mdpi/ic_launcher.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="nordic_logo"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-sw600dp-xhdpi/nordic_logo.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-sw600dp-xhdpi/nordic_logo.png"
                 qualifiers="sw600dp-xhdpi-v13"
                 type="drawable" />
             <file
                 name="app_drive"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/app_drive.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/app_drive.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="app_file_manager"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/app_file_manager.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/app_file_manager.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="app_google_play"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/app_google_play.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/app_google_play.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="app_total_commander"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/app_total_commander.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/app_total_commander.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="background"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/background.jpg"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/background.jpg"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="drawer_shadow"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/drawer_shadow.9.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/drawer_shadow.9.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_action_bluetooth"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_action_bluetooth.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_action_bluetooth.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_bpm_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_bpm_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_bpm_feature.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_csc_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_csc_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_csc_feature.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_dfu_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_dfu_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_dfu_feature.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_drawer"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_drawer.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_drawer.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_glucose_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_glucose_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_glucose_feature.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_help"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_help.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_help.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_hrs_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_hrs_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_hrs_feature.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_hts_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_hts_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_hts_feature.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_launcher.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_launcher.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_mcp_feature_fg"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_mcp_feature_fg.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_mcp_feature_fg.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_menu_about"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_menu_about.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_menu_about.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_menu_moreoverflow"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_menu_moreoverflow.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_menu_moreoverflow.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_menu_settings"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_menu_settings.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_menu_settings.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_permission_log"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_permission_log.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_permission_log.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_proximity_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_proximity_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_proximity_feature.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_rsc_feature"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_rsc_feature.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/ic_rsc_feature.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="item_background_light_n"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/item_background_light_n.9.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/item_background_light_n.9.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="item_background_light_p"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/item_background_light_p.9.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/item_background_light_p.9.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="list_divider_holo_light"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/list_divider_holo_light.9.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/list_divider_holo_light.9.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="nordic_logo"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/nordic_logo.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/nordic_logo.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="nordic_logo_horiz"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/nordic_logo_horiz.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/nordic_logo_horiz.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="nordic_n_logo"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/nordic_n_logo.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/nordic_n_logo.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="proximity_lock_closed"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/proximity_lock_closed.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/proximity_lock_closed.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="proximity_lock_open"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/proximity_lock_open.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/proximity_lock_open.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="stat_dfu"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_dfu.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_dfu.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="stat_notif_csc"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_notif_csc.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_notif_csc.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="stat_notif_hts"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_notif_hts.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_notif_hts.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="stat_notif_proximity"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_notif_proximity.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_notif_proximity.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="stat_notif_rsc"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_notif_rsc.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/stat_notif_rsc.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="zip"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/zip.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xhdpi/zip.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable-xxhdpi/ic_launcher.png"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable-xxhdpi/ic_launcher.png"
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
             <file
                 name="activity_feature_bpm"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_bpm.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_bpm.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_feature_csc"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_csc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_csc.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_feature_dfu"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_dfu.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_dfu.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_feature_gls"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_gls.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_gls.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_feature_gls_item"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_gls_item.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_gls_item.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_feature_gls_subitem"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_gls_subitem.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_gls_subitem.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_feature_hrs"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_hrs.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_hrs.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_feature_hts"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_hts.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_hts.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_feature_proximity"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_proximity.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_proximity.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_feature_rsc"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_rsc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/activity_feature_rsc.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_features"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_features.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/activity_features.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_splashscreen"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/activity_splashscreen.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/activity_splashscreen.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="app_file_browser"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/app_file_browser.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/app_file_browser.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="app_file_browser_item"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/app_file_browser_item.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="device_list_empty"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/device_list_empty.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="device_list_row"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/device_list_row.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="device_list_title"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/device_list_title.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/app_file_browser_item.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="drawer"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/drawer.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/drawer.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="drawer_plugin"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/drawer_plugin.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/drawer_plugin.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="feature_icon"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/feature_icon.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/feature_icon.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="fragment_zip_info"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/fragment_zip_info.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/fragment_zip_info.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_feature_bpm"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_bpm.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_bpm.xml"
                 qualifiers="land"
                 type="layout" />
             <file
                 name="activity_feature_csc"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_csc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_csc.xml"
                 qualifiers="land"
                 type="layout" />
             <file
                 name="activity_feature_dfu"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_dfu.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_dfu.xml"
                 qualifiers="land"
                 type="layout" />
             <file
                 name="activity_feature_gls"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_gls.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_gls.xml"
                 qualifiers="land"
                 type="layout" />
             <file
                 name="activity_feature_hrs"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_hrs.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_hrs.xml"
                 qualifiers="land"
                 type="layout" />
             <file
                 name="activity_feature_hts"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_hts.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_hts.xml"
                 qualifiers="land"
                 type="layout" />
             <file
                 name="activity_feature_proximity"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_proximity.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_proximity.xml"
                 qualifiers="land"
                 type="layout" />
             <file
                 name="activity_feature_rsc"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_rsc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-land/activity_feature_rsc.xml"
                 qualifiers="land"
                 type="layout" />
             <file
                 name="activity_feature_bpm"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-sw600dp-land/activity_feature_bpm.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-sw600dp-land/activity_feature_bpm.xml"
                 qualifiers="sw600dp-land-v13"
                 type="layout" />
             <file
                 name="activity_feature_csc"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-sw600dp-land/activity_feature_csc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-sw600dp-land/activity_feature_csc.xml"
                 qualifiers="sw600dp-land-v13"
                 type="layout" />
             <file
                 name="activity_feature_dfu"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-sw600dp-land/activity_feature_dfu.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-sw600dp-land/activity_feature_dfu.xml"
                 qualifiers="sw600dp-land-v13"
                 type="layout" />
             <file
                 name="activity_feature_hrs"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-sw600dp-land/activity_feature_hrs.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-sw600dp-land/activity_feature_hrs.xml"
                 qualifiers="sw600dp-land-v13"
                 type="layout" />
             <file
                 name="activity_feature_rsc"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout-sw720dp-land/activity_feature_rsc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout-sw720dp-land/activity_feature_rsc.xml"
                 qualifiers="sw720dp-land-v13"
                 type="layout" />
             <file
                 name="csc_menu"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/menu/csc_menu.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/menu/csc_menu.xml"
                 qualifiers=""
                 type="menu" />
             <file
                 name="dfu_menu"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/menu/dfu_menu.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/menu/dfu_menu.xml"
                 qualifiers=""
                 type="menu" />
             <file
                 name="gls_more"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/menu/gls_more.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/menu/gls_more.xml"
                 qualifiers=""
                 type="menu" />
             <file
                 name="help"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/menu/help.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/menu/help.xml"
                 qualifiers=""
                 type="menu" />
             <file
                 name="ble_app_hrs"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_hrs.hex"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_hrs.hex"
                 qualifiers=""
                 type="raw" />
             <file
                 name="ble_app_hrs_s110_v6_0_0"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_hrs_s110_v6_0_0.hex"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_hrs_s110_v6_0_0.hex"
                 qualifiers=""
                 type="raw" />
             <file
                 name="ble_app_hrs_s110_v7_0_0"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_hrs_s110_v7_0_0.hex"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_hrs_s110_v7_0_0.hex"
                 qualifiers=""
                 type="raw" />
             <file
                 name="ble_app_rscs"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_rscs.hex"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_rscs.hex"
                 qualifiers=""
                 type="raw" />
             <file
                 name="ble_app_rscs_s110_v6_0_0"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_rscs_s110_v6_0_0.hex"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_rscs_s110_v6_0_0.hex"
                 qualifiers=""
                 type="raw" />
             <file
                 name="ble_app_rscs_s110_v7_0_0"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_rscs_s110_v7_0_0.hex"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/raw/ble_app_rscs_s110_v7_0_0.hex"
                 qualifiers=""
                 type="raw" />
             <file
                 name="blinky_arm_s110_v7_0_0"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/blinky_arm_s110_v7_0_0.hex"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/raw/blinky_arm_s110_v7_0_0.hex"
                 qualifiers=""
                 type="raw" />
             <file
                 name="dfu_mac"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/dfu_mac.sh"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/raw/dfu_mac.sh"
                 qualifiers=""
                 type="raw" />
             <file
                 name="dfu_win"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/raw/dfu_win.bat"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/raw/dfu_win.bat"
                 qualifiers=""
                 type="raw" />
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/color.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/color.xml"
                 qualifiers="" >
                 <color name="headerTextColor" >#FFFFFF
                 </color>
@@ -769,7 +754,7 @@
                 </color>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/dimens.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/dimens.xml"
                 qualifiers="" >
                 <dimen name="activity_vertical_margin_bottom" >32dp
                 </dimen>
@@ -787,7 +772,7 @@
                 </dimen>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings.xml"
                 qualifiers="" >
                 <string name="no_apps" >No profiles found.
                 </string>
@@ -857,7 +842,7 @@
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_bpm.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_bpm.xml"
                 qualifiers="" >
                 <string name="bpm_timestamp" >%1$tT %1$te.%1$tm.%1$tY
                 </string>
@@ -897,7 +882,7 @@
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_csc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_csc.xml"
                 qualifiers="" >
                 <string name="csc_total_distance_unit" >km
                 </string>
@@ -1257,7 +1242,7 @@
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_dfu.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_dfu.xml"
                 qualifiers="" >
                 <string name="dfu_aborted" >Uploading of the application has been canceled.
                 </string>
@@ -1427,7 +1412,7 @@ Nordic Semiconductor
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_gls.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_gls.xml"
                 qualifiers="" >
                 <string name="gls_context_carbohydrare_title" >Carbohydrate
                 </string>
@@ -1712,7 +1697,7 @@ Sample Location value not available
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_hrs.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_hrs.xml"
                 qualifiers="" >
                 <string name="hrs_location_other" >Reserved
                 </string>
@@ -1760,7 +1745,7 @@ Foot
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_hts.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_hts.xml"
                 qualifiers="" >
                 <string name="hts_notification_action_disconnect" >Disconnect
                 </string>
@@ -1783,7 +1768,7 @@ Foot
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_proximity.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_proximity.xml"
                 qualifiers="" >
                 <string name="proximity_feature_title_long" >PROXIMITY MONITOR
                 </string>
@@ -1815,7 +1800,7 @@ Foot
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/strings_rsc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/strings_rsc.xml"
                 qualifiers="" >
                 <string name="rsc_speed_unit" >km/h
                 </string>
@@ -1866,7 +1851,7 @@ Foot
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values/styles.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values/styles.xml"
                 qualifiers="" >
 
                 <style
@@ -2016,7 +2001,7 @@ bold
                 </style>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/dimens.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-land/dimens.xml"
                 qualifiers="land" >
                 <dimen name="feature_vertical_margin_top" >40dp
                 </dimen>
@@ -2024,7 +2009,7 @@ bold
                 </dimen>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_bpm.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_bpm.xml"
                 qualifiers="land" >
                 <dimen name="bpm_feature_title_long_margin" >-115dp
                 </dimen>
@@ -2033,7 +2018,7 @@ bold
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_csc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_csc.xml"
                 qualifiers="land" >
                 <dimen name="csc_feature_title_long_margin" >-13dp
                 </dimen>
@@ -2042,7 +2027,7 @@ bold
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_dfu.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_dfu.xml"
                 qualifiers="land" >
                 <string name="dfu_feature_title_long" >DFU
                 </string>
@@ -2051,7 +2036,7 @@ bold
                 </dimen>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_gls.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_gls.xml"
                 qualifiers="land" >
                 <dimen name="gls_feature_title_long_margin" >-126dp
                 </dimen>
@@ -2060,7 +2045,7 @@ bold
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_hrs.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_hrs.xml"
                 qualifiers="land" >
                 <dimen name="hrs_feature_title_long_margin" >-16dp
                 </dimen>
@@ -2069,7 +2054,7 @@ bold
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_hts.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_hts.xml"
                 qualifiers="land" >
                 <string name="hts_feature_title_long" >HTM
                 </string>
@@ -2078,7 +2063,7 @@ bold
                 </dimen>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_proximity.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_proximity.xml"
                 qualifiers="land" >
                 <dimen name="proximity_feature_title_long_margin" >-66dp
                 </dimen>
@@ -2087,7 +2072,7 @@ bold
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_rsc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-land/strings_rsc.xml"
                 qualifiers="land" >
                 <dimen name="rsc_feature_title_long_margin" >-13dp
                 </dimen>
@@ -2096,7 +2081,7 @@ bold
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/dimens.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/dimens.xml"
                 qualifiers="sw600dp-v13" >
                 <dimen name="activity_vertical_margin_top" >24dp
                 </dimen>
@@ -2110,7 +2095,7 @@ bold
                 </dimen>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_bpm.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_bpm.xml"
                 qualifiers="sw600dp-v13" >
                 <string name="bpm_feature_title_long" >BLOOD PRESSURE
                 </string>
@@ -2119,7 +2104,7 @@ bold
                 </dimen>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_csc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_csc.xml"
                 qualifiers="sw600dp-v13" >
                 <dimen name="csc_feature_title_long_margin" >-192dp
                 </dimen>
@@ -2128,7 +2113,7 @@ bold
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_dfu.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_dfu.xml"
                 qualifiers="sw600dp-v13" >
                 <dimen name="dfu_feature_title_long_margin" >-186dp
                 </dimen>
@@ -2137,7 +2122,7 @@ bold
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_gls.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_gls.xml"
                 qualifiers="sw600dp-v13" >
                 <dimen name="gls_feature_title_long_margin" >-126dp
                 </dimen>
@@ -2146,7 +2131,7 @@ bold
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_hrs.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_hrs.xml"
                 qualifiers="sw600dp-v13" >
                 <string name="hrs_feature_title_long" >HEART RATE MONITOR
                 </string>
@@ -2155,7 +2140,7 @@ bold
                 </dimen>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_hts.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_hts.xml"
                 qualifiers="sw600dp-v13" >
                 <dimen name="hts_feature_title_long_margin" >-236dp
                 </dimen>
@@ -2164,7 +2149,7 @@ bold
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_rsc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-sw600dp/strings_rsc.xml"
                 qualifiers="sw600dp-v13" >
                 <dimen name="rsc_feature_title_long_margin" >-192dp
                 </dimen>
@@ -2173,7 +2158,7 @@ bold
                 </string>
             </file>
             <file
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/values-sw720dp-land/dimens.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/values-sw720dp-land/dimens.xml"
                 qualifiers="sw720dp-land-v13" >
                 <dimen name="activity_vertical_margin_top" >32dp
                 </dimen>
@@ -2188,20 +2173,20 @@ bold
             </file>
             <file
                 name="settings_csc"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/xml/settings_csc.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/xml/settings_csc.xml"
                 qualifiers=""
                 type="xml" />
             <file
                 name="settings_dfu"
-                path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/xml/settings_dfu.xml"
+                path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/xml/settings_dfu.xml"
                 qualifiers=""
                 type="xml" />
         </source>
-        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/generated/res/rs/debug" />
-        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/build/generated/res/generated/debug" />
+        <source path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/build/generated/res/rs/debug" />
+        <source path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/build/generated/res/generated/debug" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/debug/res" />
+        <source path="/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/debug/res" />
     </dataSet>
 
 </merger>

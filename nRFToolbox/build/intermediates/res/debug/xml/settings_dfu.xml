@@ -19,4 +19,4 @@
             android:title="@string/dfu_settings_dfu_about" />
     </PreferenceCategory>
 
-</PreferenceScreen><!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/xml/settings_dfu.xml -->
+</PreferenceScreen><!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/xml/settings_dfu.xml -->

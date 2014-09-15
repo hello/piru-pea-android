@@ -13,4 +13,4 @@
     <item android:maxLevel="2" android:drawable="@drawable/app_total_commander" />
     <item android:maxLevel="3" android:drawable="@drawable/app_google_play" />
 </level-list>
-<!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/drawable/app_file_browser.xml -->
+<!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/drawable/app_file_browser.xml -->

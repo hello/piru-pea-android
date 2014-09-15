@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/Users/jchen/Projects/piru-pea-android/DFULibrary/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/pangwu/hello/git/piru-pea-android/DFULibrary/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="dfu_status_aborted">Aborted</string>

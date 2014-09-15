@@ -18,4 +18,4 @@
         android:padding="8dp"
         android:text="@string/dfu_zip_info_text" />
 
-</ScrollView><!-- From: file:/Users/jchen/Projects/piru-pea-android/nRFToolbox/src/main/res/layout/fragment_zip_info.xml -->
+</ScrollView><!-- From: file:/Users/pangwu/hello/git/piru-pea-android/nRFToolbox/src/main/res/layout/fragment_zip_info.xml -->
