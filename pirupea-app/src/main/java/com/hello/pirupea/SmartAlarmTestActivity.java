@@ -74,16 +74,16 @@ public class SmartAlarmTestActivity extends FragmentActivity {
                 final TextView txtAlarmTime = (TextView)findViewById(R.id.txtAlarmTime);
                 txtAlarmTime.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute));
 
-                DateTime nextAlarm = DateTime.now().withTimeAtStartOfDay().plusHours(hourOfDay).plusMinutes(minute).minusMinutes(20);
+                DateTime nextAlarm = DateTime.now().withTimeAtStartOfDay().plusHours(hourOfDay).plusMinutes(minute);
                 if(nextAlarm.isBeforeNow()){
                     nextAlarm = nextAlarm.plusDays(1);
 
                 }
 
-                Toast.makeText(SmartAlarmTestActivity.this, "Alarm set to: " + nextAlarm.plusMinutes(20).toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SmartAlarmTestActivity.this, "Alarm set to: " + nextAlarm.toString(), Toast.LENGTH_SHORT).show();
 
                 LocalSettings.setAlarmTime(nextAlarm.getMillis());
-                SmartAlarmTestService.setNextAlarm(nextAlarm);
+                SmartAlarmTestService.setNextDataCollection(nextAlarm.minusMinutes(20));
             }
         }, calendar.get(Calendar.HOUR_OF_DAY) ,calendar.get(Calendar.MINUTE), false, false);
 
@@ -100,8 +100,6 @@ public class SmartAlarmTestActivity extends FragmentActivity {
 
         if(alarmMillis > 0) {
             DateTime dateTime = new DateTime(alarmMillis);
-            dateTime = dateTime.plusMinutes(20);
-
             final TextView txtAlarmTime = (TextView) findViewById(R.id.txtAlarmTime);
             txtAlarmTime.setText(String.format("%02d", dateTime.getHourOfDay()) + ":" + String.format("%02d", dateTime.getMinuteOfHour()));
         }

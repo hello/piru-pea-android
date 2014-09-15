@@ -21,7 +21,7 @@ import retrofit.http.POST;
  */
 interface SuripuHTTPService {
     @FormUrlEncoded
-    @POST("/oauth2/token")
+    @POST("/v1/oauth2/token")
     void getToken(@Field("username") final String userName,
                   @Field("password") final String password,
                   @Field("grant_type") final String grantType,
@@ -29,12 +29,12 @@ interface SuripuHTTPService {
                   final Callback<AccessToken> accessTokenCallback);
 
     @FormUrlEncoded
-    @POST("/oauth2/token")
+    @POST("/v1/oauth2/token")
     void getToken(@FieldMap final HashMap<String, String> params,
                   final Callback<AccessToken> accessTokenCallback);
 
     @FormUrlEncoded
-    @POST("/oauth2/token")
+    @POST("/v1/oauth2/token")
     void getToken(@Field("username") final String userName,
                   @Field("password") final String password,
                   @FieldMap final HashMap<String, String> optionalParams,
@@ -46,10 +46,10 @@ interface SuripuHTTPService {
     public void sendTempData(
             @Body final List<TempTrackerData> trackerData, final Callback<Void> sendCallback);
 
-    @POST("/devices/pill")
+    @POST("/v1/devices/pill")
     public void registerPill(
             @Body final PillRegistration pillRegistration, final Callback<Void> sendCallback);
 
-    @GET("/account")
+    @GET("/v1/account")
     public void getCurrentAccount(final Callback<Account> sendCallback);
 }
