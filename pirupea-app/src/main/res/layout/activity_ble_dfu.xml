@@ -66,6 +66,7 @@
         android:layout_toEndOf="@+id/btnStartDFU"
         android:layout_alignEnd="@+id/tvFW"
         android:layout_alignTop="@+id/btnStartDFU"
-        android:gravity="center_vertical|center_horizontal" />
+        android:gravity="center_vertical|center_horizontal"
+        android:typeface="monospace" />
 
 </RelativeLayout>
