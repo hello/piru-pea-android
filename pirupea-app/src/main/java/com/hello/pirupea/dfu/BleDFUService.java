@@ -1,4 +1,4 @@
-package com.hello.pirupea;
+package com.hello.pirupea.dfu;
 
 import android.app.Activity;
 

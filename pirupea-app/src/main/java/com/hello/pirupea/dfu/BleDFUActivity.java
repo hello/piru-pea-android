@@ -1,6 +1,5 @@
-package com.hello.pirupea;
+package com.hello.pirupea.dfu;
 
-import no.nordicsemi.android.dfu.DfuBaseService;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.bluetooth.BluetoothAdapter;
@@ -23,6 +22,7 @@ import android.widget.Toast;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 
+import com.hello.pirupea.R;
 import com.hello.scanner.ScannerFragment;
 
 import java.io.File;

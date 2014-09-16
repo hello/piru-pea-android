@@ -1,8 +1,10 @@
-package com.hello.pirupea;
+package com.hello.pirupea.dfu;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.hello.pirupea.LoginActivity;
 
 public class BleDFUNotificationActivity extends Activity {
     @Override
