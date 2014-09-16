@@ -1,6 +1,7 @@
 package com.hello.pirupea.dfu;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,7 +17,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.util.ArrayList;
 
 /**
@@ -28,7 +28,7 @@ public class HexListAdapter extends BaseAdapter {
     private static final int TYPE_ITEM = 1;
     private static final int TYPE_EMPTY = 2;
 
-    private final ArrayList<URI> hexURILocals = new ArrayList<URI>();
+    private final ArrayList<Uri> hexURILocals = new ArrayList<Uri>();
     public HexListAdapter(Context context){
 
         mContext = context;
@@ -90,7 +90,7 @@ public class HexListAdapter extends BaseAdapter {
         return view;
     }
 
-    public void addURI(URI uri) {
+    public void addURI(Uri uri) {
         hexURILocals.add(uri);
         notifyDataSetChanged();
     }

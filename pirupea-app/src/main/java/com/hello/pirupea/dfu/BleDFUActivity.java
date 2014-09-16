@@ -29,7 +29,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 
 
 public class BleDFUActivity extends Activity implements ScannerFragment.OnDeviceSelectedListener,
@@ -91,9 +90,11 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
     }
 
     @Override
-    public void onHexSelected(URI item) {
+    public void onHexSelected(Uri item) {
         Log.i(TAG, "Hex: "+item.toString());
+        fileStreamURI = item;
         ((TextView)findViewById(R.id.tvFW)).setText(item.toString());
+        (findViewById(R.id.btnStartDFU)).setEnabled(true);
     }
 
     @Override

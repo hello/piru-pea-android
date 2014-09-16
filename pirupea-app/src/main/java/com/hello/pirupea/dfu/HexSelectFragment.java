@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -16,7 +17,6 @@ import android.widget.ListView;
 import com.hello.pirupea.R;
 
 import java.io.File;
-import java.net.URI;
 
 /**
  * Created by jchen on 9/16/14.
@@ -31,7 +31,7 @@ public class HexSelectFragment extends DialogFragment {
      */
     public static interface OnHexSelectedListener {
 
-        public void onHexSelected(final URI item);
+        public void onHexSelected(final Uri item);
 
         public void onHexCanceled();
     }
@@ -76,7 +76,7 @@ public class HexSelectFragment extends DialogFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 dialog.dismiss();
-                mListener.onHexSelected((URI)mAdapter.getItem(position));
+                mListener.onHexSelected((Uri)mAdapter.getItem(position));
             }
         });
 
@@ -88,7 +88,7 @@ public class HexSelectFragment extends DialogFragment {
             }
             File f = new File(folder,"pill_default.hex");
             if(f.exists()){
-                mAdapter.addURI(f.toURI());
+                mAdapter.addURI(Uri.fromFile(f));
             }
         }
 
