@@ -193,7 +193,7 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
         service.putExtra(BleDFUService.EXTRA_FILE_MIME_TYPE, BleDFUService.MIME_TYPE_HEX);
         service.putExtra(BleDFUService.EXTRA_FILE_TYPE, BleDFUService.TYPE_APPLICATION);
         service.putExtra(BleDFUService.EXTRA_FILE_URI, fileStreamURI);
-        service.putExtra(BleDFUService.EXTRA_FILE_PATH, filePath);
+        //service.putExtra(BleDFUService.EXTRA_FILE_PATH, filePath);
 
         startService(service);
     }
