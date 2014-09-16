@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +31,8 @@ import java.io.InputStream;
 
 
 
-public class BleDFUActivity extends Activity implements ScannerFragment.OnDeviceSelectedListener{
+public class BleDFUActivity extends Activity implements ScannerFragment.OnDeviceSelectedListener,
+        HexSelectFragment.OnHexSelectedListener {
     static final int REQUEST_ENABLE_BT = 2;
     private static final String TAG = "DFU";
     private Button btnDFUScan;
@@ -90,6 +90,16 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
     }
 
     @Override
+    public void onHexSelected(String item) {
+        Log.i(TAG, "Hex: "+item);
+    }
+
+    @Override
+    public void onHexCanceled() {
+
+    }
+
+    @Override
     public void onDialogCanceled() {
         dfuTarget = null;
     }
@@ -143,7 +153,7 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
         this.btnSelectFirmware.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(final View view){
-                Log.i(TAG, "Click");
+                /*Log.i(TAG, "Click");
                 //select firmware, but now just copy raw to file
                 final File folder = new File(Environment.getExternalStorageDirectory(), "pirupea");
                 if(!folder.exists()){
@@ -157,7 +167,9 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
                     Log.i(TAG, "Exists");
                 }
                 filePath = f.getPath();
-                btnStartDFU.setEnabled(true);
+                btnStartDFU.setEnabled(true);*/
+
+                showHexSelectionDialog();
             }
         });
         this.btnStartDFU = (Button)findViewById(R.id.btnStartDFU);
@@ -170,6 +182,8 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
             }
         });
     }
+
+
 
     private void startDFU() {
         final Intent service = new Intent(this, BleDFUService.class);
@@ -207,7 +221,11 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
         dialog.show(fm, "scan_fragment");
     }
 
-
+    private void showHexSelectionDialog() {
+        final FragmentManager fm = getFragmentManager();
+        final HexSelectFragment dialog = HexSelectFragment.getInstance(BleDFUActivity.this);
+        dialog.show(fm, "hex_fragment");
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
