@@ -25,6 +25,7 @@ public class DeviceListAdapter extends BaseAdapter {
 	private static final int TYPE_ITEM = 1;
 	private static final int TYPE_EMPTY = 2;
 
+
 	private final ArrayList<ExtendedBluetoothDevice> mListBondedValues = new ArrayList<ExtendedBluetoothDevice>();
 	private final ArrayList<ExtendedBluetoothDevice> mListValues = new ArrayList<ExtendedBluetoothDevice>();
 	private final Context mContext;

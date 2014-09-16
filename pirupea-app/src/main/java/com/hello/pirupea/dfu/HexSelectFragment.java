@@ -7,12 +7,16 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.hello.pirupea.R;
+
+import java.io.File;
+import java.net.URI;
 
 /**
  * Created by jchen on 9/16/14.
@@ -27,7 +31,7 @@ public class HexSelectFragment extends DialogFragment {
      */
     public static interface OnHexSelectedListener {
 
-        public void onHexSelected(final String item);
+        public void onHexSelected(final URI item);
 
         public void onHexCanceled();
     }
@@ -62,6 +66,7 @@ public class HexSelectFragment extends DialogFragment {
         final View dialogView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_hex_selection,null);
         final ListView listView = (ListView) dialogView.findViewById(android.R.id.list);
 
+        builder.setTitle(R.string.hex_title);
         listView.setEmptyView(dialogView.findViewById(android.R.id.empty));
         listView.setAdapter(mAdapter = new HexListAdapter(getActivity()));
 
@@ -71,9 +76,21 @@ public class HexSelectFragment extends DialogFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 dialog.dismiss();
-                mListener.onHexSelected((String)mAdapter.getItem(position));
+                mListener.onHexSelected((URI)mAdapter.getItem(position));
             }
         });
+
+
+        {
+            File folder = new File(Environment.getExternalStorageDirectory(),"pirupea");
+            if(!folder.exists()){
+                folder.mkdir();
+            }
+            File f = new File(folder,"pill_default.hex");
+            if(f.exists()){
+                mAdapter.addURI(f.toURI());
+            }
+        }
 
         //onclick listener
         return dialog;

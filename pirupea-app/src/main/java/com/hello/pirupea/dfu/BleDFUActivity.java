@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +29,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
+import java.net.URI;
 
 
 public class BleDFUActivity extends Activity implements ScannerFragment.OnDeviceSelectedListener,
@@ -90,8 +91,9 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
     }
 
     @Override
-    public void onHexSelected(String item) {
-        Log.i(TAG, "Hex: "+item);
+    public void onHexSelected(URI item) {
+        Log.i(TAG, "Hex: "+item.toString());
+        ((TextView)findViewById(R.id.tvFW)).setText(item.toString());
     }
 
     @Override
@@ -134,7 +136,7 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
         if(!isBLEEnabled()){
             showBLEDialog();
         }
-
+        copyLinkedHex();
         this.btnDFUScan = (Button) findViewById(R.id.btnDFUScan);
         this.btnDFUScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,22 +155,6 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
         this.btnSelectFirmware.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(final View view){
-                /*Log.i(TAG, "Click");
-                //select firmware, but now just copy raw to file
-                final File folder = new File(Environment.getExternalStorageDirectory(), "pirupea");
-                if(!folder.exists()){
-                    folder.mkdir();
-                }
-                File f = new File(folder, "pill_default.hex");
-                if(!f.exists()){
-                    copyRawResource(R.raw.pill_default,f);
-                    Log.i(TAG, "Copied");
-                }else{
-                    Log.i(TAG, "Exists");
-                }
-                filePath = f.getPath();
-                btnStartDFU.setEnabled(true);*/
-
                 showHexSelectionDialog();
             }
         });
@@ -183,6 +169,20 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
         });
     }
 
+    private void copyLinkedHex() {
+        final File folder = new File(Environment.getExternalStorageDirectory(), "pirupea");
+        if(!folder.exists()){
+            folder.mkdir();
+        }
+        File f = new File(folder, "pill_default.hex");
+        if(!f.exists()){
+            copyRawResource(R.raw.pill_default,f);
+            Log.i(TAG, "Copied");
+        }else{
+            Log.i(TAG, "Exists");
+        }
+        filePath = f.getPath();
+    }
 
 
     private void startDFU() {
