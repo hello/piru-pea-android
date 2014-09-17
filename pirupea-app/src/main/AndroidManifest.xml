@@ -77,14 +77,14 @@
         <service android:name=".SmartAlarmTestService$RingService" />
 
         <activity
-            android:name=".BleDFUActivity"
+            android:name=".dfu.BleDFUActivity"
             android:label="@string/title_activity_ble_dfu" >
         </activity>
         <activity
-            android:name=".BleDFUNotificationActivity"
+            android:name=".dfu.BleDFUNotificationActivity"
             android:label="@string/title_activity_ble_dfu_notification" >
         </activity>
-        <service android:name=".BleDFUService" />
+        <service android:name=".dfu.BleDFUService" />
     </application>
 
 </manifest>

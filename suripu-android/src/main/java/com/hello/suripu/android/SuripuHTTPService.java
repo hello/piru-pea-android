@@ -1,6 +1,7 @@
 package com.hello.suripu.android;
 
 import com.hello.suripu.core.db.models.Account;
+import com.hello.suripu.core.db.models.FirmwareUpdate;
 import com.hello.suripu.core.db.models.PillRegistration;
 import com.hello.suripu.core.db.models.TempTrackerData;
 import com.hello.suripu.core.oauth.AccessToken;
@@ -9,12 +10,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import retrofit.Callback;
+import retrofit.client.Response;
 import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FieldMap;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.Path;
+import retrofit.http.Query;
 
 /**
  * Created by pangwu on 7/15/14.
@@ -52,4 +56,8 @@ interface SuripuHTTPService {
 
     @GET("/v1/account")
     public void getCurrentAccount(final Callback<Account> sendCallback);
+
+    @GET("/download/pill/manifest")
+    public void getPillFirmwareUpdates(final Callback<List<FirmwareUpdate>> getFirmwareUpdateCallback);
+
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.hello.pirupea.dfu.BleDFUActivity;
 import com.hello.pirupea.settings.LocalSettings;
 
 public class BleTestSelectionActivity extends Activity {
