@@ -1,16 +1,22 @@
 package com.hello.suripu.android;
 
+import android.net.Uri;
+
 import com.google.common.net.HttpHeaders;
+import com.hello.suripu.core.db.models.FirmwareUpdate;
 import com.hello.suripu.core.db.models.PillRegistration;
 import com.hello.suripu.core.db.models.TempTrackerData;
 import com.hello.suripu.core.oauth.AccessToken;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
+import retrofit.client.Response;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -79,6 +85,28 @@ public class SuripuClient {
         suripuService.getToken(userName, password, additionParameters, accessTokenCallback);
     }
 
+
+    public void getPillFirmwareUpdate(final AccessToken accessToken,
+                                final Callback<List<FirmwareUpdate>> getFirmwareUpdateCallback){
+
+
+
+        final RequestInterceptor appRequestInterceptor = new RequestInterceptor() {
+            @Override
+            public void intercept(RequestFacade request) {
+                request.addHeader(HttpHeaders.AUTHORIZATION, accessToken.tokenType + " " + accessToken.token);
+            }
+        };
+
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setEndpoint("http://192.168.128.165:5555/")
+                .setRequestInterceptor(appRequestInterceptor)
+                .build();
+
+        SuripuHTTPService suripuService = restAdapter.create(SuripuHTTPService.class);
+        suripuService.getPillFirmwareUpdates(getFirmwareUpdateCallback);
+    }
+
     public void uploadPillData(final List<TempTrackerData> pillData,
                                       final Callback<Void> uploadDataCallback){
         this.dataService.sendTempData(pillData, uploadDataCallback);
@@ -88,7 +116,5 @@ public class SuripuClient {
         this.apiService.registerPill(new PillRegistration(pillId), callback);
 
     }
-
-
 
 }

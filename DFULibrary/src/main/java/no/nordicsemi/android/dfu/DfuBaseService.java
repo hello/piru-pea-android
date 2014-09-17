@@ -13,6 +13,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -27,6 +30,9 @@ import no.nordicsemi.android.log.LogContract;
 import no.nordicsemi.android.log.LogContract.Log.Level;
 import no.nordicsemi.android.log.LogSession;
 import no.nordicsemi.android.log.Logger;
+import retrofit.RequestInterceptor;
+import retrofit.RestAdapter;
+
 import android.app.Activity;
 import android.app.IntentService;
 import android.app.Notification;
@@ -48,9 +54,19 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.net.http.AndroidHttpClient;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+
+import com.hello.suripu.android.SuripuClient;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 
 /**
  * The DFU Service provides full support for Over-the-Air (OTA) Device Firmware Update by Nordic Semiconductor.<br />
@@ -1106,10 +1122,34 @@ public abstract class DfuBaseService extends IntentService {
 	 * @return the input stream with binary image content
 	 */
 	private InputStream openInputStream(final Uri stream, final String mimeType, final int types) throws FileNotFoundException, IOException {
-		final InputStream is = getContentResolver().openInputStream(stream);
-		if (MIME_TYPE_ZIP.equals(mimeType))
-			return new ZipHexInputStream(is, types);
-		return new HexInputStream(is);
+		Log.i(TAG, stream.getScheme());
+        String scheme = stream.getScheme();
+        if(scheme.equals("file")){
+            final InputStream is = getContentResolver().openInputStream(stream);
+            if (MIME_TYPE_ZIP.equals(mimeType))
+                return new ZipHexInputStream(is, types);
+            return new HexInputStream(is);
+        }else if(scheme.equals("http") || scheme.equals("https")){
+            try{
+                HttpClient client = new DefaultHttpClient();
+                HttpGet request = new HttpGet();
+                request.setURI(new URI(stream.toString()));
+                HttpResponse response = client.execute(request);
+                return new HexInputStream(EntityUtils.toByteArray(response.getEntity()));
+            }catch(URISyntaxException e){
+                throw new IOException(e.toString());
+            }catch(ClientProtocolException e){
+                throw new IOException(e.toString());
+            }catch(IOException e){
+                throw e;
+            }
+
+        }else{
+            throw new IOException("invalid URI scheme");
+        }
+
+
+
 	}
 
 	/**

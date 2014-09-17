@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jchen on 9/16/14.
@@ -81,7 +82,9 @@ public class HexListAdapter extends BaseAdapter {
                 }
                 final ViewHolder holder = (ViewHolder) view.getTag();
                 if(holder != null){
-                    holder.name.setText(this.getItem(position).toString());
+                    final Uri uri = (Uri)this.getItem(position);
+                    final List<String> segments = uri.getPathSegments();
+                    holder.name.setText(uri.getLastPathSegment());
                 }
 
                 break;
@@ -91,6 +94,7 @@ public class HexListAdapter extends BaseAdapter {
     }
 
     public void addURI(Uri uri) {
+
         hexURILocals.add(uri);
         notifyDataSetChanged();
     }

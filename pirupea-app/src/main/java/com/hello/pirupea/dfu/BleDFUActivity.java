@@ -105,7 +105,7 @@ public class BleDFUActivity extends Activity implements ScannerFragment.OnDevice
 
     @Override
     public void onDialogCanceled() {
-        dfuTarget = null;
+        //dfuTarget = null;
     }
 
     private void showToast(final String message) {

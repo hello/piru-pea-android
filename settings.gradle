@@ -1,1 +1,1 @@
-include ':pirupea-app', ':pirupea-ble', ':suripu-android', ':pirupea-core', ':HoloGraphLibrary', ':DFULibrary', ':nRFToolbox'
+include ':pirupea-app', ':pirupea-ble', ':suripu-android', ':pirupea-core', ':HoloGraphLibrary', ':DFULibrary'
