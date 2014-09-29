@@ -115,7 +115,7 @@ public class SmartAlarmTestService extends Service {
                 SmartAlarmTestService.this.pillRetryInfoHashMap.remove(pill);
                 if(SmartAlarmTestService.this.pillRetryInfoHashMap.size() == 0){
                     // We all failed or the last pending connection failed.
-                    // Release teh power lock and wait next wakeup.
+                    // Release the power lock and wait next wakeup.
 
                     final DateTime nextAlarmTime = new DateTime(LocalSettings.getAlarmTime()).plusDays(1);
                     SmartAlarmTestService.this.setNextDataCollection(nextAlarmTime.minusMinutes(20));
@@ -136,27 +136,28 @@ public class SmartAlarmTestService extends Service {
 
 
             if(SmartAlarmTestService.this.pillRetryInfoHashMap.size() == 0){
-                final DateTime nextAlarmTime = new DateTime(LocalSettings.getAlarmTime()).plusDays(1);
-                SmartAlarmTestService.this.setNextDataCollection(nextAlarmTime.minusMinutes(20));
-                LocalSettings.setAlarmTime(nextAlarmTime.getMillis());
-
+                prepareForNextCollection();
                 stopSelf();
             }
         }
 
         @Override
-        public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
             final Pill pill = (Pill)sender;
             IO.log(pill + " disconnect failed, " + reason + ": " + errorCode);
             // Retry ends here, if disconnect failed, go ahead.
 
             if(SmartAlarmTestService.this.pillRetryInfoHashMap.size() == 0){
-                final DateTime nextAlarmTime = new DateTime(LocalSettings.getAlarmTime()).plusDays(1);
-                SmartAlarmTestService.this.setNextDataCollection(nextAlarmTime.minusMinutes(20));
-                LocalSettings.setAlarmTime(nextAlarmTime.getMillis());
-
+                prepareForNextCollection();
                 stopSelf();
             }
+        }
+
+        private void prepareForNextCollection(){
+            final DateTime nextAlarmTime = new DateTime(LocalSettings.getAlarmTime()).plusDays(1);
+            SmartAlarmTestService.this.setNextDataCollection(nextAlarmTime.minusMinutes(20));
+            LocalSettings.setAlarmTime(nextAlarmTime.getMillis());
+            IO.log("Next data collection starts at: " + nextAlarmTime.minusMinutes(20));
         }
     };
 
@@ -243,13 +244,13 @@ public class SmartAlarmTestService extends Service {
                 e.printStackTrace();
             }
 
-            pill.disconnect();
+
 
             suripuClient.uploadPillData(pillData, new Callback<Void>() {
                 @Override
                 public void success(final Void aVoid, final Response response) {
                     IO.log("upload data for pill " + sender.getId() + " finished.");
-
+                    pill.disconnect();
                 }
 
                 @Override
@@ -259,6 +260,8 @@ public class SmartAlarmTestService extends Service {
                     }else {
                         IO.log("upload data for pill " + sender.getId() + " failed: " + error.getResponse().getReason());
                     }
+
+                    pill.disconnect();
                 }
             });
         }
@@ -331,10 +334,11 @@ public class SmartAlarmTestService extends Service {
                 }
             }
 
+            setDefaultRing();
+
             if(pairedCount == 0){
                 SmartAlarmTestService.this.setNextFastAlarm();
                 IO.log("No paired pill discovered, sleep.");
-
                 stopSelf();
             }
         }
@@ -345,7 +349,20 @@ public class SmartAlarmTestService extends Service {
 
             // Discovery failed for some reason, set next wakeup time and release the power lock.
             SmartAlarmTestService.this.setNextFastAlarm();
+            setDefaultRing();
+
             stopSelf();
+        }
+
+        private void setDefaultRing(){
+            DateTime defaultRingTime = new DateTime(LocalSettings.getAlarmTime());
+
+            if(defaultRingTime.isBefore(DateTime.now())){
+                defaultRingTime = defaultRingTime.plusDays(1);
+                LocalSettings.setAlarmTime(defaultRingTime.getMillis());
+            }
+            SmartAlarmTestService.this.setRingTime(defaultRingTime);
+            IO.log("Ring time set to default: " + defaultRingTime);
         }
     };
 
@@ -398,7 +415,7 @@ public class SmartAlarmTestService extends Service {
     public static DateTime getSmartAlarmTimestamp(final List<Segment> sleepCycles, long alarmDeadline){
         final Segment lastCycle = sleepCycles.get(sleepCycles.size() - 1);
         long deepSleepMoment = lastCycle.getEndTimestamp() + 20 * DateTimeConstants.MILLIS_PER_MINUTE;
-        long dataCollectionMoment = alarmDeadline - 20 * DateTimeConstants.MILLIS_PER_MINUTE;
+        long dataCollectionMoment = DateTime.now().getMillis();
         DateTime smartAlarmTime = new DateTime(alarmDeadline);
 
         int possibleSpanInMinutes = (int)(deepSleepMoment - dataCollectionMoment) / DateTimeConstants.MILLIS_PER_MINUTE;
@@ -410,7 +427,7 @@ public class SmartAlarmTestService extends Service {
         }else{
             // User already in deep sleep.
             long sleepCycleLength = (long)(1.5 * DateTimeConstants.MILLIS_PER_HOUR);
-            long cycleNumberInTheMiddle = (dataCollectionMoment- lastCycle.getEndTimestamp()) / sleepCycleLength;
+            long cycleNumberInTheMiddle = (alarmDeadline - lastCycle.getEndTimestamp()) / sleepCycleLength;
 
             // It is possible that cycleNumberInTheMiddle > 0. In that case we need to guess the cycle.
             long nextLightSleepMoment = lastCycle.getEndTimestamp() + cycleNumberInTheMiddle * sleepCycleLength;
@@ -504,6 +521,8 @@ public class SmartAlarmTestService extends Service {
     }
 
     public static void setRingTime(final DateTime ringTime){
+        cancelScheduledRing();
+
         final AlarmManager alarmManager = (AlarmManager) SharedApplication.getAppContext().getSystemService(Context.ALARM_SERVICE);
         final Intent intent = new Intent(SharedApplication.getAppContext(), RingService.class);
 
@@ -516,6 +535,7 @@ public class SmartAlarmTestService extends Service {
     }
 
     public static void setNextDataCollection(final DateTime alarmTime){
+        cancelScheduledDataCollection();
 
         final AlarmManager alarmManager = (AlarmManager) SharedApplication.getAppContext().getSystemService(Context.ALARM_SERVICE);
         final Intent intent = new Intent(SharedApplication.getAppContext(), AlarmService.class);
@@ -542,15 +562,19 @@ public class SmartAlarmTestService extends Service {
                 alarmIntent);
     }
 
+    public static void cancelScheduledRing(){
+        final AlarmManager alarmManager = (AlarmManager) SharedApplication.getAppContext().getSystemService(Context.ALARM_SERVICE);
+        final Intent ringIntent = new Intent(SharedApplication.getAppContext(), RingService.class);
+        final PendingIntent pendingRingIntent = PendingIntent.getService(SharedApplication.getAppContext(), 0, ringIntent, 0);
+        alarmManager.cancel(pendingRingIntent);
+    }
 
-    public static void cancelAlarm(){
+    public static void cancelScheduledDataCollection(){
         final AlarmManager alarmManager = (AlarmManager) SharedApplication.getAppContext().getSystemService(Context.ALARM_SERVICE);
         final Intent intent = new Intent(SharedApplication.getAppContext(), AlarmService.class);
         final PendingIntent alarmIntent = PendingIntent.getService(SharedApplication.getAppContext(), 0, intent, 0);
         alarmManager.cancel(alarmIntent);
 
-        final Intent ringIntent = new Intent(SharedApplication.getAppContext(), RingService.class);
-        final PendingIntent pendingRingIntent = PendingIntent.getService(SharedApplication.getAppContext(), 0, ringIntent, 0);
-        alarmManager.cancel(pendingRingIntent);
+
     }
 }

@@ -56,7 +56,7 @@ public class PillMotionData {
                 }else if(unitLength == 32){
                     valueList[i] = pillInputStream.readInt();
                     if(valueList[i] < 0){
-                        valueList[i] += 0xFFFFFFFF - 1;
+                        valueList[i] += 0xFFFFFFFF;
                     }
                 }
 

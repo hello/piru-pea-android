@@ -62,7 +62,8 @@ public class SmartAlarmTestActivity extends FragmentActivity {
                 LocalSettings.setAlarmTime(0);
                 final TextView txtAlarmTime = (TextView) findViewById(R.id.txtAlarmTime);
                 txtAlarmTime.setText(String.format("%02d", 0) + ":" + String.format("%02d", 0));
-                SmartAlarmTestService.cancelAlarm();
+                SmartAlarmTestService.cancelScheduledDataCollection();
+                SmartAlarmTestService.cancelScheduledRing();
             }
         });
 
@@ -70,7 +71,6 @@ public class SmartAlarmTestActivity extends FragmentActivity {
         this.timePickerDialog = TimePickerDialog.newInstance(new OnTimeSetListener() {
             @Override
             public void onTimeSet(RadialPickerLayout radialPickerLayout, int hourOfDay, int minute) {
-                SmartAlarmTestService.cancelAlarm();
                 final TextView txtAlarmTime = (TextView)findViewById(R.id.txtAlarmTime);
                 txtAlarmTime.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute));
 
@@ -84,6 +84,8 @@ public class SmartAlarmTestActivity extends FragmentActivity {
 
                 LocalSettings.setAlarmTime(nextAlarm.getMillis());
                 SmartAlarmTestService.setNextDataCollection(nextAlarm.minusMinutes(20));
+                SmartAlarmTestService.setRingTime(nextAlarm);
+
             }
         }, calendar.get(Calendar.HOUR_OF_DAY) ,calendar.get(Calendar.MINUTE), false, false);
 

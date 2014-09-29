@@ -3,6 +3,8 @@ package com.hello.pirupea;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -151,6 +153,19 @@ public class MorpheusBleTestActivity extends ListActivity implements
     };
 
 
+    private final BleOperationCallback<Void> wifiConnectionCallback = new BleOperationCallback<Void>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final Void data) {
+
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+
+        }
+    };
+
+
     private void uiBeginOperation(){
         setProgressBarIndeterminateVisibility(true);
         setProgressBarIndeterminate(true);
@@ -263,13 +278,13 @@ public class MorpheusBleTestActivity extends ListActivity implements
             });
         }else{
             builder.setItems(new CharSequence[]{
-                    "Disconnect", //3
-                    "Pairing Mode",//0
-                    "Normal Mode",//1
-                    "Get Device ID",//2
-                    "Erase Paired Users", // 3
-                    "Set WIFI End Point",
-                    "Pair Pill", //3
+                    "Disconnect", //0
+                    "Pairing Mode",//1
+                    "Normal Mode",//2
+                    "Get Device ID",//3
+                    "Erase Paired Users", // 4
+                    "Set WIFI End Point", // 5
+                    "Pair Pill", // 6
                     "Link Account",
                     "Unpair Pill"
             }, new DialogInterface.OnClickListener() {
@@ -294,7 +309,11 @@ public class MorpheusBleTestActivity extends ListActivity implements
                             selectedDevice.clearPairedUser(erasePairedUsersCallback);
                             break;
                         case 5:
-                            selectedDevice.disconnect();
+                            final WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+                            final WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                            if(wifiInfo != null) {
+                                selectedDevice.setWIFIConnection(wifiInfo.getBSSID(), wifiInfo.getSSID(), "godsavethequeen", wifiConnectionCallback);
+                            }
                             break;
 
                         case 6: {

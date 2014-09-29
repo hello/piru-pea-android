@@ -21,6 +21,7 @@ public class PillUserMap extends HashMap<String, String> {
         this.put("quino@sayhello.com", "Pill-F3");
         this.put("benjo@sayhello.com", "Pill-59");
         this.put("kingshy@sayhello.com", "Pill-F6");
+        this.put("kevin@sayhello.com", "Pill-24");
         this.put("delisa@sayhello.com", "Pill-FF");
     }
 }
