@@ -156,12 +156,14 @@ public class MorpheusBleTestActivity extends ListActivity implements
     private final BleOperationCallback<Void> wifiConnectionCallback = new BleOperationCallback<Void>() {
         @Override
         public void onCompleted(final HelloBleDevice sender, final Void data) {
-
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " account linked.", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
-
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " link account failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
         }
     };
 

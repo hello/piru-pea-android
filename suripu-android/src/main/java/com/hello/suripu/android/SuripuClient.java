@@ -3,7 +3,6 @@ package com.hello.suripu.android;
 import android.net.Uri;
 
 import com.google.common.net.HttpHeaders;
-import com.hello.suripu.core.db.models.FirmwareUpdate;
 import com.hello.suripu.core.db.models.PillRegistration;
 import com.hello.suripu.core.db.models.TempTrackerData;
 import com.hello.suripu.core.oauth.AccessToken;
