@@ -99,7 +99,7 @@ public class SuripuClient {
         };
 
         RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint("http://192.168.128.165:5555/")
+                .setEndpoint("https://dev-in.hello.is/")
                 .setRequestInterceptor(appRequestInterceptor)
                 .build();
 
