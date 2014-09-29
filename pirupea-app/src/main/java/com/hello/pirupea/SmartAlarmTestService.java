@@ -118,7 +118,7 @@ public class SmartAlarmTestService extends Service {
                     // Release teh power lock and wait next wakeup.
 
                     final DateTime nextAlarmTime = new DateTime(LocalSettings.getAlarmTime()).plusDays(1);
-                    SmartAlarmTestService.this.setNextAlarm(nextAlarmTime);
+                    SmartAlarmTestService.this.setNextDataCollection(nextAlarmTime.minusMinutes(20));
                     LocalSettings.setAlarmTime(nextAlarmTime.getMillis());
 
                     stopSelf();
@@ -137,7 +137,7 @@ public class SmartAlarmTestService extends Service {
 
             if(SmartAlarmTestService.this.pillRetryInfoHashMap.size() == 0){
                 final DateTime nextAlarmTime = new DateTime(LocalSettings.getAlarmTime()).plusDays(1);
-                SmartAlarmTestService.this.setNextAlarm(nextAlarmTime);
+                SmartAlarmTestService.this.setNextDataCollection(nextAlarmTime.minusMinutes(20));
                 LocalSettings.setAlarmTime(nextAlarmTime.getMillis());
 
                 stopSelf();
@@ -152,7 +152,7 @@ public class SmartAlarmTestService extends Service {
 
             if(SmartAlarmTestService.this.pillRetryInfoHashMap.size() == 0){
                 final DateTime nextAlarmTime = new DateTime(LocalSettings.getAlarmTime()).plusDays(1);
-                SmartAlarmTestService.this.setNextAlarm(nextAlarmTime);
+                SmartAlarmTestService.this.setNextDataCollection(nextAlarmTime.minusMinutes(20));
                 LocalSettings.setAlarmTime(nextAlarmTime.getMillis());
 
                 stopSelf();
@@ -298,7 +298,24 @@ public class SmartAlarmTestService extends Service {
             final String targetPillName = new PillUserMap().get(email);
 
             for(final Pill pill:data){
-                if(pill.getName().equals(targetPillName)){
+                if(targetPillName != null) {
+                    if (pill.getName().equals(targetPillName)) {
+                        IO.log("Paired pill detected: " + pill.getName());
+                        final RetryInfo retryInfo = new RetryInfo();
+                        retryInfo.pill = pill;
+                        pairedCount++;
+
+                        pill.setConnectedCallback(SmartAlarmTestService.this.connectionCallback);
+                        pill.setDisconnectedCallback(SmartAlarmTestService.this.disconnectCallback);
+
+                        SmartAlarmTestService.this.pillRetryInfoHashMap.put(pill, retryInfo);
+
+                        pill.connect(SmartAlarmTestService.this.connectionCallback);
+                        IO.log("Connecting to " + pill.getName() + " ....");
+                    }
+                }else{
+
+                    // Is is just a quick fix for Ben.
                     IO.log("Paired pill detected: " + pill.getName());
                     final RetryInfo retryInfo = new RetryInfo();
                     retryInfo.pill = pill;
@@ -392,7 +409,11 @@ public class SmartAlarmTestService extends Service {
             smartAlarmTime = smartAlarmTime.minusMinutes(20).plusMinutes(random.nextInt(possibleSpanInMinutes) + 1);
         }else{
             // User already in deep sleep.
-            long nextLightSleepMoment = lastCycle.getEndTimestamp() + (int)(1.4 * DateTimeConstants.MILLIS_PER_HOUR);
+            long sleepCycleLength = (long)(1.5 * DateTimeConstants.MILLIS_PER_HOUR);
+            long cycleNumberInTheMiddle = (dataCollectionMoment- lastCycle.getEndTimestamp()) / sleepCycleLength;
+
+            // It is possible that cycleNumberInTheMiddle > 0. In that case we need to guess the cycle.
+            long nextLightSleepMoment = lastCycle.getEndTimestamp() + cycleNumberInTheMiddle * sleepCycleLength;
             IO.log("User already in deep sleep. Next light sleep moment: " + new DateTime(nextLightSleepMoment));
 
             if(nextLightSleepMoment > dataCollectionMoment && nextLightSleepMoment < alarmDeadline){
@@ -419,7 +440,7 @@ public class SmartAlarmTestService extends Service {
         // It is a better idea to split them rather to register the same intent with different
         // extras.
         // This is Android.
-        
+
         public RingService(){
             super("Ring Service");
         }
@@ -494,7 +515,7 @@ public class SmartAlarmTestService extends Service {
         IO.log("Ring scheduled for " + ringTime);
     }
 
-    public static void setNextAlarm(final DateTime alarmTime){
+    public static void setNextDataCollection(final DateTime alarmTime){
 
         final AlarmManager alarmManager = (AlarmManager) SharedApplication.getAppContext().getSystemService(Context.ALARM_SERVICE);
         final Intent intent = new Intent(SharedApplication.getAppContext(), AlarmService.class);

@@ -28,6 +28,11 @@
         android:layout_height="wrap_content"
         android:text="Smart Alarm"
         android:id="@+id/btnSmartAlarmTest"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Firmware Update"
+        android:id="@+id/btnDFU"/>
 
     <Button
         android:layout_width="match_parent"

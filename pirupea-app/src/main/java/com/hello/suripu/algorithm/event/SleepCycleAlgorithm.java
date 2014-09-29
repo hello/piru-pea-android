@@ -47,7 +47,7 @@ public class SleepCycleAlgorithm {
 
     public ImmutableList<Segment> getCycles(final DateTime dateTime){
 
-        float minDensity = 1f / 6f;
+        float minDensity = 1f / 5f;
         final ArrayList<Float> densities = new ArrayList<Float>();
         final LinkedList<AmplitudeData> eventBuffer = new LinkedList<AmplitudeData>();
 
