@@ -157,13 +157,13 @@ public class MorpheusBleTestActivity extends ListActivity implements
         @Override
         public void onCompleted(final HelloBleDevice sender, final Void data) {
             uiEndOperation();
-            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " account linked.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " wifi set.", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
             uiEndOperation();
-            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " link account failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " set wifi failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
         }
     };
 
