@@ -1,21 +1,17 @@
 package com.hello.suripu.android;
 
-import android.net.Uri;
-
 import com.google.common.net.HttpHeaders;
+import com.hello.suripu.core.db.models.FirmwareUpdate;
 import com.hello.suripu.core.db.models.PillRegistration;
 import com.hello.suripu.core.db.models.TempTrackerData;
 import com.hello.suripu.core.oauth.AccessToken;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
-import retrofit.client.Response;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -98,7 +94,7 @@ public class SuripuClient {
         };
 
         RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint("https://dev-in.hello.is/")
+                .setEndpoint(SURIPU_DATA_ENDPOINT)
                 .setRequestInterceptor(appRequestInterceptor)
                 .build();
 

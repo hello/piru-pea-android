@@ -312,9 +312,18 @@ public class MorpheusBleTestActivity extends ListActivity implements
                             break;
                         case 5:
                             final WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+                            if(wifiManager == null){
+                                uiEndOperation();
+                                Toast.makeText(MorpheusBleTestActivity.this, "No WIFI connection.", Toast.LENGTH_SHORT);
+                                return;
+                            }
+
                             final WifiInfo wifiInfo = wifiManager.getConnectionInfo();
                             if(wifiInfo != null) {
-                                selectedDevice.setWIFIConnection(wifiInfo.getBSSID(), wifiInfo.getSSID(), "godsavethequeen", wifiConnectionCallback);
+                                final String SSID = wifiInfo.getSSID();
+                                selectedDevice.setWIFIConnection(wifiInfo.getBSSID(), SSID, "godsavethequeen", wifiConnectionCallback);
+                            }else{
+                                uiEndOperation();
                             }
                             break;
 
