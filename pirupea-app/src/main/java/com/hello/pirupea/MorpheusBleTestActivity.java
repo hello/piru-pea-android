@@ -320,7 +320,10 @@ public class MorpheusBleTestActivity extends ListActivity implements
 
                             final WifiInfo wifiInfo = wifiManager.getConnectionInfo();
                             if(wifiInfo != null) {
-                                final String SSID = wifiInfo.getSSID();
+                                String SSID = wifiInfo.getSSID();
+                                if(SSID.startsWith("\"") && SSID.endsWith("\"")){
+                                    SSID = SSID.substring(1, SSID.length() - 1);
+                                }
                                 selectedDevice.setWIFIConnection(wifiInfo.getBSSID(), SSID, "godsavethequeen", wifiConnectionCallback);
                             }else{
                                 uiEndOperation();
