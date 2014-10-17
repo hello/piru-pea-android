@@ -503,22 +503,13 @@ public class Morpheus extends HelloBleDevice {
         final BleOperationCallback<Void> writeCallback = new BleOperationCallback<Void>() {
             @Override
             public void onCompleted(HelloBleDevice sender, Void data) {
-                Morpheus.this.gattLayer.unsubscribeNotification(BleUUID.CHAR_PROTOBUF_COMMAND_UUID, new BleOperationCallback<UUID>() {
-                    @Override
-                    public void onCompleted(HelloBleDevice sender, UUID data) {
-                        operationCallback.onCompleted(sender, null);
-                    }
+                operationCallback.onCompleted(sender, null);
 
-                    @Override
-                    public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-                        operationCallback.onFailed(sender, reason, errorCode);
-                    }
-                });
             }
 
             @Override
             public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
-
+                operationCallback.onFailed(sender, reason, errorCode);
             }
         };
 
