@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hello.ble.BleOperationCallback;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Morpheus;
+import com.hello.pirupea.core.SharedApplication;
 import com.hello.pirupea.settings.LocalSettings;
 import com.hello.suripu.core.oauth.AccessToken;
 
@@ -288,7 +289,8 @@ public class MorpheusBleTestActivity extends ListActivity implements
                     "Set WIFI End Point", // 5
                     "Pair Pill", // 6
                     "Link Account",
-                    "Unpair Pill"
+                    "Unpair Pill",
+                    "Wipe firmware"
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -358,6 +360,20 @@ public class MorpheusBleTestActivity extends ListActivity implements
                         case 8:
                             selectedDevice.unpairPill("55614E945A95CA03", unpairPillCallback);
                             break;
+                        case 9:
+                            selectedDevice.wipeFirmware(new BleOperationCallback<Void>() {
+                                @Override
+                                public void onCompleted(HelloBleDevice sender, Void data) {
+                                    uiEndOperation();
+                                    Toast.makeText(SharedApplication.getAppContext(), "Done!", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                                    uiEndOperation();
+                                    Toast.makeText(SharedApplication.getAppContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         default:
                             break;
                     }

@@ -18,8 +18,6 @@ import com.hello.ble.util.HelloBleDeviceScanner;
 import com.hello.ble.util.MorpheusScanner;
 import com.hello.pirupea.core.SharedApplication;
 
-import org.apache.commons.codec.binary.Hex;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -443,7 +441,7 @@ public class Morpheus extends HelloBleDevice {
 
                         }else{
                             if(getDeviceIdCallback != null){
-                                getDeviceIdCallback.onCompleted(sender, new String(Hex.encodeHex(new byte[]{0, 1, 2, 3, 4, 5})));
+                                getDeviceIdCallback.onCompleted(sender, response.getDeviceId());
                             }
                         }
                     }
@@ -501,6 +499,41 @@ public class Morpheus extends HelloBleDevice {
     }
 
 
+    public void wipeFirmware(final BleOperationCallback<Void> operationCallback){
+        final BleOperationCallback<Void> writeCallback = new BleOperationCallback<Void>() {
+            @Override
+            public void onCompleted(HelloBleDevice sender, Void data) {
+                operationCallback.onCompleted(sender, null);
+
+            }
+
+            @Override
+            public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                operationCallback.onFailed(sender, reason, errorCode);
+            }
+        };
+
+        this.gattLayer.subscribeNotification(BleUUID.CHAR_PROTOBUF_COMMAND_RESPONSE_UUID, new BleOperationCallback<UUID>() {
+            @Override
+            public void onCompleted(final HelloBleDevice connectedDevice, final UUID charUUID) {
+                final MorpheusCommand morpheusCommand = MorpheusCommand.newBuilder()
+                        .setType(CommandType.MORPHEUS_COMMAND_MORPHEUS_DFU_BEGIN)
+                        .setVersion(COMMAND_VERSION)
+                        .build();
+                final byte[] commandData = morpheusCommand.toByteArray();
+                Morpheus.this.gattLayer.writeLargeCommand(BleUUID.CHAR_PROTOBUF_COMMAND_UUID, commandData, writeCallback);
+            }
+
+            @Override
+            public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+                if(operationCallback != null){
+                    operationCallback.onFailed(sender, reason, errorCode);
+                }
+            }
+        });
+    }
+
+
     public void setWIFIConnection(final String BSSID, final String SSID, final String password, final BleOperationCallback<Void> operationCallback){
         this.protobufCommandResponseHandler.setDataCallback(new BleOperationCallback<MorpheusCommand>() {
             @Override
@@ -522,7 +555,7 @@ public class Morpheus extends HelloBleDevice {
                             }else {
                                 if (operationCallback != null) {
                                     // Wrong command received, which means data out of order for some reason.
-                                    operationCallback.onFailed(sender, OperationFailReason.WRONG_ACK_TYPE, 0);
+                                    operationCallback.onFailed(sender, OperationFailReason.WRONG_ACK_TYPE, replyCommand.getType().getNumber());
                                 }
                             }
 
@@ -776,7 +809,7 @@ public class Morpheus extends HelloBleDevice {
                             }else {
                                 if (operationCallback != null) {
                                     // Wrong command received, which means data out of order for some reason.
-                                    operationCallback.onFailed(sender, OperationFailReason.WRONG_ACK_TYPE, 0);
+                                    operationCallback.onFailed(sender, OperationFailReason.WRONG_ACK_TYPE, replyCommand.getType().getNumber());
                                 }
                             }
                         }
