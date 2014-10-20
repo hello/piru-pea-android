@@ -220,8 +220,11 @@ public abstract class HelloBleDevice {
 
             SharedApplication.getAppContext().registerReceiver(this.pairingReceiver, filter);
 
-            Method method = this.bluetoothDevice.getClass().getMethod("createBond", (Class[]) null);  // this is shit!
-            method.invoke(this.bluetoothDevice, (Object[]) null);
+            final int bondState = this.bluetoothDevice.getBondState();
+            final boolean createBondResult = this.bluetoothDevice.createBond();
+
+            Log.i("BondDebug", "Bond state: " + bondState + ", " + createBondResult);
+            int debug = 0;
         } catch (Exception e) {
             e.printStackTrace();
             if(pairedCallback != null){

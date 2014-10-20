@@ -2,11 +2,11 @@ package com.hello.ble.devices;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 
 import com.hello.ble.BleOperationCallback;
-import com.hello.ble.MorpheusCommandType;
 import com.hello.ble.protobuf.MorpheusBle.MorpheusCommand;
 import com.hello.ble.protobuf.MorpheusBle.MorpheusCommand.CommandType;
 import com.hello.ble.stack.HelloGattLayer;
@@ -33,18 +33,6 @@ public class Morpheus extends HelloBleDevice {
 
     private MorpheusResponseDataHandler commandResponsePacketHandler;
     private MorpheusProtobufResponseDataHandler protobufCommandResponseHandler;
-
-    private BleOperationCallback<MorpheusCommandType> commandResponseCallback;
-    private BleOperationCallback<MorpheusCommand> protoBufResponseCallback;
-
-    public void setCommandResponseCallback(final BleOperationCallback<MorpheusCommandType> commandResponseCallback){
-        this.commandResponseCallback = commandResponseCallback;
-    }
-
-    public void setProtoBufResponseCallback(final BleOperationCallback<MorpheusCommand> protoBufResponseCallback){
-        this.protoBufResponseCallback = protoBufResponseCallback;
-    }
-
 
     public Morpheus(final Context context, final BluetoothDevice bluetoothDevice){
         super(context, bluetoothDevice);
@@ -78,25 +66,41 @@ public class Morpheus extends HelloBleDevice {
                         });
                     }
 
+
+                    private void pairDevice(){
+                        
+                        pair(new BleOperationCallback<Void>() {
+                            @Override
+                            public void onCompleted(final HelloBleDevice sender, final Void data) {
+                                if (Morpheus.this.connectedCallback != null) {
+                                    Morpheus.this.connectedCallback.onCompleted(sender, data);
+                                }
+                            }
+
+                            @Override
+                            public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+                                if (Morpheus.this.connectedCallback != null) {
+                                    Morpheus.this.connectedCallback.onFailed(sender, reason, errorCode);
+                                }
+                            }
+                        });
+
+                    }
+
                     @Override
                     public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
-                        if(OperationFailReason.GATT_ERROR == reason && errorCode == 5){
+                        if(OperationFailReason.GATT_ERROR == reason && errorCode == BluetoothGatt.GATT_INSUFFICIENT_AUTHENTICATION){
                             // Authentication required.
-                            pair(new BleOperationCallback<Void>() {
-                                @Override
-                                public void onCompleted(final HelloBleDevice sender, final Void data) {
-                                    if(Morpheus.this.connectedCallback != null){
-                                        Morpheus.this.connectedCallback.onCompleted(sender, data);
-                                    }
-                                }
 
-                                @Override
-                                public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
-                                    if(Morpheus.this.connectedCallback != null){
-                                        Morpheus.this.connectedCallback.onFailed(sender, reason, errorCode);
-                                    }
+                            if(sender.bluetoothDevice.getBondState() == BluetoothDevice.BOND_NONE) {
+                                pairDevice();
+                            }else{
+                                // The Morpheus get reset & lost pair info, but the phone still has the old pairing.
+                                // So we need to unpair and pair the crap again.
+                                if(Morpheus.this.connectedCallback != null){
+                                    Morpheus.this.connectedCallback.onFailed(sender, reason, errorCode);
                                 }
-                            });
+                            }
                         }else{
                             if(Morpheus.this.connectedCallback != null){
                                 Morpheus.this.connectedCallback.onFailed(sender, reason, errorCode);
