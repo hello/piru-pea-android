@@ -20,11 +20,11 @@ import android.widget.Toast;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hello.ble.BleOperationCallback;
+import com.hello.ble.HelloBle;
 import com.hello.ble.PillMotionData;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Pill;
-import com.hello.pirupea.core.IO;
-import com.hello.pirupea.core.SharedApplication;
+import com.hello.ble.util.IO;
 import com.hello.pirupea.datasource.InMemoryPillDataSource;
 import com.hello.pirupea.settings.LocalSettings;
 import com.hello.pirupea.settings.PillUserMap;
@@ -389,7 +389,7 @@ public class SmartAlarmTestService extends Service {
             e.printStackTrace();
         }
 
-        handler = new Handler(SharedApplication.getAppContext().getMainLooper());
+        handler = new Handler(HelloBle.getApplicationContext().getMainLooper());
 
         // Scan for 20 seconds to pickup all pills around.
         IO.log("Discovering pills...");
@@ -487,18 +487,18 @@ public class SmartAlarmTestService extends Service {
     }
 
     public static void ring(){
-        final PowerManager powerManager = (PowerManager) SharedApplication.getAppContext().getSystemService(Context.POWER_SERVICE);
+        final PowerManager powerManager = (PowerManager) HelloBle.getApplicationContext().getSystemService(Context.POWER_SERVICE);
         final WakeLock cpuWakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "RingWakeLock");
         cpuWakeLock.acquire();
 
         try {
             if(handler == null) {
-                handler = new Handler(SharedApplication.getAppContext().getMainLooper());
+                handler = new Handler(HelloBle.getApplicationContext().getMainLooper());
             }
 
             final Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-            final Ringtone ringtone = RingtoneManager.getRingtone(SharedApplication.getAppContext(), notification);
-            final AudioManager audioManager = (AudioManager) SharedApplication.getAppContext().getSystemService(AUDIO_SERVICE);
+            final Ringtone ringtone = RingtoneManager.getRingtone(HelloBle.getApplicationContext(), notification);
+            final AudioManager audioManager = (AudioManager) HelloBle.getApplicationContext().getSystemService(AUDIO_SERVICE);
 
             final int currentVolume = audioManager.getStreamVolume(ringtone.getStreamType());
             audioManager.setStreamVolume(ringtone.getStreamType(), audioManager.getStreamMaxVolume(ringtone.getStreamType()), 0);
@@ -523,10 +523,10 @@ public class SmartAlarmTestService extends Service {
     public static void setRingTime(final DateTime ringTime){
         cancelScheduledRing();
 
-        final AlarmManager alarmManager = (AlarmManager) SharedApplication.getAppContext().getSystemService(Context.ALARM_SERVICE);
-        final Intent intent = new Intent(SharedApplication.getAppContext(), RingService.class);
+        final AlarmManager alarmManager = (AlarmManager) HelloBle.getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        final Intent intent = new Intent(HelloBle.getApplicationContext(), RingService.class);
 
-        final PendingIntent alarmIntent = PendingIntent.getService(SharedApplication.getAppContext(), 0, intent, 0);
+        final PendingIntent alarmIntent = PendingIntent.getService(HelloBle.getApplicationContext(), 0, intent, 0);
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP,
                 ringTime.getMillis(),
@@ -537,11 +537,11 @@ public class SmartAlarmTestService extends Service {
     public static void setNextDataCollection(final DateTime alarmTime){
         cancelScheduledDataCollection();
 
-        final AlarmManager alarmManager = (AlarmManager) SharedApplication.getAppContext().getSystemService(Context.ALARM_SERVICE);
-        final Intent intent = new Intent(SharedApplication.getAppContext(), AlarmService.class);
+        final AlarmManager alarmManager = (AlarmManager) HelloBle.getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        final Intent intent = new Intent(HelloBle.getApplicationContext(), AlarmService.class);
         intent.putExtra(AlarmService.EXTRA_TYPE, 0);
 
-        final PendingIntent alarmIntent = PendingIntent.getService(SharedApplication.getAppContext(), 0, intent, 0);
+        final PendingIntent alarmIntent = PendingIntent.getService(HelloBle.getApplicationContext(), 0, intent, 0);
 
         if(LocalSettings.getAlarmTime() == 0){
             return;
@@ -553,9 +553,9 @@ public class SmartAlarmTestService extends Service {
     }
 
     private void setNextFastAlarm(){
-        final AlarmManager alarmManager = (AlarmManager) SharedApplication.getAppContext().getSystemService(Context.ALARM_SERVICE);
-        final Intent intent = new Intent(SharedApplication.getAppContext(), AlarmService.class);
-        final PendingIntent alarmIntent = PendingIntent.getService(SharedApplication.getAppContext(), 0, intent, 0);
+        final AlarmManager alarmManager = (AlarmManager) HelloBle.getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        final Intent intent = new Intent(HelloBle.getApplicationContext(), AlarmService.class);
+        final PendingIntent alarmIntent = PendingIntent.getService(HelloBle.getApplicationContext(), 0, intent, 0);
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + FAST_WAKEUP_INTERVAL,
@@ -563,16 +563,16 @@ public class SmartAlarmTestService extends Service {
     }
 
     public static void cancelScheduledRing(){
-        final AlarmManager alarmManager = (AlarmManager) SharedApplication.getAppContext().getSystemService(Context.ALARM_SERVICE);
-        final Intent ringIntent = new Intent(SharedApplication.getAppContext(), RingService.class);
-        final PendingIntent pendingRingIntent = PendingIntent.getService(SharedApplication.getAppContext(), 0, ringIntent, 0);
+        final AlarmManager alarmManager = (AlarmManager) HelloBle.getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        final Intent ringIntent = new Intent(HelloBle.getApplicationContext(), RingService.class);
+        final PendingIntent pendingRingIntent = PendingIntent.getService(HelloBle.getApplicationContext(), 0, ringIntent, 0);
         alarmManager.cancel(pendingRingIntent);
     }
 
     public static void cancelScheduledDataCollection(){
-        final AlarmManager alarmManager = (AlarmManager) SharedApplication.getAppContext().getSystemService(Context.ALARM_SERVICE);
-        final Intent intent = new Intent(SharedApplication.getAppContext(), AlarmService.class);
-        final PendingIntent alarmIntent = PendingIntent.getService(SharedApplication.getAppContext(), 0, intent, 0);
+        final AlarmManager alarmManager = (AlarmManager) HelloBle.getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        final Intent intent = new Intent(HelloBle.getApplicationContext(), AlarmService.class);
+        final PendingIntent alarmIntent = PendingIntent.getService(HelloBle.getApplicationContext(), 0, intent, 0);
         alarmManager.cancel(alarmIntent);
 
 

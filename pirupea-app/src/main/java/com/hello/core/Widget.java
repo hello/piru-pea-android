@@ -8,11 +8,12 @@ import android.content.IntentFilter;
 import android.os.PowerManager;
 import android.telephony.TelephonyManager;
 
-import com.hello.pirupea.core.IO;
+
+import com.hello.ble.util.IO;
 
 import java.util.Iterator;
 
-public abstract class Widget extends BroadcastReceiver {
+    public abstract class Widget extends BroadcastReceiver {
 	private final String TAG = this.getClass().getName();
 	
 	private ContextWrapper context = null;

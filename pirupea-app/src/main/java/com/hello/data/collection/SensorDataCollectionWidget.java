@@ -6,7 +6,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
-import com.hello.pirupea.core.IO;
+import com.hello.ble.util.IO;
 import com.hello.core.JobScheduler;
 
 import java.io.File;

@@ -19,7 +19,7 @@ import com.hello.ble.BleOperationCallback;
 import com.hello.ble.PillMotionData;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Pill;
-import com.hello.pirupea.core.IO;
+import com.hello.ble.util.IO;
 import com.hello.data.collection.ContinuesMotionWidget;
 import com.hello.pirupea.settings.LocalSettings;
 import com.hello.suripu.android.SuripuClient;
