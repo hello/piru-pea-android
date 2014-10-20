@@ -18,9 +18,9 @@ import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hello.ble.BleOperationCallback;
+import com.hello.ble.HelloBle;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Morpheus;
-import com.hello.pirupea.core.SharedApplication;
 import com.hello.pirupea.settings.LocalSettings;
 import com.hello.suripu.core.oauth.AccessToken;
 
@@ -351,13 +351,13 @@ public class MorpheusBleTestActivity extends ListActivity implements
                                 @Override
                                 public void onCompleted(HelloBleDevice sender, Void data) {
                                     uiEndOperation();
-                                    Toast.makeText(SharedApplication.getAppContext(), "Done!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(HelloBle.getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override
                                 public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
                                     uiEndOperation();
-                                    Toast.makeText(SharedApplication.getAppContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(HelloBle.getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         default:

@@ -5,7 +5,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 
-import com.hello.pirupea.core.IO;
+
+import com.hello.ble.util.IO;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;

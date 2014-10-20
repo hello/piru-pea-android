@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hello.pirupea.core.SharedApplication;
+import com.hello.ble.HelloBle;
 import com.hello.suripu.algorithm.core.Segment;
 
 import java.io.IOException;
@@ -27,11 +27,11 @@ public class LocalSettings {
 
 
     public static String getPillAddress(){
-        return PreferenceManager.getDefaultSharedPreferences(SharedApplication.getAppContext()).getString(PILL_ADDRESS, null);
+        return PreferenceManager.getDefaultSharedPreferences(HelloBle.getApplicationContext()).getString(PILL_ADDRESS, null);
     }
 
     public static void setPillAddress(final String value){
-        final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(SharedApplication.getAppContext()).edit();
+        final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(HelloBle.getApplicationContext()).edit();
         editor.putString(PILL_ADDRESS, value);
 
         editor.commit();
@@ -39,7 +39,7 @@ public class LocalSettings {
 
 
     public static List<Segment> getSleepCycles(){
-        final String segmentString = PreferenceManager.getDefaultSharedPreferences(SharedApplication.getAppContext()).getString(SLEEP_CYCLES, null);
+        final String segmentString = PreferenceManager.getDefaultSharedPreferences(HelloBle.getApplicationContext()).getString(SLEEP_CYCLES, null);
         final ObjectMapper mapper = new ObjectMapper();
         List<Segment> segments = Collections.EMPTY_LIST;
 
@@ -59,7 +59,7 @@ public class LocalSettings {
         final ObjectMapper mapper = new ObjectMapper();
         try {
             final String segmentString = mapper.writeValueAsString(value);
-            final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(SharedApplication.getAppContext()).edit();
+            final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(HelloBle.getApplicationContext()).edit();
             editor.putString(SLEEP_CYCLES, segmentString);
 
             editor.commit();
@@ -73,11 +73,11 @@ public class LocalSettings {
 
 
     public static long getAlarmTime(){
-        return PreferenceManager.getDefaultSharedPreferences(SharedApplication.getAppContext()).getLong(ALARM, 0);
+        return PreferenceManager.getDefaultSharedPreferences(HelloBle.getApplicationContext()).getLong(ALARM, 0);
     }
 
     public static void setAlarmTime(final long value){
-        final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(SharedApplication.getAppContext()).edit();
+        final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(HelloBle.getApplicationContext()).edit();
         editor.putLong(ALARM, value);
 
         editor.commit();
@@ -86,25 +86,25 @@ public class LocalSettings {
 
     public static void saveOAuthToken(final String token){
         checkNotNull(token);
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(SharedApplication.getAppContext()).edit();
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(HelloBle.getApplicationContext()).edit();
         editor.putString(OAUTH_TOKEN, token);
 
         editor.commit();
     }
 
     public static String getOAuthToken(){
-        return PreferenceManager.getDefaultSharedPreferences(SharedApplication.getAppContext()).getString(OAUTH_TOKEN, "");
+        return PreferenceManager.getDefaultSharedPreferences(HelloBle.getApplicationContext()).getString(OAUTH_TOKEN, "");
     }
 
     public static void saveLastLoginUser(final String userName){
         checkNotNull(userName);
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(SharedApplication.getAppContext()).edit();
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(HelloBle.getApplicationContext()).edit();
         editor.putString(LAST_LOGIN_USER, userName);
 
         editor.commit();
     }
 
     public static String getLastLoginUser(){
-        return PreferenceManager.getDefaultSharedPreferences(SharedApplication.getAppContext()).getString(LAST_LOGIN_USER, "");
+        return PreferenceManager.getDefaultSharedPreferences(HelloBle.getApplicationContext()).getString(LAST_LOGIN_USER, "");
     }
 }

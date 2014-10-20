@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hello.pirupea.core.IO;
+import com.hello.ble.util.IO;
 import com.hello.pirupea.settings.LocalSettings;
 import com.hello.suripu.android.BleTestApplication;
 import com.hello.suripu.android.SuripuClient;
