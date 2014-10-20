@@ -3,6 +3,7 @@ package com.hello.pirupea;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,6 +32,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
         BleOperationCallback<Set<Morpheus>> {
 
     private ArrayAdapter<Morpheus> deviceArrayAdapter;
+    private String wifiPassword = "";
 
     private final BleOperationCallback<Void> connectedCallback = new BleOperationCallback<Void>() {
         @Override
@@ -186,7 +189,6 @@ public class MorpheusBleTestActivity extends ListActivity implements
 
         setContentView(R.layout.activity_ble_test);
 
-
         this.deviceArrayAdapter = new ArrayAdapter<Morpheus>(this, android.R.layout.simple_list_item_1);
         this.setListAdapter(this.deviceArrayAdapter);
 
@@ -313,23 +315,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
                             selectedDevice.clearPairedUser(erasePairedUsersCallback);
                             break;
                         case 5:
-                            final WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
-                            if(wifiManager == null){
-                                uiEndOperation();
-                                Toast.makeText(MorpheusBleTestActivity.this, "No WIFI connection.", Toast.LENGTH_SHORT);
-                                return;
-                            }
-
-                            final WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-                            if(wifiInfo != null) {
-                                String SSID = wifiInfo.getSSID();
-                                if(SSID.startsWith("\"") && SSID.endsWith("\"")){
-                                    SSID = SSID.substring(1, SSID.length() - 1);
-                                }
-                                selectedDevice.setWIFIConnection(wifiInfo.getBSSID(), SSID, "godsavethequeen", wifiConnectionCallback);
-                            }else{
-                                uiEndOperation();
-                            }
+                            password(selectedDevice);
                             break;
 
                         case 6: {
@@ -383,5 +369,46 @@ public class MorpheusBleTestActivity extends ListActivity implements
 
         builder.show();
         super.onListItemClick(l, v, position, id);
+    }
+
+    private void password(final Morpheus connectedDevice) {
+
+        final WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+        if(wifiManager == null){
+            Toast.makeText(this, "Please Enable WIFI.", Toast.LENGTH_SHORT);
+            return;
+        }
+
+        final WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        if(wifiInfo != null) {
+            String SSID = wifiInfo.getSSID();
+            if(SSID.startsWith("\"") && SSID.endsWith("\"")){
+                SSID = SSID.substring(1, SSID.length() - 1);
+            }
+
+            final String convertedSSID = SSID;
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            // Set an EditText view to get user input
+            final EditText txtPassword = new EditText(this);
+
+            alert.setTitle("Input Password")
+                    .setMessage("Please Input the password for WIFI \"" + SSID + "\"")
+                    .setView(txtPassword)
+                    .setPositiveButton("Done", new OnClickListener() {
+                        @Override
+                        public void onClick(final DialogInterface dialogInterface, int i) {
+                            final String password = txtPassword.getText().toString();
+                            connectedDevice.setWIFIConnection(wifiInfo.getBSSID(), convertedSSID, password, wifiConnectionCallback);
+                            uiBeginOperation();
+                        }
+                    }).show();
+
+        }else{
+            Toast.makeText(this, "Please connect to a  WIFI.", Toast.LENGTH_SHORT);
+            return;
+        }
+
+
+
     }
 }
