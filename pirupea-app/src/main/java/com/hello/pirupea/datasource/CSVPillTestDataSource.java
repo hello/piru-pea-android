@@ -1,7 +1,7 @@
 package com.hello.pirupea.datasource;
 
 import com.google.common.collect.ImmutableList;
-import com.hello.pirupea.core.IO;
+import com.hello.ble.util.IO;
 import com.hello.suripu.algorithm.core.AmplitudeData;
 import com.hello.suripu.algorithm.core.DataSource;
 
