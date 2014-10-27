@@ -445,7 +445,7 @@ public class PillBleTestActivity extends ListActivity implements
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     uiBeginOperation();
-                    selectedPill.connect(false);
+                    selectedPill.connect();
                 }
             });
         }else{
