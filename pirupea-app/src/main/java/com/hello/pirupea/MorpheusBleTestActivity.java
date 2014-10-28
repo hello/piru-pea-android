@@ -4,8 +4,6 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,10 +19,13 @@ import com.hello.ble.BleOperationCallback;
 import com.hello.ble.HelloBle;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Morpheus;
+import com.hello.ble.protobuf.MorpheusBle.wifi_endpoint;
 import com.hello.pirupea.settings.LocalSettings;
 import com.hello.suripu.core.oauth.AccessToken;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -46,10 +47,12 @@ public class MorpheusBleTestActivity extends ListActivity implements
         @Override
         public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
             final Morpheus connectedDevice = (Morpheus)sender;
+
             uiEndOperation();
             Toast.makeText(MorpheusBleTestActivity.this,
                     "Connect to " + connectedDevice.getName() + " failed: " + reason + " " + errorCode,
                     Toast.LENGTH_SHORT).show();
+
         }
     };
 
@@ -168,6 +171,62 @@ public class MorpheusBleTestActivity extends ListActivity implements
         public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
             uiEndOperation();
             Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " set wifi failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private final BleOperationCallback<Void> factoryResetCallback = new BleOperationCallback<Void>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final Void data) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " factory reset success.", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " factory reset failed, " + reason + " code: " + errorCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private final BleOperationCallback<List<wifi_endpoint>> wifiScanCallback = new BleOperationCallback<List<wifi_endpoint>>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final List<wifi_endpoint> data) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MorpheusBleTestActivity.this)
+                    .setTitle("Select WIFI");
+
+
+
+            final ArrayList<String> wifiEndPointString = new ArrayList<String>();
+
+            for(final wifi_endpoint wifi_ep:data){
+                String hexMac = "";
+                final byte[] mac = wifi_ep.getBssid().toByteArray();
+                for(final byte b:mac){
+
+                    if(hexMac.length() > 0){
+                        hexMac += ":" + Byte.toString(b);
+                    }else{
+                        hexMac += Byte.toString(b);
+                    }
+                }
+                wifiEndPointString.add(wifi_ep.getSsid() + ", rssi: " + wifi_ep.getRssi() + ", mac: " + hexMac);
+            }
+
+            builder.setItems(wifiEndPointString.toArray(new CharSequence[0]), new OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    final wifi_endpoint endPoint = data.get(i);
+                    password((Morpheus)sender, endPoint.getSsid(), endPoint.getBssid().toString());
+                }
+            });
+
+            builder.show();
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " factory reset failed, " + reason + " code: " + errorCode, Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -292,7 +351,8 @@ public class MorpheusBleTestActivity extends ListActivity implements
                     "Pair Pill", // 6
                     "Link Account",
                     "Unpair Pill",
-                    "Wipe firmware"
+                    "Wipe Firmware",
+                    "Factory Reset",
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -315,7 +375,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
                             selectedDevice.clearPairedUser(erasePairedUsersCallback);
                             break;
                         case 5:
-                            password(selectedDevice);
+                            selectedDevice.scanSupportedWIFIAP(wifiScanCallback);
                             break;
 
                         case 6: {
@@ -351,15 +411,20 @@ public class MorpheusBleTestActivity extends ListActivity implements
                                 @Override
                                 public void onCompleted(HelloBleDevice sender, Void data) {
                                     uiEndOperation();
-                                    Toast.makeText(HelloBle.getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(HelloBle.getApplicationContext(), "wipe done!", Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override
                                 public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
                                     uiEndOperation();
-                                    Toast.makeText(HelloBle.getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(HelloBle.getApplicationContext(), "Wipe failed, error: " + reason, Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            break;
+                        case 10:
+                            selectedDevice.factoryReset(factoryResetCallback);
+                            break;
+
                         default:
                             break;
                     }
@@ -371,44 +436,22 @@ public class MorpheusBleTestActivity extends ListActivity implements
         super.onListItemClick(l, v, position, id);
     }
 
-    private void password(final Morpheus connectedDevice) {
+    private void password(final Morpheus connectedDevice, final String SSID, final String BSSID) {
+        final String convertedSSID = SSID;
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        // Set an EditText view to get user input
+        final EditText txtPassword = new EditText(this);
 
-        final WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
-        if(wifiManager == null){
-            Toast.makeText(this, "Please Enable WIFI.", Toast.LENGTH_SHORT);
-            return;
-        }
-
-        final WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        if(wifiInfo != null) {
-            String SSID = wifiInfo.getSSID();
-            if(SSID.startsWith("\"") && SSID.endsWith("\"")){
-                SSID = SSID.substring(1, SSID.length() - 1);
-            }
-
-            final String convertedSSID = SSID;
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            // Set an EditText view to get user input
-            final EditText txtPassword = new EditText(this);
-
-            alert.setTitle("Input Password")
-                    .setMessage("Please Input the password for WIFI \"" + SSID + "\"")
-                    .setView(txtPassword)
-                    .setPositiveButton("Done", new OnClickListener() {
-                        @Override
-                        public void onClick(final DialogInterface dialogInterface, int i) {
-                            final String password = txtPassword.getText().toString();
-                            connectedDevice.setWIFIConnection(wifiInfo.getBSSID(), convertedSSID, password, wifiConnectionCallback);
-                            uiBeginOperation();
-                        }
-                    }).show();
-
-        }else{
-            Toast.makeText(this, "Please connect to a  WIFI.", Toast.LENGTH_SHORT);
-            return;
-        }
-
-
+        alert.setTitle("Input Password")
+                .setMessage("Please Input the password for WIFI \"" + SSID + "\"")
+                .setView(txtPassword)
+                .setPositiveButton("Done", new OnClickListener() {
+                    @Override
+                    public void onClick(final DialogInterface dialogInterface, int i) {
+                        final String password = txtPassword.getText().toString();
+                        connectedDevice.setWIFIConnection(BSSID, convertedSSID, password, wifiConnectionCallback);
+                    }
+                }).show();
 
     }
 }
