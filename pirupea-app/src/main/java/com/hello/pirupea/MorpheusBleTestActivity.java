@@ -420,6 +420,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
                                     Toast.makeText(HelloBle.getApplicationContext(), "Wipe failed, error: " + reason, Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            break;
                         case 10:
                             selectedDevice.factoryReset(factoryResetCallback);
                             break;
