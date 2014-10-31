@@ -1,5 +1,4 @@
 .gradle
-*.iml
 *.ipr
 target
 /local.properties
