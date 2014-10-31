@@ -226,7 +226,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
         @Override
         public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
             uiEndOperation();
-            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " factory reset failed, " + reason + " code: " + errorCode, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " wifi scan failed, " + reason + " code: " + errorCode, Toast.LENGTH_SHORT).show();
         }
     };
 
