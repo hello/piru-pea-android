@@ -20,6 +20,7 @@ import com.hello.ble.HelloBle;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Morpheus;
 import com.hello.ble.protobuf.MorpheusBle.wifi_endpoint;
+import com.hello.ble.protobuf.MorpheusBle.wifi_endpoint.sec_type;
 import com.hello.pirupea.settings.LocalSettings;
 import com.hello.suripu.core.oauth.AccessToken;
 
@@ -188,6 +189,21 @@ public class MorpheusBleTestActivity extends ListActivity implements
         }
     };
 
+
+    private final BleOperationCallback<wifi_endpoint> getWifiCallback = new BleOperationCallback<wifi_endpoint>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final wifi_endpoint data) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " connected to " + data.getSsid(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, int errorCode) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " Get wifi failed, " + reason + " code: " + errorCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+
     private final BleOperationCallback<List<wifi_endpoint>> wifiScanCallback = new BleOperationCallback<List<wifi_endpoint>>() {
         @Override
         public void onCompleted(final HelloBleDevice sender, final List<wifi_endpoint> data) {
@@ -216,7 +232,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     final wifi_endpoint endPoint = data.get(i);
-                    password((Morpheus)sender, endPoint.getSsid(), endPoint.getBssid().toString());
+                    password((Morpheus)sender, endPoint.getSsid(), endPoint.getBssid().toString(), endPoint.getSecurityType());
                 }
             });
 
@@ -353,6 +369,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
                     "Unpair Pill",
                     "Wipe Firmware",
                     "Factory Reset",
+                    "Get Wifi Endpoint"
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -424,6 +441,9 @@ public class MorpheusBleTestActivity extends ListActivity implements
                         case 10:
                             selectedDevice.factoryReset(factoryResetCallback);
                             break;
+                        case 11:
+                            selectedDevice.getWIFI(getWifiCallback);
+                            break;
 
                         default:
                             break;
@@ -436,7 +456,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
         super.onListItemClick(l, v, position, id);
     }
 
-    private void password(final Morpheus connectedDevice, final String SSID, final String BSSID) {
+    private void password(final Morpheus connectedDevice, final String SSID, final String BSSID, final sec_type securityType) {
         final String convertedSSID = SSID;
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         // Set an EditText view to get user input
@@ -449,7 +469,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
                     @Override
                     public void onClick(final DialogInterface dialogInterface, int i) {
                         final String password = txtPassword.getText().toString();
-                        connectedDevice.setWIFIConnection(BSSID, convertedSSID, password, wifiConnectionCallback);
+                        connectedDevice.setWIFIConnection(BSSID, convertedSSID, securityType, password, wifiConnectionCallback);
                     }
                 }).show();
 
