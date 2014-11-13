@@ -19,6 +19,8 @@ import com.hello.ble.BleOperationCallback;
 import com.hello.ble.HelloBle;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Morpheus;
+import com.hello.ble.protobuf.MorpheusBle.MorpheusCommand;
+import com.hello.ble.protobuf.MorpheusBle.led_demo_state;
 import com.hello.ble.protobuf.MorpheusBle.wifi_endpoint;
 import com.hello.ble.protobuf.MorpheusBle.wifi_endpoint.sec_type;
 import com.hello.pirupea.settings.LocalSettings;
@@ -189,12 +191,27 @@ public class MorpheusBleTestActivity extends ListActivity implements
         }
     };
 
-
-    private final BleOperationCallback<wifi_endpoint> getWifiCallback = new BleOperationCallback<wifi_endpoint>() {
+    private final BleOperationCallback<Void> ledCallback = new BleOperationCallback<Void>() {
         @Override
-        public void onCompleted(final HelloBleDevice sender, final wifi_endpoint data) {
+        public void onCompleted(final HelloBleDevice sender, final Void data) {
             uiEndOperation();
-            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " connected to " + data.getSsid(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " led command sent.", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " led command failed, " + reason + " code: " + errorCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
+    private final BleOperationCallback<MorpheusCommand> getWifiCallback = new BleOperationCallback<MorpheusCommand>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final MorpheusCommand data) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() +
+                    " connected to " + data.getWifiSSID() + " status: " + data.getWifiConnectionState(), Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -369,7 +386,10 @@ public class MorpheusBleTestActivity extends ListActivity implements
                     "Unpair Pill",
                     "Wipe Firmware",
                     "Factory Reset",
-                    "Get Wifi Endpoint"
+                    "Get Wifi Endpoint",
+                    "LED Fade In",
+                    "LED Fade Out",
+                    "LED Rainbow"
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -444,7 +464,15 @@ public class MorpheusBleTestActivity extends ListActivity implements
                         case 11:
                             selectedDevice.getWIFI(getWifiCallback);
                             break;
-
+                        case 12:
+                            ledDemo(selectedDevice, led_demo_state.FADE_IN);
+                            break;
+                        case 13:
+                            ledDemo(selectedDevice, led_demo_state.FADE_OUT);
+                            break;
+                        case 14:
+                            ledDemo(selectedDevice, led_demo_state.RAINBOW);
+                            break;
                         default:
                             break;
                     }
@@ -454,6 +482,25 @@ public class MorpheusBleTestActivity extends ListActivity implements
 
         builder.show();
         super.onListItemClick(l, v, position, id);
+    }
+
+
+    private void ledDemo(final Morpheus connectedDevice, final led_demo_state state)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        // Set an EditText view to get user input
+        final EditText txtBrightness = new EditText(this);
+
+        alert.setTitle("Input Brightness")
+            .setMessage("Please input a value between 0 - 255")
+            .setView(txtBrightness)
+            .setPositiveButton("Done", new OnClickListener() {
+                @Override
+                public void onClick(final DialogInterface dialogInterface, int i) {
+                    final Integer brightness = Integer.valueOf(txtBrightness.getText().toString());
+                    connectedDevice.ledDemo(state, brightness, ledCallback);
+                }
+            }).show();
     }
 
     private void password(final Morpheus connectedDevice, final String SSID, final String BSSID, final sec_type securityType) {
