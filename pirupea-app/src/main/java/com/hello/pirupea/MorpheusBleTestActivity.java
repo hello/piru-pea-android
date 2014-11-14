@@ -19,8 +19,9 @@ import com.hello.ble.BleOperationCallback;
 import com.hello.ble.HelloBle;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Morpheus;
-import com.hello.ble.protobuf.MorpheusBle.wifi_endpoint;
-import com.hello.ble.protobuf.MorpheusBle.wifi_endpoint.sec_type;
+import com.hello.suripu.api.ble.SenseCommandProtos.MorpheusCommand;
+import com.hello.suripu.api.ble.SenseCommandProtos.wifi_endpoint;
+import com.hello.suripu.api.ble.SenseCommandProtos.wifi_endpoint.sec_type;
 import com.hello.pirupea.settings.LocalSettings;
 import com.hello.suripu.core.oauth.AccessToken;
 
@@ -190,11 +191,13 @@ public class MorpheusBleTestActivity extends ListActivity implements
     };
 
 
-    private final BleOperationCallback<wifi_endpoint> getWifiCallback = new BleOperationCallback<wifi_endpoint>() {
+    private final BleOperationCallback<MorpheusCommand> getWifiCallback = new BleOperationCallback<MorpheusCommand>() {
         @Override
-        public void onCompleted(final HelloBleDevice sender, final wifi_endpoint data) {
+        public void onCompleted(final HelloBleDevice sender, final MorpheusCommand data) {
             uiEndOperation();
-            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " connected to " + data.getSsid(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MorpheusBleTestActivity.this,
+                    sender.getName() + " connected to " + data.getWifiSSID() + " status: " + data.getWifiConnectionState(),
+                    Toast.LENGTH_SHORT).show();
         }
 
         @Override
