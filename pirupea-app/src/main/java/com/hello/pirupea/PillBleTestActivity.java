@@ -303,6 +303,23 @@ public class PillBleTestActivity extends ListActivity implements
                     Toast.LENGTH_SHORT).show();
         }
     };
+    final BleOperationCallback<Void> wipeFirmwareCallback = new BleOperationCallback<Void>() {
+        @Override
+        public void onCompleted(final HelloBleDevice connectedPill, final Void data) {
+            uiEndOperation();
+            final Pill selectedPill = (Pill)connectedPill;
+            Toast.makeText(PillBleTestActivity.this, selectedPill.getName() + " firmware wiped.", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFailed(HelloBleDevice sender, OperationFailReason reason, int errorCode) {
+            uiEndOperation();
+            final Pill selectedPill = (Pill)sender;
+            Toast.makeText(PillBleTestActivity.this,
+                    selectedPill.getName() + " firmware wipe failed, " + reason + ": " + errorCode,
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
 
     final BleOperationCallback<Void> pairingCallback = new BleOperationCallback<Void>() {
         @Override
@@ -460,7 +477,8 @@ public class PillBleTestActivity extends ListActivity implements
                     "Stop Streaming",  //5
                     "Get Battery Voltage",   //6
                     "Pair",  //7
-                    "Disconnect"            //8
+                    "Wipe Firmware", //8
+                    "Disconnect"            //9
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -498,6 +516,9 @@ public class PillBleTestActivity extends ListActivity implements
                             selectedPill.pair(pairingCallback);
                             break;
                         case 8:
+                            selectedPill.wipeFirmware(wipeFirmwareCallback);
+                            break;
+                        case 9:
                             selectedPill.disconnect();
                             break;
 

@@ -9,6 +9,6 @@ public class PiruPeaApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        HelloBle.init(this, null);
+        HelloBle.init(this);
     }
 }
