@@ -19,6 +19,7 @@ import com.hello.ble.BleOperationCallback;
 import com.hello.ble.HelloBle;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Morpheus;
+import com.hello.ble.util.LEDAnimation;
 import com.hello.suripu.api.ble.SenseCommandProtos.MorpheusCommand;
 import com.hello.suripu.api.ble.SenseCommandProtos.wifi_endpoint;
 import com.hello.suripu.api.ble.SenseCommandProtos.wifi_endpoint.sec_type;
@@ -173,6 +174,21 @@ public class MorpheusBleTestActivity extends ListActivity implements
         public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
             uiEndOperation();
             Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " set wifi failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
+    private final BleOperationCallback<Void> ledCallback = new BleOperationCallback<Void>() {
+        @Override
+        public void onCompleted(final HelloBleDevice sender, final Void data) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " led sent.", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFailed(final HelloBleDevice sender, final OperationFailReason reason, final int errorCode) {
+            uiEndOperation();
+            Toast.makeText(MorpheusBleTestActivity.this, sender.getName() + " set led failed, " + reason + ": " + errorCode, Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -372,7 +388,10 @@ public class MorpheusBleTestActivity extends ListActivity implements
                     "Unpair Pill",
                     "Wipe Firmware",
                     "Factory Reset",
-                    "Get Wifi Endpoint"
+                    "Get Wifi Endpoint",
+                    "LED Trippy",
+                    "LED Busy",
+                    "LED Fade Out"
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -446,6 +465,15 @@ public class MorpheusBleTestActivity extends ListActivity implements
                             break;
                         case 11:
                             selectedDevice.getWIFI(getWifiCallback);
+                            break;
+                        case 12:
+                            selectedDevice.setLEDAnimation(ledCallback, LEDAnimation.LED_TRIPPY);
+                            break;
+                        case 13:
+                            selectedDevice.setLEDAnimation(ledCallback, LEDAnimation.LED_BUSY);
+                            break;
+                        case 14:
+                            selectedDevice.setLEDAnimation(ledCallback, LEDAnimation.LED_OFF);
                             break;
 
                         default:
