@@ -516,7 +516,7 @@ public class PillBleTestActivity extends ListActivity implements
                             selectedPill.pair(pairingCallback);
                             break;
                         case 8:
-                            selectedPill.wipeFirmware(wipeFirmwareCallback);
+                            //selectedPill.wipeFirmware(wipeFirmwareCallback);
                             break;
                         case 9:
                             selectedPill.disconnect();
