@@ -12,7 +12,6 @@ android {
     }
     buildTypes {
         debug {
-            runProguard false
         }
     }
 }

@@ -389,7 +389,8 @@ public class MorpheusBleTestActivity extends ListActivity implements
                     "Get Wifi Endpoint",
                     "LED Fade In",
                     "LED Fade Out",
-                    "LED Rainbow"
+                    "LED Rainbow",
+                    "LED Trippy"
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -472,6 +473,8 @@ public class MorpheusBleTestActivity extends ListActivity implements
                             break;
                         case 14:
                             ledDemo(selectedDevice, led_demo_state.RAINBOW);
+                            break;
+                        case 15:
                             break;
                         default:
                             break;
