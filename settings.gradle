@@ -1,2 +1,2 @@
-include ':pirupea-app', ':suripu-android', ':HoloGraphLibrary', ':DFULibrary', ':ble-android:ble'
+include ':pirupea-app', ':HoloGraphLibrary', ':ble-android:ble'
 project(':ble-android:ble').projectDir = new File('../ble-android/ble')

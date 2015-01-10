@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.hello.pirupea.dfu.BleDFUActivity;
-import com.hello.pirupea.settings.LocalSettings;
-
 public class BleTestSelectionActivity extends Activity {
 
     private Button btnPillTest;
@@ -35,50 +32,6 @@ public class BleTestSelectionActivity extends Activity {
             }
         });
 
-
-        this.btnPillTest = (Button) findViewById(R.id.btnPillTest);
-        this.btnPillTest.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                Intent bleActivityIntent = new Intent(BleTestSelectionActivity.this, PillBleTestActivity.class);
-                bleActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(bleActivityIntent);
-            }
-        });
-
-
-        this.btnSmartAlarm = (Button) findViewById(R.id.btnSmartAlarmTest);
-        this.btnSmartAlarm.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent bleActivityIntent = new Intent(BleTestSelectionActivity.this, SmartAlarmTestActivity.class);
-                bleActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(bleActivityIntent);
-            }
-        });
-
-        this.btnDFU = (Button) findViewById(R.id.btnDFU);
-        this.btnDFU.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent dfuIntent = new Intent(BleTestSelectionActivity.this, BleDFUActivity.class);
-                dfuIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(dfuIntent);
-            }
-        });
-
-        this.btnLogout = (Button) findViewById(R.id.btnLogout);
-        this.btnLogout.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                LocalSettings.saveOAuthToken("");
-                final Intent bleActivityIntent = new Intent(BleTestSelectionActivity.this, LoginActivity.class);
-                bleActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(bleActivityIntent);
-
-                finish();
-            }
-        });
     }
 
 

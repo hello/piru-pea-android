@@ -20,20 +20,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".PillBleTestActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" >
 
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
-        </activity>
         <activity
             android:name=".MorpheusBleTestActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -41,52 +28,21 @@
             android:screenOrientation="portrait" >
         </activity>
 
-        <service android:name=".SmartAlarmTestService" >
-        </service>
-
-        <activity
-            android:name=".LoginActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".BleTestSelectionActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
 
-            <!--
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
-        </activity>
-        <activity
-            android:name=".SmartAlarmTestActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_smart_alarm_test"
-            android:screenOrientation="portrait" >
-        </activity>
-        <service android:name=".SmartAlarmTestService$AlarmService" />
-        <service android:name=".SmartAlarmTestService$RingService" />
 
-        <activity
-            android:name=".dfu.BleDFUActivity"
-            android:label="@string/title_activity_ble_dfu" >
         </activity>
-        <activity
-            android:name=".dfu.BleDFUNotificationActivity"
-            android:label="@string/title_activity_ble_dfu_notification" >
-        </activity>
-        <service android:name=".dfu.BleDFUService" />
+
     </application>
 
 </manifest>

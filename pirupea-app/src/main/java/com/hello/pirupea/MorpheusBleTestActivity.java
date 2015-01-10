@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hello.ble.BleOperationCallback;
 import com.hello.ble.HelloBle;
 import com.hello.ble.devices.HelloBleDevice;
@@ -23,10 +22,7 @@ import com.hello.ble.util.LEDAnimation;
 import com.hello.suripu.api.ble.SenseCommandProtos.MorpheusCommand;
 import com.hello.suripu.api.ble.SenseCommandProtos.wifi_endpoint;
 import com.hello.suripu.api.ble.SenseCommandProtos.wifi_endpoint.sec_type;
-import com.hello.pirupea.settings.LocalSettings;
-import com.hello.suripu.core.oauth.AccessToken;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -42,7 +38,6 @@ public class MorpheusBleTestActivity extends ListActivity implements
         @Override
         public void onCompleted(final HelloBleDevice sender, Void data) {
             final Morpheus connectedDevice = (Morpheus)sender;
-            LocalSettings.setPillAddress(connectedDevice.getAddress());
             uiEndOperation();
             Toast.makeText(MorpheusBleTestActivity.this, connectedDevice.getName() + " connected.", Toast.LENGTH_SHORT).show();
         }
@@ -418,26 +413,11 @@ public class MorpheusBleTestActivity extends ListActivity implements
                             break;
 
                         case 6: {
-                            final String accessTokenString = LocalSettings.getOAuthToken();
-                            final ObjectMapper mapper = new ObjectMapper();
-                            try {
-                                final AccessToken accessToken = mapper.readValue(accessTokenString, AccessToken.class);
-                                selectedDevice.pairPill(accessToken.token, pairPillCallback);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+
                         }
                         break;
 
                         case 7: {
-                            final String accessTokenString = LocalSettings.getOAuthToken();
-                            final ObjectMapper mapper = new ObjectMapper();
-                            try {
-                                final AccessToken accessToken = mapper.readValue(accessTokenString, AccessToken.class);
-                                selectedDevice.linkAccount(accessToken.token, linkAccountCallback);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
 
                         }
                         break;
