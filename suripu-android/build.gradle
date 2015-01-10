@@ -17,19 +17,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dexOptions {
+        incremental true
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
     compile 'com.fasterxml.jackson.core:jackson-databind:2.2.+'
     compile 'com.fasterxml.jackson.core:jackson-core:2.2.+'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.2.+'
-
-    compile 'joda-time:joda-time:2.3'
     compile 'com.squareup.retrofit:retrofit:1.5.+'
     compile 'com.squareup.retrofit:converter-protobuf:1.5.+'
-    compile 'com.intellij:annotations:5.1'
-
     compile 'com.google.guava:guava:+'
+    compile 'net.danlew:android.joda:2.4.1'
 }

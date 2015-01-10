@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class AccessToken {
 
@@ -37,11 +36,6 @@ public class AccessToken {
             @JsonProperty("refresh_token") final String refreshToken,
             @JsonProperty("expires_in") final Long expiresIn
             ) {
-
-        checkNotNull(token, "token can not be null");
-        checkNotNull(refreshToken, "refreshToken can not be null");
-        checkNotNull(expiresIn, "expiresIn can not be null");
-
 
         this.token = token;
         this.refreshToken = refreshToken;

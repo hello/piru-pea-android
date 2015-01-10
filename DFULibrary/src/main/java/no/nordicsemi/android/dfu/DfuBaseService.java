@@ -269,7 +269,7 @@ public abstract class DfuBaseService extends IntentService {
 	private BluetoothAdapter mBluetoothAdapter;
 	private String mDeviceAddress;
 	private String mDeviceName;
-	private LogSession mLogSession;
+	private no.nordicsemi.android.log.LogSession mLogSession;
 	/** Lock used in synchronization purposes */
 	private final Object mLock = new Object();
 

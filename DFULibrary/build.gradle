@@ -16,10 +16,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+    dexOptions {
+        incremental true
+        preDexLibraries = false
+
+    }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.+'
-    compile project(':suripu-android')
+
+    compile 'com.android.support:support-v4:+'
     compile files('libs/nrf-logger-v1.2.jar')
+    compile project(':suripu-android')
 }

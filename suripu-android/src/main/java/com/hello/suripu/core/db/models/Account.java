@@ -5,14 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Optional;
 import com.google.gson.annotations.SerializedName;
 
-import org.jetbrains.annotations.NotNull;
 import org.joda.time.DateTime;
 
 public class Account {
 
     // TODO: add age or DoB
 
-    @NotNull
     @JsonIgnore
     public final Optional<Long> id;
 

@@ -1,6 +1,5 @@
 package com.hello.suripu.android;
 
-import com.google.common.net.HttpHeaders;
 import com.hello.suripu.core.db.models.FirmwareUpdate;
 import com.hello.suripu.core.db.models.PillRegistration;
 import com.hello.suripu.core.db.models.TempTrackerData;
@@ -12,9 +11,6 @@ import java.util.List;
 import retrofit.Callback;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-
 
 /**
  * Created by pangwu on 4/9/14.
@@ -37,7 +33,7 @@ public class SuripuClient {
         final RequestInterceptor dataRequestInterceptor = new RequestInterceptor() {
             @Override
             public void intercept(RequestFacade request) {
-                request.addHeader(HttpHeaders.AUTHORIZATION, accessToken.tokenType + " " + accessToken.token);
+                request.addHeader("Authorization", accessToken.tokenType + " " + accessToken.token);
             }
         };
 
@@ -51,7 +47,7 @@ public class SuripuClient {
         final RequestInterceptor appRequestInterceptor = new RequestInterceptor() {
             @Override
             public void intercept(RequestFacade request) {
-                request.addHeader(HttpHeaders.AUTHORIZATION, accessToken.tokenType + " " + accessToken.token);
+                request.addHeader("Authorization", accessToken.tokenType + " " + accessToken.token);
             }
         };
 
@@ -67,7 +63,6 @@ public class SuripuClient {
                                 final ClientApplication application,
                                 final Callback<AccessToken> accessTokenCallback){
 
-        checkNotNull(application.getClientId());
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(SuripuClient.SURIPU_API_ENDPOINT)
                 .build();
@@ -89,7 +84,7 @@ public class SuripuClient {
         final RequestInterceptor appRequestInterceptor = new RequestInterceptor() {
             @Override
             public void intercept(RequestFacade request) {
-                request.addHeader(HttpHeaders.AUTHORIZATION, accessToken.tokenType + " " + accessToken.token);
+                request.addHeader("Authorization", accessToken.tokenType + " " + accessToken.token);
             }
         };
 
