@@ -19,11 +19,12 @@ import com.hello.ble.BleOperationCallback;
 import com.hello.ble.HelloBle;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Morpheus;
+import com.hello.ble.util.LEDAnimation;
+import com.hello.pirupea.settings.LocalSettings;
 import com.hello.suripu.api.ble.SenseCommandProtos.MorpheusCommand;
 import com.hello.suripu.api.ble.SenseCommandProtos.led_demo_state;
 import com.hello.suripu.api.ble.SenseCommandProtos.wifi_endpoint;
 import com.hello.suripu.api.ble.SenseCommandProtos.wifi_endpoint.sec_type;
-import com.hello.pirupea.settings.LocalSettings;
 import com.hello.suripu.core.oauth.AccessToken;
 
 import java.io.IOException;
@@ -475,6 +476,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
                             ledDemo(selectedDevice, led_demo_state.RAINBOW);
                             break;
                         case 15:
+                            selectedDevice.setLEDAnimation(ledCallback, LEDAnimation.LED_TRIPPY);
                             break;
                         default:
                             break;

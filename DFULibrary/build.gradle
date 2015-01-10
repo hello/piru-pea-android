@@ -5,8 +5,8 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 19
+        minSdkVersion 20
+        targetSdkVersion 20
     }
 
     buildTypes {
@@ -17,7 +17,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.+'
+    compile 'com.android.support:support-v4:20.+'
     compile project(':suripu-android')
     compile files('libs/nrf-logger-v1.2.jar')
 }
