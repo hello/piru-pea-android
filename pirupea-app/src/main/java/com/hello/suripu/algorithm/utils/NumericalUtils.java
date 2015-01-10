@@ -1,6 +1,5 @@
 package com.hello.suripu.algorithm.utils;
 
-import com.google.common.collect.ImmutableList;
 import com.hello.suripu.algorithm.core.AmplitudeData;
 
 import java.util.LinkedList;
@@ -10,7 +9,7 @@ import java.util.List;
  * Created by pangwu on 6/10/14.
  */
 public class NumericalUtils {
-    public static ImmutableList<AmplitudeData> roofDataByAverage(final List<AmplitudeData> data){
+    public static List<AmplitudeData> roofDataByAverage(final List<AmplitudeData> data){
 
         double average = selectAverage(data);
         final LinkedList<AmplitudeData> list = new LinkedList<AmplitudeData>();
@@ -24,11 +23,11 @@ public class NumericalUtils {
             }
         }
 
-        return ImmutableList.copyOf(list);
+        return list;
 
     }
 
-    public static ImmutableList<AmplitudeData> zeroDataUnderAverage(final List<AmplitudeData> data){
+    public static List<AmplitudeData> zeroDataUnderAverage(final List<AmplitudeData> data){
 
         double average = selectAverage(data);
         final LinkedList<AmplitudeData> list = new LinkedList<AmplitudeData>();
@@ -43,7 +42,7 @@ public class NumericalUtils {
             }
         }
 
-        return ImmutableList.copyOf(list);
+        return list;
 
     }
 

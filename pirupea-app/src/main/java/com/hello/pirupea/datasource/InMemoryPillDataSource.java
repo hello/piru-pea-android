@@ -1,6 +1,5 @@
 package com.hello.pirupea.datasource;
 
-import com.google.common.collect.ImmutableList;
 import com.hello.suripu.algorithm.core.AmplitudeData;
 import com.hello.suripu.algorithm.core.DataSource;
 import com.hello.suripu.algorithm.utils.DataCutter;
@@ -26,7 +25,7 @@ public class InMemoryPillDataSource implements DataSource<AmplitudeData> {
     }
 
     @Override
-    public ImmutableList<AmplitudeData> getDataForDate(final DateTime day) {
+    public List<AmplitudeData> getDataForDate(final DateTime day) {
         final DataCutter cutter = new DataCutter(day.minusDays(1).withTimeAtStartOfDay().plusHours(18),
                 day.withTimeAtStartOfDay().plusHours(18));
 

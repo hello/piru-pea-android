@@ -1,6 +1,5 @@
 package com.hello.suripu.algorithm.utils;
 
-import com.google.common.collect.ImmutableList;
 import com.hello.suripu.algorithm.core.AmplitudeData;
 import com.hello.suripu.algorithm.core.AmplitudeDataPreprocessor;
 
@@ -19,7 +18,7 @@ public class MaxAmplitudeAggregator implements AmplitudeDataPreprocessor {
     }
 
     @Override
-    public ImmutableList<AmplitudeData> process(final List<AmplitudeData> rawData) {
+    public List<AmplitudeData> process(final List<AmplitudeData> rawData) {
         final LinkedList<AmplitudeData> buffer = new LinkedList<AmplitudeData>();
         final LinkedList<AmplitudeData> smoothedData = new LinkedList<AmplitudeData>();
 
@@ -38,6 +37,6 @@ public class MaxAmplitudeAggregator implements AmplitudeDataPreprocessor {
 
         }
 
-        return ImmutableList.copyOf(smoothedData);
+        return smoothedData;
     }
 }

@@ -1,6 +1,5 @@
 package com.hello.suripu.algorithm.sleep;
 
-import com.google.common.collect.ImmutableList;
 import com.hello.suripu.algorithm.core.AlgorithmException;
 import com.hello.suripu.algorithm.core.AmplitudeData;
 import com.hello.suripu.algorithm.core.AmplitudeDataPreprocessor;
@@ -9,6 +8,7 @@ import com.hello.suripu.algorithm.core.Segment;
 import com.hello.suripu.algorithm.utils.DataCutter;
 import com.hello.suripu.algorithm.utils.MaxAmplitudeAggregator;
 import com.hello.suripu.algorithm.utils.NumericalUtils;
+
 import org.joda.time.DateTime;
 
 import java.util.Arrays;
@@ -38,14 +38,14 @@ public class AwakeDetectionAlgorithm extends SleepDetectionAlgorithm {
 
     @Override
     public Segment getSleepPeriod(final DateTime dateOfTheNight) throws AlgorithmException {
-        final ImmutableList<AmplitudeData> rawData = getDataSource().getDataForDate(dateOfTheNight);
+        final List<AmplitudeData> rawData = getDataSource().getDataForDate(dateOfTheNight);
         if(rawData.size() == 0){
             throw new AlgorithmException("No data available for date: " + dateOfTheNight);
         }
 
         // Step 1: Aggregate the data based on a 10 minute interval.
         final AmplitudeDataPreprocessor smoother = new MaxAmplitudeAggregator(getSmoothWindow());
-        final ImmutableList<AmplitudeData> smoothedData = smoother.process(rawData);
+        final List<AmplitudeData> smoothedData = smoother.process(rawData);
 
         // Step 2: Generate two folds of data, first fold for fall asleep detection
         // The second fold for wake up detection.
@@ -55,16 +55,16 @@ public class AwakeDetectionAlgorithm extends SleepDetectionAlgorithm {
         final AmplitudeDataPreprocessor cutAfter4am = new DataCutter(dateOfTheNight.withTimeAtStartOfDay().plusDays(1).plusHours(4),
                 dateOfTheNight.withTimeAtStartOfDay().plusDays(1).plusHours(12));
 
-        final ImmutableList<AmplitudeData> fallAsleepPeriodData = cutBefore4am.process(smoothedData);
-        final ImmutableList<AmplitudeData> wakeUpPeriodData = cutAfter4am.process(smoothedData);
+        final List<AmplitudeData> fallAsleepPeriodData = cutBefore4am.process(smoothedData);
+        final List<AmplitudeData> wakeUpPeriodData = cutAfter4am.process(smoothedData);
 
         // Step 2.1: Make the data more contradictive.
-        final ImmutableList<AmplitudeData> sharpenFallAsleepPeriodData = NumericalUtils.zeroDataUnderAverage(fallAsleepPeriodData);
-        final ImmutableList<AmplitudeData> sharpenWakeUpPeriodData = NumericalUtils.zeroDataUnderAverage(wakeUpPeriodData);
+        final List<AmplitudeData> sharpenFallAsleepPeriodData = NumericalUtils.zeroDataUnderAverage(fallAsleepPeriodData);
+        final List<AmplitudeData> sharpenWakeUpPeriodData = NumericalUtils.zeroDataUnderAverage(wakeUpPeriodData);
 
         // Step 3: Detect fall asleep period and wake up period.
-        final ImmutableList<SleepThreshold> fallAsleepThresholds = SleepThreshold.generateEqualBinThresholds(sharpenFallAsleepPeriodData, 1000);
-        final ImmutableList<SleepThreshold> awakeThresholds = SleepThreshold.generateEqualBinThresholds(sharpenWakeUpPeriodData, 1000);
+        final List<SleepThreshold> fallAsleepThresholds = SleepThreshold.generateEqualBinThresholds(sharpenFallAsleepPeriodData, 1000);
+        final List<SleepThreshold> awakeThresholds = SleepThreshold.generateEqualBinThresholds(sharpenWakeUpPeriodData, 1000);
 
         // Step 3.1: Select thresholds for awake detections
         final SleepThreshold fallAsleepThreshold = selectThresholdOnAwakeSegments(sharpenFallAsleepPeriodData, fallAsleepThresholds, PaddingMode.PAD_LATE);

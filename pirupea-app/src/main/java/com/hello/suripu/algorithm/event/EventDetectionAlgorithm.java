@@ -1,11 +1,11 @@
 package com.hello.suripu.algorithm.event;
 
 import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableList;
 import com.hello.suripu.algorithm.core.AmplitudeData;
 import com.hello.suripu.algorithm.core.DataSource;
 import com.hello.suripu.algorithm.core.Segment;
 import com.hello.suripu.algorithm.utils.NumericalUtils;
+
 import org.joda.time.DateTime;
 
 import java.util.LinkedList;
@@ -78,7 +78,7 @@ public class EventDetectionAlgorithm {
     * a bad thing.
     *
      */
-    public ImmutableList<Segment> getEventsForDate(final DateTime targetDate){
+    public List<Segment> getEventsForDate(final DateTime targetDate){
         final List<AmplitudeData> rawData = getDataSource().getDataForDate(targetDate);
         final LinkedList<AmplitudeData> buffer = new LinkedList<AmplitudeData>();
         final LinkedList<Segment> events = new LinkedList<Segment>();
@@ -104,7 +104,7 @@ public class EventDetectionAlgorithm {
             }
         }
 
-        return ImmutableList.copyOf(events);
+        return events;
     }
 
 

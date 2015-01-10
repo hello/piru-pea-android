@@ -2,7 +2,6 @@ package com.hello.suripu.core.db.models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.Objects;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -91,9 +90,9 @@ public class Event {
 
         final Event convertedObject = (Event) other;
 
-        return  Objects.equal(this.type, convertedObject.type)
-                && Objects.equal(this.startTimestamp, convertedObject.startTimestamp)
-                && Objects.equal(this.endTimestamp, convertedObject.endTimestamp)
-                && Objects.equal(this.timezoneOffset, convertedObject.timezoneOffset);
+        return  this.type.equals(convertedObject.type)
+                && this.startTimestamp == convertedObject.startTimestamp
+                && this.endTimestamp == convertedObject.endTimestamp
+                && this.timezoneOffset == convertedObject.timezoneOffset;
     }
 }

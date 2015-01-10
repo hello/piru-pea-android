@@ -1,8 +1,8 @@
 package com.hello.suripu.algorithm.utils;
 
-import com.google.common.collect.ImmutableList;
 import com.hello.suripu.algorithm.core.AmplitudeData;
 import com.hello.suripu.algorithm.core.AmplitudeDataPreprocessor;
+
 import org.joda.time.DateTime;
 
 import java.util.LinkedList;
@@ -22,7 +22,7 @@ public class DataCutter implements AmplitudeDataPreprocessor {
     }
 
     @Override
-    public ImmutableList<AmplitudeData> process(final List<AmplitudeData> rawData) {
+    public List<AmplitudeData> process(final List<AmplitudeData> rawData) {
         final LinkedList<AmplitudeData> processedData = new LinkedList<AmplitudeData>();
         final long startLocalTimestamp = this.startTime.getMillis();
         final long endLocalTimestamp = this.endTime.getMillis();
@@ -33,6 +33,6 @@ public class DataCutter implements AmplitudeDataPreprocessor {
             }
         }
 
-        return ImmutableList.copyOf(processedData);
+        return processedData;
     }
 }

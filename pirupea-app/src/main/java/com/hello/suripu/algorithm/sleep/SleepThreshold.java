@@ -1,6 +1,5 @@
 package com.hello.suripu.algorithm.sleep;
 
-import com.google.common.collect.ImmutableList;
 import com.hello.suripu.algorithm.core.AmplitudeData;
 
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ public class SleepThreshold {
     }
 
 
-    public static ImmutableList<SleepThreshold> generateEqualBinThresholds(final List<AmplitudeData> data, final int binNumber){
+    public static List<SleepThreshold> generateEqualBinThresholds(final List<AmplitudeData> data, final int binNumber){
         AmplitudeData max = null;
         AmplitudeData min = null;
         for(final AmplitudeData datum:data){
@@ -46,7 +45,7 @@ public class SleepThreshold {
         }
 
         if(max == null || min == null){
-            return ImmutableList.copyOf(Collections.EMPTY_LIST);
+            return Collections.EMPTY_LIST;
         }
 
         double diff = max.amplitude - min.amplitude;
@@ -61,7 +60,7 @@ public class SleepThreshold {
         }
 
         thresholds.add(new SleepThreshold(max.amplitude));
-        return ImmutableList.copyOf(thresholds);
+        return thresholds;
     }
 
 }

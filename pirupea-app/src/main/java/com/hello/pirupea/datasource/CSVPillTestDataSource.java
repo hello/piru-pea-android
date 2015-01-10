@@ -1,6 +1,5 @@
 package com.hello.pirupea.datasource;
 
-import com.google.common.collect.ImmutableList;
 import com.hello.ble.util.IO;
 import com.hello.suripu.algorithm.core.AmplitudeData;
 import com.hello.suripu.algorithm.core.DataSource;
@@ -13,6 +12,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by pangwu on 5/22/14.
@@ -28,7 +28,7 @@ public class CSVPillTestDataSource implements DataSource<AmplitudeData> {
     * The user can change the data, I don't want to make a return copy since it is designed for android.
      */
     @Override
-    public ImmutableList<AmplitudeData> getDataForDate(final DateTime targetDate) {
+    public List<AmplitudeData> getDataForDate(final DateTime targetDate) {
 
         final LinkedList<AmplitudeData> rawData = new LinkedList<AmplitudeData>();
 
@@ -57,7 +57,7 @@ public class CSVPillTestDataSource implements DataSource<AmplitudeData> {
             ioe.printStackTrace();
         }
 
-        return ImmutableList.copyOf(rawData);
+        return rawData;
 
     }
 }

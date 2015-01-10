@@ -2,7 +2,6 @@ package com.hello.suripu.core.db.models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.Objects;
 
 
 
@@ -65,8 +64,8 @@ public class TrackerMotion {
 
         final TrackerMotion convertedObject = (TrackerMotion) other;
 
-        return   Objects.equal(this.timestamp, convertedObject.timestamp)
-                && Objects.equal(this.value, convertedObject.value)
-                && Objects.equal(this.offsetMillis, convertedObject.offsetMillis);
+        return   this.timestamp == convertedObject.timestamp
+                && this.value == convertedObject.value
+                && this.offsetMillis == convertedObject.offsetMillis;
     }
 }

@@ -1,6 +1,5 @@
 package com.hello.suripu.algorithm.sleep;
 
-import com.google.common.collect.ImmutableList;
 import com.hello.suripu.algorithm.core.AlgorithmException;
 import com.hello.suripu.algorithm.core.AmplitudeData;
 import com.hello.suripu.algorithm.core.AmplitudeDataPreprocessor;
@@ -8,6 +7,7 @@ import com.hello.suripu.algorithm.core.DataSource;
 import com.hello.suripu.algorithm.core.Segment;
 import com.hello.suripu.algorithm.utils.MaxAmplitudeAggregator;
 import com.hello.suripu.algorithm.utils.NumericalUtils;
+
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
@@ -39,22 +39,22 @@ public class QuietPeriodDetectionAlgorithm extends SleepDetectionAlgorithm {
     @Override
     public Segment getSleepPeriod(final DateTime dateOfTheNight) throws AlgorithmException {
 
-        final ImmutableList<AmplitudeData> rawData = getDataSource().getDataForDate(dateOfTheNight);
+        final List<AmplitudeData> rawData = getDataSource().getDataForDate(dateOfTheNight);
         if(rawData.size() == 0){
             throw new AlgorithmException("No data available for date: " + dateOfTheNight);
         }
 
         // Step 1: Aggregate the data based on a 10 minute interval.
         final AmplitudeDataPreprocessor smoother = new MaxAmplitudeAggregator(getSmoothWindow());
-        final ImmutableList<AmplitudeData> smoothedData = smoother.process(rawData);
+        final List<AmplitudeData> smoothedData = smoother.process(rawData);
 
         // Step 2: Make the data less contradictive.
-        final ImmutableList<AmplitudeData> data = NumericalUtils.roofDataByAverage(smoothedData);
+        final List<AmplitudeData> data = NumericalUtils.roofDataByAverage(smoothedData);
 
 
 
         final int binNumber = 1000;
-        final ImmutableList<SleepThreshold> thresholds = SleepThreshold.generateEqualBinThresholds(data, binNumber);
+        final List<SleepThreshold> thresholds = SleepThreshold.generateEqualBinThresholds(data, binNumber);
         if(thresholds.size() == 0){
             throw new AlgorithmException("Cannot generate threshold in " + binNumber + " bins.");
         }

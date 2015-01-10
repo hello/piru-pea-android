@@ -18,7 +18,11 @@ android {
         }
     }
     dexOptions {
-        incremental true
+        incremental false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 }
 
@@ -29,6 +33,5 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.2.+'
     compile 'com.squareup.retrofit:retrofit:1.5.+'
     compile 'com.squareup.retrofit:converter-protobuf:1.5.+'
-    compile 'com.google.guava:guava:+'
     compile 'net.danlew:android.joda:2.4.1'
 }

@@ -1,6 +1,5 @@
 package com.hello.suripu.algorithm.event;
 
-import com.google.common.collect.ImmutableList;
 import com.hello.suripu.algorithm.core.AmplitudeData;
 import com.hello.suripu.algorithm.core.DataSource;
 import com.hello.suripu.algorithm.core.Segment;
@@ -45,13 +44,13 @@ public class SleepCycleAlgorithm {
 
 
 
-    public ImmutableList<Segment> getCycles(final DateTime dateTime){
+    public List<Segment> getCycles(final DateTime dateTime){
 
         float minDensity = 1f / 5f;
         final ArrayList<Float> densities = new ArrayList<Float>();
         final LinkedList<AmplitudeData> eventBuffer = new LinkedList<AmplitudeData>();
 
-        final ImmutableList<AmplitudeData> data = this.dataSource.getDataForDate(dateTime);
+        final List<AmplitudeData> data = this.dataSource.getDataForDate(dateTime);
         int count = 0;
 
         for(final AmplitudeData datum:data){
@@ -129,7 +128,7 @@ public class SleepCycleAlgorithm {
         }
 
 
-        return ImmutableList.copyOf(segments);
+        return segments;
     }
 
 }
