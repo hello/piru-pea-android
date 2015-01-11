@@ -13,8 +13,8 @@ import com.hello.ble.stack.application.MorpheusProtobufResponseDataHandler;
 import com.hello.ble.stack.transmission.MorpheusBlePacketHandler;
 import com.hello.ble.util.BleUUID;
 import com.hello.ble.util.HelloBleDeviceScanner;
-import com.hello.ble.util.LEDAnimation;
 import com.hello.ble.util.MorpheusScanner;
+import com.hello.led.LEDAnimation;
 import com.hello.suripu.api.ble.SenseCommandProtos.MorpheusCommand;
 import com.hello.suripu.api.ble.SenseCommandProtos.MorpheusCommand.CommandType;
 import com.hello.suripu.api.ble.SenseCommandProtos.led_demo_state;
@@ -1095,8 +1095,11 @@ public class Morpheus extends HelloBleDevice {
     public void setLEDAnimation(final BleOperationCallback<Void> operationCallback, final LEDAnimation animation){
         CommandType type = CommandType.MORPHEUS_COMMAND_LED_OPERATION_FAILED;
         switch (animation){
-            case LED_OFF:
+            case LED_FADE_OUT_FAILED:
                 type = CommandType.MORPHEUS_COMMAND_LED_OPERATION_FAILED;
+                break;
+            case LED_FADE_OUT_SUCCEED:
+                type = CommandType.MORPHEUS_COMMAND_LED_OPERATION_SUCCESS;
                 break;
             case LED_TRIPPY:
                 type = CommandType.MORPHEUS_COMMAND_LED_TRIPPY;

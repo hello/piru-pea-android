@@ -19,7 +19,7 @@ import com.hello.ble.BleOperationCallback;
 import com.hello.ble.HelloBle;
 import com.hello.ble.devices.HelloBleDevice;
 import com.hello.ble.devices.Morpheus;
-import com.hello.ble.util.LEDAnimation;
+import com.hello.led.LEDAnimation;
 import com.hello.pirupea.settings.LocalSettings;
 import com.hello.suripu.api.ble.SenseCommandProtos.MorpheusCommand;
 import com.hello.suripu.api.ble.SenseCommandProtos.led_demo_state;
@@ -37,7 +37,6 @@ public class MorpheusBleTestActivity extends ListActivity implements
         BleOperationCallback<Set<Morpheus>> {
 
     private ArrayAdapter<Morpheus> deviceArrayAdapter;
-    private String wifiPassword = "";
 
     private final BleOperationCallback<Void> connectedCallback = new BleOperationCallback<Void>() {
         @Override
