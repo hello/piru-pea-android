@@ -12,7 +12,7 @@ android {
     }
     buildTypes {
         debug {
-            runProguard false
+            minifyEnabled false
         }
     }
 }

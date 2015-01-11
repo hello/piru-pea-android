@@ -11,27 +11,27 @@ public final class InputProtos {
   public interface SensorSampleBatchOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // repeated .hello.SensorSampleBatch.SensorSample samples = 1;
+    // repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;
     /**
-     * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+     * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
      */
     java.util.List<com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample> 
         getSamplesList();
     /**
-     * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+     * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
      */
     com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample getSamples(int index);
     /**
-     * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+     * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
      */
     int getSamplesCount();
     /**
-     * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+     * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
      */
     java.util.List<? extends com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSampleOrBuilder> 
         getSamplesOrBuilderList();
     /**
-     * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+     * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
      */
     com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSampleOrBuilder getSamplesOrBuilder(
             int index);
@@ -52,7 +52,7 @@ public final class InputProtos {
         getDeviceIdBytes();
   }
   /**
-   * Protobuf type {@code hello.SensorSampleBatch}
+   * Protobuf type {@code com.hello.SensorSampleBatch}
    */
   public static final class SensorSampleBatch extends
       com.google.protobuf.GeneratedMessage
@@ -160,13 +160,13 @@ public final class InputProtos {
     public interface SensorSampleOrBuilder
         extends com.google.protobuf.MessageOrBuilder {
 
-      // optional .hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;
+      // optional .com.hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;
       /**
-       * <code>optional .hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
+       * <code>optional .com.hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
        */
       boolean hasSensorType();
       /**
-       * <code>optional .hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
+       * <code>optional .com.hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
        */
       com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.SensorType getSensorType();
 
@@ -191,7 +191,7 @@ public final class InputProtos {
       com.google.protobuf.ByteString getValue();
     }
     /**
-     * Protobuf type {@code hello.SensorSampleBatch.SensorSample}
+     * Protobuf type {@code com.hello.SensorSampleBatch.SensorSample}
      */
     public static final class SensorSample extends
         com.google.protobuf.GeneratedMessage
@@ -302,7 +302,7 @@ public final class InputProtos {
       }
 
       /**
-       * Protobuf enum {@code hello.SensorSampleBatch.SensorSample.SensorType}
+       * Protobuf enum {@code com.hello.SensorSampleBatch.SensorSample.SensorType}
        */
       public enum SensorType
           implements com.google.protobuf.ProtocolMessageEnum {
@@ -434,21 +434,21 @@ public final class InputProtos {
           this.value = value;
         }
 
-        // @@protoc_insertion_point(enum_scope:hello.SensorSampleBatch.SensorSample.SensorType)
+        // @@protoc_insertion_point(enum_scope:com.hello.SensorSampleBatch.SensorSample.SensorType)
       }
 
       private int bitField0_;
-      // optional .hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;
+      // optional .com.hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;
       public static final int SENSOR_TYPE_FIELD_NUMBER = 1;
       private com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.SensorType sensorType_;
       /**
-       * <code>optional .hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
+       * <code>optional .com.hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
        */
       public boolean hasSensorType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional .hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
+       * <code>optional .com.hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.SensorType getSensorType() {
         return sensorType_;
@@ -612,7 +612,7 @@ public final class InputProtos {
         return builder;
       }
       /**
-       * Protobuf type {@code hello.SensorSampleBatch.SensorSample}
+       * Protobuf type {@code com.hello.SensorSampleBatch.SensorSample}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -629,7 +629,7 @@ public final class InputProtos {
                       com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.class, com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.Builder.class);
         }
 
-        // Construct using com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.newBuilder()
+        // Construct using com.com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -747,22 +747,22 @@ public final class InputProtos {
         }
         private int bitField0_;
 
-        // optional .hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;
+        // optional .com.hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;
         private com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.SensorType sensorType_ = com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.SensorType.AMBIENT_TEMPERATURE;
         /**
-         * <code>optional .hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
+         * <code>optional .com.hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
          */
         public boolean hasSensorType() {
           return ((bitField0_ & 0x00000001) == 0x00000001);
         }
         /**
-         * <code>optional .hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
+         * <code>optional .com.hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.SensorType getSensorType() {
           return sensorType_;
         }
         /**
-         * <code>optional .hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
+         * <code>optional .com.hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
          */
         public Builder setSensorType(com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.SensorType value) {
           if (value == null) {
@@ -774,7 +774,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
+         * <code>optional .com.hello.SensorSampleBatch.SensorSample.SensorType sensor_type = 1;</code>
          */
         public Builder clearSensorType() {
           bitField0_ = (bitField0_ & ~0x00000001);
@@ -852,7 +852,7 @@ public final class InputProtos {
           return this;
         }
 
-        // @@protoc_insertion_point(builder_scope:hello.SensorSampleBatch.SensorSample)
+        // @@protoc_insertion_point(builder_scope:com.hello.SensorSampleBatch.SensorSample)
       }
 
       static {
@@ -860,40 +860,40 @@ public final class InputProtos {
         defaultInstance.initFields();
       }
 
-      // @@protoc_insertion_point(class_scope:hello.SensorSampleBatch.SensorSample)
+      // @@protoc_insertion_point(class_scope:com.hello.SensorSampleBatch.SensorSample)
     }
 
     private int bitField0_;
-    // repeated .hello.SensorSampleBatch.SensorSample samples = 1;
+    // repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;
     public static final int SAMPLES_FIELD_NUMBER = 1;
     private java.util.List<com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample> samples_;
     /**
-     * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+     * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
      */
     public java.util.List<com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample> getSamplesList() {
       return samples_;
     }
     /**
-     * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+     * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
      */
     public java.util.List<? extends com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSampleOrBuilder> 
         getSamplesOrBuilderList() {
       return samples_;
     }
     /**
-     * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+     * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
      */
     public int getSamplesCount() {
       return samples_.size();
     }
     /**
-     * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+     * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
      */
     public com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample getSamples(int index) {
       return samples_.get(index);
     }
     /**
-     * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+     * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
      */
     public com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSampleOrBuilder getSamplesOrBuilder(
         int index) {
@@ -1061,7 +1061,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.SensorSampleBatch}
+     * Protobuf type {@code com.hello.SensorSampleBatch}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -1078,7 +1078,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.SensorSampleBatch.class, com.hello.suripu.api.input.InputProtos.SensorSampleBatch.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.SensorSampleBatch.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.SensorSampleBatch.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1222,7 +1222,7 @@ public final class InputProtos {
       }
       private int bitField0_;
 
-      // repeated .hello.SensorSampleBatch.SensorSample samples = 1;
+      // repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;
       private java.util.List<com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample> samples_ =
         java.util.Collections.emptyList();
       private void ensureSamplesIsMutable() {
@@ -1236,7 +1236,7 @@ public final class InputProtos {
           com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample, com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.Builder, com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSampleOrBuilder> samplesBuilder_;
 
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public java.util.List<com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample> getSamplesList() {
         if (samplesBuilder_ == null) {
@@ -1246,7 +1246,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public int getSamplesCount() {
         if (samplesBuilder_ == null) {
@@ -1256,7 +1256,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample getSamples(int index) {
         if (samplesBuilder_ == null) {
@@ -1266,7 +1266,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public Builder setSamples(
           int index, com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample value) {
@@ -1283,7 +1283,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public Builder setSamples(
           int index, com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.Builder builderForValue) {
@@ -1297,7 +1297,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public Builder addSamples(com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample value) {
         if (samplesBuilder_ == null) {
@@ -1313,7 +1313,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public Builder addSamples(
           int index, com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample value) {
@@ -1330,7 +1330,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public Builder addSamples(
           com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.Builder builderForValue) {
@@ -1344,7 +1344,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public Builder addSamples(
           int index, com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.Builder builderForValue) {
@@ -1358,7 +1358,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public Builder addAllSamples(
           Iterable<? extends com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample> values) {
@@ -1372,7 +1372,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public Builder clearSamples() {
         if (samplesBuilder_ == null) {
@@ -1385,7 +1385,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public Builder removeSamples(int index) {
         if (samplesBuilder_ == null) {
@@ -1398,14 +1398,14 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.Builder getSamplesBuilder(
           int index) {
         return getSamplesFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSampleOrBuilder getSamplesOrBuilder(
           int index) {
@@ -1415,7 +1415,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public java.util.List<? extends com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSampleOrBuilder> 
            getSamplesOrBuilderList() {
@@ -1426,14 +1426,14 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.Builder addSamplesBuilder() {
         return getSamplesFieldBuilder().addBuilder(
             com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.getDefaultInstance());
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.Builder addSamplesBuilder(
           int index) {
@@ -1441,7 +1441,7 @@ public final class InputProtos {
             index, com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.getDefaultInstance());
       }
       /**
-       * <code>repeated .hello.SensorSampleBatch.SensorSample samples = 1;</code>
+       * <code>repeated .com.hello.SensorSampleBatch.SensorSample samples = 1;</code>
        */
       public java.util.List<com.hello.suripu.api.input.InputProtos.SensorSampleBatch.SensorSample.Builder> 
            getSamplesBuilderList() {
@@ -1536,7 +1536,7 @@ public final class InputProtos {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.SensorSampleBatch)
+      // @@protoc_insertion_point(builder_scope:com.hello.SensorSampleBatch)
     }
 
     static {
@@ -1544,49 +1544,49 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.SensorSampleBatch)
+    // @@protoc_insertion_point(class_scope:com.hello.SensorSampleBatch)
   }
 
   public interface MotionSensorBatchOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // optional .hello.MotionSensorBatch.Manufacturer manufacturer = 1;
+    // optional .com.hello.MotionSensorBatch.Manufacturer manufacturer = 1;
     /**
-     * <code>optional .hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
+     * <code>optional .com.hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
      */
     boolean hasManufacturer();
     /**
-     * <code>optional .hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
+     * <code>optional .com.hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
      */
     com.hello.suripu.api.input.InputProtos.MotionSensorBatch.Manufacturer getManufacturer();
 
-    // repeated .hello.MotionSensorBatch.MotionSensor samples = 2;
+    // repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;
     /**
-     * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+     * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
      */
     java.util.List<com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor> 
         getSamplesList();
     /**
-     * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+     * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
      */
     com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor getSamples(int index);
     /**
-     * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+     * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
      */
     int getSamplesCount();
     /**
-     * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+     * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
      */
     java.util.List<? extends com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensorOrBuilder> 
         getSamplesOrBuilderList();
     /**
-     * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+     * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
      */
     com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensorOrBuilder getSamplesOrBuilder(
             int index);
   }
   /**
-   * Protobuf type {@code hello.MotionSensorBatch}
+   * Protobuf type {@code com.hello.MotionSensorBatch}
    */
   public static final class MotionSensorBatch extends
       com.google.protobuf.GeneratedMessage
@@ -1698,7 +1698,7 @@ public final class InputProtos {
     }
 
     /**
-     * Protobuf enum {@code hello.MotionSensorBatch.Manufacturer}
+     * Protobuf enum {@code com.hello.MotionSensorBatch.Manufacturer}
      */
     public enum Manufacturer
         implements com.google.protobuf.ProtocolMessageEnum {
@@ -1767,7 +1767,7 @@ public final class InputProtos {
         this.value = value;
       }
 
-      // @@protoc_insertion_point(enum_scope:hello.MotionSensorBatch.Manufacturer)
+      // @@protoc_insertion_point(enum_scope:com.hello.MotionSensorBatch.Manufacturer)
     }
 
     public interface MotionSensorOrBuilder
@@ -1794,7 +1794,7 @@ public final class InputProtos {
       int getValue();
     }
     /**
-     * Protobuf type {@code hello.MotionSensorBatch.MotionSensor}
+     * Protobuf type {@code com.hello.MotionSensorBatch.MotionSensor}
      */
     public static final class MotionSensor extends
         com.google.protobuf.GeneratedMessage
@@ -2044,7 +2044,7 @@ public final class InputProtos {
         return builder;
       }
       /**
-       * Protobuf type {@code hello.MotionSensorBatch.MotionSensor}
+       * Protobuf type {@code com.hello.MotionSensorBatch.MotionSensor}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -2061,7 +2061,7 @@ public final class InputProtos {
                       com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.class, com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.Builder.class);
         }
 
-        // Construct using com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.newBuilder()
+        // Construct using com.com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -2236,7 +2236,7 @@ public final class InputProtos {
           return this;
         }
 
-        // @@protoc_insertion_point(builder_scope:hello.MotionSensorBatch.MotionSensor)
+        // @@protoc_insertion_point(builder_scope:com.hello.MotionSensorBatch.MotionSensor)
       }
 
       static {
@@ -2244,56 +2244,56 @@ public final class InputProtos {
         defaultInstance.initFields();
       }
 
-      // @@protoc_insertion_point(class_scope:hello.MotionSensorBatch.MotionSensor)
+      // @@protoc_insertion_point(class_scope:com.hello.MotionSensorBatch.MotionSensor)
     }
 
     private int bitField0_;
-    // optional .hello.MotionSensorBatch.Manufacturer manufacturer = 1;
+    // optional .com.hello.MotionSensorBatch.Manufacturer manufacturer = 1;
     public static final int MANUFACTURER_FIELD_NUMBER = 1;
     private com.hello.suripu.api.input.InputProtos.MotionSensorBatch.Manufacturer manufacturer_;
     /**
-     * <code>optional .hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
+     * <code>optional .com.hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
      */
     public boolean hasManufacturer() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional .hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
+     * <code>optional .com.hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
      */
     public com.hello.suripu.api.input.InputProtos.MotionSensorBatch.Manufacturer getManufacturer() {
       return manufacturer_;
     }
 
-    // repeated .hello.MotionSensorBatch.MotionSensor samples = 2;
+    // repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;
     public static final int SAMPLES_FIELD_NUMBER = 2;
     private java.util.List<com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor> samples_;
     /**
-     * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+     * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
      */
     public java.util.List<com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor> getSamplesList() {
       return samples_;
     }
     /**
-     * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+     * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
      */
     public java.util.List<? extends com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensorOrBuilder> 
         getSamplesOrBuilderList() {
       return samples_;
     }
     /**
-     * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+     * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
      */
     public int getSamplesCount() {
       return samples_.size();
     }
     /**
-     * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+     * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
      */
     public com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor getSamples(int index) {
       return samples_.get(index);
     }
     /**
-     * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+     * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
      */
     public com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensorOrBuilder getSamplesOrBuilder(
         int index) {
@@ -2418,7 +2418,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.MotionSensorBatch}
+     * Protobuf type {@code com.hello.MotionSensorBatch}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -2435,7 +2435,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.MotionSensorBatch.class, com.hello.suripu.api.input.InputProtos.MotionSensorBatch.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.MotionSensorBatch.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.MotionSensorBatch.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2577,22 +2577,22 @@ public final class InputProtos {
       }
       private int bitField0_;
 
-      // optional .hello.MotionSensorBatch.Manufacturer manufacturer = 1;
+      // optional .com.hello.MotionSensorBatch.Manufacturer manufacturer = 1;
       private com.hello.suripu.api.input.InputProtos.MotionSensorBatch.Manufacturer manufacturer_ = com.hello.suripu.api.input.InputProtos.MotionSensorBatch.Manufacturer.HELLO;
       /**
-       * <code>optional .hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
+       * <code>optional .com.hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
        */
       public boolean hasManufacturer() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional .hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
+       * <code>optional .com.hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.MotionSensorBatch.Manufacturer getManufacturer() {
         return manufacturer_;
       }
       /**
-       * <code>optional .hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
+       * <code>optional .com.hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
        */
       public Builder setManufacturer(com.hello.suripu.api.input.InputProtos.MotionSensorBatch.Manufacturer value) {
         if (value == null) {
@@ -2604,7 +2604,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
+       * <code>optional .com.hello.MotionSensorBatch.Manufacturer manufacturer = 1;</code>
        */
       public Builder clearManufacturer() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -2613,7 +2613,7 @@ public final class InputProtos {
         return this;
       }
 
-      // repeated .hello.MotionSensorBatch.MotionSensor samples = 2;
+      // repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;
       private java.util.List<com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor> samples_ =
         java.util.Collections.emptyList();
       private void ensureSamplesIsMutable() {
@@ -2627,7 +2627,7 @@ public final class InputProtos {
           com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor, com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.Builder, com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensorOrBuilder> samplesBuilder_;
 
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public java.util.List<com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor> getSamplesList() {
         if (samplesBuilder_ == null) {
@@ -2637,7 +2637,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public int getSamplesCount() {
         if (samplesBuilder_ == null) {
@@ -2647,7 +2647,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor getSamples(int index) {
         if (samplesBuilder_ == null) {
@@ -2657,7 +2657,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public Builder setSamples(
           int index, com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor value) {
@@ -2674,7 +2674,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public Builder setSamples(
           int index, com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.Builder builderForValue) {
@@ -2688,7 +2688,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public Builder addSamples(com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor value) {
         if (samplesBuilder_ == null) {
@@ -2704,7 +2704,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public Builder addSamples(
           int index, com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor value) {
@@ -2721,7 +2721,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public Builder addSamples(
           com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.Builder builderForValue) {
@@ -2735,7 +2735,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public Builder addSamples(
           int index, com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.Builder builderForValue) {
@@ -2749,7 +2749,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public Builder addAllSamples(
           Iterable<? extends com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor> values) {
@@ -2763,7 +2763,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public Builder clearSamples() {
         if (samplesBuilder_ == null) {
@@ -2776,7 +2776,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public Builder removeSamples(int index) {
         if (samplesBuilder_ == null) {
@@ -2789,14 +2789,14 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.Builder getSamplesBuilder(
           int index) {
         return getSamplesFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensorOrBuilder getSamplesOrBuilder(
           int index) {
@@ -2806,7 +2806,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public java.util.List<? extends com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensorOrBuilder> 
            getSamplesOrBuilderList() {
@@ -2817,14 +2817,14 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.Builder addSamplesBuilder() {
         return getSamplesFieldBuilder().addBuilder(
             com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.getDefaultInstance());
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.Builder addSamplesBuilder(
           int index) {
@@ -2832,7 +2832,7 @@ public final class InputProtos {
             index, com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.getDefaultInstance());
       }
       /**
-       * <code>repeated .hello.MotionSensorBatch.MotionSensor samples = 2;</code>
+       * <code>repeated .com.hello.MotionSensorBatch.MotionSensor samples = 2;</code>
        */
       public java.util.List<com.hello.suripu.api.input.InputProtos.MotionSensorBatch.MotionSensor.Builder> 
            getSamplesBuilderList() {
@@ -2853,7 +2853,7 @@ public final class InputProtos {
         return samplesBuilder_;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.MotionSensorBatch)
+      // @@protoc_insertion_point(builder_scope:com.hello.MotionSensorBatch)
     }
 
     static {
@@ -2861,39 +2861,39 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.MotionSensorBatch)
+    // @@protoc_insertion_point(class_scope:com.hello.MotionSensorBatch)
   }
 
   public interface TrackerDataBatchOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // repeated .hello.TrackerDataBatch.TrackerData samples = 1;
+    // repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;
     /**
-     * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+     * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
      */
     java.util.List<com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData> 
         getSamplesList();
     /**
-     * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+     * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
      */
     com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData getSamples(int index);
     /**
-     * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+     * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
      */
     int getSamplesCount();
     /**
-     * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+     * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
      */
     java.util.List<? extends com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerDataOrBuilder> 
         getSamplesOrBuilderList();
     /**
-     * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+     * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
      */
     com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerDataOrBuilder getSamplesOrBuilder(
             int index);
   }
   /**
-   * Protobuf type {@code hello.TrackerDataBatch}
+   * Protobuf type {@code com.hello.TrackerDataBatch}
    */
   public static final class TrackerDataBatch extends
       com.google.protobuf.GeneratedMessage
@@ -3054,7 +3054,7 @@ public final class InputProtos {
       int getSvmNoGravity();
     }
     /**
-     * Protobuf type {@code hello.TrackerDataBatch.TrackerData}
+     * Protobuf type {@code com.hello.TrackerDataBatch.TrackerData}
      */
     public static final class TrackerData extends
         com.google.protobuf.GeneratedMessage
@@ -3401,7 +3401,7 @@ public final class InputProtos {
         return builder;
       }
       /**
-       * Protobuf type {@code hello.TrackerDataBatch.TrackerData}
+       * Protobuf type {@code com.hello.TrackerDataBatch.TrackerData}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -3418,7 +3418,7 @@ public final class InputProtos {
                       com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.class, com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.Builder.class);
         }
 
-        // Construct using com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.newBuilder()
+        // Construct using com.com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -3744,7 +3744,7 @@ public final class InputProtos {
           return this;
         }
 
-        // @@protoc_insertion_point(builder_scope:hello.TrackerDataBatch.TrackerData)
+        // @@protoc_insertion_point(builder_scope:com.hello.TrackerDataBatch.TrackerData)
       }
 
       static {
@@ -3752,39 +3752,39 @@ public final class InputProtos {
         defaultInstance.initFields();
       }
 
-      // @@protoc_insertion_point(class_scope:hello.TrackerDataBatch.TrackerData)
+      // @@protoc_insertion_point(class_scope:com.hello.TrackerDataBatch.TrackerData)
     }
 
-    // repeated .hello.TrackerDataBatch.TrackerData samples = 1;
+    // repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;
     public static final int SAMPLES_FIELD_NUMBER = 1;
     private java.util.List<com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData> samples_;
     /**
-     * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+     * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
      */
     public java.util.List<com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData> getSamplesList() {
       return samples_;
     }
     /**
-     * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+     * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
      */
     public java.util.List<? extends com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerDataOrBuilder> 
         getSamplesOrBuilderList() {
       return samples_;
     }
     /**
-     * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+     * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
      */
     public int getSamplesCount() {
       return samples_.size();
     }
     /**
-     * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+     * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
      */
     public com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData getSamples(int index) {
       return samples_.get(index);
     }
     /**
-     * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+     * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
      */
     public com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerDataOrBuilder getSamplesOrBuilder(
         int index) {
@@ -3901,7 +3901,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.TrackerDataBatch}
+     * Protobuf type {@code com.hello.TrackerDataBatch}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -3918,7 +3918,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.TrackerDataBatch.class, com.hello.suripu.api.input.InputProtos.TrackerDataBatch.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.TrackerDataBatch.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.TrackerDataBatch.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -4049,7 +4049,7 @@ public final class InputProtos {
       }
       private int bitField0_;
 
-      // repeated .hello.TrackerDataBatch.TrackerData samples = 1;
+      // repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;
       private java.util.List<com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData> samples_ =
         java.util.Collections.emptyList();
       private void ensureSamplesIsMutable() {
@@ -4063,7 +4063,7 @@ public final class InputProtos {
           com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData, com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.Builder, com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerDataOrBuilder> samplesBuilder_;
 
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public java.util.List<com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData> getSamplesList() {
         if (samplesBuilder_ == null) {
@@ -4073,7 +4073,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public int getSamplesCount() {
         if (samplesBuilder_ == null) {
@@ -4083,7 +4083,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData getSamples(int index) {
         if (samplesBuilder_ == null) {
@@ -4093,7 +4093,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public Builder setSamples(
           int index, com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData value) {
@@ -4110,7 +4110,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public Builder setSamples(
           int index, com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.Builder builderForValue) {
@@ -4124,7 +4124,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public Builder addSamples(com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData value) {
         if (samplesBuilder_ == null) {
@@ -4140,7 +4140,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public Builder addSamples(
           int index, com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData value) {
@@ -4157,7 +4157,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public Builder addSamples(
           com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.Builder builderForValue) {
@@ -4171,7 +4171,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public Builder addSamples(
           int index, com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.Builder builderForValue) {
@@ -4185,7 +4185,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public Builder addAllSamples(
           Iterable<? extends com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData> values) {
@@ -4199,7 +4199,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public Builder clearSamples() {
         if (samplesBuilder_ == null) {
@@ -4212,7 +4212,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public Builder removeSamples(int index) {
         if (samplesBuilder_ == null) {
@@ -4225,14 +4225,14 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.Builder getSamplesBuilder(
           int index) {
         return getSamplesFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerDataOrBuilder getSamplesOrBuilder(
           int index) {
@@ -4242,7 +4242,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public java.util.List<? extends com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerDataOrBuilder> 
            getSamplesOrBuilderList() {
@@ -4253,14 +4253,14 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.Builder addSamplesBuilder() {
         return getSamplesFieldBuilder().addBuilder(
             com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.getDefaultInstance());
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.Builder addSamplesBuilder(
           int index) {
@@ -4268,7 +4268,7 @@ public final class InputProtos {
             index, com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.getDefaultInstance());
       }
       /**
-       * <code>repeated .hello.TrackerDataBatch.TrackerData samples = 1;</code>
+       * <code>repeated .com.hello.TrackerDataBatch.TrackerData samples = 1;</code>
        */
       public java.util.List<com.hello.suripu.api.input.InputProtos.TrackerDataBatch.TrackerData.Builder> 
            getSamplesBuilderList() {
@@ -4289,7 +4289,7 @@ public final class InputProtos {
         return samplesBuilder_;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.TrackerDataBatch)
+      // @@protoc_insertion_point(builder_scope:com.hello.TrackerDataBatch)
     }
 
     static {
@@ -4297,7 +4297,7 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.TrackerDataBatch)
+    // @@protoc_insertion_point(class_scope:com.hello.TrackerDataBatch)
   }
 
   public interface SimpleSensorBatchOrBuilder
@@ -4318,33 +4318,33 @@ public final class InputProtos {
     com.google.protobuf.ByteString
         getDeviceIdBytes();
 
-    // repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;
+    // repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;
     /**
-     * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+     * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
      */
     java.util.List<com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample> 
         getSamplesList();
     /**
-     * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+     * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
      */
     com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample getSamples(int index);
     /**
-     * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+     * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
      */
     int getSamplesCount();
     /**
-     * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+     * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
      */
     java.util.List<? extends com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSampleOrBuilder> 
         getSamplesOrBuilderList();
     /**
-     * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+     * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
      */
     com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSampleOrBuilder getSamplesOrBuilder(
             int index);
   }
   /**
-   * Protobuf type {@code hello.SimpleSensorBatch}
+   * Protobuf type {@code com.hello.SimpleSensorBatch}
    */
   public static final class SimpleSensorBatch extends
       com.google.protobuf.GeneratedMessage
@@ -4508,7 +4508,7 @@ public final class InputProtos {
           getProviderBytes();
     }
     /**
-     * Protobuf type {@code hello.SimpleSensorBatch.GpsInfo}
+     * Protobuf type {@code com.hello.SimpleSensorBatch.GpsInfo}
      */
     public static final class GpsInfo extends
         com.google.protobuf.GeneratedMessage
@@ -4872,7 +4872,7 @@ public final class InputProtos {
         return builder;
       }
       /**
-       * Protobuf type {@code hello.SimpleSensorBatch.GpsInfo}
+       * Protobuf type {@code com.hello.SimpleSensorBatch.GpsInfo}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -4889,7 +4889,7 @@ public final class InputProtos {
                       com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo.class, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo.Builder.class);
         }
 
-        // Construct using com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo.newBuilder()
+        // Construct using com.com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -5233,7 +5233,7 @@ public final class InputProtos {
           return this;
         }
 
-        // @@protoc_insertion_point(builder_scope:hello.SimpleSensorBatch.GpsInfo)
+        // @@protoc_insertion_point(builder_scope:com.hello.SimpleSensorBatch.GpsInfo)
       }
 
       static {
@@ -5241,7 +5241,7 @@ public final class InputProtos {
         defaultInstance.initFields();
       }
 
-      // @@protoc_insertion_point(class_scope:hello.SimpleSensorBatch.GpsInfo)
+      // @@protoc_insertion_point(class_scope:com.hello.SimpleSensorBatch.GpsInfo)
     }
 
     public interface SimpleSensorSampleOrBuilder
@@ -5375,17 +5375,17 @@ public final class InputProtos {
        */
       float getSoundAmplitude();
 
-      // optional .hello.SimpleSensorBatch.GpsInfo gps = 10;
+      // optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;
       /**
-       * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+       * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
        */
       boolean hasGps();
       /**
-       * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+       * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
        */
       com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo getGps();
       /**
-       * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+       * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
        */
       com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfoOrBuilder getGpsOrBuilder();
 
@@ -5400,7 +5400,7 @@ public final class InputProtos {
       int getOffsetMillis();
     }
     /**
-     * Protobuf type {@code hello.SimpleSensorBatch.SimpleSensorSample}
+     * Protobuf type {@code com.hello.SimpleSensorBatch.SimpleSensorSample}
      */
     public static final class SimpleSensorSample extends
         com.google.protobuf.GeneratedMessage
@@ -5735,23 +5735,23 @@ public final class InputProtos {
         return soundAmplitude_;
       }
 
-      // optional .hello.SimpleSensorBatch.GpsInfo gps = 10;
+      // optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;
       public static final int GPS_FIELD_NUMBER = 10;
       private com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo gps_;
       /**
-       * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+       * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
        */
       public boolean hasGps() {
         return ((bitField0_ & 0x00000200) == 0x00000200);
       }
       /**
-       * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+       * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo getGps() {
         return gps_;
       }
       /**
-       * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+       * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfoOrBuilder getGpsOrBuilder() {
         return gps_;
@@ -5963,7 +5963,7 @@ public final class InputProtos {
         return builder;
       }
       /**
-       * Protobuf type {@code hello.SimpleSensorBatch.SimpleSensorSample}
+       * Protobuf type {@code com.hello.SimpleSensorBatch.SimpleSensorSample}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -5980,7 +5980,7 @@ public final class InputProtos {
                       com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.class, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.Builder.class);
         }
 
-        // Construct using com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.newBuilder()
+        // Construct using com.com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -6558,18 +6558,18 @@ public final class InputProtos {
           return this;
         }
 
-        // optional .hello.SimpleSensorBatch.GpsInfo gps = 10;
+        // optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;
         private com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo gps_ = com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo.getDefaultInstance();
         private com.google.protobuf.SingleFieldBuilder<
             com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo.Builder, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfoOrBuilder> gpsBuilder_;
         /**
-         * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+         * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
          */
         public boolean hasGps() {
           return ((bitField0_ & 0x00000200) == 0x00000200);
         }
         /**
-         * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+         * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo getGps() {
           if (gpsBuilder_ == null) {
@@ -6579,7 +6579,7 @@ public final class InputProtos {
           }
         }
         /**
-         * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+         * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
          */
         public Builder setGps(com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo value) {
           if (gpsBuilder_ == null) {
@@ -6595,7 +6595,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+         * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
          */
         public Builder setGps(
             com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo.Builder builderForValue) {
@@ -6609,7 +6609,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+         * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
          */
         public Builder mergeGps(com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo value) {
           if (gpsBuilder_ == null) {
@@ -6628,7 +6628,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+         * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
          */
         public Builder clearGps() {
           if (gpsBuilder_ == null) {
@@ -6641,7 +6641,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+         * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo.Builder getGpsBuilder() {
           bitField0_ |= 0x00000200;
@@ -6649,7 +6649,7 @@ public final class InputProtos {
           return getGpsFieldBuilder().getBuilder();
         }
         /**
-         * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+         * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfoOrBuilder getGpsOrBuilder() {
           if (gpsBuilder_ != null) {
@@ -6659,7 +6659,7 @@ public final class InputProtos {
           }
         }
         /**
-         * <code>optional .hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
+         * <code>optional .com.hello.SimpleSensorBatch.GpsInfo gps = 10;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
             com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfo.Builder, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.GpsInfoOrBuilder> 
@@ -6708,7 +6708,7 @@ public final class InputProtos {
           return this;
         }
 
-        // @@protoc_insertion_point(builder_scope:hello.SimpleSensorBatch.SimpleSensorSample)
+        // @@protoc_insertion_point(builder_scope:com.hello.SimpleSensorBatch.SimpleSensorSample)
       }
 
       static {
@@ -6716,7 +6716,7 @@ public final class InputProtos {
         defaultInstance.initFields();
       }
 
-      // @@protoc_insertion_point(class_scope:hello.SimpleSensorBatch.SimpleSensorSample)
+      // @@protoc_insertion_point(class_scope:com.hello.SimpleSensorBatch.SimpleSensorSample)
     }
 
     private int bitField0_;
@@ -6763,36 +6763,36 @@ public final class InputProtos {
       }
     }
 
-    // repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;
+    // repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;
     public static final int SAMPLES_FIELD_NUMBER = 2;
     private java.util.List<com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample> samples_;
     /**
-     * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+     * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
      */
     public java.util.List<com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample> getSamplesList() {
       return samples_;
     }
     /**
-     * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+     * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
      */
     public java.util.List<? extends com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSampleOrBuilder> 
         getSamplesOrBuilderList() {
       return samples_;
     }
     /**
-     * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+     * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
      */
     public int getSamplesCount() {
       return samples_.size();
     }
     /**
-     * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+     * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
      */
     public com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample getSamples(int index) {
       return samples_.get(index);
     }
     /**
-     * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+     * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
      */
     public com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSampleOrBuilder getSamplesOrBuilder(
         int index) {
@@ -6917,7 +6917,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.SimpleSensorBatch}
+     * Protobuf type {@code com.hello.SimpleSensorBatch}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -6934,7 +6934,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.class, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -7152,7 +7152,7 @@ public final class InputProtos {
         return this;
       }
 
-      // repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;
+      // repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;
       private java.util.List<com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample> samples_ =
         java.util.Collections.emptyList();
       private void ensureSamplesIsMutable() {
@@ -7166,7 +7166,7 @@ public final class InputProtos {
           com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.Builder, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSampleOrBuilder> samplesBuilder_;
 
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public java.util.List<com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample> getSamplesList() {
         if (samplesBuilder_ == null) {
@@ -7176,7 +7176,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public int getSamplesCount() {
         if (samplesBuilder_ == null) {
@@ -7186,7 +7186,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample getSamples(int index) {
         if (samplesBuilder_ == null) {
@@ -7196,7 +7196,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public Builder setSamples(
           int index, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample value) {
@@ -7213,7 +7213,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public Builder setSamples(
           int index, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.Builder builderForValue) {
@@ -7227,7 +7227,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public Builder addSamples(com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample value) {
         if (samplesBuilder_ == null) {
@@ -7243,7 +7243,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public Builder addSamples(
           int index, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample value) {
@@ -7260,7 +7260,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public Builder addSamples(
           com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.Builder builderForValue) {
@@ -7274,7 +7274,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public Builder addSamples(
           int index, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.Builder builderForValue) {
@@ -7288,7 +7288,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public Builder addAllSamples(
           Iterable<? extends com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample> values) {
@@ -7302,7 +7302,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public Builder clearSamples() {
         if (samplesBuilder_ == null) {
@@ -7315,7 +7315,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public Builder removeSamples(int index) {
         if (samplesBuilder_ == null) {
@@ -7328,14 +7328,14 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.Builder getSamplesBuilder(
           int index) {
         return getSamplesFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSampleOrBuilder getSamplesOrBuilder(
           int index) {
@@ -7345,7 +7345,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public java.util.List<? extends com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSampleOrBuilder> 
            getSamplesOrBuilderList() {
@@ -7356,14 +7356,14 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.Builder addSamplesBuilder() {
         return getSamplesFieldBuilder().addBuilder(
             com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.getDefaultInstance());
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.Builder addSamplesBuilder(
           int index) {
@@ -7371,7 +7371,7 @@ public final class InputProtos {
             index, com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.getDefaultInstance());
       }
       /**
-       * <code>repeated .hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
+       * <code>repeated .com.hello.SimpleSensorBatch.SimpleSensorSample samples = 2;</code>
        */
       public java.util.List<com.hello.suripu.api.input.InputProtos.SimpleSensorBatch.SimpleSensorSample.Builder> 
            getSamplesBuilderList() {
@@ -7392,7 +7392,7 @@ public final class InputProtos {
         return samplesBuilder_;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.SimpleSensorBatch)
+      // @@protoc_insertion_point(builder_scope:com.hello.SimpleSensorBatch)
     }
 
     static {
@@ -7400,7 +7400,7 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.SimpleSensorBatch)
+    // @@protoc_insertion_point(class_scope:com.hello.SimpleSensorBatch)
   }
 
   public interface ActivationRequestOrBuilder
@@ -7472,7 +7472,7 @@ public final class InputProtos {
     com.google.protobuf.ByteString getSignature();
   }
   /**
-   * Protobuf type {@code hello.ActivationRequest}
+   * Protobuf type {@code com.hello.ActivationRequest}
    */
   public static final class ActivationRequest extends
       com.google.protobuf.GeneratedMessage
@@ -7890,7 +7890,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.ActivationRequest}
+     * Protobuf type {@code com.hello.ActivationRequest}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -7907,7 +7907,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.ActivationRequest.class, com.hello.suripu.api.input.InputProtos.ActivationRequest.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.ActivationRequest.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.ActivationRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -8340,7 +8340,7 @@ public final class InputProtos {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.ActivationRequest)
+      // @@protoc_insertion_point(builder_scope:com.hello.ActivationRequest)
     }
 
     static {
@@ -8348,7 +8348,7 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.ActivationRequest)
+    // @@protoc_insertion_point(class_scope:com.hello.ActivationRequest)
   }
 
   public interface ActivationResponseOrBuilder
@@ -8375,7 +8375,7 @@ public final class InputProtos {
     boolean getSuccess();
   }
   /**
-   * Protobuf type {@code hello.ActivationResponse}
+   * Protobuf type {@code com.hello.ActivationResponse}
    */
   public static final class ActivationResponse extends
       com.google.protobuf.GeneratedMessage
@@ -8606,7 +8606,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.ActivationResponse}
+     * Protobuf type {@code com.hello.ActivationResponse}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -8623,7 +8623,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.ActivationResponse.class, com.hello.suripu.api.input.InputProtos.ActivationResponse.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.ActivationResponse.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.ActivationResponse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -8776,7 +8776,7 @@ public final class InputProtos {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.ActivationResponse)
+      // @@protoc_insertion_point(builder_scope:com.hello.ActivationResponse)
     }
 
     static {
@@ -8784,7 +8784,7 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.ActivationResponse)
+    // @@protoc_insertion_point(class_scope:com.hello.ActivationResponse)
   }
 
   public interface SyncRequestOrBuilder
@@ -8858,7 +8858,7 @@ public final class InputProtos {
         getSomethingBytes();
   }
   /**
-   * Protobuf type {@code hello.SyncRequest}
+   * Protobuf type {@code com.hello.SyncRequest}
    */
   public static final class SyncRequest extends
       com.google.protobuf.GeneratedMessage
@@ -9259,7 +9259,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.SyncRequest}
+     * Protobuf type {@code com.hello.SyncRequest}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -9276,7 +9276,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.SyncRequest.class, com.hello.suripu.api.input.InputProtos.SyncRequest.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.SyncRequest.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.SyncRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -9691,7 +9691,7 @@ public final class InputProtos {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.SyncRequest)
+      // @@protoc_insertion_point(builder_scope:com.hello.SyncRequest)
     }
 
     static {
@@ -9699,7 +9699,7 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.SyncRequest)
+    // @@protoc_insertion_point(class_scope:com.hello.SyncRequest)
   }
 
   public interface SyncResponseOrBuilder
@@ -9755,64 +9755,64 @@ public final class InputProtos {
      */
     int getDeviceSamplingInterval();
 
-    // optional .hello.SyncResponse.Alarm alarm = 6;
+    // optional .com.hello.SyncResponse.Alarm alarm = 6;
     /**
-     * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+     * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
      */
     boolean hasAlarm();
     /**
-     * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+     * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
      */
     com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm getAlarm();
     /**
-     * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+     * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
      */
     com.hello.suripu.api.input.InputProtos.SyncResponse.AlarmOrBuilder getAlarmOrBuilder();
 
-    // optional .hello.SyncResponse.PairingAction pairing_action = 7;
+    // optional .com.hello.SyncResponse.PairingAction pairing_action = 7;
     /**
-     * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+     * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
      */
     boolean hasPairingAction();
     /**
-     * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+     * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
      */
     com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction getPairingAction();
     /**
-     * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+     * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
      */
     com.hello.suripu.api.input.InputProtos.SyncResponse.PairingActionOrBuilder getPairingActionOrBuilder();
 
-    // optional .hello.SyncResponse.WhiteNoise white_noise = 8;
+    // optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;
     /**
-     * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+     * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
      */
     boolean hasWhiteNoise();
     /**
-     * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+     * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
      */
     com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise getWhiteNoise();
     /**
-     * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+     * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
      */
     com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoiseOrBuilder getWhiteNoiseOrBuilder();
 
-    // optional .hello.SyncResponse.FlashAction flash_action = 9;
+    // optional .com.hello.SyncResponse.FlashAction flash_action = 9;
     /**
-     * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+     * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
      */
     boolean hasFlashAction();
     /**
-     * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+     * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
      */
     com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction getFlashAction();
     /**
-     * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+     * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
      */
     com.hello.suripu.api.input.InputProtos.SyncResponse.FlashActionOrBuilder getFlashActionOrBuilder();
   }
   /**
-   * Protobuf type {@code hello.SyncResponse}
+   * Protobuf type {@code com.hello.SyncResponse}
    */
   public static final class SyncResponse extends
       com.google.protobuf.GeneratedMessage
@@ -10012,7 +10012,7 @@ public final class InputProtos {
       int getRingtoneId();
     }
     /**
-     * Protobuf type {@code hello.SyncResponse.Alarm}
+     * Protobuf type {@code com.hello.SyncResponse.Alarm}
      */
     public static final class Alarm extends
         com.google.protobuf.GeneratedMessage
@@ -10291,7 +10291,7 @@ public final class InputProtos {
         return builder;
       }
       /**
-       * Protobuf type {@code hello.SyncResponse.Alarm}
+       * Protobuf type {@code com.hello.SyncResponse.Alarm}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -10308,7 +10308,7 @@ public final class InputProtos {
                       com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm.class, com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm.Builder.class);
         }
 
-        // Construct using com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm.newBuilder()
+        // Construct using com.com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -10525,7 +10525,7 @@ public final class InputProtos {
           return this;
         }
 
-        // @@protoc_insertion_point(builder_scope:hello.SyncResponse.Alarm)
+        // @@protoc_insertion_point(builder_scope:com.hello.SyncResponse.Alarm)
       }
 
       static {
@@ -10533,7 +10533,7 @@ public final class InputProtos {
         defaultInstance.initFields();
       }
 
-      // @@protoc_insertion_point(class_scope:hello.SyncResponse.Alarm)
+      // @@protoc_insertion_point(class_scope:com.hello.SyncResponse.Alarm)
     }
 
     public interface PairingActionOrBuilder
@@ -10554,18 +10554,18 @@ public final class InputProtos {
       com.google.protobuf.ByteString
           getSsidBytes();
 
-      // optional .hello.SyncResponse.PairingAction.ActionType type = 2;
+      // optional .com.hello.SyncResponse.PairingAction.ActionType type = 2;
       /**
-       * <code>optional .hello.SyncResponse.PairingAction.ActionType type = 2;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction.ActionType type = 2;</code>
        */
       boolean hasType();
       /**
-       * <code>optional .hello.SyncResponse.PairingAction.ActionType type = 2;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction.ActionType type = 2;</code>
        */
       com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.ActionType getType();
     }
     /**
-     * Protobuf type {@code hello.SyncResponse.PairingAction}
+     * Protobuf type {@code com.hello.SyncResponse.PairingAction}
      */
     public static final class PairingAction extends
         com.google.protobuf.GeneratedMessage
@@ -10671,7 +10671,7 @@ public final class InputProtos {
       }
 
       /**
-       * Protobuf enum {@code hello.SyncResponse.PairingAction.ActionType}
+       * Protobuf enum {@code com.hello.SyncResponse.PairingAction.ActionType}
        */
       public enum ActionType
           implements com.google.protobuf.ProtocolMessageEnum {
@@ -10749,7 +10749,7 @@ public final class InputProtos {
           this.value = value;
         }
 
-        // @@protoc_insertion_point(enum_scope:hello.SyncResponse.PairingAction.ActionType)
+        // @@protoc_insertion_point(enum_scope:com.hello.SyncResponse.PairingAction.ActionType)
       }
 
       private int bitField0_;
@@ -10796,17 +10796,17 @@ public final class InputProtos {
         }
       }
 
-      // optional .hello.SyncResponse.PairingAction.ActionType type = 2;
+      // optional .com.hello.SyncResponse.PairingAction.ActionType type = 2;
       public static final int TYPE_FIELD_NUMBER = 2;
       private com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.ActionType type_;
       /**
-       * <code>optional .hello.SyncResponse.PairingAction.ActionType type = 2;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction.ActionType type = 2;</code>
        */
       public boolean hasType() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional .hello.SyncResponse.PairingAction.ActionType type = 2;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction.ActionType type = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.ActionType getType() {
         return type_;
@@ -10930,7 +10930,7 @@ public final class InputProtos {
         return builder;
       }
       /**
-       * Protobuf type {@code hello.SyncResponse.PairingAction}
+       * Protobuf type {@code com.hello.SyncResponse.PairingAction}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -10947,7 +10947,7 @@ public final class InputProtos {
                       com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.class, com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.Builder.class);
         }
 
-        // Construct using com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.newBuilder()
+        // Construct using com.com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -11132,22 +11132,22 @@ public final class InputProtos {
           return this;
         }
 
-        // optional .hello.SyncResponse.PairingAction.ActionType type = 2;
+        // optional .com.hello.SyncResponse.PairingAction.ActionType type = 2;
         private com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.ActionType type_ = com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.ActionType.PAIR;
         /**
-         * <code>optional .hello.SyncResponse.PairingAction.ActionType type = 2;</code>
+         * <code>optional .com.hello.SyncResponse.PairingAction.ActionType type = 2;</code>
          */
         public boolean hasType() {
           return ((bitField0_ & 0x00000002) == 0x00000002);
         }
         /**
-         * <code>optional .hello.SyncResponse.PairingAction.ActionType type = 2;</code>
+         * <code>optional .com.hello.SyncResponse.PairingAction.ActionType type = 2;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.ActionType getType() {
           return type_;
         }
         /**
-         * <code>optional .hello.SyncResponse.PairingAction.ActionType type = 2;</code>
+         * <code>optional .com.hello.SyncResponse.PairingAction.ActionType type = 2;</code>
          */
         public Builder setType(com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.ActionType value) {
           if (value == null) {
@@ -11159,7 +11159,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.PairingAction.ActionType type = 2;</code>
+         * <code>optional .com.hello.SyncResponse.PairingAction.ActionType type = 2;</code>
          */
         public Builder clearType() {
           bitField0_ = (bitField0_ & ~0x00000002);
@@ -11168,7 +11168,7 @@ public final class InputProtos {
           return this;
         }
 
-        // @@protoc_insertion_point(builder_scope:hello.SyncResponse.PairingAction)
+        // @@protoc_insertion_point(builder_scope:com.hello.SyncResponse.PairingAction)
       }
 
       static {
@@ -11176,7 +11176,7 @@ public final class InputProtos {
         defaultInstance.initFields();
       }
 
-      // @@protoc_insertion_point(class_scope:hello.SyncResponse.PairingAction)
+      // @@protoc_insertion_point(class_scope:com.hello.SyncResponse.PairingAction)
     }
 
     public interface WhiteNoiseOrBuilder
@@ -11213,7 +11213,7 @@ public final class InputProtos {
       int getSoundId();
     }
     /**
-     * Protobuf type {@code hello.SyncResponse.WhiteNoise}
+     * Protobuf type {@code com.hello.SyncResponse.WhiteNoise}
      */
     public static final class WhiteNoise extends
         com.google.protobuf.GeneratedMessage
@@ -11492,7 +11492,7 @@ public final class InputProtos {
         return builder;
       }
       /**
-       * Protobuf type {@code hello.SyncResponse.WhiteNoise}
+       * Protobuf type {@code com.hello.SyncResponse.WhiteNoise}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -11509,7 +11509,7 @@ public final class InputProtos {
                       com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise.class, com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise.Builder.class);
         }
 
-        // Construct using com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise.newBuilder()
+        // Construct using com.com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -11726,7 +11726,7 @@ public final class InputProtos {
           return this;
         }
 
-        // @@protoc_insertion_point(builder_scope:hello.SyncResponse.WhiteNoise)
+        // @@protoc_insertion_point(builder_scope:com.hello.SyncResponse.WhiteNoise)
       }
 
       static {
@@ -11734,84 +11734,84 @@ public final class InputProtos {
         defaultInstance.initFields();
       }
 
-      // @@protoc_insertion_point(class_scope:hello.SyncResponse.WhiteNoise)
+      // @@protoc_insertion_point(class_scope:com.hello.SyncResponse.WhiteNoise)
     }
 
     public interface FlashActionOrBuilder
         extends com.google.protobuf.MessageOrBuilder {
 
-      // optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;
+      // optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
        */
       boolean hasLed1();
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
        */
       com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed1();
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
        */
       com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed1OrBuilder();
 
-      // optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;
+      // optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
        */
       boolean hasLed2();
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
        */
       com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed2();
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
        */
       com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed2OrBuilder();
 
-      // optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;
+      // optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
        */
       boolean hasLed3();
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
        */
       com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed3();
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
        */
       com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed3OrBuilder();
 
-      // optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;
+      // optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
        */
       boolean hasLed4();
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
        */
       com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed4();
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
        */
       com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed4OrBuilder();
 
-      // optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;
+      // optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
        */
       boolean hasLed5();
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
        */
       com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed5();
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
        */
       com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed5OrBuilder();
     }
     /**
-     * Protobuf type {@code hello.SyncResponse.FlashAction}
+     * Protobuf type {@code com.hello.SyncResponse.FlashAction}
      */
     public static final class FlashAction extends
         com.google.protobuf.GeneratedMessage
@@ -11999,7 +11999,7 @@ public final class InputProtos {
         int getEndTime();
       }
       /**
-       * Protobuf type {@code hello.SyncResponse.FlashAction.LEDAction}
+       * Protobuf type {@code com.hello.SyncResponse.FlashAction.LEDAction}
        */
       public static final class LEDAction extends
           com.google.protobuf.GeneratedMessage
@@ -12278,7 +12278,7 @@ public final class InputProtos {
           return builder;
         }
         /**
-         * Protobuf type {@code hello.SyncResponse.FlashAction.LEDAction}
+         * Protobuf type {@code com.hello.SyncResponse.FlashAction.LEDAction}
          */
         public static final class Builder extends
             com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -12295,7 +12295,7 @@ public final class InputProtos {
                         com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.class, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder.class);
           }
 
-          // Construct using com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.newBuilder()
+          // Construct using com.com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.newBuilder()
           private Builder() {
             maybeForceBuilderInitialization();
           }
@@ -12512,7 +12512,7 @@ public final class InputProtos {
             return this;
           }
 
-          // @@protoc_insertion_point(builder_scope:hello.SyncResponse.FlashAction.LEDAction)
+          // @@protoc_insertion_point(builder_scope:com.hello.SyncResponse.FlashAction.LEDAction)
         }
 
         static {
@@ -12520,115 +12520,115 @@ public final class InputProtos {
           defaultInstance.initFields();
         }
 
-        // @@protoc_insertion_point(class_scope:hello.SyncResponse.FlashAction.LEDAction)
+        // @@protoc_insertion_point(class_scope:com.hello.SyncResponse.FlashAction.LEDAction)
       }
 
       private int bitField0_;
-      // optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;
+      // optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;
       public static final int LED_1_FIELD_NUMBER = 1;
       private com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction led1_;
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
        */
       public boolean hasLed1() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed1() {
         return led1_;
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed1OrBuilder() {
         return led1_;
       }
 
-      // optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;
+      // optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;
       public static final int LED_2_FIELD_NUMBER = 2;
       private com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction led2_;
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
        */
       public boolean hasLed2() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed2() {
         return led2_;
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed2OrBuilder() {
         return led2_;
       }
 
-      // optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;
+      // optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;
       public static final int LED_3_FIELD_NUMBER = 3;
       private com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction led3_;
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
        */
       public boolean hasLed3() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed3() {
         return led3_;
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed3OrBuilder() {
         return led3_;
       }
 
-      // optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;
+      // optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;
       public static final int LED_4_FIELD_NUMBER = 4;
       private com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction led4_;
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
        */
       public boolean hasLed4() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed4() {
         return led4_;
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed4OrBuilder() {
         return led4_;
       }
 
-      // optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;
+      // optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;
       public static final int LED_5_FIELD_NUMBER = 5;
       private com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction led5_;
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
        */
       public boolean hasLed5() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed5() {
         return led5_;
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed5OrBuilder() {
         return led5_;
@@ -12776,7 +12776,7 @@ public final class InputProtos {
         return builder;
       }
       /**
-       * Protobuf type {@code hello.SyncResponse.FlashAction}
+       * Protobuf type {@code com.hello.SyncResponse.FlashAction}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -12793,7 +12793,7 @@ public final class InputProtos {
                       com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.class, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.Builder.class);
         }
 
-        // Construct using com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.newBuilder()
+        // Construct using com.com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -12974,18 +12974,18 @@ public final class InputProtos {
         }
         private int bitField0_;
 
-        // optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;
+        // optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;
         private com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction led1_ = com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.getDefaultInstance();
         private com.google.protobuf.SingleFieldBuilder<
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder> led1Builder_;
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
          */
         public boolean hasLed1() {
           return ((bitField0_ & 0x00000001) == 0x00000001);
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed1() {
           if (led1Builder_ == null) {
@@ -12995,7 +12995,7 @@ public final class InputProtos {
           }
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
          */
         public Builder setLed1(com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction value) {
           if (led1Builder_ == null) {
@@ -13011,7 +13011,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
          */
         public Builder setLed1(
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder builderForValue) {
@@ -13025,7 +13025,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
          */
         public Builder mergeLed1(com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction value) {
           if (led1Builder_ == null) {
@@ -13044,7 +13044,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
          */
         public Builder clearLed1() {
           if (led1Builder_ == null) {
@@ -13057,7 +13057,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder getLed1Builder() {
           bitField0_ |= 0x00000001;
@@ -13065,7 +13065,7 @@ public final class InputProtos {
           return getLed1FieldBuilder().getBuilder();
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed1OrBuilder() {
           if (led1Builder_ != null) {
@@ -13075,7 +13075,7 @@ public final class InputProtos {
           }
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_1 = 1;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder> 
@@ -13091,18 +13091,18 @@ public final class InputProtos {
           return led1Builder_;
         }
 
-        // optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;
+        // optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;
         private com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction led2_ = com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.getDefaultInstance();
         private com.google.protobuf.SingleFieldBuilder<
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder> led2Builder_;
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
          */
         public boolean hasLed2() {
           return ((bitField0_ & 0x00000002) == 0x00000002);
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed2() {
           if (led2Builder_ == null) {
@@ -13112,7 +13112,7 @@ public final class InputProtos {
           }
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
          */
         public Builder setLed2(com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction value) {
           if (led2Builder_ == null) {
@@ -13128,7 +13128,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
          */
         public Builder setLed2(
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder builderForValue) {
@@ -13142,7 +13142,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
          */
         public Builder mergeLed2(com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction value) {
           if (led2Builder_ == null) {
@@ -13161,7 +13161,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
          */
         public Builder clearLed2() {
           if (led2Builder_ == null) {
@@ -13174,7 +13174,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder getLed2Builder() {
           bitField0_ |= 0x00000002;
@@ -13182,7 +13182,7 @@ public final class InputProtos {
           return getLed2FieldBuilder().getBuilder();
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed2OrBuilder() {
           if (led2Builder_ != null) {
@@ -13192,7 +13192,7 @@ public final class InputProtos {
           }
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_2 = 2;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder> 
@@ -13208,18 +13208,18 @@ public final class InputProtos {
           return led2Builder_;
         }
 
-        // optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;
+        // optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;
         private com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction led3_ = com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.getDefaultInstance();
         private com.google.protobuf.SingleFieldBuilder<
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder> led3Builder_;
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
          */
         public boolean hasLed3() {
           return ((bitField0_ & 0x00000004) == 0x00000004);
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed3() {
           if (led3Builder_ == null) {
@@ -13229,7 +13229,7 @@ public final class InputProtos {
           }
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
          */
         public Builder setLed3(com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction value) {
           if (led3Builder_ == null) {
@@ -13245,7 +13245,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
          */
         public Builder setLed3(
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder builderForValue) {
@@ -13259,7 +13259,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
          */
         public Builder mergeLed3(com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction value) {
           if (led3Builder_ == null) {
@@ -13278,7 +13278,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
          */
         public Builder clearLed3() {
           if (led3Builder_ == null) {
@@ -13291,7 +13291,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder getLed3Builder() {
           bitField0_ |= 0x00000004;
@@ -13299,7 +13299,7 @@ public final class InputProtos {
           return getLed3FieldBuilder().getBuilder();
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed3OrBuilder() {
           if (led3Builder_ != null) {
@@ -13309,7 +13309,7 @@ public final class InputProtos {
           }
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_3 = 3;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder> 
@@ -13325,18 +13325,18 @@ public final class InputProtos {
           return led3Builder_;
         }
 
-        // optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;
+        // optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;
         private com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction led4_ = com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.getDefaultInstance();
         private com.google.protobuf.SingleFieldBuilder<
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder> led4Builder_;
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
          */
         public boolean hasLed4() {
           return ((bitField0_ & 0x00000008) == 0x00000008);
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed4() {
           if (led4Builder_ == null) {
@@ -13346,7 +13346,7 @@ public final class InputProtos {
           }
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
          */
         public Builder setLed4(com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction value) {
           if (led4Builder_ == null) {
@@ -13362,7 +13362,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
          */
         public Builder setLed4(
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder builderForValue) {
@@ -13376,7 +13376,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
          */
         public Builder mergeLed4(com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction value) {
           if (led4Builder_ == null) {
@@ -13395,7 +13395,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
          */
         public Builder clearLed4() {
           if (led4Builder_ == null) {
@@ -13408,7 +13408,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder getLed4Builder() {
           bitField0_ |= 0x00000008;
@@ -13416,7 +13416,7 @@ public final class InputProtos {
           return getLed4FieldBuilder().getBuilder();
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed4OrBuilder() {
           if (led4Builder_ != null) {
@@ -13426,7 +13426,7 @@ public final class InputProtos {
           }
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_4 = 4;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder> 
@@ -13442,18 +13442,18 @@ public final class InputProtos {
           return led4Builder_;
         }
 
-        // optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;
+        // optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;
         private com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction led5_ = com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.getDefaultInstance();
         private com.google.protobuf.SingleFieldBuilder<
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder> led5Builder_;
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
          */
         public boolean hasLed5() {
           return ((bitField0_ & 0x00000010) == 0x00000010);
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction getLed5() {
           if (led5Builder_ == null) {
@@ -13463,7 +13463,7 @@ public final class InputProtos {
           }
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
          */
         public Builder setLed5(com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction value) {
           if (led5Builder_ == null) {
@@ -13479,7 +13479,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
          */
         public Builder setLed5(
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder builderForValue) {
@@ -13493,7 +13493,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
          */
         public Builder mergeLed5(com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction value) {
           if (led5Builder_ == null) {
@@ -13512,7 +13512,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
          */
         public Builder clearLed5() {
           if (led5Builder_ == null) {
@@ -13525,7 +13525,7 @@ public final class InputProtos {
           return this;
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder getLed5Builder() {
           bitField0_ |= 0x00000010;
@@ -13533,7 +13533,7 @@ public final class InputProtos {
           return getLed5FieldBuilder().getBuilder();
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
          */
         public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder getLed5OrBuilder() {
           if (led5Builder_ != null) {
@@ -13543,7 +13543,7 @@ public final class InputProtos {
           }
         }
         /**
-         * <code>optional .hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
+         * <code>optional .com.hello.SyncResponse.FlashAction.LEDAction led_5 = 5;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
             com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.LEDActionOrBuilder> 
@@ -13559,7 +13559,7 @@ public final class InputProtos {
           return led5Builder_;
         }
 
-        // @@protoc_insertion_point(builder_scope:hello.SyncResponse.FlashAction)
+        // @@protoc_insertion_point(builder_scope:com.hello.SyncResponse.FlashAction)
       }
 
       static {
@@ -13567,7 +13567,7 @@ public final class InputProtos {
         defaultInstance.initFields();
       }
 
-      // @@protoc_insertion_point(class_scope:hello.SyncResponse.FlashAction)
+      // @@protoc_insertion_point(class_scope:com.hello.SyncResponse.FlashAction)
     }
 
     private int bitField0_;
@@ -13651,89 +13651,89 @@ public final class InputProtos {
       return deviceSamplingInterval_;
     }
 
-    // optional .hello.SyncResponse.Alarm alarm = 6;
+    // optional .com.hello.SyncResponse.Alarm alarm = 6;
     public static final int ALARM_FIELD_NUMBER = 6;
     private com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm alarm_;
     /**
-     * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+     * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
      */
     public boolean hasAlarm() {
       return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
-     * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+     * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
      */
     public com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm getAlarm() {
       return alarm_;
     }
     /**
-     * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+     * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
      */
     public com.hello.suripu.api.input.InputProtos.SyncResponse.AlarmOrBuilder getAlarmOrBuilder() {
       return alarm_;
     }
 
-    // optional .hello.SyncResponse.PairingAction pairing_action = 7;
+    // optional .com.hello.SyncResponse.PairingAction pairing_action = 7;
     public static final int PAIRING_ACTION_FIELD_NUMBER = 7;
     private com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction pairingAction_;
     /**
-     * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+     * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
      */
     public boolean hasPairingAction() {
       return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
-     * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+     * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
      */
     public com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction getPairingAction() {
       return pairingAction_;
     }
     /**
-     * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+     * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
      */
     public com.hello.suripu.api.input.InputProtos.SyncResponse.PairingActionOrBuilder getPairingActionOrBuilder() {
       return pairingAction_;
     }
 
-    // optional .hello.SyncResponse.WhiteNoise white_noise = 8;
+    // optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;
     public static final int WHITE_NOISE_FIELD_NUMBER = 8;
     private com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise whiteNoise_;
     /**
-     * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+     * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
      */
     public boolean hasWhiteNoise() {
       return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     /**
-     * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+     * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
      */
     public com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise getWhiteNoise() {
       return whiteNoise_;
     }
     /**
-     * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+     * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
      */
     public com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoiseOrBuilder getWhiteNoiseOrBuilder() {
       return whiteNoise_;
     }
 
-    // optional .hello.SyncResponse.FlashAction flash_action = 9;
+    // optional .com.hello.SyncResponse.FlashAction flash_action = 9;
     public static final int FLASH_ACTION_FIELD_NUMBER = 9;
     private com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction flashAction_;
     /**
-     * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+     * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
      */
     public boolean hasFlashAction() {
       return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
-     * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+     * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
      */
     public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction getFlashAction() {
       return flashAction_;
     }
     /**
-     * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+     * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
      */
     public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashActionOrBuilder getFlashActionOrBuilder() {
       return flashAction_;
@@ -13913,7 +13913,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.SyncResponse}
+     * Protobuf type {@code com.hello.SyncResponse}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -13930,7 +13930,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.SyncResponse.class, com.hello.suripu.api.input.InputProtos.SyncResponse.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.SyncResponse.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.SyncResponse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -14303,18 +14303,18 @@ public final class InputProtos {
         return this;
       }
 
-      // optional .hello.SyncResponse.Alarm alarm = 6;
+      // optional .com.hello.SyncResponse.Alarm alarm = 6;
       private com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm alarm_ = com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm, com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.AlarmOrBuilder> alarmBuilder_;
       /**
-       * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+       * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
        */
       public boolean hasAlarm() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
-       * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+       * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm getAlarm() {
         if (alarmBuilder_ == null) {
@@ -14324,7 +14324,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+       * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
        */
       public Builder setAlarm(com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm value) {
         if (alarmBuilder_ == null) {
@@ -14340,7 +14340,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+       * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
        */
       public Builder setAlarm(
           com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm.Builder builderForValue) {
@@ -14354,7 +14354,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+       * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
        */
       public Builder mergeAlarm(com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm value) {
         if (alarmBuilder_ == null) {
@@ -14373,7 +14373,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+       * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
        */
       public Builder clearAlarm() {
         if (alarmBuilder_ == null) {
@@ -14386,7 +14386,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+       * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm.Builder getAlarmBuilder() {
         bitField0_ |= 0x00000020;
@@ -14394,7 +14394,7 @@ public final class InputProtos {
         return getAlarmFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+       * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.AlarmOrBuilder getAlarmOrBuilder() {
         if (alarmBuilder_ != null) {
@@ -14404,7 +14404,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>optional .hello.SyncResponse.Alarm alarm = 6;</code>
+       * <code>optional .com.hello.SyncResponse.Alarm alarm = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm, com.hello.suripu.api.input.InputProtos.SyncResponse.Alarm.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.AlarmOrBuilder> 
@@ -14420,18 +14420,18 @@ public final class InputProtos {
         return alarmBuilder_;
       }
 
-      // optional .hello.SyncResponse.PairingAction pairing_action = 7;
+      // optional .com.hello.SyncResponse.PairingAction pairing_action = 7;
       private com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction pairingAction_ = com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction, com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.PairingActionOrBuilder> pairingActionBuilder_;
       /**
-       * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
        */
       public boolean hasPairingAction() {
         return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
-       * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction getPairingAction() {
         if (pairingActionBuilder_ == null) {
@@ -14441,7 +14441,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
        */
       public Builder setPairingAction(com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction value) {
         if (pairingActionBuilder_ == null) {
@@ -14457,7 +14457,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
        */
       public Builder setPairingAction(
           com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.Builder builderForValue) {
@@ -14471,7 +14471,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
        */
       public Builder mergePairingAction(com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction value) {
         if (pairingActionBuilder_ == null) {
@@ -14490,7 +14490,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
        */
       public Builder clearPairingAction() {
         if (pairingActionBuilder_ == null) {
@@ -14503,7 +14503,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.Builder getPairingActionBuilder() {
         bitField0_ |= 0x00000040;
@@ -14511,7 +14511,7 @@ public final class InputProtos {
         return getPairingActionFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.PairingActionOrBuilder getPairingActionOrBuilder() {
         if (pairingActionBuilder_ != null) {
@@ -14521,7 +14521,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>optional .hello.SyncResponse.PairingAction pairing_action = 7;</code>
+       * <code>optional .com.hello.SyncResponse.PairingAction pairing_action = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction, com.hello.suripu.api.input.InputProtos.SyncResponse.PairingAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.PairingActionOrBuilder> 
@@ -14537,18 +14537,18 @@ public final class InputProtos {
         return pairingActionBuilder_;
       }
 
-      // optional .hello.SyncResponse.WhiteNoise white_noise = 8;
+      // optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;
       private com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise whiteNoise_ = com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise, com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoiseOrBuilder> whiteNoiseBuilder_;
       /**
-       * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+       * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
        */
       public boolean hasWhiteNoise() {
         return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       /**
-       * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+       * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise getWhiteNoise() {
         if (whiteNoiseBuilder_ == null) {
@@ -14558,7 +14558,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+       * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
        */
       public Builder setWhiteNoise(com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise value) {
         if (whiteNoiseBuilder_ == null) {
@@ -14574,7 +14574,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+       * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
        */
       public Builder setWhiteNoise(
           com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise.Builder builderForValue) {
@@ -14588,7 +14588,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+       * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
        */
       public Builder mergeWhiteNoise(com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise value) {
         if (whiteNoiseBuilder_ == null) {
@@ -14607,7 +14607,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+       * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
        */
       public Builder clearWhiteNoise() {
         if (whiteNoiseBuilder_ == null) {
@@ -14620,7 +14620,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+       * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise.Builder getWhiteNoiseBuilder() {
         bitField0_ |= 0x00000080;
@@ -14628,7 +14628,7 @@ public final class InputProtos {
         return getWhiteNoiseFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+       * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoiseOrBuilder getWhiteNoiseOrBuilder() {
         if (whiteNoiseBuilder_ != null) {
@@ -14638,7 +14638,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>optional .hello.SyncResponse.WhiteNoise white_noise = 8;</code>
+       * <code>optional .com.hello.SyncResponse.WhiteNoise white_noise = 8;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise, com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoise.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.WhiteNoiseOrBuilder> 
@@ -14654,18 +14654,18 @@ public final class InputProtos {
         return whiteNoiseBuilder_;
       }
 
-      // optional .hello.SyncResponse.FlashAction flash_action = 9;
+      // optional .com.hello.SyncResponse.FlashAction flash_action = 9;
       private com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction flashAction_ = com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashActionOrBuilder> flashActionBuilder_;
       /**
-       * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
        */
       public boolean hasFlashAction() {
         return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction getFlashAction() {
         if (flashActionBuilder_ == null) {
@@ -14675,7 +14675,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
        */
       public Builder setFlashAction(com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction value) {
         if (flashActionBuilder_ == null) {
@@ -14691,7 +14691,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
        */
       public Builder setFlashAction(
           com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.Builder builderForValue) {
@@ -14705,7 +14705,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
        */
       public Builder mergeFlashAction(com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction value) {
         if (flashActionBuilder_ == null) {
@@ -14724,7 +14724,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
        */
       public Builder clearFlashAction() {
         if (flashActionBuilder_ == null) {
@@ -14737,7 +14737,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.Builder getFlashActionBuilder() {
         bitField0_ |= 0x00000100;
@@ -14745,7 +14745,7 @@ public final class InputProtos {
         return getFlashActionFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
        */
       public com.hello.suripu.api.input.InputProtos.SyncResponse.FlashActionOrBuilder getFlashActionOrBuilder() {
         if (flashActionBuilder_ != null) {
@@ -14755,7 +14755,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>optional .hello.SyncResponse.FlashAction flash_action = 9;</code>
+       * <code>optional .com.hello.SyncResponse.FlashAction flash_action = 9;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashAction.Builder, com.hello.suripu.api.input.InputProtos.SyncResponse.FlashActionOrBuilder> 
@@ -14771,7 +14771,7 @@ public final class InputProtos {
         return flashActionBuilder_;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.SyncResponse)
+      // @@protoc_insertion_point(builder_scope:com.hello.SyncResponse)
     }
 
     static {
@@ -14779,7 +14779,7 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.SyncResponse)
+    // @@protoc_insertion_point(class_scope:com.hello.SyncResponse)
   }
 
   public interface PillDataOrBuilder
@@ -14826,7 +14826,7 @@ public final class InputProtos {
     com.google.protobuf.ByteString getData();
   }
   /**
-   * Protobuf type {@code hello.PillData}
+   * Protobuf type {@code com.hello.PillData}
    *
    * <pre>
    * TODO:
@@ -15163,7 +15163,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.PillData}
+     * Protobuf type {@code com.hello.PillData}
      *
      * <pre>
      * TODO:
@@ -15184,7 +15184,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.PillData.class, com.hello.suripu.api.input.InputProtos.PillData.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.PillData.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.PillData.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -15490,7 +15490,7 @@ public final class InputProtos {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.PillData)
+      // @@protoc_insertion_point(builder_scope:com.hello.PillData)
     }
 
     static {
@@ -15498,7 +15498,7 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.PillData)
+    // @@protoc_insertion_point(class_scope:com.hello.PillData)
   }
 
   public interface PillBlobHeaderOrBuilder
@@ -15600,7 +15600,7 @@ public final class InputProtos {
     int getNumItems();
   }
   /**
-   * Protobuf type {@code hello.PillBlobHeader}
+   * Protobuf type {@code com.hello.PillBlobHeader}
    */
   public static final class PillBlobHeader extends
       com.google.protobuf.GeneratedMessage
@@ -16130,7 +16130,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.PillBlobHeader}
+     * Protobuf type {@code com.hello.PillBlobHeader}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -16147,7 +16147,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.PillBlobHeader.class, com.hello.suripu.api.input.InputProtos.PillBlobHeader.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.PillBlobHeader.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.PillBlobHeader.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -16750,7 +16750,7 @@ public final class InputProtos {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.PillBlobHeader)
+      // @@protoc_insertion_point(builder_scope:com.hello.PillBlobHeader)
     }
 
     static {
@@ -16758,39 +16758,39 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.PillBlobHeader)
+    // @@protoc_insertion_point(class_scope:com.hello.PillBlobHeader)
   }
 
   public interface PillBlobOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // repeated .hello.PillData items = 1;
+    // repeated .com.hello.PillData items = 1;
     /**
-     * <code>repeated .hello.PillData items = 1;</code>
+     * <code>repeated .com.hello.PillData items = 1;</code>
      */
     java.util.List<com.hello.suripu.api.input.InputProtos.PillData> 
         getItemsList();
     /**
-     * <code>repeated .hello.PillData items = 1;</code>
+     * <code>repeated .com.hello.PillData items = 1;</code>
      */
     com.hello.suripu.api.input.InputProtos.PillData getItems(int index);
     /**
-     * <code>repeated .hello.PillData items = 1;</code>
+     * <code>repeated .com.hello.PillData items = 1;</code>
      */
     int getItemsCount();
     /**
-     * <code>repeated .hello.PillData items = 1;</code>
+     * <code>repeated .com.hello.PillData items = 1;</code>
      */
     java.util.List<? extends com.hello.suripu.api.input.InputProtos.PillDataOrBuilder> 
         getItemsOrBuilderList();
     /**
-     * <code>repeated .hello.PillData items = 1;</code>
+     * <code>repeated .com.hello.PillData items = 1;</code>
      */
     com.hello.suripu.api.input.InputProtos.PillDataOrBuilder getItemsOrBuilder(
             int index);
   }
   /**
-   * Protobuf type {@code hello.PillBlob}
+   * Protobuf type {@code com.hello.PillBlob}
    */
   public static final class PillBlob extends
       com.google.protobuf.GeneratedMessage
@@ -16890,36 +16890,36 @@ public final class InputProtos {
       return PARSER;
     }
 
-    // repeated .hello.PillData items = 1;
+    // repeated .com.hello.PillData items = 1;
     public static final int ITEMS_FIELD_NUMBER = 1;
     private java.util.List<com.hello.suripu.api.input.InputProtos.PillData> items_;
     /**
-     * <code>repeated .hello.PillData items = 1;</code>
+     * <code>repeated .com.hello.PillData items = 1;</code>
      */
     public java.util.List<com.hello.suripu.api.input.InputProtos.PillData> getItemsList() {
       return items_;
     }
     /**
-     * <code>repeated .hello.PillData items = 1;</code>
+     * <code>repeated .com.hello.PillData items = 1;</code>
      */
     public java.util.List<? extends com.hello.suripu.api.input.InputProtos.PillDataOrBuilder> 
         getItemsOrBuilderList() {
       return items_;
     }
     /**
-     * <code>repeated .hello.PillData items = 1;</code>
+     * <code>repeated .com.hello.PillData items = 1;</code>
      */
     public int getItemsCount() {
       return items_.size();
     }
     /**
-     * <code>repeated .hello.PillData items = 1;</code>
+     * <code>repeated .com.hello.PillData items = 1;</code>
      */
     public com.hello.suripu.api.input.InputProtos.PillData getItems(int index) {
       return items_.get(index);
     }
     /**
-     * <code>repeated .hello.PillData items = 1;</code>
+     * <code>repeated .com.hello.PillData items = 1;</code>
      */
     public com.hello.suripu.api.input.InputProtos.PillDataOrBuilder getItemsOrBuilder(
         int index) {
@@ -17036,7 +17036,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.PillBlob}
+     * Protobuf type {@code com.hello.PillBlob}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -17053,7 +17053,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.PillBlob.class, com.hello.suripu.api.input.InputProtos.PillBlob.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.PillBlob.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.PillBlob.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -17184,7 +17184,7 @@ public final class InputProtos {
       }
       private int bitField0_;
 
-      // repeated .hello.PillData items = 1;
+      // repeated .com.hello.PillData items = 1;
       private java.util.List<com.hello.suripu.api.input.InputProtos.PillData> items_ =
         java.util.Collections.emptyList();
       private void ensureItemsIsMutable() {
@@ -17198,7 +17198,7 @@ public final class InputProtos {
           com.hello.suripu.api.input.InputProtos.PillData, com.hello.suripu.api.input.InputProtos.PillData.Builder, com.hello.suripu.api.input.InputProtos.PillDataOrBuilder> itemsBuilder_;
 
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public java.util.List<com.hello.suripu.api.input.InputProtos.PillData> getItemsList() {
         if (itemsBuilder_ == null) {
@@ -17208,7 +17208,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public int getItemsCount() {
         if (itemsBuilder_ == null) {
@@ -17218,7 +17218,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.PillData getItems(int index) {
         if (itemsBuilder_ == null) {
@@ -17228,7 +17228,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public Builder setItems(
           int index, com.hello.suripu.api.input.InputProtos.PillData value) {
@@ -17245,7 +17245,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public Builder setItems(
           int index, com.hello.suripu.api.input.InputProtos.PillData.Builder builderForValue) {
@@ -17259,7 +17259,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public Builder addItems(com.hello.suripu.api.input.InputProtos.PillData value) {
         if (itemsBuilder_ == null) {
@@ -17275,7 +17275,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public Builder addItems(
           int index, com.hello.suripu.api.input.InputProtos.PillData value) {
@@ -17292,7 +17292,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public Builder addItems(
           com.hello.suripu.api.input.InputProtos.PillData.Builder builderForValue) {
@@ -17306,7 +17306,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public Builder addItems(
           int index, com.hello.suripu.api.input.InputProtos.PillData.Builder builderForValue) {
@@ -17320,7 +17320,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public Builder addAllItems(
           Iterable<? extends com.hello.suripu.api.input.InputProtos.PillData> values) {
@@ -17334,7 +17334,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public Builder clearItems() {
         if (itemsBuilder_ == null) {
@@ -17347,7 +17347,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public Builder removeItems(int index) {
         if (itemsBuilder_ == null) {
@@ -17360,14 +17360,14 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.PillData.Builder getItemsBuilder(
           int index) {
         return getItemsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.PillDataOrBuilder getItemsOrBuilder(
           int index) {
@@ -17377,7 +17377,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public java.util.List<? extends com.hello.suripu.api.input.InputProtos.PillDataOrBuilder> 
            getItemsOrBuilderList() {
@@ -17388,14 +17388,14 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.PillData.Builder addItemsBuilder() {
         return getItemsFieldBuilder().addBuilder(
             com.hello.suripu.api.input.InputProtos.PillData.getDefaultInstance());
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.PillData.Builder addItemsBuilder(
           int index) {
@@ -17403,7 +17403,7 @@ public final class InputProtos {
             index, com.hello.suripu.api.input.InputProtos.PillData.getDefaultInstance());
       }
       /**
-       * <code>repeated .hello.PillData items = 1;</code>
+       * <code>repeated .com.hello.PillData items = 1;</code>
        */
       public java.util.List<com.hello.suripu.api.input.InputProtos.PillData.Builder> 
            getItemsBuilderList() {
@@ -17424,7 +17424,7 @@ public final class InputProtos {
         return itemsBuilder_;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.PillBlob)
+      // @@protoc_insertion_point(builder_scope:com.hello.PillBlob)
     }
 
     static {
@@ -17432,39 +17432,39 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.PillBlob)
+    // @@protoc_insertion_point(class_scope:com.hello.PillBlob)
   }
 
   public interface EventBatchOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // repeated .hello.EventBatch.EventItem events = 1;
+    // repeated .com.hello.EventBatch.EventItem events = 1;
     /**
-     * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+     * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
      */
     java.util.List<com.hello.suripu.api.input.InputProtos.EventBatch.EventItem> 
         getEventsList();
     /**
-     * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+     * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
      */
     com.hello.suripu.api.input.InputProtos.EventBatch.EventItem getEvents(int index);
     /**
-     * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+     * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
      */
     int getEventsCount();
     /**
-     * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+     * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
      */
     java.util.List<? extends com.hello.suripu.api.input.InputProtos.EventBatch.EventItemOrBuilder> 
         getEventsOrBuilderList();
     /**
-     * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+     * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
      */
     com.hello.suripu.api.input.InputProtos.EventBatch.EventItemOrBuilder getEventsOrBuilder(
             int index);
   }
   /**
-   * Protobuf type {@code hello.EventBatch}
+   * Protobuf type {@code com.hello.EventBatch}
    */
   public static final class EventBatch extends
       com.google.protobuf.GeneratedMessage
@@ -17598,7 +17598,7 @@ public final class InputProtos {
       int getOffsetMillis();
     }
     /**
-     * Protobuf type {@code hello.EventBatch.EventItem}
+     * Protobuf type {@code com.hello.EventBatch.EventItem}
      */
     public static final class EventItem extends
         com.google.protobuf.GeneratedMessage
@@ -17877,7 +17877,7 @@ public final class InputProtos {
         return builder;
       }
       /**
-       * Protobuf type {@code hello.EventBatch.EventItem}
+       * Protobuf type {@code com.hello.EventBatch.EventItem}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -17894,7 +17894,7 @@ public final class InputProtos {
                       com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.class, com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.Builder.class);
         }
 
-        // Construct using com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.newBuilder()
+        // Construct using com.com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -18111,7 +18111,7 @@ public final class InputProtos {
           return this;
         }
 
-        // @@protoc_insertion_point(builder_scope:hello.EventBatch.EventItem)
+        // @@protoc_insertion_point(builder_scope:com.hello.EventBatch.EventItem)
       }
 
       static {
@@ -18119,39 +18119,39 @@ public final class InputProtos {
         defaultInstance.initFields();
       }
 
-      // @@protoc_insertion_point(class_scope:hello.EventBatch.EventItem)
+      // @@protoc_insertion_point(class_scope:com.hello.EventBatch.EventItem)
     }
 
-    // repeated .hello.EventBatch.EventItem events = 1;
+    // repeated .com.hello.EventBatch.EventItem events = 1;
     public static final int EVENTS_FIELD_NUMBER = 1;
     private java.util.List<com.hello.suripu.api.input.InputProtos.EventBatch.EventItem> events_;
     /**
-     * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+     * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
      */
     public java.util.List<com.hello.suripu.api.input.InputProtos.EventBatch.EventItem> getEventsList() {
       return events_;
     }
     /**
-     * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+     * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
      */
     public java.util.List<? extends com.hello.suripu.api.input.InputProtos.EventBatch.EventItemOrBuilder> 
         getEventsOrBuilderList() {
       return events_;
     }
     /**
-     * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+     * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
      */
     public int getEventsCount() {
       return events_.size();
     }
     /**
-     * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+     * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
      */
     public com.hello.suripu.api.input.InputProtos.EventBatch.EventItem getEvents(int index) {
       return events_.get(index);
     }
     /**
-     * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+     * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
      */
     public com.hello.suripu.api.input.InputProtos.EventBatch.EventItemOrBuilder getEventsOrBuilder(
         int index) {
@@ -18268,7 +18268,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.EventBatch}
+     * Protobuf type {@code com.hello.EventBatch}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -18285,7 +18285,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.EventBatch.class, com.hello.suripu.api.input.InputProtos.EventBatch.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.EventBatch.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.EventBatch.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -18416,7 +18416,7 @@ public final class InputProtos {
       }
       private int bitField0_;
 
-      // repeated .hello.EventBatch.EventItem events = 1;
+      // repeated .com.hello.EventBatch.EventItem events = 1;
       private java.util.List<com.hello.suripu.api.input.InputProtos.EventBatch.EventItem> events_ =
         java.util.Collections.emptyList();
       private void ensureEventsIsMutable() {
@@ -18430,7 +18430,7 @@ public final class InputProtos {
           com.hello.suripu.api.input.InputProtos.EventBatch.EventItem, com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.Builder, com.hello.suripu.api.input.InputProtos.EventBatch.EventItemOrBuilder> eventsBuilder_;
 
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public java.util.List<com.hello.suripu.api.input.InputProtos.EventBatch.EventItem> getEventsList() {
         if (eventsBuilder_ == null) {
@@ -18440,7 +18440,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public int getEventsCount() {
         if (eventsBuilder_ == null) {
@@ -18450,7 +18450,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.EventBatch.EventItem getEvents(int index) {
         if (eventsBuilder_ == null) {
@@ -18460,7 +18460,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public Builder setEvents(
           int index, com.hello.suripu.api.input.InputProtos.EventBatch.EventItem value) {
@@ -18477,7 +18477,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public Builder setEvents(
           int index, com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.Builder builderForValue) {
@@ -18491,7 +18491,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public Builder addEvents(com.hello.suripu.api.input.InputProtos.EventBatch.EventItem value) {
         if (eventsBuilder_ == null) {
@@ -18507,7 +18507,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public Builder addEvents(
           int index, com.hello.suripu.api.input.InputProtos.EventBatch.EventItem value) {
@@ -18524,7 +18524,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public Builder addEvents(
           com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.Builder builderForValue) {
@@ -18538,7 +18538,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public Builder addEvents(
           int index, com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.Builder builderForValue) {
@@ -18552,7 +18552,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public Builder addAllEvents(
           Iterable<? extends com.hello.suripu.api.input.InputProtos.EventBatch.EventItem> values) {
@@ -18566,7 +18566,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public Builder clearEvents() {
         if (eventsBuilder_ == null) {
@@ -18579,7 +18579,7 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public Builder removeEvents(int index) {
         if (eventsBuilder_ == null) {
@@ -18592,14 +18592,14 @@ public final class InputProtos {
         return this;
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.Builder getEventsBuilder(
           int index) {
         return getEventsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.EventBatch.EventItemOrBuilder getEventsOrBuilder(
           int index) {
@@ -18609,7 +18609,7 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public java.util.List<? extends com.hello.suripu.api.input.InputProtos.EventBatch.EventItemOrBuilder> 
            getEventsOrBuilderList() {
@@ -18620,14 +18620,14 @@ public final class InputProtos {
         }
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.Builder addEventsBuilder() {
         return getEventsFieldBuilder().addBuilder(
             com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.getDefaultInstance());
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.Builder addEventsBuilder(
           int index) {
@@ -18635,7 +18635,7 @@ public final class InputProtos {
             index, com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.getDefaultInstance());
       }
       /**
-       * <code>repeated .hello.EventBatch.EventItem events = 1;</code>
+       * <code>repeated .com.hello.EventBatch.EventItem events = 1;</code>
        */
       public java.util.List<com.hello.suripu.api.input.InputProtos.EventBatch.EventItem.Builder> 
            getEventsBuilderList() {
@@ -18656,7 +18656,7 @@ public final class InputProtos {
         return eventsBuilder_;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.EventBatch)
+      // @@protoc_insertion_point(builder_scope:com.hello.EventBatch)
     }
 
     static {
@@ -18664,7 +18664,7 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.EventBatch)
+    // @@protoc_insertion_point(class_scope:com.hello.EventBatch)
   }
 
   public interface periodic_dataOrBuilder
@@ -18776,7 +18776,7 @@ public final class InputProtos {
     int getFirmwareVersion();
   }
   /**
-   * Protobuf type {@code hello.periodic_data}
+   * Protobuf type {@code com.hello.periodic_data}
    */
   public static final class periodic_data extends
       com.google.protobuf.GeneratedMessage
@@ -19285,7 +19285,7 @@ public final class InputProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code hello.periodic_data}
+     * Protobuf type {@code com.hello.periodic_data}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -19302,7 +19302,7 @@ public final class InputProtos {
                     com.hello.suripu.api.input.InputProtos.periodic_data.class, com.hello.suripu.api.input.InputProtos.periodic_data.Builder.class);
       }
 
-      // Construct using com.hello.suripu.api.input.InputProtos.periodic_data.newBuilder()
+      // Construct using com.com.hello.suripu.api.input.InputProtos.periodic_data.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -19859,7 +19859,7 @@ public final class InputProtos {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:hello.periodic_data)
+      // @@protoc_insertion_point(builder_scope:com.hello.periodic_data)
     }
 
     static {
@@ -19867,7 +19867,7 @@ public final class InputProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:hello.periodic_data)
+    // @@protoc_insertion_point(class_scope:com.hello.periodic_data)
   }
 
   private static com.google.protobuf.Descriptors.Descriptor
@@ -20001,9 +20001,9 @@ public final class InputProtos {
     String[] descriptorData = {
       "\n0suripu-api/src/main/resources/protos/I" +
       "nput.proto\022\005hello\"\217\003\n\021SensorSampleBatch\022" +
-      "6\n\007samples\030\001 \003(\0132%.hello.SensorSampleBat" +
+      "6\n\007samples\030\001 \003(\0132%.com.hello.SensorSampleBat" +
       "ch.SensorSample\022\021\n\tdevice_id\030\002 \001(\t\032\256\002\n\014S" +
-      "ensorSample\022E\n\013sensor_type\030\001 \001(\01620.hello" +
+      "ensorSample\022E\n\013sensor_type\030\001 \001(\01620.com.hello" +
       ".SensorSampleBatch.SensorSample.SensorTy" +
       "pe\022\021\n\ttimestamp\030\002 \001(\005\022\r\n\005value\030\003 \001(\014\"\264\001\n" +
       "\nSensorType\022\027\n\023AMBIENT_TEMPERATURE\020\000\022\024\n\020" +
@@ -20011,9 +20011,9 @@ public final class InputProtos {
       "\020AMBIENT_DECIBELS\020\003\022\027\n\023AMBIENT_AIR_QUALI",
       "TY\020\004\022\007\n\003GPS\020\005\022\026\n\022PHONE_ACCELERATION\020\006\022\024\n" +
       "\020PHONE_STEP_COUNT\020\007\"\325\001\n\021MotionSensorBatc" +
-      "h\022;\n\014manufacturer\030\001 \001(\0162%.hello.MotionSe" +
+      "h\022;\n\014manufacturer\030\001 \001(\0162%.com.hello.MotionSe" +
       "nsorBatch.Manufacturer\0226\n\007samples\030\002 \003(\0132" +
-      "%.hello.MotionSensorBatch.MotionSensor\0320" +
+      "%.com.hello.MotionSensorBatch.MotionSensor\0320" +
       "\n\014MotionSensor\022\021\n\ttimestamp\030\001 \001(\003\022\r\n\005val" +
       "ue\030\002 \001(\005\"\031\n\014Manufacturer\022\t\n\005HELLO\020\000\"\255\001\n\020" +
       "TrackerDataBatch\0224\n\007samples\030\001 \003(\0132#.hell" +
@@ -20021,7 +20021,7 @@ public final class InputProtos {
       "rData\022\022\n\ntracker_id\030\001 \001(\t\022\021\n\ttimestamp\030\002",
       " \001(\003\022\025\n\roffset_millis\030\003 \001(\005\022\026\n\016svm_no_gr" +
       "avity\030\004 \001(\005\"\211\004\n\021SimpleSensorBatch\022\021\n\tdev" +
-      "ice_id\030\001 \001(\t\022<\n\007samples\030\002 \003(\0132+.hello.Si" +
+      "ice_id\030\001 \001(\t\022<\n\007samples\030\002 \003(\0132+.com.hello.Si" +
       "mpleSensorBatch.SimpleSensorSample\032a\n\007Gp" +
       "sInfo\022\020\n\010latitude\030\001 \001(\002\022\021\n\tlongitude\030\002 \001" +
       "(\002\022\020\n\010accuracy\030\003 \001(\002\022\r\n\005speed\030\004 \001(\002\022\020\n\010p" +
@@ -20032,7 +20032,7 @@ public final class InputProtos {
       "\033\n\023ambient_air_quality\030\006 \001(\002\022\023\n\013device_d" +
       "ata\030\007 \001(\014\022\035\n\025device_data_signature\030\010 \001(\014" +
       "\022\027\n\017sound_amplitude\030\t \001(\002\022-\n\003gps\030\n \001(\0132 " +
-      ".hello.SimpleSensorBatch.GpsInfo\022\025\n\roffs" +
+      ".com.hello.SimpleSensorBatch.GpsInfo\022\025\n\roffs" +
       "et_millis\030\013 \001(\005\"z\n\021ActivationRequest\022\021\n\t" +
       "device_id\030\001 \001(\t\022\022\n\naccount_id\030\002 \001(\t\022\021\n\tt" +
       "imestamp\030\003 \001(\003\022\030\n\020firmware_version\030\004 \001(\t" +
@@ -20044,25 +20044,25 @@ public final class InputProtos {
       "ync_cycle\030\002 \001(\005\022\025\n\racc_scan_cyle\030\003 \001(\005\022\035" +
       "\n\025acc_sampling_interval\030\004 \001(\005\022 \n\030device_" +
       "sampling_interval\030\005 \001(\005\022(\n\005alarm\030\006 \001(\0132\031" +
-      ".hello.SyncResponse.Alarm\0229\n\016pairing_act" +
-      "ion\030\007 \001(\0132!.hello.SyncResponse.PairingAc" +
-      "tion\0223\n\013white_noise\030\010 \001(\0132\036.hello.SyncRe" +
+      ".com.hello.SyncResponse.Alarm\0229\n\016pairing_act" +
+      "ion\030\007 \001(\0132!.com.hello.SyncResponse.PairingAc" +
+      "tion\0223\n\013white_noise\030\010 \001(\0132\036.com.hello.SyncRe" +
       "sponse.WhiteNoise\0225\n\014flash_action\030\t \001(\0132" +
-      "\037.hello.SyncResponse.FlashAction\032E\n\005Alar",
+      "\037.com.hello.SyncResponse.FlashAction\032E\n\005Alar",
       "m\022\022\n\nstart_time\030\001 \001(\005\022\020\n\010end_time\030\002 \001(\005\022" +
       "\026\n\013ringtone_id\030\003 \001(\005:\0011\032}\n\rPairingAction" +
-      "\022\014\n\004ssid\030\001 \001(\t\022:\n\004type\030\002 \001(\0162,.hello.Syn" +
+      "\022\014\n\004ssid\030\001 \001(\t\022:\n\004type\030\002 \001(\0162,.com.hello.Syn" +
       "cResponse.PairingAction.ActionType\"\"\n\nAc" +
       "tionType\022\010\n\004PAIR\020\000\022\n\n\006UNPAIR\020\001\032D\n\nWhiteN" +
       "oise\022\022\n\nstart_time\030\001 \001(\005\022\020\n\010end_time\030\002 \001" +
       "(\005\022\020\n\010sound_id\030\003 \001(\005\032\361\002\n\013FlashAction\0228\n\005" +
-      "led_1\030\001 \001(\0132).hello.SyncResponse.FlashAc" +
-      "tion.LEDAction\0228\n\005led_2\030\002 \001(\0132).hello.Sy" +
+      "led_1\030\001 \001(\0132).com.hello.SyncResponse.FlashAc" +
+      "tion.LEDAction\0228\n\005led_2\030\002 \001(\0132).com.hello.Sy" +
       "ncResponse.FlashAction.LEDAction\0228\n\005led_",
-      "3\030\003 \001(\0132).hello.SyncResponse.FlashAction" +
-      ".LEDAction\0228\n\005led_4\030\004 \001(\0132).hello.SyncRe" +
+      "3\030\003 \001(\0132).com.hello.SyncResponse.FlashAction" +
+      ".LEDAction\0228\n\005led_4\030\004 \001(\0132).com.hello.SyncRe" +
       "sponse.FlashAction.LEDAction\0228\n\005led_5\030\005 " +
-      "\001(\0132).hello.SyncResponse.FlashAction.LED" +
+      "\001(\0132).com.hello.SyncResponse.FlashAction.LED" +
       "Action\032@\n\tLEDAction\022\r\n\005color\030\001 \001(\005\022\022\n\nst" +
       "art_time\030\002 \001(\005\022\020\n\010end_time\030\003 \001(\005\"=\n\010Pill" +
       "Data\022\017\n\007pill_id\030\001 \001(\t\022\022\n\naccount_id\030\002 \001(" +
@@ -20072,8 +20072,8 @@ public final class InputProtos {
       "(\t\022\030\n\020last_sample_date\030\004 \001(\t\022%\n\035compress" +
       "ed_bitmap_account_ids\030\005 \001(\014\022\026\n\016data_file" +
       "_name\030\006 \001(\t\022\021\n\tnum_items\030\007 \001(\005\"*\n\010PillBl" +
-      "ob\022\036\n\005items\030\001 \003(\0132\017.hello.PillData\"\214\001\n\nE" +
-      "ventBatch\022+\n\006events\030\001 \003(\0132\033.hello.EventB" +
+      "ob\022\036\n\005items\030\001 \003(\0132\017.com.hello.PillData\"\214\001\n\nE" +
+      "ventBatch\022+\n\006events\030\001 \003(\0132\033.com.hello.EventB" +
       "atch.EventItem\032Q\n\tEventItem\022\027\n\017start_tim" +
       "estamp\030\001 \001(\003\022\025\n\rend_timestamp\030\002 \001(\003\022\024\n\014o" +
       "ffsetMillis\030\003 \001(\005\"\316\001\n\rperiodic_data\022\021\n\tu" +
@@ -20081,7 +20081,7 @@ public final class InputProtos {
       "ture\030\003 \001(\005\022\020\n\010humidity\030\004 \001(\005\022\014\n\004dust\030\005 \001",
       "(\005\022\014\n\004name\030\006 \001(\t\022\013\n\003mac\030\007 \001(\014\022\031\n\021light_v" +
       "ariability\030\010 \001(\005\022\026\n\016light_tonality\030\t \001(\005" +
-      "\022\030\n\020firmware_version\030\n \001(\005B)\n\032com.hello." +
+      "\022\030\n\020firmware_version\030\n \001(\005B)\n\032com.com.hello." +
       "suripu.api.inputB\013InputProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
