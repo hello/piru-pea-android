@@ -68,7 +68,7 @@ public class MorpheusBleTestActivity extends ListActivity implements
             Toast.makeText(MorpheusBleTestActivity.this, disconnectedDevice.getName() + " disconnected: " + data, Toast.LENGTH_SHORT).show();
 
             setProgressBarIndeterminateVisibility(true);
-            Morpheus.discover(MorpheusBleTestActivity.this, 4000);
+            Morpheus.discover(MorpheusBleTestActivity.this, 10000);
             MorpheusBleTestActivity.this.deviceArrayAdapter.clear();
             MorpheusBleTestActivity.this.deviceArrayAdapter.notifyDataSetChanged();
         }
