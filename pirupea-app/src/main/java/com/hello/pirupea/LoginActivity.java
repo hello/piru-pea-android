@@ -48,11 +48,13 @@ public class LoginActivity
         this.edPassword = (EditText)this.findViewById(R.id.edPassword);
         this.txtError = (TextView)this.findViewById(R.id.txtError);
 
+        goNextScreen();
+        finish();/*
         if(!LocalSettings.getOAuthToken().equals("")){
             goNextScreen();
             finish();
         }
-
+*/
     }
 
     public void onSignInClicked(View sender){

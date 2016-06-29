@@ -5,7 +5,6 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.hello.ble"
         minSdkVersion rootProject.ext.compileSdkVersion
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
@@ -18,7 +17,7 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
